@@ -1,6 +1,10 @@
 import DummyButton from './components/DummyButton.vue'
-
-//TODO: In future we may wish to use global registration?
-export {
-  DummyButton
+import Vue from "vue";
+const Components = {
+  "iv-dummybutton":DummyButton
 };
+for(let key in Components){
+  Vue.component(key,Components[key]);
+}
+
+export default Components;
