@@ -1,4 +1,4 @@
-# Components for Imperial Visualisations
+# VueJS Components for Imperial Visualisations
 
 ## Project setup
 ```
