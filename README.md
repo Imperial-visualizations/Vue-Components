@@ -1,4 +1,4 @@
-# impvis-components
+# Components for Imperial Visualisations
 
 ## Project setup
 ```
