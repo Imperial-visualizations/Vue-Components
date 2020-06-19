@@ -1,6 +1,8 @@
 {
   "name": "@impvis/components",
   "version": "0.1.4",
+  "main":"./dist/impvis-components.common.js",
+  "unpkg": "dist/impvis-components.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -39,12 +41,13 @@
     "last 2 versions",
     "not dead"
   ],
-  "main":"./dist/impvis-components.common.js",
+
   "files":[
     "dist/*",
-    "src/*",
-    "*.json",
-    "public/*",
-    "*.js"
-  ]
+    "src/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Imperial-visualizations/Vue-Components.git"
+  }
 }
