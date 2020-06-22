@@ -1,14 +1,9 @@
 <template>
-    <button class="impvis-button">{{hello}}<slot>Button</slot></button>
+    <button class="impvis-button"><slot>Button</slot></button>
 </template>
 <script>
 export default {
-    name:"iv-button",
-    computed:{
-        hello(){
-            return "Hello world "
-        }
-    }
+    name:"iv-button"
 }
 </script>
 <style>
