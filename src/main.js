@@ -6,7 +6,7 @@ import * as components from './components'
 // Install a plugin to Vue.js
 // Can then be installed simply by using the Vue.use syntax, which is preferred by the Vue docs 
 const ImpVisLibrary={
-  install(Vue,options={}){
+  install(Vue){
     for(const componentName in components){
       const component = components[componentName]
       Vue.component(component.name,component);
