@@ -1,6 +1,6 @@
 <template>
   <label>
-    <input type="checkbox" id="unchecked" class="cbx hidden" @click="changeMode">
+    <input type="checkbox" id="unchecked" class="cbx hidden" @click="mode = !mode">
     <label for="unchecked" class="lbl"></label>
   </label>
 </template>
@@ -10,13 +10,6 @@ export default {
     data:function(){
         return{
             mode:false
-        }
-    },
-    methods:{
-        changeMode(){
-            this.mode = !this.mode;
-            console.log("Toggle clicked!");
-            console.log("New mode", this.mode);
         }
     }
 }
