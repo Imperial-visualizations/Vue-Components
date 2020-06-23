@@ -32,7 +32,8 @@ export default {
     padding-top: 0.5vw;
     padding-bottom: 0.5vw;
     box-shadow: 0px 0px 4px rgba(0,0,0,0.25);
-    border-radius: 3px;
+    border-radius: 0.2vw;
+    transition: 0.5s;
 }
 
 .Pause{
