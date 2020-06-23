@@ -1,21 +1,33 @@
 <template>
-  <label>
-    <input type="checkbox" id="unchecked" class="cbx hidden" @click="mode = !mode">
-    <label for="unchecked" class="lbl"></label>
+  <label >
+    <input type="checkbox" id="unchecked" class="toggleBasicInput hidden" @click="changeMode">
+    <label for="unchecked" class="toggleBasicLabel"></label>
   </label>
 </template>
 <script>
 export default {
     name:"iv-toggleBasic",
-    data:function(){
-        return{
-            mode:false
-        }
+    props:{
+      mode: {
+        type: Boolean,
+        required: true
+        },
+      disabled: {
+        type:Boolean,
+        required: false,
+        default: false
+      }
+    },
+    methods:{
+      changeMode(){
+        this.mode = !this.mode;
+        this.$emit("toggleswitched", this.mode);
+      }
     }
 }
 </script>
 <style>
-.lbl {
+.toggleBasicLabel {
   position: relative;
   display: block;
   height: 20px;
@@ -26,7 +38,7 @@ export default {
   transition: all 0.3s ease;
 }
 
-.lbl:after {
+.toggleBasicLabel:after {
   position: absolute;
   left: -2px;
   top: -3px;
@@ -40,21 +52,21 @@ export default {
   transition: all 0.3s ease;
 }
 
-.lbl:active:after { transform: scale(1.15, 0.85); }
+.toggleBasicLabel:active:after { transform: scale(1.15, 0.85); }
 
-.cbx:checked ~ label { background: #6fbeb5; }
+.toggleBasicInput:checked ~ label { background: #6fbeb5; }
 
-.cbx:checked ~ label:after {
+.toggleBasicInput:checked ~ label:after {
   left: 20px;
   background: #179588;
 }
 
-.cbx:disabled ~ label {
+.toggleBasicInput:disabled ~ label {
   background: #d5d5d5;
   pointer-events: none;
 }
 
-.cbx:disabled ~ label:after { background: #bcbdbc; }
+.toggleBasicInput:disabled ~ label:after { background: #bcbdbc; }
 
 .hidden { display: none; }
 </style>

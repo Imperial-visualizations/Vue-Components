@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-    name:"iv-button"
+    name:"iv-demobutton"
 }
 </script>
 <style>

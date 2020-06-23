@@ -1,28 +1,40 @@
 <template>
-  <div class="switch-big">
-    <input @click="mode = $event.target.value" type="radio" id="Option1" name="mode.ID" value="Option1" checked/>
-    <label for="Option1">Option1</label>
+  <div class="toggleAdvanceClass">
+    <input @click="changeMode($event.target.value)" type="radio" id="Mode1" name="mode.ID" value="Mode1" checked/>
+    <label for="Mode1">Mode 1</label>
 
-    <input @click="mode = $event.target.value" type="radio" id="Option2" name="mode.ID" value="Option2" />
-    <label for="Option2">Option2</label>
+    <input @click="changeMode($event.target.value)" type="radio" id="Mode2" name="mode.ID" value="Mode2" />
+    <label for="Mode2">Mode 2</label>
 
-    <input @click="mode = $event.target.value" type="radio" id="Option3" name="mode.ID" value="Option3" />
-    <label for="Option3">Option3</label>
+    <input @click="changeMode($event.target.value)" type="radio" id="Mode3" name="mode.ID" value="Mode3" />
+    <label for="Mode3">Mode 3</label>
   </div>
 </template>
 
 <script>
 export default {
     name:"iv-toggleAdvance",
-    data:function(){
-        return{
-            mode:"Option1"
-        }
+    props:{
+      mode: {
+        type: String,
+        required: true
+        },
+      disabled: {
+        type:Boolean,
+        required: false,
+        default: false
+      }
+    },
+    methods:{
+      changeMode(modeChoice){
+        this.mode = modeChoice;
+        this.$emit("toggleswitched", this.mode);
+      }
     }
 }
 </script>
 <style>
-.switch-big {
+.toggleAdvanceClass {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 4px 10px 4px 10px;
   display: inline-block;
@@ -32,7 +44,7 @@ export default {
   position: relative;
 }
 
-.switch-big input {
+.toggleAdvanceClass input {
   position: absolute !important;
   clip: rect(0, 0, 0, 0);
   height: 1px;
@@ -41,7 +53,7 @@ export default {
   overflow: hidden;
 }
 
-.switch-big label {
+.toggleAdvanceClass label {
   width: 95px;
   font-size: 12px;
   display: inline-block;
@@ -58,26 +70,26 @@ export default {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
 }
 
-.switch-big label:hover {
+.toggleAdvanceClass label:hover {
   cursor: pointer;
 }
 
-.switch-big input:checked + label {
+.toggleAdvanceClass input:checked + label {
   background-color: rgba(0, 62, 116, 0.9);
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
-.switch-big label:first-of-type {
+.toggleAdvanceClass label:first-of-type {
   border-radius: 4px 0 0 4px;
 }
 
-.switch-big label:last-of-type {
+.toggleAdvanceClass label:last-of-type {
   border-radius: 0 4px 4px 0;
 }
 
 /* Fade effect */
-.switch-big label {
+.toggleAdvanceClass label {
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition:    all 0.4s ease-in-out;
   -ms-transition:     all 0.4s ease-in-out;
