@@ -1,6 +1,7 @@
 <template>
     <div>
-      <header class="appheader">
+      <iv-title-bar>New Title</iv-title-bar>
+      <header class="appheader" style="padding-top: 5vh;">
           <div class="start-items">
             <h1>Playground!</h1>
             <div class="app__components-select">
