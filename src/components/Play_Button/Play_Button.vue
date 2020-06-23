@@ -14,8 +14,13 @@ export default {
     methods:{
         changeState(){
             this.play = !this.play
-            this.play ? this.text="Pause" : this.text="Play"
-            this.$emit("playpauseevent", this.play)
+            if (this.play) {
+                this.text="Pause"
+                this.$emit("playevent")
+            } else {
+                this.text="Play"
+                this.$emit("pauseevent")
+            }
         }
     }
 }
