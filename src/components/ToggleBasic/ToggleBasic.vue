@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-    name:"iv-toggle",
+    name:"iv-toggleBasic",
     data:function(){
         return{
             mode:false
