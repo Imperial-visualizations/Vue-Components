@@ -10,6 +10,8 @@
             </div>
           </div> 
       </header>
+      
+
       <sandbox class="app__content">
           <component :is="getComponent"></component>
       </sandbox>
