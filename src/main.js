@@ -1,12 +1,11 @@
 
 import * as components from './components';
-
+import "./main.css";
 
 // Install a plugin to Vue.js
 // Can then be installed simply by using the Vue.use syntax, which is preferred by the Vue docs 
 const ImpVisLibrary={
   install(Vue){
-    require("./main.css");
     for(const componentName in components){
       const component = components[componentName]
       Vue.component(component.name,component);
