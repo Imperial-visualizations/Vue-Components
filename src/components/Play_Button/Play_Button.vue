@@ -37,7 +37,6 @@ export default {
 .iv-play-button{
     background-color: #0F8291;
     color: white;
-    font-family:Arial, Helvetica, sans-serif;
     font-size: 1.5vw;
     border:none;
     width:7.8vw;
