@@ -1,6 +1,6 @@
 <template>
   <label >
-    <input type="checkbox" id="unchecked" class="toggleBasicInput hidden" @click="changeMode">
+    <input type="checkbox" id="unchecked" class="toggleBasicInput hidden" @click="changeMode" :disabled="toggleDisabled">
     <label for="unchecked" class="toggleBasicLabel"></label>
   </label>
 </template>
@@ -8,11 +8,11 @@
 export default {
     name:"iv-toggleBasic",
     props:{
-      mode: {
+      toggleMode: {
         type: Boolean,
         required: true
         },
-      disabled: {
+      toggleDisabled: {
         type:Boolean,
         required: false,
         default: false
@@ -20,8 +20,8 @@ export default {
     },
     methods:{
       changeMode(){
-        this.mode = !this.mode;
-        this.$emit("toggleswitched", this.mode);
+        this.toggleMode = !this.toggleMode;
+        this.$emit("toggleswitched", this.toggleMode);
       }
     }
 }
@@ -32,7 +32,7 @@ export default {
   display: block;
   height: 20px;
   width: 44px;
-  background: #ccc;
+  background: #21d7f3;
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -47,7 +47,7 @@ export default {
   height: 26px;
   border-radius: 100px;
   background: #2196F3;
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #ccc;
   content: '';
   transition: all 0.3s ease;
 }

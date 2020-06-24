@@ -1,12 +1,12 @@
 <template>
   <div class="toggleAdvanceClass">
-    <input @click="changeMode($event.target.value)" type="radio" id="Mode1" name="mode.ID" value="Mode1" checked/>
+    <input @click="changeMode($event.target.value)" :disabled="toggleDisabled" class="toggleAdvanceInput" type="radio" id="Mode1" name="mode.ID" value="Mode1" checked/>
     <label for="Mode1">Mode 1</label>
 
-    <input @click="changeMode($event.target.value)" type="radio" id="Mode2" name="mode.ID" value="Mode2" />
+    <input @click="changeMode($event.target.value)" :disabled="toggleDisabled" class="toggleAdvanceInput" type="radio" id="Mode2" name="mode.ID" value="Mode2" />
     <label for="Mode2">Mode 2</label>
 
-    <input @click="changeMode($event.target.value)" type="radio" id="Mode3" name="mode.ID" value="Mode3" />
+    <input @click="changeMode($event.target.value)" :disabled="toggleDisabled" class="toggleAdvanceInput" type="radio" id="Mode3" name="mode.ID" value="Mode3" />
     <label for="Mode3">Mode 3</label>
   </div>
 </template>
@@ -15,11 +15,11 @@
 export default {
     name:"iv-toggleAdvance",
     props:{
-      mode: {
+      toggleMode: {
         type: String,
         required: true
         },
-      disabled: {
+      toggleDisabled: {
         type:Boolean,
         required: false,
         default: false
@@ -27,8 +27,8 @@ export default {
     },
     methods:{
       changeMode(modeChoice){
-        this.mode = modeChoice;
-        this.$emit("toggleswitched", this.mode);
+        this.toggleMode = modeChoice;
+        this.$emit("toggleswitched", this.toggleMode);
       }
     }
 }
@@ -96,4 +96,12 @@ export default {
   -o-transition:      all 0.4s ease-in-out;
   transition:         all 0.4s ease-in-out;
 }
+
+.toggleAdvanceInput:disabled ~ label {
+  background: #d5d5d5;
+  pointer-events: none;
+}
+
+.toggleAdvanceInput:disabled ~ label:after { background: #bcbdbc; }
+
 </style>
