@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-    name:"iv-toggleBasic",
+    name:"iv-toggle-basic",
     props:{
       initialMode:{
         type: Boolean,

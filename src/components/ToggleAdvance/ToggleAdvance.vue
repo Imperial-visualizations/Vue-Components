@@ -1,34 +1,46 @@
 <template>
-  <div class="toggleAdvanceClass">
-    <input @click="changeMode($event.target.value)" :disabled="toggleDisabled" class="toggleAdvanceInput" type="radio" id="Mode1" name="mode.ID" value="Mode1" checked/>
-    <label for="Mode1">Mode 1</label>
-
-    <input @click="changeMode($event.target.value)" :disabled="toggleDisabled" class="toggleAdvanceInput" type="radio" id="Mode2" name="mode.ID" value="Mode2" />
-    <label for="Mode2">Mode 2</label>
-
-    <input @click="changeMode($event.target.value)" :disabled="toggleDisabled" class="toggleAdvanceInput" type="radio" id="Mode3" name="mode.ID" value="Mode3" />
-    <label for="Mode3">Mode 3</label>
-  </div>
+<div class="toggleAdvanceClass">
+  <iv-toggle-advance-button v-for="(modeName, modeIndex) in modes" :key="modeIndex" :modeIndex="modeIndex" :modeName="modeName"></iv-toggle-advance-button>
+</div>
 </template>
 
 <script>
+import ToggleAdvanceButton from "./ToggleAdvanceButton.vue"
 export default {
-    name:"iv-toggleAdvance",
+    name:"iv-toggle-advance",
+    components: {"iv-toggle-advance-button": ToggleAdvanceButton},
     props:{
-      toggleMode: {
-        type: String,
-        required: true
-        },
+      initialModeIndex:{
+        type: Number,
+        default: 0
+      },
+      modes: {
+        type: Array,
+        required: true,
+        default: function () { return ["Option 1", "Option 2", "Option 3"] }
+      },
       toggleDisabled: {
         type:Boolean,
         required: false,
         default: false
       }
     },
+    data(){
+      return {
+        toggleModeIndex: this.initialModeIndex
+      }
+    },
     methods:{
-      changeMode(modeChoice){
-        this.toggleMode = modeChoice;
-        this.$emit("toggleswitched", this.toggleMode);
+      changeMode(chooseIndex){
+        this.toggleModeIndex = chooseIndex;
+        this.$emit("toggleswitched", this.toggleModeIndex);
+      },
+      isChecked(chooseIndex){
+        if (chooseIndex === this.toggleModeIndex){
+          return true
+        } else {
+          return false
+        }
       }
     }
 }
@@ -37,8 +49,7 @@ export default {
 .toggleAdvanceClass {
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 4px 10px 4px 10px;
-  display: inline-block;
-  vertical-align: middle;
+  display: flex;
   overflow: hidden;
   margin-bottom: 6px;
   position: relative;
@@ -79,7 +90,7 @@ export default {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-
+/*
 .toggleAdvanceClass label:first-of-type {
   border-radius: 4px 0 0 4px;
 }
@@ -87,7 +98,7 @@ export default {
 .toggleAdvanceClass label:last-of-type {
   border-radius: 0 4px 4px 0;
 }
-
+*/
 /* Fade effect */
 .toggleAdvanceClass label {
   -webkit-transition: all 0.4s ease-in-out;
