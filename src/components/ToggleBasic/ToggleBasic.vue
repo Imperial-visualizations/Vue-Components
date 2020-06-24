@@ -8,14 +8,19 @@
 export default {
     name:"iv-toggleBasic",
     props:{
-      toggleMode: {
+      initialMode:{
         type: Boolean,
-        required: true
-        },
+        default: true
+      },
       toggleDisabled: {
         type:Boolean,
         required: false,
         default: false
+      }
+    },
+    data(){
+      return {
+        toggleMode: this.initialMode
       }
     },
     methods:{
