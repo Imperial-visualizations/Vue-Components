@@ -1,4 +1,4 @@
-<template>
+git <template>
     <button class="impvis-button"><slot>Button</slot></button>
 </template>
 <script>
