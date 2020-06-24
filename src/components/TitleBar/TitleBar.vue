@@ -11,11 +11,6 @@
 <script>
 export default {
     name:"iv-title-bar",
-    data(){
-        return{
-
-        }
-    },
     methods:{
         openLinkNewTab: function () {
             window.open("https://www.imperialvisualisations.com/learn/", "_blank");

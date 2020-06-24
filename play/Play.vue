@@ -20,12 +20,12 @@
 import Multiselect from "vue-multiselect";
 import {Sandbox} from "component-fixture";
 import * as components from "../src/components";
-import "component-fixture/dist/ComponentFixture.css"; 
+import "component-fixture/dist/ComponentFixture.css";
 
 export default {
     components:{
         Multiselect,
-        Sandbox
+        Sandbox,
     },
     created(){
       this.currentComponent = Object.keys(components)[0];

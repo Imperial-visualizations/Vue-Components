@@ -1,2 +1,2 @@
-import PlotlyPlot from "./PlotlyPlot.vue";
-export default PlotlyPlot;
+import PlotContainer from "./PlotContainer.vue";
+export default PlotContainer;
