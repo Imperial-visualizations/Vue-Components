@@ -1,6 +1,6 @@
 {
   "name": "@impvis/components",
-  "version": "0.1.7.1",
+  "version": "0.1.8",
   "main": "./dist/impvis-components.common.js",
   "unpkg": "dist/impvis-components.umd.min.js",
   "scripts": {
