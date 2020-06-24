@@ -1,7 +1,7 @@
 <template>
-<div class="toggleAdvanceClass">
-  <iv-toggle-advance-button v-for="(modeName, modeIndex) in modes" :key="modeIndex" :modeIndex="modeIndex" :modeName="modeName"></iv-toggle-advance-button>
-</div>
+  <div class="toggleAdvanceClass">
+    <iv-toggle-advance-button v-for="(modeName, modeIndex) in modes" :key="modeIndex" :modeIndex="modeIndex" :modeName="modeName"></iv-toggle-advance-button>
+  </div>
 </template>
 
 <script>
