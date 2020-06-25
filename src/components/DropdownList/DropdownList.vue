@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <button type="button" @click="showList" class="dropbtn" :for="dropdownIndex" :disabled="$parent.dropdownDisabled">{{ dropdownItems[dropdownIndex] }}</button>
+        <button @click="showList" class="dropbtn" :for="dropdownIndex" :disabled="dropdownDisabled">{{ dropdownItems[dropdownIndex] }}</button>
         <div id="myDropdown" class="dropdown-content">
           <iv-dropdown-list-element v-for="(dropdownName, dropdownIndex) in dropdownItems" :key="dropdownIndex" :dropdownIndex="dropdownIndex" :dropdownName="dropdownName"></iv-dropdown-list-element>
         </div>
@@ -30,7 +30,7 @@ export default {
     },
     data(){
       return {
-        dropdownIndex: this.initialDropdownIndex
+        dropdownIndex: this.initialDropdownIndex,
       }
     },
     methods:{
@@ -47,10 +47,12 @@ export default {
         }
       },
       showList(){
-        if (document.getElementById("myDropdown").classList.contains("show")) {
-          document.getElementById("myDropdown").classList.remove("show")
-        } else {        
-          document.getElementById("myDropdown").classList.toggle("show")
+        if (!this.dropdownDisabled) {
+          if (document.getElementById("myDropdown").classList.contains("show")) {
+            document.getElementById("myDropdown").classList.remove("show")
+          } else {        
+            document.getElementById("myDropdown").classList.toggle("show")
+          }
         }
       }
     }
