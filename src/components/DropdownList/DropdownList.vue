@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown">
-        <button @click="showList" class="dropbtn" :for="dropdownIndex">{{ dropdownItems[dropdownIndex] }}</button>
-        <div id="myDropdown">
+        <button type="button" @click="showList" class="dropbtn" :for="dropdownIndex" :disabled="$parent.dropdownDisabled">{{ dropdownItems[dropdownIndex] }}</button>
+        <div id="myDropdown" class="dropdown-content">
           <iv-dropdown-list-element v-for="(dropdownName, dropdownIndex) in dropdownItems" :key="dropdownIndex" :dropdownIndex="dropdownIndex" :dropdownName="dropdownName"></iv-dropdown-list-element>
         </div>
     </div>
@@ -36,6 +36,7 @@ export default {
     methods:{
       changeDropdown(chooseIndex){
         this.dropdownIndex = chooseIndex;
+        document.getElementById("myDropdown").classList.remove("show")
         this.$emit("dropdownelementclicked", this.dropdownIndex);
       },
       isChecked(chooseIndex){
@@ -46,7 +47,11 @@ export default {
         }
       },
       showList(){
-
+        if (document.getElementById("myDropdown").classList.contains("show")) {
+          document.getElementById("myDropdown").classList.remove("show")
+        } else {        
+          document.getElementById("myDropdown").classList.toggle("show")
+        }
       }
     }
 }

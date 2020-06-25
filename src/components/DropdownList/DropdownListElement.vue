@@ -1,8 +1,8 @@
 <template>
-    <div id="myDropdown" >
+    <div>
         <input  type="radio" 
         @click="$parent.changeDropdown(dropdownIndex)" :checked="$parent.isChecked(dropdownIndex)" 
-        :disabled="$parent.dropdownDisabled" :id="id" :value="dropdownIndex"/>
+        :id="id" :value="dropdownIndex"/>
         <label :for="id">{{ dropdownName }}</label>
     </div>
 </template>
