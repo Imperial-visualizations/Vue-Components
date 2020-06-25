@@ -81,7 +81,9 @@ export default {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
 }
 
+/* toggle on hover */
 .toggleAdvanceClass label:hover {
+  background-color: #2980B9;
   cursor: pointer;
 }
 
@@ -107,12 +109,5 @@ export default {
   -o-transition:      all 0.4s ease-in-out;
   transition:         all 0.4s ease-in-out;
 }
-
-.toggleAdvanceInput:disabled ~ label {
-  background: #d5d5d5;
-  pointer-events: none;
-}
-
-.toggleAdvanceInput:disabled ~ label:after { background: #bcbdbc; }
 
 </style>

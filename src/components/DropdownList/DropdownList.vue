@@ -69,6 +69,7 @@ export default {
 
 /* Dropdown Button */
 .dropdownbutton {
+  width: 95px;
   background-color: rgba(0, 62, 116, 0.9);
   color: rgba(255, 255, 255, 0.9);
   font-size: 12px;
@@ -84,38 +85,27 @@ export default {
   cursor: pointer;
 }
 
-/* Dropdown button on hover & focus */
+/* Dropdown button on hover */
 .dropdownbutton:hover {
   background-color: #2980B9;
 }
 
+/* Dropdown button when disabled */
 .dropdownbutton:disabled {
-  background: #d5d5d5;
-  pointer-events: none;
+  background-color: rgba(0, 62, 116, 0.5);
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition:    all 0.4s ease-in-out;
+  -ms-transition:     all 0.4s ease-in-out;
+  -o-transition:      all 0.4s ease-in-out;
+  transition:         all 0.4s ease-in-out;
+  pointer-events:     none;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
-  position: absolute;
-  background-color: #f1f1f1;
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: black;
-  text-decoration: none;
-}
-
-/* Links inside the dropdown */
-.dropdown-content-element a {
-  color: black;
-  padding: 6px 12px 5px 10px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content-element a:hover {
-  cursor: pointer;
-  background-color: #2980B9;
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
