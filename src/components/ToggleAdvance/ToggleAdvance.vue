@@ -81,14 +81,12 @@ export default {
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
 }
 
-/* toggle on hover */
 .toggleAdvanceClass label:hover {
-  background-color: #2980B9;
   cursor: pointer;
 }
 
 .toggleAdvanceClass input:checked + label {
-  background-color: #003E74;
+  background-color: rgba(0, 62, 116, 0.9);
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -109,5 +107,12 @@ export default {
   -o-transition:      all 0.4s ease-in-out;
   transition:         all 0.4s ease-in-out;
 }
+
+.toggleAdvanceInput:disabled ~ label {
+  background: #d5d5d5;
+  pointer-events: none;
+}
+
+.toggleAdvanceInput:disabled ~ label:after { background: #bcbdbc; }
 
 </style>
