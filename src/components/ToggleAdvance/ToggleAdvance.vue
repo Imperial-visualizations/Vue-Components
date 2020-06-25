@@ -88,7 +88,7 @@ export default {
 }
 
 .toggleAdvanceClass input:checked + label {
-  background-color: rgba(0, 62, 116, 0.9);
+  background-color: #003E74;
   -webkit-box-shadow: none;
   box-shadow: none;
 }

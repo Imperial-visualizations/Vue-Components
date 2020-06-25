@@ -87,7 +87,13 @@ export default {
 
 /* Dropdown button on hover */
 .dropdownbutton:hover {
+  cursor: pointer;
   background-color: #2980B9;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition:    all 0.4s ease-in-out;
+  -ms-transition:     all 0.4s ease-in-out;
+  -o-transition:      all 0.4s ease-in-out;
+  transition:         all 0.4s ease-in-out;
 }
 
 /* Dropdown button when disabled */

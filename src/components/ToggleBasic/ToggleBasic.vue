@@ -51,7 +51,7 @@ export default {
   width: 26px;
   height: 26px;
   border-radius: 100px;
-  background: #16b9fa;
+  background: #2980B9;
   box-shadow: 0 0 1px #ccc;
   content: '';
   transition: all 0.3s ease;
@@ -70,8 +70,13 @@ export default {
 
 /* toggle on hover */
 .toggleBasicLabel:hover {
-  background: #2980B9;
   cursor: pointer;
+  background: #37538B;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition:    all 0.4s ease-in-out;
+  -ms-transition:     all 0.4s ease-in-out;
+  -o-transition:      all 0.4s ease-in-out;
+  transition:         all 0.4s ease-in-out;
 }
 
 .toggleBasicInput:disabled ~ label:after { background: #bcbdbc; }
