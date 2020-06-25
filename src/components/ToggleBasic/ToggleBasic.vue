@@ -1,5 +1,5 @@
 <template>
-  <label >
+  <label>
     <input type="checkbox" id="unchecked" class="toggleBasicInput hidden" @click="changeMode" :disabled="toggleDisabled">
     <label for="unchecked" class="toggleBasicLabel"></label>
   </label>
@@ -37,7 +37,7 @@ export default {
   display: block;
   height: 20px;
   width: 44px;
-  background: #21d7f3;
+  background-color: #003E74;
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -51,7 +51,7 @@ export default {
   width: 26px;
   height: 26px;
   border-radius: 100px;
-  background: #2196F3;
+  background: #2980B9;
   box-shadow: 0 0 1px #ccc;
   content: '';
   transition: all 0.3s ease;
@@ -59,16 +59,24 @@ export default {
 
 .toggleBasicLabel:active:after { transform: scale(1.15, 0.85); }
 
-.toggleBasicInput:checked ~ label { background: #6fbeb5; }
-
 .toggleBasicInput:checked ~ label:after {
   left: 20px;
-  background: #179588;
 }
 
 .toggleBasicInput:disabled ~ label {
   background: #d5d5d5;
   pointer-events: none;
+}
+
+/* toggle on hover */
+.toggleBasicLabel:hover {
+  cursor: pointer;
+  background: #37538B;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition:    all 0.4s ease-in-out;
+  -ms-transition:     all 0.4s ease-in-out;
+  -o-transition:      all 0.4s ease-in-out;
+  transition:         all 0.4s ease-in-out;
 }
 
 .toggleBasicInput:disabled ~ label:after { background: #bcbdbc; }
