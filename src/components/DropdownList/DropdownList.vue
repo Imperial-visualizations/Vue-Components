@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <button @click="showList" class="dropbtn" :for="dropdownIndex" :disabled="dropdownDisabled">{{ dropdownItems[dropdownIndex] }}</button>
+        <button @click="showList" class="dropdownbutton" :for="dropdownIndex" :disabled="dropdownDisabled">{{ dropdownItems[dropdownIndex] }}</button>
         <div id="myDropdown" class="dropdown-content">
           <iv-dropdown-list-element v-for="(dropdownName, dropdownIndex) in dropdownItems" :key="dropdownIndex" :dropdownIndex="dropdownIndex" :dropdownName="dropdownName"></iv-dropdown-list-element>
         </div>
@@ -60,25 +60,38 @@ export default {
 </script>
 
 <style scoped>
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  display: inline-block;
+}
+
 /* Dropdown Button */
-.dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
+.dropdownbutton {
+  background-color: rgba(0, 62, 116, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: .05rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 6px 12px 5px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-text-stroke-width: 0.1px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+.dropdownbutton:hover {
   background-color: #2980B9;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
+.dropdownbutton:disabled {
+  background: #d5d5d5;
+  pointer-events: none;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -86,22 +99,26 @@ export default {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: black;
+  text-decoration: none;
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content-element a {
   color: black;
-  padding: 12px 16px;
+  padding: 6px 12px 5px 10px;
   text-decoration: none;
   display: block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd}
+.dropdown-content-element a:hover {
+  cursor: pointer;
+  background-color: #2980B9;
+}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
 </style>
