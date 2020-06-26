@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h1>{{showText}}</h1>
     <label class="checkbox-container">
       <input type="checkbox" @click="changeStatus" :disabled="disable">
-      <span class="checkmark"></span>
+      <span class="checkmark"></span>{{showText}}
     </label>
+    <p v-if="disable">Checkbox disabled</p>
+    <p v-else>Checkbox actived</p>
   </div>
 </template>
 <script>
@@ -15,7 +16,6 @@ export default {
         type: Boolean,
         default: true
       },
-      text: String,
       disable: {
         type: Boolean,
         default: false
@@ -24,6 +24,7 @@ export default {
     data() {
         return {
             checkboxStatus: this.checkbox,
+            isDisabled: this.disable,
             showText:"Check this box!",
             checkedMessage: "The box is checked!",
             uncheckedMessage: "The box is unchecked!"
@@ -39,6 +40,7 @@ export default {
           }
           this.$emit("checkboxstatuschanged", this.checkboxStatus)
         }
+        
     }
 }
 </script>
@@ -71,15 +73,18 @@ export default {
   height: 25px;
   width: 25px;
   background-color: #eee;
+  outline: 1px solid #000305;
 }
 
 
 .checkbox-container:hover input ~ .checkmark {
   background-color: #ccc;
+  outline: 1px solid #000305;
 }
 
 .checkbox-container input:checked ~ .checkmark {
   background-color: #2196F3;
+  outline: 1px solid #000305;
 }
 
 
