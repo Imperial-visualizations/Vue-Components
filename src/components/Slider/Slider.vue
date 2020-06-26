@@ -5,7 +5,9 @@
         
         <div class = "sliderGroup">
             <div v-if="bubble" ref="SliderValueMarkerRef" class="sliderValueMarker" :style="moveLabel" ><p>{{value}}</p></div>
+
             <input type="range" class = "iv-range"  v-model.number="value" :min="min" :max="max" :step="step" list="steplist" :disabled="disabled" @change="emitSlider"> 
+            
             <datalist v-if="sliderTicks" id="steplist">
                 <option v-for="tick in tick_list" :key="tick.id">{{tick.value}}</option>
             </datalist>
@@ -54,7 +56,7 @@ export default {
             },
         max:{
             type:Number,
-            default:100.0
+            default:200.0
             },
         step:{
             type:Number,
@@ -91,11 +93,14 @@ export default {
             }
         },
         calc_ticks(){
+            console.log(this);
             let tick_list = [];
-            console.log("YOO",this.min)
+
             for(let i=this.min; i <= this.max; i+=this.step){
-                console.log(toString(this.id) + "_" + toString(i));
-                tick_list.push({id: toString(this.id) + "_" + toString(i), value: i});
+                console.log(this.id.toString() + "_" + i.toString());
+
+                tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i});
+
             }
             return tick_list
         },
@@ -113,16 +118,15 @@ export default {
             }
         }
     },
-    watch: { 
-        "step": {
-            handler: "calc_ticks",
-            immediate: true
-        }
-    },
     mounted () {
         this.id = this._uid,
-        console.log("heeyy")
+        console.log("heeyy: mounted")
         this.tick_list = this.calc_ticks();
+    },
+    watch:{
+        step:{
+            handler:"calc_ticks"
+        }
     }
 }
 </script>
@@ -140,28 +144,6 @@ export default {
 .iv-range{
     width: 100%;
     margin: 0px;
-}
-
-.sliderValueMarkerDisabled{
-  pointer-events: none;
-  margin: 0;
-
-  width: 25px;
-  height: 25px;
-  
-  border-radius: 50% 50% 0 50%;
-  background-color:#999;
-
-  text-align: center;
-  line-height: 0px;
-
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  
-  position: absolute;
-  top: -35px;
 }
 
 .sliderValueMarker {
@@ -187,16 +169,6 @@ export default {
 }
 
 .sliderValueMarker p {
-  font-size: 14px;
-  text-align: center;
-
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.sliderValueMarkerDisabled p {
   font-size: 14px;
   text-align: center;
 
