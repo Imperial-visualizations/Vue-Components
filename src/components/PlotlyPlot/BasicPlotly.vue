@@ -1,6 +1,6 @@
 <template>
     <div>    
-        <div ref="container" id="plotly-div2"></div>
+        <div ref="container" id="plotly-div"></div>
     </div>
 </template>
 
@@ -11,27 +11,51 @@ export default {
     name:"iv-basic-plotly",
     props: {
         xData:{ 
-            default: [1,2,3,4]
-            },
+            type: Array,
+            default: function() {return[1,2,3,4]}
+        },
         yData:{
-            default: [-1,4,-9,16]
-            }
+            type: Array,
+            default: function() {return[-1,4,-9,16]}
+        },
+        animate:{
+            type: Boolean,
+        }
     },
-    // methods:{
-    //     updatePlot() {
-    //         console.log('updated');
-    //         // Plotly Animate called when data is changed
-    //     }
-    // },
+    methods:{
+        updatePlot() {
+            console.log('upda');
+            // Plotly Animate called when data is changed
+        },
+        animation(){
+             if (this.animate){
+                Plotly.animate('plotly-div', {
+                    data: [{y:[Math.random(), 4*Math.random(), 9*Math.random(), 16*Math.random()]}],
+                    traces: [0],
+                    layout: {}
+                }, {
+                    frame: {
+                        duration: 0,
+                        redraw: false,
+                        mode: "immediate",
+                    }
+                });
+                requestAnimationFrame(this.animation);
+            }
+        },
+
+    },
+    watch: {
+        animate: function(){this.animation();},
+    },
     mounted(){
-        console.log('creating');
          let plot = {
             x: this.xData,
             y: this.yData,
             type:"scatter"
         };
-        console.log('plotting');
-        Plotly.newPlot("plotly-div2",[plot]);
+
+        Plotly.newPlot("plotly-div",[plot]);
     },
     // watch:{
     //     xData: this.updatePlot(),
