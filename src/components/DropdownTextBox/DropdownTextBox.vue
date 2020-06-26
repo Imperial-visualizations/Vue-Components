@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name:"iv-dropdown-content",
+    name:"iv-dropdown-text-box",
     props:{
         dropdownText:{
             type:String,
