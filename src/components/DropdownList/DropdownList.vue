@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown">
-        <button @click="showList" class="dropdownbutton" :for="dropdownIndex" :disabled="dropdownDisabled">{{ dropdownItems[dropdownIndex] }}</button>
-        <div id="myDropdown" class="dropdown-content">
+        <button @click="displayOrHide" class="dropdownbutton" :for="dropdownIndex" :disabled="dropdownDisabled">{{ dropdownItems[dropdownIndex] }}</button>
+        <div id="myDropdown" class="dropdown-content" v-show="showList">
           <iv-dropdown-list-element v-for="(dropdownName, dropdownIndex) in dropdownItems" :key="dropdownIndex" :dropdownIndex="dropdownIndex" :dropdownName="dropdownName"></iv-dropdown-list-element>
         </div>
     </div>
@@ -22,6 +22,10 @@ export default {
         required: true,
         default: function () { return ["Option 1", "Option 2", "Option 3"] }
       },
+      showList:{
+        type:Boolean,
+        default: false
+        },
       dropdownDisabled: {
         type:Boolean,
         required: false,
@@ -36,7 +40,7 @@ export default {
     methods:{
       changeDropdown(chooseIndex){
         this.dropdownIndex = chooseIndex;
-        document.getElementById("myDropdown").classList.remove("show")
+        this.showList = false
         this.$emit("dropdownlistelementclicked", this.dropdownIndex);
       },
       isChecked(chooseIndex){
@@ -46,15 +50,11 @@ export default {
           return false
         }
       },
-      showList(e){
-        this.$emit("dropdownlistbuttonclicked", e)
+      displayOrHide(e){
         if (!this.dropdownDisabled) {
-          if (document.getElementById("myDropdown").classList.contains("show")) {
-            document.getElementById("myDropdown").classList.remove("show")
-          } else {        
-            document.getElementById("myDropdown").classList.toggle("show")
-          }
+            this.showList = !this.showList
         }
+        this.$emit("dropdownlistbuttonclicked", e)
       }
     }
 }
@@ -108,9 +108,9 @@ export default {
   pointer-events:     none;
 }
 
-/* Dropdown Content (Hidden by Default) */
+/* Dropdown Content*/
 .dropdown-content {
-  display: none;
+  display: block;
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: black;
 }
