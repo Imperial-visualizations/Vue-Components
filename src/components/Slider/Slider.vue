@@ -93,12 +93,9 @@ export default {
             }
         },
         calc_ticks(){
-            console.log(this);
             let tick_list = [];
 
             for(let i=this.min; i <= this.max; i+=this.step){
-                console.log(this.id.toString() + "_" + i.toString());
-
                 tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i});
 
             }
@@ -120,7 +117,6 @@ export default {
     },
     mounted () {
         this.id = this._uid,
-        console.log("heeyy: mounted")
         this.tick_list = this.calc_ticks();
     },
     watch:{
