@@ -2,16 +2,22 @@
     <div>
         <basic-plotly
          v-if="plotType=='plotly'"
-         v-bind:animate="animate">
+         v-bind:animate="animate"
+         v-bind:input0="this.buttons[0].bool">
 
         </basic-plotly>
+
         <div id="button-container">
             <play-button v-if="showPlayButton" 
             @iv-played="play" @iv-paused="pause">
             </play-button>
-            <button v-for="button in buttons" :key="button.message">
+            <button v-for="button in buttons" :key="button.message" @click="buttonPress(button)">
                 {{button.message}}
             </button>
+        </div>
+        <div id="slider-container">
+            <input type="range"/>
+
         </div>
     </div>
     
@@ -38,13 +44,23 @@ export default {
         },
         buttons:{
             default: [
-                {message: 'next Button' },
-                {message: 'another Button' },
+                {
+                    message: 'Next Button',
+                    bool: false,
+                },
+                {
+                    message: 'Another Button',
+                    bool: true
+                },
                 ],
         },
     },
     data(){
-        return{animate: false,}
+        return{
+            animate: false,
+            inputBools: []
+            // inputBools: [true, true] //should have length of number of buttons
+        }
     },
     methods: {
         play: function(){
@@ -52,6 +68,9 @@ export default {
         },
         pause: function(){
             this.animate = false;
+        },
+        buttonPress: function(button){
+            button.bool = !button.bool; 
         }
     }
 }
@@ -71,6 +90,21 @@ export default {
 }
 
 button{
+    background-color: #0F8291;
+    color: white;
+    font-size: 1.5vw;
+    border:none;
+    width:7.8vw;
+    padding-top: 0.4vw;
+    padding-bottom: 0.4vw;
+    text-align: left;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.25);
+    border-radius: 0.2vw;
+    transition: 0.5s;
     margin-right: 0.5rem;
+}
+
+button:focus{
+    outline: 0;
 }
 </style>

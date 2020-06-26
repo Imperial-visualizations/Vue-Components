@@ -20,17 +20,20 @@ export default {
         },
         animate:{
             type: Boolean,
-        }
+        },
+        input0:{
+            type: Boolean,
+        },
     },
     methods:{
         updatePlot() {
-            console.log('upda');
+            console.log('updated Plot');
             // Plotly Animate called when data is changed
         },
         animation(){
              if (this.animate){
                 Plotly.animate('plotly-div', {
-                    data: [{y:[Math.random(), 4*Math.random(), 9*Math.random(), 16*Math.random()]}],
+                    data: [{y:[2*(Math.random()-0.5), 8*(Math.random()-0.5), 18*(Math.random()-0.5), 32*(Math.random()-0.5)]}],
                     traces: [0],
                     layout: {}
                 }, {
@@ -47,6 +50,7 @@ export default {
     },
     watch: {
         animate: function(){this.animation();},
+        input0: function(){this.updatePlot();}
     },
     mounted(){
          let plot = {
