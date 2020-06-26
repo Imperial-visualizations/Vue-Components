@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown">
-        <button @click="showContent" class="dropdownbutton" :disabled="dropdownDisabled">Click this</button>
-        <div id="myDropdown" class="dropdown-content">
+        <button @click="displayOrHide" class="dropdownbutton" :disabled="dropdownDisabled">Click this</button>
+        <div id="myDropdown" class="dropdown-content" v-show="showContent">
             <p>{{dropdownText}}</p>
         </div>
     </div>
@@ -15,6 +15,10 @@ export default {
             type:String,
             default: "Add text"
         },
+        showContent:{
+            type:Boolean,
+            default: false
+        },
         dropdownDisabled: {
             type:Boolean,
             required: false,
@@ -22,16 +26,10 @@ export default {
         }
     },
     methods:{
-      showContent(e){
-        this.$emit("dropdowntextboxbuttonclicked", e)
-        if (!this.dropdownDisabled) {
-          if (document.getElementById("myDropdown").classList.contains("show")) {
-            document.getElementById("myDropdown").classList.remove("show")
-          } else {        
-            document.getElementById("myDropdown").classList.toggle("show")
-          }
+        displayOrHide(){
+            this.showContent = !this.showContent
+            this.$emit("dropdowntextboxbuttonclicked t", this.showContent)
         }
-      }
     }
 }
 </script>
@@ -84,9 +82,9 @@ export default {
   pointer-events:     none;
 }
 
-/* Dropdown Content (Hidden by Default) */
+/* Dropdown Content*/
 .dropdown-content {
-    display: none;
+    display: block;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: black;
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;

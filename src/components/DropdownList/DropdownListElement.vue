@@ -45,6 +45,7 @@ export default {
     position: relative;
     display: inline-block;
     padding: 6px 12px 5px 10px;
+    word-wrap: break-word;
 }
 
 /* Change color of dropdown links on hover */
