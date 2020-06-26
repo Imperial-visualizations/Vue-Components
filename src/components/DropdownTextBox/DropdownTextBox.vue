@@ -1,53 +1,29 @@
 <template>
     <div class="dropdown">
-        <button @click="showList" class="dropdownbutton" :for="dropdownIndex" :disabled="dropdownDisabled">{{ dropdownItems[dropdownIndex] }}</button>
+        <button @click="showContent" class="dropdownbutton" :disabled="dropdownDisabled">Click this</button>
         <div id="myDropdown" class="dropdown-content">
-          <iv-dropdown-list-element v-for="(dropdownName, dropdownIndex) in dropdownItems" :key="dropdownIndex" :dropdownIndex="dropdownIndex" :dropdownName="dropdownName"></iv-dropdown-list-element>
+            <p>{{dropdownText}}</p>
         </div>
     </div>
 </template>
 
 <script>
-import DropdownListElement from "./DropdownListElement.vue"
 export default {
-    name:"iv-dropdown-list",
-    components: {"iv-dropdown-list-element": DropdownListElement},
+    name:"iv-dropdown-content",
     props:{
-      initialDropdownIndex:{
-        type: Number,
-        default: 0
-      },
-      dropdownItems: {
-        type: Array,
-        required: true,
-        default: function () { return ["Option 1", "Option 2", "Option 3"] }
-      },
-      dropdownDisabled: {
-        type:Boolean,
-        required: false,
-        default: false
-      }
-    },
-    data(){
-      return {
-        dropdownIndex: this.initialDropdownIndex,
-      }
+        dropdownText:{
+            type:String,
+            default: "Add text"
+        },
+        dropdownDisabled: {
+            type:Boolean,
+            required: false,
+            default: false
+        }
     },
     methods:{
-      changeDropdown(chooseIndex){
-        this.dropdownIndex = chooseIndex;
-        document.getElementById("myDropdown").classList.remove("show")
-        this.$emit("dropdownlistelementclicked", this.dropdownIndex);
-      },
-      isChecked(chooseIndex){
-        if (chooseIndex === this.dropdownIndex){
-          return true
-        } else {
-          return false
-        }
-      },
-      showList(e){
-        this.$emit("dropdownlistbuttonclicked", e)
+      showContent(e){
+        this.$emit("dropdowntextboxbuttonclicked", e)
         if (!this.dropdownDisabled) {
           if (document.getElementById("myDropdown").classList.contains("show")) {
             document.getElementById("myDropdown").classList.remove("show")
@@ -110,9 +86,19 @@ export default {
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  color: black;
+    display: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: black;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: .05rem;
+    text-align: center;
+    background-color: #f1f1f1;
+    color: black;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 6px 12px 5px 10px;
+    word-wrap: break-word;
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
