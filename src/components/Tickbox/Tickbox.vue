@@ -2,17 +2,16 @@
   <div>
     <label class="checkbox-container">
       <input type="checkbox" @click="changeStatus" :disabled="disable">
-      <span class="checkmark"></span>{{showText}}
+      <span class="checkmark"></span>
     </label>
-    <p v-if="disable">Checkbox disabled</p>
-    <p v-else>Checkbox actived</p>
+    {{log()}}
   </div>
 </template>
 <script>
 export default {
     name:"iv-tickbox",
     props:{
-      checkbox: {
+      initialState: {
         type: Boolean,
         default: true
       },
@@ -23,24 +22,26 @@ export default {
     },
     data() {
         return {
-            checkboxStatus: this.checkbox,
-            isDisabled: this.disable,
-            showText:"Check this box!",
-            checkedMessage: "The box is checked!",
-            uncheckedMessage: "The box is unchecked!"
+            checkboxStatus: this.initialState,
+            isDisabled: this.disable
             }
         },
     methods:{
         changeStatus(){
           this.checkboxStatus = !this.checkboxStatus;
-          if(this.checkboxStatus == false){
-            this.showText = this.checkedMessage
+          if(!this.checkboxStatus == true){
+            this.$emit("Box Checked!", this.checkboxStatus)
           }else{
-            this.showText = this.uncheckedMessage 
+            this.$emit("box Unchecked!", this.checkboxStatus)
           }
-          this.$emit("checkboxstatuschanged", this.checkboxStatus)
-        }
-        
+        },
+        log(){
+          if(this.disable == true){
+            console.log("Checkbox Disabled!")
+          }else{
+            console.log("Checkbox Actived!")
+          }
+        }        
     }
 }
 </script>
