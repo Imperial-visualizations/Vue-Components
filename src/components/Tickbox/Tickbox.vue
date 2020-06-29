@@ -29,9 +29,9 @@ export default {
         changeStatus(){
           this.checkboxStatus = !this.checkboxStatus;
           if(!this.checkboxStatus == true){
-            this.$emit("Box Checked!", this.checkboxStatus)
+            this.$emit("checked", this.checkboxStatus)
           }else{
-            this.$emit("box Unchecked!", this.checkboxStatus)
+            this.$emit("unchecked", this.checkboxStatus)
           }
         }    
     }
