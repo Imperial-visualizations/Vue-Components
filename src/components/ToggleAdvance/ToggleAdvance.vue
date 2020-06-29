@@ -37,9 +37,9 @@ export default {
       },
       isChecked(chooseIndex){
         if (chooseIndex === this.toggleModeIndex){
-          return true
+          return true;
         } else {
-          return false
+          return false;
         }
       }
     }
@@ -73,7 +73,6 @@ export default {
   font-weight: normal;
   letter-spacing: .05rem;
   text-align: center;
-  text-transform: uppercase;
   padding: 6px 12px 5px 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-text-stroke-width: 0.1px;
