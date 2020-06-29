@@ -1,7 +1,6 @@
-// Import Global styles
-import './main.css';
-// Import Components
-import * as components from './components'
+
+import * as components from './components';
+import "./main.css";
 
 // Install a plugin to Vue.js
 // Can then be installed simply by using the Vue.use syntax, which is preferred by the Vue docs 

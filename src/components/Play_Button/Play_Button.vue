@@ -1,7 +1,7 @@
 <template>
     <button class="iv-play-button" :class="dyn_class" @click="changeState">
-        <img v-if="!play" class="play-icon" src="./assets/play.svg" />
-        <img v-else class="play-icon" src="./assets/pause.svg" />
+        <img v-if="!play" class="play-icon" src="@/components/Play_Button/assets/play.svg" />
+        <img v-else class="play-icon" src="@/components/Play_Button/assets/pause.svg" />
         {{text}}
     </button>
 </template>
