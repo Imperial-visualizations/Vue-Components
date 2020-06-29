@@ -1,10 +1,10 @@
 <template>
     <div class="dropdown">
-        <div @mouseover="displayOrHide" @mouseleave="displayOrHide" class="dropdownhover">
+        <div @mouseover="displayOrHide" @mouseleave="displayOrHide" @mousemove="updatePosition" class="dropdownhover">
             <slot>Hover over me</slot>
         </div>
         <div class="dropdown-content" v-show="showContent">        
-            <p>{{dropdownText}}</p>
+            <slot >{{dropdownText}}</slot>
         </div>
     </div>
 </template>
@@ -17,6 +17,12 @@ export default {
             type: String,
             default: "This is a secret message."
         },
+        textXPosition:{
+            type: Number
+        },
+        textYPosition:{
+            type: Number
+        },
         showContent:{
             type: Boolean,
             default: false
@@ -26,6 +32,11 @@ export default {
         displayOrHide(){
             this.showContent = !this.showContent;
             this.$emit("hovered", this.showContent);
+        },
+        updatePosition(e){
+            this.textXPosition = e.clientX;
+            this.textYPosition = e.clientY;
+            this.$emit("textreposition", e);
         }
     }
 }
@@ -37,26 +48,24 @@ export default {
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
     display: inline-block;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: normal;
     letter-spacing: .05rem;
-    text-align: center;
+    text-align: left;
 }
 
 /* Dropdown hover */
 .dropdownhover {
     padding: 6px 12px 5px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    -webkit-text-stroke-width: 0.1px;
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
     cursor: pointer;
+    text-decoration: underline;
 }
 
 /* Dropdown hover on hover */
 .dropdownhover:hover {
     cursor: help;
     background-color: #2980B9;
+    color: rgba(255, 255, 255, 0.9);
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition:    all 0.4s ease-in-out;
     -ms-transition:     all 0.4s ease-in-out;
@@ -80,8 +89,5 @@ export default {
     padding: 0px 12px 5px 10px;
     word-wrap: break-word;
 }
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown hover) */
-.show {display:block;}
 
 </style>

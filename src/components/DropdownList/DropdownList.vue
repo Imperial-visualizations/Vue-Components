@@ -23,11 +23,11 @@ export default {
         default: function () { return ["Option 1", "Option 2", "Option 3"] }
       },
       showList:{
-        type:Boolean,
+        type: Boolean,
         default: false
         },
       dropdownDisabled: {
-        type:Boolean,
+        type: Boolean,
         required: false,
         default: false
       }
@@ -113,8 +113,5 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: black;
 }
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
 
 </style>
