@@ -3,7 +3,7 @@
         <basic-plotly
          v-if="plotType=='plotly'"
          v-bind:animate="animate"
-         v-bind:input0="this.buttons[0].bool">
+         v-bind:input0="this.buttons[0].bool"> <!-- Just an example of how to bind the button/slider to the plot -->
 
         </basic-plotly>
 
@@ -16,7 +16,7 @@
             </button>
         </div>
         <div id="slider-container" v-for="slider in sliders" :key="slider.message">
-            <input type="range" :min="slider.min" :max="slider.max" :step="slider.step">
+            <input type="range" :min="slider.min" :max="slider.max" :step="slider.step" :value="slider.value">
             <label>{{slider.message}}</label>
         </div>
     </div>
@@ -61,6 +61,14 @@ export default {
                     step: 5,
                     max: 10,
                     min: 0,
+                    value: 5,
+                },
+                {
+                    message: 'Second Slider',
+                    step: 1,
+                    max: 10,
+                    min: 0,
+                    value: 1,
                 }
             ]
             
@@ -69,8 +77,6 @@ export default {
     data(){
         return{
             animate: false,
-            inputBools: []
-            // inputBools: [true, true] //should have length of number of buttons
         }
     },
     methods: {
@@ -88,6 +94,10 @@ export default {
 </script>
 
 <style>
+
+#slider-container{
+    margin-bottom: 1vh;
+}
 
 #button-container{
     margin: 1rem;
