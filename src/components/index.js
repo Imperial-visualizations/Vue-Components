@@ -1,3 +1,4 @@
+export {default as HoverText} from "./HoverText";
 export {default as DropdownTextBox} from "./DropdownTextBox";
 export {default as DropdownList} from "./DropdownList";
 export {default as ToggleBasic} from "./ToggleBasic";
