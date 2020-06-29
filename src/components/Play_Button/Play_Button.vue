@@ -22,11 +22,11 @@ export default {
             if (this.play) {
                 this.text="Pause"
                 this.dyn_class="iv-button-pause"
-                this.$emit("iv-played")
+                this.$emit("played")
             } else {
                 this.text="Play"
                 this.dyn_class="iv-button-play"
-                this.$emit("iv-paused")
+                this.$emit("paused")
             }
         }
     }
