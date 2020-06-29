@@ -1,6 +1,6 @@
 <template>
     <div class="banner">
-        <a @click="openLinkNewTab">
+        <a @click="openLinkNewTab" id="logo-container">
             <img id="vis-logo" src="./VisualisationsLogoWhite2.png">
         </a>
         <div id="vis-title"><slot>Defualt Title</slot></div>
@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 .banner {
   display: flex;
@@ -60,10 +60,10 @@ export default {
   letter-spacing: 2pt;
 }
 
-a {
+#logo-container {
   color: #1EAEDB; 
   z-index: 10;}
-a:hover {
+#logo-container:hover {
   color: #0FA0CE; }
 
 #vis-logo {

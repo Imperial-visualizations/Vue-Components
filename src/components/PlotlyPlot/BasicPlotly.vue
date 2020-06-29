@@ -50,7 +50,9 @@ export default {
     },
     watch: {
         animate: function(){this.animation();},
-        input0: function(){this.updatePlot();}
+        input0: function(){this.updatePlot();},
+        xData: function(){this.updatePlot()},
+        yData: function(){this.updatePlot()},
     },
     mounted(){
          let plot = {
@@ -61,10 +63,6 @@ export default {
 
         Plotly.newPlot("plotly-div",[plot]);
     },
-    // watch:{
-    //     xData: this.updatePlot(),
-    //     yData: this.updatePlot()
-    // }
 }
 
 </script>

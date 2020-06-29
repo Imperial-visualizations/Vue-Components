@@ -11,13 +11,13 @@
             <play-button v-if="showPlayButton" 
             @iv-played="play" @iv-paused="pause">
             </play-button>
-            <button v-for="button in buttons" :key="button.message" @click="buttonPress(button)">
+            <button v-for="button in buttons" :key="button.message" @click="buttonPress(button)" id="plot-button">
                 {{button.message}}
             </button>
         </div>
-        <div id="slider-container">
-            <input type="range"/>
-
+        <div id="slider-container" v-for="slider in sliders" :key="slider.message">
+            <input type="range" :min="slider.min" :max="slider.max" :step="slider.step">
+            <label>{{slider.message}}</label>
         </div>
     </div>
     
@@ -54,6 +54,17 @@ export default {
                 },
                 ],
         },
+        sliders:{
+            default: [
+                {
+                    message: 'First Slider',
+                    step: 5,
+                    max: 10,
+                    min: 0,
+                }
+            ]
+            
+        }
     },
     data(){
         return{
@@ -76,12 +87,7 @@ export default {
 }
 </script>
 
-<style scoped>
-
-#plotly-div{
-    width:60vw;
-    height: 50vh;
-}
+<style>
 
 #button-container{
     margin: 1rem;
@@ -89,7 +95,7 @@ export default {
     margin-right: 0.5rem;
 }
 
-button{
+#plot-button{
     background-color: #0F8291;
     color: white;
     font-size: 1.5vw;
