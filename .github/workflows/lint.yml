@@ -20,9 +20,5 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install
 
-      - name: Run linters
-        uses: samuelmeuli/lint-action@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          # Enable linters
-          eslint: true
+      - name: Run lint
+        run: npm run lint
