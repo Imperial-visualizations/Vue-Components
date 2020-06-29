@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .iv-play-button{
     background-color: #0F8291;
     color: white;
