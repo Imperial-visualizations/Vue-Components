@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <button @mouseover="showContent = true" @mouseleave="showContent = false" class="dropdownhover">Hover me</button>
+        <button @mouseover="displayOrHide" @mouseleave="displayOrHide" class="dropdownhover">Hover me</button>
         <div id="myDropdown" class="dropdown-content" v-show="showContent">
             <p>{{dropdownText}}</p>
         </div>
