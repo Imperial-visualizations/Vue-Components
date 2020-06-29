@@ -4,7 +4,6 @@
       <input type="checkbox" @click="changeStatus" :disabled="disable">
       <span class="checkmark"></span>
     </label>
-    {{log()}}
   </div>
 </template>
 <script>
@@ -34,14 +33,7 @@ export default {
           }else{
             this.$emit("box Unchecked!", this.checkboxStatus)
           }
-        },
-        log(){
-          if(this.disable == true){
-            console.log("Checkbox Disabled!")
-          }else{
-            console.log("Checkbox Actived!")
-          }
-        }        
+        }    
     }
 }
 </script>
