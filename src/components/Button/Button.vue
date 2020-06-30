@@ -1,31 +1,42 @@
 <template>
-    <button v-bind:class="impvis-button" style="vertical-align:middle"><slot>Button</slot></button>
+    <button class="iv-hoverbutton" :class="on_off" @mouseover="changeState" @mouseleave="changeState" v-on:click="buttonClick">
+        {{text}}</button>
 </template>
+
 <script>
 export default {
-    name:"iv-button",
-    data() {
-      return{
-        color: "rgba(20, 102, 224, 0.8)"
-      }
+    name: "iv-hoverbutton",
+    data(){
+        return {
+            hovering:false,
+            text:"Button",
+            on_off:"iv-hoverbutton-off",
+            depressed:false
+        }
     },
-    
-    // methods:
-    //     mouseOverFunc() {
-    //         this.color =  rgba(20, 102, 224, 0.8)
-    //         return(){
-
-    //         }
-    //     }
+    methods:{
+        changeState(){
+            this.hovering = !this.hovering
+            if (this.hovering) {
+              this.text="Button"
+                this.on_off="iv-hoverbutton-on"
+                this.$emit("iv-button mousover", this.hovering)
+            } else {
+                this.text="Button"
+                this.on_off="iv-hoverbutton-off"
+                this.$emit("iv-button mouseleave", this.hovering)
+            }
+        },
+        buttonClick(){
+          this.depressed = !this.depressed
+          this.$emit("iv-button buttonclicked")
+        }
     }
-            
-
-
-//      <h2><iv-button class="button" style="vertical-align:middle"><span>Hover </span></iv-button> </h2>
-
+}
 </script>
+
 <style>
-.impvis-button{
+.iv-hoverbutton-off{
     color:white;
     background-color:darkblue;
     border: none;
@@ -35,17 +46,31 @@ export default {
     display: inline-block;
     font-size: 16px;
     box-shadow: 0 8px 16px 0 rgba(20, 102, 224, 0.8), 0 6px 20px 0 rgba(0,0,0,0.19);
-    transition: 0.5s;
+    transition: 2s;
 }
 
-.impvis-button span {
+.iv-hoverbutton-on{
+    color:white;
+    background-color:darkblue;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(209, 18, 18, 1), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition: 0.2s;
+}
+
+.iv-hoverbutton span {
   cursor: crosshair;
   display: inline-block;
   position: relative;
   transition: 0.5s;
+  
 }
 
-.impvis-button span:after {
+.iv-hoverbutton span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
@@ -54,11 +79,11 @@ export default {
   transition: 0.5s;
 }
 
-.impvis-button:hover span {
+.impvis-hoverbutton:hover span {
   padding-right: 25px;
 }
 
-.impvis-button:hover span:after {
+.impvis-hoverbutton:hover span:after {
   opacity: 1;
   right: 0;
 }
