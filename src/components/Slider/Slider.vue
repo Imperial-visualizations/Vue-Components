@@ -1,30 +1,45 @@
 <template>
     <div class = "sliderContain">
+        <div class = "titleGroup">
+            <p v-if="description_val">{{description}}</p>
+            <p v-if="sliderValue">{{value}}</p>
+        </div>
 
-        <p v-if="sliderValue">{{value}}</p>
-        
         <div class = "sliderGroup">
-            <div v-if="bubble" ref="SliderValueMarkerRef" class="sliderValueMarker" :style="moveLabel" ><p>{{value}}</p></div>
+            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" />
+            <input type="range" :class="[playSlider ? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step" :disabled="disabled" @change="emitSlider">
 
-            <input type="range" class = "iv-range"  v-model.number="value" :min="min" :max="max" :step="step" list="steplist" :disabled="disabled" @change="emitSlider"> 
-            
-            <datalist v-if="sliderTicks" id="steplist">
-                <option v-for="tick in tick_list" :key="tick.id">{{tick.value}}</option>
-            </datalist>
+            <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :key="tick_line_key" />
+            <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :key="tick_num_key" />
 
         </div>
 
         <div v-if="sliderButtons">
-            <button class = "minusStep" @click="decreaseValue">- {{button_step}}</button>
-            <button class = "addStep" @click="increaseValue">+ {{button_step}}</button>
-            <input v-if="buttonInput" type="text" class = "buttonInput" v-model.number="button_step">
+            <template v-if="playSlider">
+                <button  class = "minusStep" @click="decreaseValue">Prev</button>
+                <button class = "addStep" @click="increaseValue">Next</button>
+            </template>
+            <template v-else>
+                <button class = "minusStep" @click="decreaseValue">- {{button_step}}</button>
+                <button class = "addStep" @click="increaseValue">+ {{button_step}}</button>
+                <input v-if="buttonInput" type="text" class = "buttonInput" v-model.number="button_step">
+            </template>
         </div>
 
     </div>
 </template>
 <script>
+import lineTicksComp from './line-ticks.vue'
+import NumTicksComp from './num-ticks.vue'
+import BubbleComp from './bubble-comp.vue'
+
 export default {
-    name:"iv-discrete-slider-fixed",
+    name:"iv-slider",
+    components: {
+        "iv-line-ticks":lineTicksComp,
+        "iv-num-ticks":NumTicksComp,
+        "iv-bubble":BubbleComp
+    },
     props:{
         disabled:{
             type:Boolean,
@@ -46,9 +61,25 @@ export default {
             type:Boolean,
             default:false
         },
-        sliderTicks:{
+        lineTick:{
             type:Boolean,
             default:false
+        },
+        numTick:{
+            type:Boolean,
+            default:true
+        },
+        playSlider:{
+            type:Boolean,
+            default:false
+        },
+        description_val:{
+            type:Boolean,
+            default:false
+        },
+        description:{
+            type:String,
+            default:"helloWorld"
         },
         min:{
             type:Number,
@@ -56,7 +87,7 @@ export default {
             },
         max:{
             type:Number,
-            default:200.0
+            default:100.0
             },
         step:{
             type:Number,
@@ -72,7 +103,11 @@ export default {
             id: null,
             value: this.init_val,
             button_step: this.step,
-            tick_list: null
+            tick_list: null,
+            tick_line_key: null,
+            tick_num_key: null,
+            value_marker_width: 25,//same as the width of the marker showing the value
+            thumb_width: 18//same as the width of the range slider thumb 
         }
     },
     methods:{  
@@ -94,10 +129,8 @@ export default {
         },
         calc_ticks(){
             let tick_list = [];
-
             for(let i=this.min; i <= this.max; i+=this.step){
                 tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i});
-
             }
             return tick_list
         },
@@ -105,19 +138,11 @@ export default {
             this.$emit("sliderChanged",this.value);
         }
     },
-    computed:{
-        moveLabel(){
-            let ratio = (this.value - this.min)/(this.max - this.min);
-            let value_marker_width = 25;//same as the width of the marker showing the value
-            let thumb_width = 15;//same as the width of the range slider thumb 
-            return {
-                left: `calc(${ratio*100}% - ${value_marker_width/2}px + ${(0.5 - ratio)*thumb_width}px)`
-            }
-        }
-    },
     mounted () {
         this.id = this._uid,
         this.tick_list = this.calc_ticks();
+        this.tick_line_key = "tick_line_" + this._uid;
+        this.tick_num_key = "tick_num_" + this._uid;
     },
     watch:{
         step:{
@@ -128,6 +153,13 @@ export default {
 </script>
 
 <style>
+
+/* div stuff*/
+.titleGroup{
+    display:flex;
+    flex-direction: row;
+}
+
 .sliderContain{
     display:flex;
     flex-direction: column;
@@ -137,51 +169,75 @@ export default {
     position: relative;
     height:20vh;
 }
+
+/* actual slider colours */
 .iv-range{
-    width: 100%;
+    -webkit-appearance: none;
     margin: 0px;
+    width: 100%;
+    height: 18px;
+}
+.iv-range-play{
+    margin: 0px;
+    width: 100%;
+    height: 18px;
 }
 
-.sliderValueMarker {
-  pointer-events: none;
-  margin: 0;
-
-  width: 25px;
-  height: 25px;
-  
-  border-radius: 50% 50% 0 50%;
-  background-color:aquamarine;
-
-  text-align: center;
-  line-height: 0px;
-
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  
-  position: absolute;
-  top: -35px;
+.iv-range::-webkit-slider-runnable-track{
+    -webkit-appearance: none;
+    border: 1px solid black;
+    border-radius: 9px;
+    background-color:moccasin;
 }
 
-.sliderValueMarker p {
-  font-size: 14px;
-  text-align: center;
-
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+.iv-range-play::-webkit-slider-runnable-track{
+    -webkit-appearance: none;
+    border: 1px solid black;
+    border-radius: 9px;
+    background-color:cornsilk;
 }
 
-/* Special styling for WebKit/Blink */
-
-input[type=range]::-webkit-slider-thumb {
+/* thumb css (dont know if this needs to be specified)*/
+.iv-range::-webkit-slider-thumb{
   -webkit-appearance: none;
-  width: 15px;
+  width: 18px;
+  height: 18px;
+  border-radius: 10px;
+  background-color: hsl(50, 100%, 50%);
+  overflow: visible;
+  cursor: pointer;
 }
+
+.iv-range-play::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border:none;
+  border-radius: 9px;
+  background: #FFAC4D;
+  overflow: visible;
+
+  
+}
+
+
+
+/* stylying for ticks */
+datalist{
+    background-color: black;
+    width: 100%;
+    height: 20px;
+    top: 20px;
+}
+
+option{
+    background-color: black;
+    height: 20px;
+    top: 20px;
+}
+
 /* Special styling for firefox to get the ticks*/
-input[type="range"]::-moz-range-track {
+.iv-range::-moz-range-track, .iv-range-play::-moz-range-track {
   padding: 0 10px;
   background: repeating-linear-gradient(to right, 
     #ccc, 
