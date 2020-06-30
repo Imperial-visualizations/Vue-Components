@@ -2,7 +2,7 @@
     <div class="dropdown">
         <button @click="displayOrHide" class="dropdownbutton" :disabled="dropdownDisabled">Click this</button>
         <div class="dropdown-content" v-show="showContent">
-            <p>{{dropdownText}}</p>
+            <slot>{{dropdownText}}</slot>
         </div>
     </div>
 </template>
@@ -14,22 +14,18 @@ export default {
         dropdownText:{
             type: String,
             default: "Add text"
-        },
-        showContent:{
-            type: Boolean,
-            default: false
-        },
-        dropdownDisabled: {
-            type: Boolean,
-            required: false,
-            default: false
+        }
+    },
+    data: function () {
+        return {
+            showContent: false,
+            dropdownDisabled: false
         }
     },
     methods:{
         displayOrHide(){
             this.showContent = !this.showContent;
             this.$emit("dropdownclicked", this.showContent);
-            console.log("show?", this.showContent);
         }
     }
 }

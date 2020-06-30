@@ -1,9 +1,9 @@
 <template>
     <div class="dropdown">
-        <div @mouseover.stop="displayOrHide" @mouseleave.stop="displayOrHide" @mousemove.stop="updatePosition" class="dropdownhover">
+        <div @mouseover="displayOrHide" @mouseleave="displayOrHide" @mousemove="updatePosition" class="dropdownhover">
             <slot>{{hoverElement}}</slot>
         </div>
-        <div class="dropdown-content" v-bind:style="moveDiv" v-show="showContent">        
+        <div class="dropdown-content" v-show="showContent" v-bind:style="moveDiv">        
             <slot name="hoverElement"></slot>
         </div>
     </div>
@@ -16,10 +16,6 @@ export default {
         hoverElement:{
             type: String,
             default: "Hover over me"
-        },        
-        showContent:{
-            type: Boolean,
-            default: false
         }
     },
     data: function () {
@@ -27,7 +23,8 @@ export default {
             positions: {
                 clientX: undefined,
                 clientY: undefined
-            }
+            },
+            showContent: false
         }
     },
     computed: {
@@ -42,6 +39,7 @@ export default {
             this.positions.clientX = event.clientX;
             this.positions.clientY = event.clientY;
             this.$emit("textreposition", event);
+            console.log(this.positions.clientY + 'px', this.positions.clientX + 'px');
         },
         displayOrHide(){
             this.showContent = !this.showContent;
