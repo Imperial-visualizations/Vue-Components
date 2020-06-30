@@ -1,7 +1,7 @@
 <template>
     <button class="iv-play-button" :class="dyn_class" @click="changeState">
-        <img v-if="!play" class="play-icon" src="./assets/play.svg" />
-        <img v-else class="play-icon" src="./assets/pause.svg" />
+        <img v-if="!play" class="play-icon" src="@/components/Play_Button/assets/play.svg" />
+        <img v-else class="play-icon" src="@/components/Play_Button/assets/pause.svg" />
         {{text}}
     </button>
 </template>
@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .iv-play-button{
     background-color: #0F8291;
     color: white;
@@ -46,7 +46,6 @@ export default {
     box-shadow: 0px 0px 4px rgba(0,0,0,0.25);
     border-radius: 0.2vw;
     transition: 0.5s;
-    margin-right: 0.5rem;
 }
 
 .iv-button-pause{
