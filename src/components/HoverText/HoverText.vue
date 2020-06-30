@@ -1,10 +1,10 @@
 <template>
     <div class="dropdown">
-        <div @mouseover="displayOrHide" @mouseleave="displayOrHide" @mousemove="updatePosition" class="dropdownhover">
-            <slot>Hover over me</slot>
+        <div @mouseover.stop="displayOrHide" @mouseleave.stop="displayOrHide" @mousemove.stop="updatePosition" class="dropdownhover">
+            <slot>{{hoverElement}}</slot>
         </div>
-        <div class="dropdown-content" v-show="showContent">        
-            <slot >{{dropdownText}}</slot>
+        <div class="dropdown-content" v-bind:style="moveDiv" v-show="showContent">        
+            <slot name="hoverElement"></slot>
         </div>
     </div>
 </template>
@@ -13,30 +13,39 @@
 export default {
     name:"iv-hover-text",
     props:{
-        dropdownText:{
+        hoverElement:{
             type: String,
-            default: "This is a secret message."
-        },
-        textXPosition:{
-            type: Number
-        },
-        textYPosition:{
-            type: Number
-        },
+            default: "Hover over me"
+        },        
         showContent:{
             type: Boolean,
             default: false
         }
     },
+    data: function () {
+        return {
+            positions: {
+                clientX: undefined,
+                clientY: undefined
+            }
+        }
+    },
+    computed: {
+        moveDiv: function () {
+            return {
+                top: this.positions.clientY + 'px', left: this.positions.clientX + 'px'
+            }
+        }
+    },
     methods:{
+        updatePosition(event){
+            this.positions.clientX = event.clientX;
+            this.positions.clientY = event.clientY;
+            this.$emit("textreposition", event);
+        },
         displayOrHide(){
             this.showContent = !this.showContent;
             this.$emit("hovered", this.showContent);
-        },
-        updatePosition(e){
-            this.textXPosition = e.clientX;
-            this.textYPosition = e.clientY;
-            this.$emit("textreposition", e);
         }
     }
 }
@@ -47,7 +56,6 @@ export default {
 .dropdown {
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
-    display: inline-block;
     font-size: 16px;
     font-weight: normal;
     letter-spacing: .05rem;
@@ -56,6 +64,7 @@ export default {
 
 /* Dropdown hover */
 .dropdownhover {
+    display: inline-block;
     padding: 6px 12px 5px 10px;
     cursor: pointer;
     text-decoration: underline;
@@ -75,6 +84,7 @@ export default {
 
 /* Dropdown Content*/
 .dropdown-content {
+    position: absolute;
     display: block;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: black;
