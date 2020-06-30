@@ -21,20 +21,13 @@ export default {
         type: Array,
         required: true,
         default: function () { return ["Option 1", "Option 2", "Option 3"] }
-      },
-      showList:{
-        type: Boolean,
-        default: false
-        },
-      dropdownDisabled: {
-        type: Boolean,
-        required: false,
-        default: false
       }
     },
     data(){
       return {
         dropdownIndex: this.initialDropdownIndex,
+        showList: false,
+        dropdownDisabled: false
       }
     },
     methods:{
