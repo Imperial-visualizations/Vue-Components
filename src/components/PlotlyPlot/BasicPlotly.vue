@@ -21,14 +21,23 @@ export default {
         animate:{
             type: Boolean,
         },
-        input0:{
-            type: Boolean,
-        },
     },
     methods:{
         updatePlot() {
             console.log('updated Plot');
             // Plotly Animate called when data is changed
+        },
+        input0(){
+            console.log('Button 1 Pressed')
+        },
+        input1(){
+            console.log('Button 2 Pressed')
+        },
+        slider1(currentValue){
+            console.log('Slider 1 Changed to ', currentValue)
+        },
+        slider2(currentValue){
+            console.log('Slider 2 Changed to ', currentValue)
         },
         animation(){
              if (this.animate){
@@ -50,7 +59,6 @@ export default {
     },
     watch: {
         animate: function(){this.animation();},
-        input0: function(){this.updatePlot();},
         xData: function(){this.updatePlot()},
         yData: function(){this.updatePlot()},
     },

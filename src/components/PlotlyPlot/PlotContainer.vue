@@ -3,7 +3,7 @@
         <basic-plotly
          v-if="plotType=='plotly'"
          v-bind:animate="animate"
-         v-bind:input0="this.buttons[0].bool"> <!-- Just an example of how to bind the button/slider to the plot -->
+         ref="plot">
 
         </basic-plotly>
 
@@ -16,7 +16,7 @@
             </button>
         </div>
         <div id="slider-container" v-for="slider in sliders" :key="slider.message">
-            <input type="range" :min="slider.min" :max="slider.max" :step="slider.step" :value="slider.value">
+            <input type="range" :min="slider.min" :max="slider.max" :step="slider.step" v-model="slider.value" @change="sliderChange(slider)">
             <label>{{slider.message}}</label>
         </div>
     </div>
@@ -46,11 +46,11 @@ export default {
             default: [
                 {
                     message: 'Next Button',
-                    bool: false,
+                    plotFunction: 'input0'
                 },
                 {
                     message: 'Another Button',
-                    bool: true
+                    plotFunction: 'input1'
                 },
                 ],
         },
@@ -58,13 +58,16 @@ export default {
             default: [
                 {
                     message: 'First Slider',
+                    plotFunction: 'slider1',
                     step: 5,
                     max: 10,
                     min: 0,
                     value: 5,
+                    
                 },
                 {
                     message: 'Second Slider',
+                    plotFunction: 'slider2',
                     step: 1,
                     max: 10,
                     min: 0,
@@ -87,7 +90,11 @@ export default {
             this.animate = false;
         },
         buttonPress: function(button){
-            button.bool = !button.bool; 
+            this.$refs.plot[button.plotFunction]();
+        },
+        sliderChange: function(slider){
+            console.log(slider.value);
+            this.$refs.plot[slider.plotFunction](slider.value);
         }
     }
 }
