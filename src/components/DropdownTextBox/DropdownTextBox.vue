@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown">
         <button @click="displayOrHide" class="dropdownbutton" :disabled="dropdownDisabled">Click this</button>
-        <div id="myDropdown" class="dropdown-content" v-show="showContent">
+        <div class="dropdown-content" v-show="showContent">
             <p>{{dropdownText}}</p>
         </div>
     </div>
@@ -12,23 +12,24 @@ export default {
     name:"iv-dropdown-text-box",
     props:{
         dropdownText:{
-            type:String,
+            type: String,
             default: "Add text"
         },
         showContent:{
-            type:Boolean,
+            type: Boolean,
             default: false
         },
         dropdownDisabled: {
-            type:Boolean,
+            type: Boolean,
             required: false,
             default: false
         }
     },
     methods:{
         displayOrHide(){
-            this.showContent = !this.showContent
-            this.$emit("dropdowntextboxbuttonclicked", this.showContent)
+            this.showContent = !this.showContent;
+            this.$emit("dropdownclicked", this.showContent);
+            console.log("show?", this.showContent);
         }
     }
 }
@@ -51,7 +52,6 @@ export default {
   font-weight: normal;
   letter-spacing: .05rem;
   text-align: center;
-  text-transform: uppercase;
   padding: 6px 12px 5px 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-text-stroke-width: 0.1px;
@@ -98,8 +98,5 @@ export default {
     padding: 6px 12px 5px 10px;
     word-wrap: break-word;
 }
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
 
 </style>

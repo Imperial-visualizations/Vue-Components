@@ -1,8 +1,10 @@
 <template>
     <div class="dropdown">
-        <button @mouseover="displayOrHide" @mouseleave="displayOrHide" class="dropdownhover">Hover me</button>
-        <div id="myDropdown" class="dropdown-content" v-show="showContent">
-            <p>{{dropdownText}}</p>
+        <div @mouseover.stop="displayOrHide" @mouseleave.stop="displayOrHide" @mousemove.stop="updatePosition" class="dropdownhover">
+            <slot>{{hoverElement}}</slot>
+        </div>
+        <div class="dropdown-content" v-bind:style="moveDiv" v-show="showContent">        
+            <slot name="hoverElement"></slot>
         </div>
     </div>
 </template>
@@ -11,19 +13,39 @@
 export default {
     name:"iv-hover-text",
     props:{
-        dropdownText:{
+        hoverElement:{
             type: String,
-            default: "This is a secret message."
-        },
+            default: "Hover over me"
+        },        
         showContent:{
             type: Boolean,
             default: false
         }
     },
+    data: function () {
+        return {
+            positions: {
+                clientX: undefined,
+                clientY: undefined
+            }
+        }
+    },
+    computed: {
+        moveDiv: function () {
+            return {
+                top: this.positions.clientY + 'px', left: this.positions.clientX + 'px'
+            }
+        }
+    },
     methods:{
+        updatePosition(event){
+            this.positions.clientX = event.clientX;
+            this.positions.clientY = event.clientY;
+            this.$emit("textreposition", event);
+        },
         displayOrHide(){
-            this.showContent = !this.showContent
-            this.$emit("hovertexthovered", this.showContent)
+            this.showContent = !this.showContent;
+            this.$emit("hovered", this.showContent);
         }
     }
 }
@@ -32,42 +54,37 @@ export default {
 <style scoped>
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  position: relative;
-  display: inline-block;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: .05rem;
+    text-align: left;
 }
 
 /* Dropdown hover */
 .dropdownhover {
-  width: 95px;
-  background-color: rgba(0, 62, 116, 0.9);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 12px;
-  font-weight: normal;
-  letter-spacing: .05rem;
-  text-align: center;
-  text-transform: uppercase;
-  padding: 6px 12px 5px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-text-stroke-width: 0.1px;
-  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-  cursor: pointer;
+    display: inline-block;
+    padding: 6px 12px 5px 10px;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /* Dropdown hover on hover */
 .dropdownhover:hover {
-  cursor: help;
-  background-color: #2980B9;
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition:    all 0.4s ease-in-out;
-  -ms-transition:     all 0.4s ease-in-out;
-  -o-transition:      all 0.4s ease-in-out;
-  transition:         all 0.4s ease-in-out;
+    cursor: help;
+    background-color: #2980B9;
+    color: rgba(255, 255, 255, 0.9);
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition:    all 0.4s ease-in-out;
+    -ms-transition:     all 0.4s ease-in-out;
+    -o-transition:      all 0.4s ease-in-out;
+    transition:         all 0.4s ease-in-out;
 }
 
 /* Dropdown Content*/
 .dropdown-content {
+    position: absolute;
     display: block;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: black;
@@ -82,8 +99,5 @@ export default {
     padding: 0px 12px 5px 10px;
     word-wrap: break-word;
 }
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown hover) */
-.show {display:block;}
 
 </style>
