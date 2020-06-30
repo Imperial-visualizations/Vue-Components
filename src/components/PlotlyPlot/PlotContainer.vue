@@ -8,8 +8,10 @@
         </basic-plotly>
 
         <div id="button-container">
-            <play-button v-if="showPlayButton" 
-            @iv-played="play" @iv-paused="pause">
+            <play-button 
+            v-if="showPlayButton" 
+            @iv-played="play" @iv-paused="pause"
+            style="margin-right: 0.5em;">
             </play-button>
             <button v-for="button in buttons" :key="button.message" @click="buttonPress(button)" id="plot-button">
                 {{button.message}}
@@ -104,12 +106,11 @@ export default {
 
 #slider-container{
     margin-bottom: 1vh;
+    margin-top: 2vh;
 }
 
 #button-container{
-    margin: 1rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin-top: 1vh;
 }
 
 #plot-button{
