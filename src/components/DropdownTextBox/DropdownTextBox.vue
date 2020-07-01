@@ -18,12 +18,15 @@ export default {
         dropdownText:{
             type: String,
             default: "Add text"
+        },
+        dropdownDisabled:{
+            type: Boolean,
+            default: false
         }
     },
     data: function () {
         return {
             showContent: false,
-            dropdownDisabled: false
         }
     },
     methods:{
