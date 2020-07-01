@@ -47,7 +47,6 @@ export default {
             var rect = event.target.getBoundingClientRect();
             this.positions.clientX = event.clientX - rect.left + 3;
             this.positions.clientY = event.clientY - rect.top + 3;
-            this.$emit("hoverreposition", event);
         }
     }
 }
