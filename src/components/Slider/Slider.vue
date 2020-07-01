@@ -7,7 +7,7 @@
 
         <div class = "sliderGroup">
             <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" />
-            <input type="range" :class="[playSlider ? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step" :disabled="disabled" @change="emitSlider">
+            <input type="range" :class="[playSlider ? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
 
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :key="tick_num_key" />
@@ -41,10 +41,6 @@ export default {
         "iv-bubble":BubbleComp
     },
     props:{
-        disabled:{
-            type:Boolean,
-            default:false
-        },
         sliderValue:{
             type:Boolean,
             default:false
