@@ -13,21 +13,24 @@ export default {
     name:"iv-dropdown-list",
     components: {"iv-dropdown-list-element": DropdownListElement},
     props:{
-      initialDropdownIndex:{
-        type: Number,
-        default: 0
-      },
       dropdownItems: {
         type: Array,
         required: true,
         default: function () { return ["Option 1", "Option 2", "Option 3"] }
+      },
+      initialDropdownIndex:{
+        type: Number,
+        default: 0
+      },
+      dropdownDisabled: {
+        type: Boolean,
+        default: false
       }
     },
     data(){
       return {
         dropdownIndex: this.initialDropdownIndex,
         showList: false,
-        dropdownDisabled: false
       }
     },
     methods:{

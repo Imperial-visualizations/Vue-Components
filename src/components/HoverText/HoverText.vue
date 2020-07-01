@@ -39,15 +39,15 @@ export default {
         }
     },
     methods:{
+        displayOrHide(){
+            this.showContent = !this.showContent;
+            this.$emit("hovered", this.showContent);
+        },
         updatePosition(event){
             var rect = event.target.getBoundingClientRect();
             this.positions.clientX = event.clientX - rect.left + 3;
             this.positions.clientY = event.clientY - rect.top + 3;
             this.$emit("hoverreposition", event);
-        },
-        displayOrHide(){
-            this.showContent = !this.showContent;
-            this.$emit("hovered", this.showContent);
         }
     }
 }

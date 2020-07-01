@@ -10,14 +10,14 @@ export default {
     name:"iv-toggle-advance",
     components: {"iv-toggle-advance-button": ToggleAdvanceButton},
     props:{
-      initialModeIndex:{
-        type: Number,
-        default: 0
-      },
       modes: {
         type: Array,
         required: true,
         default: function () { return ["Option 1", "Option 2", "Option 3"] }
+      },
+      initialModeIndex:{
+        type: Number,
+        default: 0
       },
       toggleDisabled: {
         type: Boolean,
