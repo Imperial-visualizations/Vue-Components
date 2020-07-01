@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <button @click="displayOrHide" class="dropdownbutton" :disabled="dropdownDisabled">Click this</button>
+        <button @click="displayOrHide" class="dropdownbutton" :disabled="dropdownDisabled">{{buttonText}}</button>
         <div class="dropdown-content" v-show="showContent">
             <slot>{{dropdownText}}</slot>
         </div>
@@ -11,6 +11,10 @@
 export default {
     name:"iv-dropdown-text-box",
     props:{
+        buttonText:{
+            type: String,
+            default: "Click me"
+        },
         dropdownText:{
             type: String,
             default: "Add text"

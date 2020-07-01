@@ -4,7 +4,7 @@
             <slot>{{hoverElement}}</slot>
         </div>
         <div class="dropdown-content" v-show="showContent" v-bind:style="moveDiv">        
-            <slot name="hoverElement"></slot>
+            <slot name="hoverElement">{{defaultText}}</slot>
         </div>
     </div>
 </template>
@@ -16,6 +16,10 @@ export default {
         hoverElement:{
             type: String,
             default: "Hover over me"
+        },
+        defaultText:{
+            type: String,
+            default: "This is a secret message."
         }
     },
     data: function () {
@@ -30,16 +34,16 @@ export default {
     computed: {
         moveDiv: function () {
             return {
-                top: this.positions.clientY + 'px', left: this.positions.clientX + 'px'
+                left: this.positions.clientX + 'px', top: this.positions.clientY + 'px'
             }
         }
     },
     methods:{
         updatePosition(event){
-            this.positions.clientX = event.clientX;
-            this.positions.clientY = event.clientY;
-            this.$emit("textreposition", event);
-            console.log(this.positions.clientY + 'px', this.positions.clientX + 'px');
+            var rect = event.target.getBoundingClientRect();
+            this.positions.clientX = event.clientX - rect.left + 3;
+            this.positions.clientY = event.clientY - rect.top + 3;
+            this.$emit("hoverreposition", event);
         },
         displayOrHide(){
             this.showContent = !this.showContent;
@@ -83,7 +87,7 @@ export default {
 /* Dropdown Content*/
 .dropdown-content {
     position: absolute;
-    display: block;
+    display: inline-block;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: black;
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
