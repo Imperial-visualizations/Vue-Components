@@ -102,10 +102,19 @@ export default {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.checkbox-container:disabled ~ label {
-  background: #d5d5d5;
-  pointer-events: none;
+.checkbox-container input:disabled ~ .checkmark{
+  background-color: rgb(211, 209, 209);
+  outline: 1px solid #b4b4b4;
 }
-.checkbox-container:disabled ~ label:after { background: #bcbdbc; }
-.hidden { display: none; }
+.checkbox-container input:disabled ~ .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #7e7e7e;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 </style>
