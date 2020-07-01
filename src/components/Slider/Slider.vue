@@ -93,6 +93,14 @@ export default {
             type:Number,
             default:10.0
             },
+        minNumTick:{
+            type:Number,
+            default:5.0
+            },
+        minWindowWidth:{
+            type:Number,
+            default:600.0
+        },
         init_val:{
             type:Number,
             default:50.0
@@ -102,10 +110,12 @@ export default {
         return {
             id: null,
             value: this.init_val,
+            current_step: this.step,
             button_step: this.step,
             tick_list: null,
             tick_line_key: null,
             tick_num_key: null,
+
             value_marker_width: 25,//same as the width of the marker showing the value
             thumb_width: 18//same as the width of the range slider thumb 
         }
@@ -127,9 +137,22 @@ export default {
                 this.value = this.max;
             }
         },
+        update_step(){
+            console.log("BRUHH",this.step, this.smallStep,this.current_step);
+            if((window.innerWidth < this.minWindowWidth) && (this.step < this.smallStep)){
+                this.current_step = this.smallStep
+                console.log("SICKK");
+
+            }
+            else{
+                this.current_step = this.step
+            } 
+        },
         calc_ticks(){
+            console.log(window.innerWidth);
+            console.log("hey",this.smallStep,this.step,this.current_step);
             let tick_list = [];
-            for(let i=this.min; i <= this.max; i+=this.step){
+            for(let i=this.min; i <= this.max; i+=this.current_step){
                 tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i});
             }
             return tick_list
@@ -139,14 +162,18 @@ export default {
         }
     },
     mounted () {
-        this.id = this._uid,
+        this.id = this._uid;
+        this.smallStep = (this.max-this.min)/this.minNumTick;
+
         this.tick_list = this.calc_ticks();
+        window.addEventListener("resize",this.update_step);    
+
         this.tick_line_key = "tick_line_" + this._uid;
         this.tick_num_key = "tick_num_" + this._uid;
     },
     watch:{
-        step:{
-            handler:"calc_ticks"
+        current_step:function(){
+            this.tick_list = this.calc_ticks();
         }
     }
 }
