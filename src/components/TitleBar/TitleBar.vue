@@ -70,6 +70,7 @@ export default {
   height: 2.7vh;
   min-height: 18px;
   margin-right: 7px;
+  margin-top: 0.5vh;
 }
 
 #vis-logo img{

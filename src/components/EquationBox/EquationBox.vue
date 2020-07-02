@@ -1,20 +1,26 @@
 <template>
-    <div :class="{ equationbox: background }" v-katex:display="'\\frac{a_i}{1+x}'"></div>
+    <div :class="{ equationbox: stylise }" v-katex>
+        {{equation}}
+    </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import VueKatex from 'vue-katex';
 import 'katex/dist/katex.min.css';
+import Katex from 'vue-katex-auto-render'
+Vue.directive('katex', Katex);
 
-Vue.use(VueKatex);
 
 export default {
     name:"iv-equation-box",
     props:{
-        background: {
+        stylise: {
             type: Boolean,
             default: true,
+        },
+        equation: {
+            type: String,
+            default: String.raw` $$ f({x}) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi $$`,
         }
     }
 }
@@ -27,6 +33,7 @@ export default {
     border-radius: 0.5rem;
     background-color: #daeced;
     display: inline-block;
-    padding: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 </style>
