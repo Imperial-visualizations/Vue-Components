@@ -41,7 +41,6 @@ export default {
     methods:{
         displayOrHide(){
             this.showContent = !this.showContent;
-            this.$emit("hovered", this.showContent);
         },
         updatePosition(event){
             var rect = event.target.getBoundingClientRect();
@@ -73,9 +72,11 @@ export default {
 
 /* Dropdown hover on hover */
 .dropdownhover:hover {
-    cursor: help;
     background-color: #2980B9;
     color: rgba(255, 255, 255, 0.9);
+    -webkit-box-shadow:0 0 7.5px rgba(9, 89, 160, 0.9); 
+    -moz-box-shadow: 0 0 7.5px rgba(9, 89, 160, 0.9); 
+    box-shadow:0 0 7.5px rgba(9, 89, 160, 0.9);
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition:    all 0.4s ease-in-out;
     -ms-transition:     all 0.4s ease-in-out;
