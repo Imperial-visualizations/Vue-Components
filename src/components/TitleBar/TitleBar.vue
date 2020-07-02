@@ -11,9 +11,23 @@
 <script>
 export default {
     name:"iv-title-bar",
+    props:{
+      buttonLink:{
+        type: String,
+        default: "https://www.imperialvisualisations.com/learn/"
+      },
+      newTab:{
+        type: Boolean,
+        default: true
+      }
+    },
     methods:{
         openLinkNewTab: function () {
-            window.open("https://www.imperialvisualisations.com/learn/", "_blank");
+          if (this.newTab){
+            window.open(this.buttonLink, "_blank");
+          } else{
+            open(this.buttonLink, "_self");
+          }
         }
     }
 }
@@ -70,7 +84,7 @@ export default {
   height: 2.7vh;
   min-height: 18px;
   margin-right: 7px;
-  margin-top: 0.2em;
+  margin-top: 0.3em;
 }
 
 #vis-logo img{
