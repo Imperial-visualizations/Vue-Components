@@ -1,5 +1,5 @@
 <template>
-    <div class="equation-box" v-katex:display="'\\frac{a_i}{1+x}'"></div>
+    <div :class="{ equationbox: background }" v-katex:display="'\\frac{a_i}{1+x}'"></div>
 </template>
 
 <script>
@@ -12,19 +12,21 @@ Vue.use(VueKatex);
 export default {
     name:"iv-equation-box",
     props:{
-
+        background: {
+            type: Boolean,
+            default: true,
+        }
     }
 }
 </script>
 
 <style>
-.equation-box{
+.equationbox{
     border-style: solid;
     border-color: #37578b;
     border-radius: 0.5rem;
     background-color: #daeced;
     display: inline-block;
     padding: 0.5rem;
-
 }
 </style>
