@@ -1,3 +1,5 @@
+export {default as LoadingBar} from "./LoadingBar";
+export {default as LoadingSpinner} from "./LoadingSpinner";
 export {default as HoverText} from "./HoverText";
 export {default as DropdownTextBox} from "./DropdownTextBox";
 export {default as DropdownList} from "./DropdownList";
