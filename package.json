@@ -14,7 +14,9 @@
   "dependencies": {
     "component-fixture": "^1.14.0",
     "core-js": "^3.6.5",
+    "plotly": "^1.0.6",
     "save": "^2.4.0",
+    "svg": "^0.1.0",
     "vue": "^2.6.11",
     "vue-mathjax": "0.0.11",
     "vue-multiselect": "^2.1.6",
