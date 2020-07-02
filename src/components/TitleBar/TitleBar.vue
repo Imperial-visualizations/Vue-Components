@@ -3,7 +3,7 @@
         <a @click="openLinkNewTab" id="logo-container">
             <img id="vis-logo" src="./VisualisationsLogoWhite2.png">
         </a>
-        <div id="vis-title"><slot>Defualt Title</slot></div>
+        <div id="vis-title"><slot>Default Title</slot></div>
     </div>
     
 </template>
