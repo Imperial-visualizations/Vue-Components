@@ -1,6 +1,5 @@
 <template>
     <div>
-      <iv-title-bar>Visualisation Title</iv-title-bar>
       <header class="appheader" style="padding-top: 5vh;">
           <div class="start-items">
             <h1>Playground!</h1>

@@ -1,8 +1,7 @@
 // For folders containing a single exported component write:
 // export {default as ComponentName} from './ComponentFolder';
 
-export {default as TitleBar} from "./TitleBar";
-export {default as PlotContainer} from "./PlotlyPlot";
+export {default as BasicPlotly} from "./BasicPlotly";
 export {default as HoverText} from "./HoverText";
 export {default as DropdownTextBox} from "./DropdownTextBox";
 export {default as DropdownList} from "./DropdownList";
