@@ -21,12 +21,11 @@ import Multiselect from "vue-multiselect";
 import {Sandbox} from "component-fixture";
 import * as components from "../src/components";
 import "component-fixture/dist/ComponentFixture.css";
-import Vue from 'vue';
-window.Vue = Vue;
-import VueKatex from 'vue-katex'; 
-import 'katex/dist/katex.min.css';
 
-Vue.use(VueKatex);
+import Vue from 'vue';
+import 'katex/dist/katex.min.css';
+import Katex from 'vue-katex-auto-render'
+Vue.directive('katex', Katex);
 
 export default {
     components:{
