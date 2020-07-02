@@ -13,7 +13,7 @@ export default {
         default: true
       },
       toggleDisabled: {
-        type:Boolean,
+        type: Boolean,
         required: false,
         default: false
       }

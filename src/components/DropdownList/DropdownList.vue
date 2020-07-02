@@ -13,48 +13,44 @@ export default {
     name:"iv-dropdown-list",
     components: {"iv-dropdown-list-element": DropdownListElement},
     props:{
-      initialDropdownIndex:{
-        type: Number,
-        default: 0
-      },
       dropdownItems: {
         type: Array,
         required: true,
         default: function () { return ["Option 1", "Option 2", "Option 3"] }
       },
-      showList:{
-        type:Boolean,
-        default: false
-        },
+      initialDropdownIndex:{
+        type: Number,
+        default: 0
+      },
       dropdownDisabled: {
-        type:Boolean,
-        required: false,
+        type: Boolean,
         default: false
       }
     },
     data(){
       return {
         dropdownIndex: this.initialDropdownIndex,
+        showList: false,
       }
     },
     methods:{
       changeDropdown(chooseIndex){
         this.dropdownIndex = chooseIndex;
-        this.showList = false
-        this.$emit("dropdownlistelementclicked", this.dropdownIndex);
+        this.showList = false;
+        this.$emit("dropdownelementclicked", this.dropdownIndex);
       },
       isChecked(chooseIndex){
         if (chooseIndex === this.dropdownIndex){
-          return true
+          return true;
         } else {
-          return false
+          return false;
         }
       },
       displayOrHide(e){
         if (!this.dropdownDisabled) {
-            this.showList = !this.showList
+            this.showList = !this.showList;
         }
-        this.$emit("dropdownlistbuttonclicked", e)
+        this.$emit("dropdownbuttonclicked", e);
       }
     }
 }
@@ -77,7 +73,6 @@ export default {
   font-weight: normal;
   letter-spacing: .05rem;
   text-align: center;
-  text-transform: uppercase;
   padding: 6px 12px 5px 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-text-stroke-width: 0.1px;
@@ -114,8 +109,5 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.2);
   color: black;
 }
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
 
 </style>
