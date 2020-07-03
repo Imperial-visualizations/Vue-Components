@@ -7,7 +7,7 @@
         
         <h2 id="section-heading"><slot>Section Title</slot></h2>
         <hr>
-        <equation-box equation=" $$ f({x})=5 $$ "></equation-box>
+        <equation-box equation=" $$ f({x})=6 $$ "></equation-box>
         <p id="main-text"><slot>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </slot></p>
@@ -16,10 +16,6 @@
 
 <script>
 import EquationBox from '../EquationBox';
-import Vue from 'vue';
-import 'katex/dist/katex.min.css';
-import Katex from 'vue-katex-auto-render'
-Vue.directive('katex', Katex);
 
 export default {
   name:"iv-description-pane",

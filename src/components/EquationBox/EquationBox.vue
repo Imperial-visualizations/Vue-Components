@@ -1,15 +1,11 @@
 <template>
-    <div :class="{ equationbox: stylise }" v-katex>
+    <div id='equationBox' :class="{ equationbox: stylise }" v-katex>
         {{equation}}
     </div>
 </template>
 
 <script>
-import Vue from 'vue';
-import 'katex/dist/katex.min.css';
-import Katex from 'vue-katex-auto-render'
-Vue.directive('katex', Katex);
-
+import katex from 'katex';
 
 export default {
     name:"iv-equation-box",
@@ -21,6 +17,11 @@ export default {
         equation: {
             type: String,
             default: String.raw` $$ f({x}) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi $$`,
+        }
+    },
+    watch:{
+        equation: function(){
+            katex.render(this.equation,  document.getElementById("equationBox"), {throwOnError: false, errorColor: 'black'});
         }
     }
 }
