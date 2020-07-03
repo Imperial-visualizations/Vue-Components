@@ -1,6 +1,7 @@
 // For folders containing a single exported component write:
 // export {default as ComponentName} from './ComponentFolder';
 
+export {default as DragAndDrop} from "./DragAndDrop";
 export {default as HoverText} from "./HoverText";
 export {default as DropdownTextBox} from "./DropdownTextBox";
 export {default as DropdownList} from "./DropdownList";
