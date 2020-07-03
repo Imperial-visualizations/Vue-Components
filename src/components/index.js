@@ -1,7 +1,7 @@
 // For folders containing a single exported component write:
 // export {default as ComponentName} from './ComponentFolder';
 
-export {default as BasicPlotly} from "./BasicPlotly";
+export {default as EquationBox} from "./EquationBox";
 export {default as HoverText} from "./HoverText";
 export {default as DropdownTextBox} from "./DropdownTextBox";
 export {default as DropdownList} from "./DropdownList";
@@ -11,8 +11,6 @@ export {default as Tickbox} from "./Tickbox";
 export {default as Play_Button} from "./Play_Button";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
-export {default as DescriptionPane} from "./DescriptionPane";
-export {default as EquationBox} from "./EquationBox";
 
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';
