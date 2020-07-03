@@ -111,7 +111,6 @@ export default {
             tick_list: null,
             tick_line_key: null,
             tick_num_key: null,
-
             value_marker_width: 25,//same as the width of the marker showing the value
             thumb_width: 18//same as the width of the range slider thumb 
         }
@@ -134,19 +133,14 @@ export default {
             }
         },
         update_step(){
-            console.log("BRUHH",this.step, this.smallStep,this.current_step);
             if((window.innerWidth < this.minWindowWidth) && (this.step < this.smallStep)){
                 this.current_step = this.smallStep
-                console.log("SICKK");
-
             }
             else{
                 this.current_step = this.step
             } 
         },
         calc_ticks(){
-            console.log(window.innerWidth);
-            console.log("hey",this.smallStep,this.step,this.current_step);
             let tick_list = [];
             for(let i=this.min; i <= this.max; i+=this.current_step){
                 tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i});
