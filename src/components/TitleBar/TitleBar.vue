@@ -76,7 +76,10 @@ export default {
 
 #logo-container {
   color: #1EAEDB; 
-  z-index: 10;}
+  z-index: 10;
+  cursor: pointer;
+  }
+
 #logo-container:hover {
   color: #0FA0CE; }
 
