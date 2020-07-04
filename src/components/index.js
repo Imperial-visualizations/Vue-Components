@@ -2,6 +2,7 @@
 // export {default as ComponentName} from './ComponentFolder';
 
 export {default as DragAndDrop} from "./DragAndDrop";
+export {default as EquationBox} from "./EquationBox";
 export {default as HoverText} from "./HoverText";
 export {default as DropdownTextBox} from "./DropdownTextBox";
 export {default as DropdownList} from "./DropdownList";
