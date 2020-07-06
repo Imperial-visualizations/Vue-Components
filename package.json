@@ -17,9 +17,7 @@
     "core-js": "^3.6.5",
     "katex": "^0.11.1",
     "save": "^2.4.0",
-    "vue": "^2.6.11",
-    "vue-katex": "^0.4.0",
-    "vue-katex-auto-render": "^0.1.2"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
