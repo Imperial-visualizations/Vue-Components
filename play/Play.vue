@@ -1,6 +1,7 @@
 <template>
     <div>
-      <header class="appheader">
+      <iv-title-bar>The Playground</iv-title-bar>
+      <header class="appheader" style="padding-top: 3vh;">
           <div class="start-items">
             <h1>Playground!</h1>
             <div class="app__components-select">
@@ -22,12 +23,12 @@
 import Multiselect from "vue-multiselect";
 import {Sandbox} from "component-fixture";
 import * as components from "../src/components";
-import "component-fixture/dist/ComponentFixture.css"; 
+import "component-fixture/dist/ComponentFixture.css";
 
 export default {
     components:{
         Multiselect,
-        Sandbox
+        Sandbox,
     },
     created(){
       this.currentComponent = Object.keys(components)[0];
