@@ -1,5 +1,5 @@
 <template>
-    <svg  width=600 height=300>
+    <svg width=600 height=300>
         <iv-ball v-for="(ball, ballIndex) in ballContainer" :key="ballIndex" :x="ball.x" :y="ball.y"></iv-ball>
         <iv-box v-for="(box, boxIndex) in boxContainer" :key="boxIndex" :x="box.x" :y="box.y"></iv-box>
         <iv-olive v-for="(olive, oliveIndex) in oliveContainer" :key="oliveIndex" :x="olive.x" :y="olive.y"></iv-olive>

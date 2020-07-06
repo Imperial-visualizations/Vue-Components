@@ -1,6 +1,6 @@
 <template>
-    <rect @mousedown="drag($event)" @mouseup="drop($event)" ref="box" width="50" height="50" fill="red" 
-    :for="id" :x="currentX" :y="currentY">
+    <rect @mousedown="drag($event)" @mouseup="drop()" ref="box" width="50" height="50" fill="red" 
+    :x="currentX" :y="currentY">
     </rect>
 </template>
 
@@ -18,23 +18,19 @@ export default {
         return {
             currentX: this.x,
             currentY: this.y,
-            id: null,
             dragOffsetX: null,
             dragOffsetY: null
         }
     }, 
-    mounted () {
-        this.id = this._uid
-    },
     methods: {
         drag({offsetX, offsetY}){
             this.dragOffsetX = offsetX - this.currentX;
             this.dragOffsetY = offsetY - this.currentY;
-            this.$refs.box.addEventListener('mousemove', this.move)
+            this.$parent.$el.addEventListener('mousemove', this.move);
         },
         drop(){
             this.dragOffsetX = this.dragOffsetY = null;
-            this.$refs.box.removeEventListener('mousemove', this.move)
+            this.$parent.$el.removeEventListener('mousemove', this.move);
         },
         move({offsetX, offsetY}) {
             this.currentX = offsetX - this.dragOffsetX;
