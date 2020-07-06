@@ -1,6 +1,6 @@
 <template>
     <button class="iv-hoverbutton" @mouseover="changeState" @mouseleave="changeState" @click="buttonClick" :disabled="hoverButtonDisabled">
-        {{text}}</button>
+        <slot>Default text</slot></button>
 </template>
 
 <script>
@@ -8,8 +8,7 @@ export default {
     name: "iv-hoverbutton",
     data(){
         return {
-            hovering:false,
-            text:"Button",
+            hovering:false
         }
     },
     methods:{
