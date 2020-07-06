@@ -1,5 +1,6 @@
 <template>
-    <div class = "sliderContain">
+    <div class = "sliderContainer" ref="sliderContainer">
+        <resize-observer @notify="update_step" />
         <div class = "titleGroup">
             <p v-if="description_val">{{description}}</p>
             <p v-if="sliderValue">{{value}}</p>
@@ -32,6 +33,11 @@
 import lineTicksComp from './line-ticks.vue'
 import NumTicksComp from './num-ticks.vue'
 import BubbleComp from './bubble-comp.vue'
+
+import 'vue-resize/dist/vue-resize.css'
+import Vue from 'vue'
+import VueResize from 'vue-resize'
+Vue.use(VueResize)
 
 export default {
     name:"iv-slider",
@@ -89,17 +95,13 @@ export default {
             type:Number,
             default:10.0
             },
-        minNumTick:{
-            type:Number,
-            default:5.0
-            },
-        minWindowWidth:{
-            type:Number,
-            default:600.0
-        },
         init_val:{
             type:Number,
             default:50.0
+            },
+        tick_decimals:{
+            type:Number,
+            default:0
             }
         },
     data(){
@@ -108,11 +110,34 @@ export default {
             value: this.init_val,
             current_step: this.step,
             button_step: this.step,
+            smallStep:null,
             tick_list: null,
             tick_line_key: null,
             tick_num_key: null,
             value_marker_width: 25,//same as the width of the marker showing the value
-            thumb_width: 18//same as the width of the range slider thumb 
+            thumb_width: 18,//same as the width of the range slider thumb 
+            minDiv: [
+                {
+                    width: 400,
+                    ticks: 5,
+                    step_size:0
+                },
+                {
+                    width: 300,
+                    ticks: 4,
+                    step_size:0
+                },
+                {
+                    width: 200,
+                    ticks: 3,
+                    step_size:0
+                },
+                {
+                    width: 100,
+                    ticks: 2,
+                    step_size:0
+                }
+            ]
         }
     },
     methods:{  
@@ -132,18 +157,33 @@ export default {
                 this.value = this.max;
             }
         },
+        min_step_size(){
+            for(let i=0;i< this.minDiv.length; i++){
+                this.minDiv[i].step_size = ((this.max - this.min)/this.minDiv[i].ticks);
+            }
+        },
         update_step(){
-            if((window.innerWidth < this.minWindowWidth) && (this.step < this.smallStep)){
+            if(this.$refs.sliderContainer.clientWidth > this.minDiv[0].width){
+                this.current_step = this.step
+                return
+            }
+            for(let i=0;i< this.minDiv.length; i++){
+
+                if(this.$refs.sliderContainer.clientWidth < this.minDiv[i].width){
+                    this.smallStep = this.minDiv[i].step_size
+                } 
+            }
+            if(this.step < this.smallStep){
                 this.current_step = this.smallStep
             }
             else{
                 this.current_step = this.step
-            } 
+            }
         },
         calc_ticks(){
             let tick_list = [];
             for(let i=this.min; i <= this.max; i+=this.current_step){
-                tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i});
+                tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i.toFixed(this.tick_decimals)});
             }
             return tick_list
         },
@@ -153,11 +193,8 @@ export default {
     },
     mounted () {
         this.id = this._uid;
-        this.smallStep = (this.max-this.min)/this.minNumTick;
-
-        this.tick_list = this.calc_ticks();
-        window.addEventListener("resize",this.update_step);    
-
+        this.min_step_size();
+        this.tick_list = this.calc_ticks(); 
         this.tick_line_key = "tick_line_" + this._uid;
         this.tick_num_key = "tick_num_" + this._uid;
     },
@@ -177,7 +214,8 @@ export default {
     flex-direction: row;
 }
 
-.sliderContain{
+.sliderContainer{
+    position:relative;
     display:flex;
     flex-direction: column;
     height:30vh;
