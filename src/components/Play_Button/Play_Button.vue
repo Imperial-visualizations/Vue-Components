@@ -1,9 +1,7 @@
 <template>
-    <button class="iv-play-button" :class="dyn_class" @click="changeState">
-        <img v-if="!play" class="play-icon" src="@/components/Play_Button/assets/play.svg" />
-        <img v-else class="play-icon" src="@/components/Play_Button/assets/pause.svg" />
+    <component :is="button" class="iv-play-button" :class="dyn_class" @click="changeState">
         {{text}}
-    </button>
+    </component>
 </template>
 
 <script>
@@ -22,18 +20,18 @@ export default {
             if (this.play) {
                 this.text="Pause"
                 this.dyn_class="iv-button-pause"
-                this.$emit("iv-played")
+                this.$emit("played")
             } else {
                 this.text="Play"
                 this.dyn_class="iv-button-play"
-                this.$emit("iv-paused")
+                this.$emit("paused")
             }
         }
     }
 }
 </script>
 
-<style lang="scss">
+<style>
 .iv-play-button{
     background-color: #0F8291;
     color: white;

@@ -1,14 +1,14 @@
 <template>
-    <div id='equationBox' :class="{ equationbox: stylise }" v-katex>
-        {{equation}}
+    <div ref='equationBox' :class="{ equationbox: stylise }">
     </div>
 </template>
 
 <script>
-import katex from 'katex';
-
 export default {
     name:"iv-equation-box",
+    mounted(){
+        this.rerender();
+    },
     props:{
         stylise: {
             type: Boolean,
@@ -16,12 +16,19 @@ export default {
         },
         equation: {
             type: String,
-            default: String.raw` $$ f({x}) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi $$`,
+            default: String.raw`f({x}) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi`,
+        }
+    },
+    methods:{
+        //Consider moving this to a mixin? (takes in text to render and elem to render to)
+        async rerender(){
+            let katex = await import("katex");
+            katex.render(this.equation,this.$refs.equationBox,{throwOnError:false, errorColor: 'red',displayMode:true});
         }
     },
     watch:{
-        equation: function(){
-            katex.render(this.equation,  document.getElementById("equationBox"), {throwOnError: false, errorColor: 'black'});
+        equation(){
+            this.rerender();
         }
     }
 }
@@ -35,6 +42,6 @@ export default {
     background-color: #daeced;
     display: inline-block;
     padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-right: 0.5rem;    
 }
 </style>
