@@ -1,5 +1,5 @@
 <template>
-    <button class="iv-hoverbutton" @mouseover="changeState" @mouseleave="changeState" v-on:click="buttonClick" :disabled="hoverButtonDisabled">
+    <button class="iv-hoverbutton" @mouseover="changeState" @mouseleave="changeState" @click="buttonClick" :disabled="hoverButtonDisabled">
         {{text}}</button>
 </template>
 
@@ -21,8 +21,8 @@ export default {
                 this.$emit("mouseoffbutton", this.hovering)
             }
         },
-        buttonClick(){
-          this.$emit("buttonclicked")
+        buttonClick(event){
+          this.$emit("click", event)
         },
     },
     props:{
