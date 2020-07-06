@@ -1,7 +1,8 @@
 <template>
-    <circle @mousedown="drag($event)" @mouseup="drop()" ref="circle" r="25" fill="blue" 
-    :cx="currentX" :cy="currentY">
-    </circle>
+    <g @mousedown="drag($event)" @mouseup="drop()"
+    :transform="`translate(${currentX}, ${currentY})`">
+    <slot></slot>
+    </g>
 </template>
 
 <script>
@@ -39,7 +40,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
