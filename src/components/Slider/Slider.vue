@@ -199,7 +199,19 @@ export default {
         this.tick_num_key = "tick_num_" + this._uid;
     },
     watch:{
+        step:{
+            handler:"update_step"
+        },
         current_step:function(){
+            this.tick_list = this.calc_ticks();
+        },
+        tick_decimals:function(){
+            this.tick_list = this.calc_ticks();
+        },
+        min:function(){
+            this.tick_list = this.calc_ticks();
+        },
+        max:function(){
             this.tick_list = this.calc_ticks();
         }
     }
