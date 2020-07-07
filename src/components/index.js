@@ -11,7 +11,7 @@ export {default as ToggleAdvance} from "./ToggleAdvance";
 export {default as Tickbox} from "./Tickbox";
 export {default as Play_Button} from "./Play_Button";
 export {DemoButton,DemoSlider} from "./demo";
-export {default as HoverButton} from "./HoverButton";
+export {default as Button} from "./Button";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
 

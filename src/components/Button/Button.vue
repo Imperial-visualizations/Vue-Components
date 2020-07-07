@@ -1,11 +1,11 @@
 <template>
-    <button class="iv-hoverbutton" @mouseover="changeState" @mouseleave="changeState" @click="buttonClick" :disabled="hoverButtonDisabled">
+    <button class="iv-button" @mouseover="changeState" @mouseleave="changeState" @click="buttonClick" :disabled="buttonDisabled">
         <slot>Default text</slot></button>
 </template>
 
 <script>
 export default {
-    name: "iv-hoverbutton",
+    name: "iv-button",
     data(){
         return {
             hovering:false
@@ -29,7 +29,7 @@ export default {
         type: Boolean,
         default: true
       },
-      hoverButtonDisabled: {
+      buttonDisabled: {
         type:Boolean,
         required: false,
         default: false
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style>
-.iv-hoverbutton{
+.iv-button{
     color:white;
     background-color:darkblue;
     border: none;
@@ -53,7 +53,7 @@ export default {
     transition: 2s;
 }
 
-.iv-hoverbutton:hover{
+.iv-button:hover{
     color:white;
     background-color:darkblue;
     border: none;
@@ -66,7 +66,7 @@ export default {
     transition: 0.2s;
 }
 
-.iv-hoverbutton:disabled{
+.iv-button:disabled{
     color:white;
     background-color:#ccc;
     border: none;
@@ -80,7 +80,7 @@ export default {
 }
 
 
-.iv-hoverbutton:hover:disabled{
+.iv-button:hover:disabled{
     color:white;
     background-color:#ccc;
     border: none;
