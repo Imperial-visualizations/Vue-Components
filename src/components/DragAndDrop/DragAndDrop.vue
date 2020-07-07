@@ -7,9 +7,6 @@
 <script>
 export default {
     name: "iv-drag-and-drop",
-    components: {
-
-    }
 }
 </script>
 
