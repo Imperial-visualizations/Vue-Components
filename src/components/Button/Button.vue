@@ -1,24 +1,17 @@
 <template>
-    <button class="iv-button" @mouseover="changeState" @mouseleave="changeState" @click="buttonClick" :disabled="buttonDisabled">
+    <button class="iv-button" @mouseover="mouseOn" @mouseleave="mouseOff" @click="buttonClick" :disabled="buttonDisabled">
         <slot>Default text</slot></button>
 </template>
 
 <script>
 export default {
     name: "iv-button",
-    data(){
-        return {
-            hovering:false
-        }
-    },
     methods:{
-        changeState(){
-            this.hovering = !this.hovering
-            if (this.hovering) {
-                this.$emit("mouseonbutton", this.hovering)
-            } else {
-                this.$emit("mouseoffbutton", this.hovering)
-            }
+        mouseOn(){
+            this.$emit("mouseonbutton")
+        },
+        mouseOff(){
+            this.$emit("mouseoffbutton")
         },
         buttonClick(event){
           this.$emit("click", event)
