@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <div @mouseover.native="showContent=true" @mouseleave.native="showContent=false" @mousemove="updatePosition" class="dropdownhover">
+        <div @mouseover="showContent=true" @mouseleave="showContent=false" @mousemove="updatePosition" class="dropdownhover">
             <slot>{{hoverElement}}</slot>
         </div>
         <div class="dropdown-content" v-show="showContent" v-bind:style="moveDiv">        
