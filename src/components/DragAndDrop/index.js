@@ -1,2 +1,3 @@
 import DragAndDrop from "./DragAndDrop.vue";
-export default DragAndDrop; 
+import Draggable from "./Draggable.vue";
+export {DragAndDrop, Draggable}; 
