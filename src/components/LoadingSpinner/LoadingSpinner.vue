@@ -8,17 +8,27 @@ export default {
     props: {
       spinnerScaling: {
         type: Number,
-        default: 1
+        default: 0.5
       }
     },
     computed: {
       scaling: function () {
-        return {
-          'border': 10*this.spinnerScaling + "vw solid #c8cac8", 
-          'border-top': 10*this.spinnerScaling + "vw solid #3498db",
-          'border-radius': 100 + "%",
-          'width': 20*this.spinnerScaling + "vw",
-          'height': 20*this.spinnerScaling + "vw",
+        if (this.spinnerScaling != 0) {
+          return {
+            'border': 3*this.spinnerScaling + "vw solid #c8cac8", 
+            'border-top': 3*this.spinnerScaling + "vw solid #3498db",
+            'border-radius': 100 + "%",
+            'width': 20*this.spinnerScaling + "vw",
+            'height': 20*this.spinnerScaling + "vw",
+          }
+        } else {
+          return {
+            'border': 3*0.5 + "vw solid #c8cac8", 
+            'border-top': 3*0.5 + "vw solid #3498db",
+            'border-radius': 100 + "%",
+            'width': 20*0.5 + "vw",
+            'height': 20*0.5 + "vw",
+          }
         }
       }
     }
