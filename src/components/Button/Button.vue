@@ -18,10 +18,6 @@ export default {
         },
     },
     props:{
-      initialMode:{
-        type: Boolean,
-        default: true
-      },
       buttonDisabled: {
         type:Boolean,
         required: false,
@@ -45,6 +41,15 @@ export default {
     box-shadow: 0 8px 16px 0 rgba(20, 102, 224, 0.8), 0 6px 20px 0 rgba(0,0,0,0.19);
     transition: 2s;
 }
+
+.iv-button:focus{
+    outline:0;
+}
+
+.iv-button:active{
+    /* background-color:#040252; */
+    background-color:black;
+    }
 
 .iv-button:hover{
     color:white;
