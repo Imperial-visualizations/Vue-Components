@@ -4,7 +4,7 @@
         <iv-tab tabName="Tab 1" :selected="true">
             <h1>Display Content 1</h1>
             <iv-tabs>
-                <iv-tab tabName="Sub Tab 1" style="background: #ff3bs23">
+                <iv-tab tabName="Sub Tab 1">
                     <p>Sub Tab Content 1</p>
                 </iv-tab>
                 <iv-tab tabName="Sub Tab 2">
