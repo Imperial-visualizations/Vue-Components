@@ -1,5 +1,5 @@
 <template>
-
+    <div class="container">
     <iv-tabs>
         <iv-tab tabName="Services" :selected="true">
             <h1>What we do</h1>
@@ -11,7 +11,7 @@
             <h1>Why we do it</h1>
         </iv-tab>
     </iv-tabs>
-
+    </div>
 </template>
 
 <script>
@@ -20,3 +20,6 @@ export default {
   name: 'App'
 }
 </script>
+<style scoped>
+body { padding-top: 40px; }
+</style>
