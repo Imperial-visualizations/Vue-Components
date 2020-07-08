@@ -14,11 +14,11 @@ export default {
     computed: {
       scaling: function () {
         return {
-          'border': 12*this.spinnerScaling + "px solid #c8cac8", 
-          'border-top': 12*this.spinnerScaling + "px solid #3498db",
-          'border-radius': 50 + "%",
-          'width': 40*this.spinnerScaling + "px",
-          'height': 40*this.spinnerScaling + "px",
+          'border': 10*this.spinnerScaling + "vw solid #c8cac8", 
+          'border-top': 10*this.spinnerScaling + "vw solid #3498db",
+          'border-radius': 100 + "%",
+          'width': 20*this.spinnerScaling + "vw",
+          'height': 20*this.spinnerScaling + "vw",
         }
       }
     }
