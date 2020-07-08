@@ -1,14 +1,25 @@
 <template>
-    <div class="container">
+    <div>
     <iv-tabs>
-        <iv-tab tabName="Services" :selected="true">
-            <h1>What we do</h1>
+        <iv-tab tabName="Tab 1" :selected="true">
+            <h1>Display Content 1</h1>
+            <iv-tabs>
+                <iv-tab tabName="Sub Tab 1" style="background: #ff3bs23">
+                    <p>Sub Tab Content 1</p>
+                </iv-tab>
+                <iv-tab tabName="Sub Tab 2">
+                    <p>Sub Tab Content 2</p>
+                </iv-tab>
+                <iv-tab tabName="Sub Tab 3">
+                    <p>Sub Tab Content 3</p>
+                </iv-tab>
+            </iv-tabs>
         </iv-tab>
-        <iv-tab tabName="Pricing">
-            <h1>How much we do it for</h1>
+        <iv-tab tabName="Tab 2">
+            <h1>Display Content 2</h1>
         </iv-tab>
-        <iv-tab tabName="About Us">
-            <h1>Why we do it</h1>
+        <iv-tab tabName="Tab 3">
+            <h1>Display Content 3</h1>
         </iv-tab>
     </iv-tabs>
     </div>
@@ -20,6 +31,3 @@ export default {
   name: 'App'
 }
 </script>
-<style scoped>
-body { padding-top: 40px; }
-</style>
