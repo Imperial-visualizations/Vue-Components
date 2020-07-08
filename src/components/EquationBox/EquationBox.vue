@@ -38,7 +38,7 @@ export default {
             //Here v-show MUST be used, because otherwise the equationBox element does not exist in the DOM!
             //An alternate approach would be to set this loaded = true in the line above and then await the next vue update to be sure
             //This method should be more performant though.
-            katex.render(this.equation,this.$refs.equationBox,{throwOnError:false,errorColor:"black"});
+            katex.render(this.equation,this.$refs.equationBox,{throwOnError:false,errorColor:"black",displayMode:true});
             this.loaded = true;
         }
     },
