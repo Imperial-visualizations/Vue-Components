@@ -11,20 +11,21 @@
             </div>
           </div> 
       </header>
+      
+
       <sandbox class="app__content">
           <component :is="getComponent"></component>
+          
       </sandbox>
     </div>
 </template>
 <script>
-import Multiselect from "vue-multiselect";
 import {Sandbox} from "component-fixture";
 import * as components from "../src/components";
 import "component-fixture/dist/ComponentFixture.css";
 
 export default {
     components:{
-        Multiselect,
         Sandbox,
     },
     created(){
@@ -45,7 +46,7 @@ export default {
     }
 }
 </script>
-<style lang="less">
+<style>
 html {
   height: 100%;
 }
@@ -65,10 +66,11 @@ body {
 
 .app__content {
   flex-grow: 1;
-  .component {
+  
+}
+.app__content .component {
     height: 100%;
     background: rgba(0, 0, 0, 0.03);
-  }
 }
 
 .appheader {
@@ -78,27 +80,27 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  h1 {
-    padding: 12px 16px;
-    margin: 0;
-    font-size: 16px;
-    border-right: 1px solid #ddd;
-    img {
-      max-width: 22px;
-    }
-  }
-  .github-link {
+}
+.appheader .github-link {
     color: black;
     font-size: 22px;
     padding: 0;
-  }
-  > div {
+}
+.appheader > div {
     display: flex;
     align-items: center;
   }
-  .end-items {
+.appheader .end-items {
     padding-right: 16px;
   }
-}
 
+.appheader h1 {
+  padding: 12px 16px;
+  margin: 0;
+  font-size: 16px;
+  border-right: 1px solid #ddd;
+}
+.appheader h1 img{
+  max-width: 22px;
+}
 </style>
