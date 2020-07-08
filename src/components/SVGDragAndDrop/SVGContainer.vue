@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: "iv-drag-and-drop",
+    name: "iv-svg-container",
 }
 </script>
 

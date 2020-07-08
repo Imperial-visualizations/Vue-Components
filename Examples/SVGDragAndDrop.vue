@@ -1,13 +1,13 @@
 <template>
-  <iv-drag-and-drop>
-    <iv-draggable v-for="(ball, ballName) in ballContainer" :key="ballName" :x="ball.x" :y="ball.y" :fill="ball.colour">
+  <iv-svg-container>
+    <iv-svg-draggable v-for="(ball, ballName) in ballContainer" :key="ballName" :x="ball.x" :y="ball.y" :fill="ball.colour">
       <circle r="25" />
-    </iv-draggable>
+    </iv-svg-draggable>
 
-    <iv-draggable :x="400" :y="200" >
+    <iv-svg-draggable :x="400" :y="200" >
       <image xlink:href="./smiley.png" width="50px" height="50px" />
-    </iv-draggable>
-  </iv-drag-and-drop>
+    </iv-svg-draggable>
+  </iv-svg-container>
 </template>
 
 <script>

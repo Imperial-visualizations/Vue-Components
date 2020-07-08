@@ -7,7 +7,7 @@
 
 <script>
 export default {
-    name: "iv-draggable",
+    name: "iv-svg-draggable",
     props: {
         x:{
             type: Number

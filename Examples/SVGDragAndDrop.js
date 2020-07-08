@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import ImpVisLib from "../src/main.js";
-import DragAndDropExample from "./DragAndDropExample.vue";
+import SVGDragAndDrop from "./SVGDragAndDrop.vue";
 Vue.use(ImpVisLib);
 Vue.config.productionTip= false;
 new Vue({
-    render:h=>h(DragAndDropExample)
+    render:h=>h(SVGDragAndDrop)
 }).$mount('#app');

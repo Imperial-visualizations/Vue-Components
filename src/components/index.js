@@ -1,7 +1,7 @@
 // For folders containing a single exported component write:
 // export {default as ComponentName} from './ComponentFolder';
 
-export {DragAndDrop, Draggable} from "./DragAndDrop";
+export {SVGContainer, SVGDraggable} from "./SVGDragAndDrop";
 export {default as EquationBox} from "./EquationBox";
 export {default as EquationBoxAdvance} from "./EquationBoxAdvance";
 export {default as HoverText} from "./HoverText";
