@@ -10,6 +10,7 @@ export {default as Tickbox} from "./Tickbox";
 export {default as Play_Button} from "./Play_Button";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
+export {default as Tab, Tabs} from "./Tabs";
 
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';
