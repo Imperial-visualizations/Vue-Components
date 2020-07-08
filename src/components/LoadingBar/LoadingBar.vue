@@ -84,7 +84,7 @@ body, html {
 
 .progress-bar-inner {
   display: block;
-  height: 20px;
+  height: 3vh;
   width: 0%;
   background-color: #3498db;
   border-radius: 3px;
