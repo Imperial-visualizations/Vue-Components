@@ -37,8 +37,9 @@ export default [{
         'katex/dist/katex.min.css'
     ],
     output:{
-        format:'iife',
-        dir:'common'
+        format:'umd',
+        file:'./dist/ImpVis.umd.js',
+        name:"ImpVis"
     },
     plugins:[
         includePaths({ paths: ["./"] }),  
