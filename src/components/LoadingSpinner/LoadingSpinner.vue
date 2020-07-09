@@ -1,9 +1,10 @@
 <template>
-    <div class="loadingSpinner" v-bind:style="scaling"></div>
+    <div class="loadingSpinner"></div>
 </template>
 
 <script>
 export default {
+<<<<<<< HEAD
     name:"iv-loading-spinner",
     props: {
       spinnerScaling: {
@@ -32,11 +33,20 @@ export default {
         }
       }
     }
+=======
+    name:"iv-loading-spinner"
+>>>>>>> parent of f23732d... Adjustable LoadingSpinner size
 }
 </script>
 
 <style scoped>
+/* The container <div> - needed to position the dropdown content */
 .loadingSpinner {
+  border: 16px solid #c8cac8; 
+  border-top: 16px solid #3498db; 
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
   animation: spin 1.5s linear infinite;
 }
 
