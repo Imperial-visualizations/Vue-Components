@@ -23,7 +23,7 @@ export default [{
         includePaths({ paths: ["./"] }),  
         resolve(),
         commonjs(), 
-        css({dest:"./dist/ImpVis.css"}),
+        css({dest:"./dist/impvis-components.css"}),
         image(),
         vue({css:false}),
         eslint()
@@ -38,14 +38,14 @@ export default [{
     ],
     output:{
         format:'umd',
-        file:'./dist/ImpVis.umd.js',
+        file:'./dist/impvis-components.umd.js',
         name:"ImpVis"
     },
     plugins:[
         includePaths({ paths: ["./"] }),  
         resolve(),
         commonjs(), 
-        css({dest:"./common/ImpVis.css"}),
+        css({minified: false,raw:false}),
         image(),
         vue({css:false}),
         eslint()
