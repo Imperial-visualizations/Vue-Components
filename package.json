@@ -10,7 +10,8 @@
     "build": "rollup -c",
     "lint": "vue-cli-service lint",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "svgdraganddrop": "vue-cli-service serve ./Examples/SVGDragAndDrop.js"
   },
   "dependencies": {
     "component-fixture": "^1.14.0",
