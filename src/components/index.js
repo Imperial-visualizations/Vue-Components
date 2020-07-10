@@ -2,7 +2,9 @@
 // export {default as ComponentName} from './ComponentFolder';
 export {default as Slider} from "./Slider";
 export {default as DragAndDrop} from "./DragAndDrop";
+export {SVGContainer, SVGDraggable} from "./SVGDragAndDrop";
 export {default as EquationBox} from "./EquationBox";
+export {default as EquationBoxAdvance} from "./EquationBoxAdvance";
 export {default as HoverText} from "./HoverText";
 export {default as TitleBar} from "./TitleBar";
 export {default as DropdownTextBox} from "./DropdownTextBox";
