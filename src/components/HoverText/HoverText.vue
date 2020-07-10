@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <div @mouseover="displayOrHide" @mouseleave="displayOrHide" @mousemove="updatePosition" class="dropdownhover">
+        <div @mouseover="showContent=true" @mouseleave="showContent=false" @mousemove="updatePosition" class="dropdownhover">
             <slot>{{hoverElement}}</slot>
         </div>
         <div class="dropdown-content" v-show="showContent" v-bind:style="moveDiv">        
@@ -39,13 +39,11 @@ export default {
         }
     },
     methods:{
-        displayOrHide(){
-            this.showContent = !this.showContent;
-        },
         updatePosition(event){
             var rect = event.target.getBoundingClientRect();
             this.positions.clientX = event.clientX - rect.left + 3;
             this.positions.clientY = event.clientY - rect.top + 3;
+            console.log(event.target);
         }
     }
 }
@@ -59,7 +57,6 @@ export default {
     font-size: 16px;
     font-weight: normal;
     letter-spacing: .05rem;
-    text-align: left;
 }
 
 /* Dropdown hover */
@@ -73,7 +70,6 @@ export default {
 /* Dropdown hover on hover */
 .dropdownhover:hover {
     background-color: #2980B9;
-    color: rgba(255, 255, 255, 0.9);
     -webkit-box-shadow:0 0 7.5px rgba(9, 89, 160, 0.9); 
     -moz-box-shadow: 0 0 7.5px rgba(9, 89, 160, 0.9); 
     box-shadow:0 0 7.5px rgba(9, 89, 160, 0.9);

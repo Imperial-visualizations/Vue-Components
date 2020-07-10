@@ -1,16 +1,17 @@
 {
   "name": "@impvis/components",
   "version": "0.11.0",
-  "license" : "BSD-3-Clause",
-  "main": "./dist/impvis-components.common.js",
-  "unpkg": "dist/impvis-components.umd.min.js",
+  "license": "BSD-3-Clause",
+  "main": "./dist/main.js",
+  "unpkg":"./dist/impvis-components.umd.js",
   "scripts": {
     "play": "vue-cli-service serve ./play/main.js",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name impvis-components ./src/main.js",
+    "build": "rollup -c",
     "lint": "vue-cli-service lint",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "svgdraganddrop": "vue-cli-service serve ./Examples/SVGDragAndDrop.js"
   },
   "dependencies": {
     "component-fixture": "^1.14.0",
@@ -24,22 +25,27 @@
     "vue-plotly": "^1.1.0",
     "vue-resize": "^0.5.0",
     "vue-resize-sensor": "^2.0.0"
+  "peerDependencies": {
+    "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-image": "^2.0.5",
+    "@rollup/plugin-node-resolve": "^8.1.0",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "less-loader": "^6.1.1",
-    "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2",
-    "svg-url-loader": "^6.0.0",
-    "vue-multiselect": "^2.1.6",
-    "vue-template-compiler": "^2.6.11",
-    "vuepress": "^1.5.2",
-    "webpack-bundle-analyzer": "^3.8.0"
+    "rollup":"^2.20.0",
+    "rollup-plugin-css-only": "^2.1.0",
+    "rollup-plugin-css-porter": "^1.0.2",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-includepaths": "^0.2.3",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-vue": "^5.1.9",
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
