@@ -10,8 +10,8 @@
             <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" />
             <input type="range" :class="[playSlider ? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
 
-            <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :key="tick_line_key" />
-            <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :key="tick_num_key" />
+            <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
+            <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
 
         </div>
 
@@ -137,7 +137,11 @@ export default {
                     ticks: 2,
                     step_size:0
                 }
-            ]
+            ],
+        maxTicks:{
+            ticks: 20,
+            step_size:0
+        }
         }
     },
     methods:{  
@@ -161,24 +165,28 @@ export default {
             for(let i=0;i< this.minDiv.length; i++){
                 this.minDiv[i].step_size = ((this.max - this.min)/this.minDiv[i].ticks);
             }
+            this.maxTicks.step_size = ((this.max - this.min)/this.maxTicks.ticks);
         },
         update_step(){
-            if(this.$refs.sliderContainer.clientWidth > this.minDiv[0].width){
-                this.current_step = this.step
-                return
-            }
-            for(let i=0;i< this.minDiv.length; i++){
 
-                if(this.$refs.sliderContainer.clientWidth < this.minDiv[i].width){
-                    this.smallStep = this.minDiv[i].step_size
-                } 
+            if(this.$refs.sliderContainer.clientWidth > this.minDiv[0].width){
+                this.smallStep = this.maxTicks.step_size
             }
+            else{
+                for(let i=0;i<this.minDiv.length;i++){
+                    if(this.$refs.sliderContainer.clientWidth < this.minDiv[i].width){
+                        this.smallStep = this.minDiv[i].step_size
+                    } 
+                }
+            }
+
             if(this.step < this.smallStep){
                 this.current_step = this.smallStep
             }
             else{
                 this.current_step = this.step
             }
+
         },
         calc_ticks(){
             let tick_list = [];
@@ -209,9 +217,11 @@ export default {
             this.tick_list = this.calc_ticks();
         },
         min:function(){
+            this.min_step_size();
             this.tick_list = this.calc_ticks();
         },
         max:function(){
+            this.min_step_size();
             this.tick_list = this.calc_ticks();
         }
     }

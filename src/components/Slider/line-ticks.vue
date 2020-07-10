@@ -1,20 +1,23 @@
 <template>
-    <div class = "ticksLineContainer" >
-        <div class="vert_container_ticks" :style="tickPlace">
-            <span v-for="tick in sliderTicksList" :key="tick.id" class="tick"></span>
-        </div>
+    <div style="position:relative">
+        <span v-for="(tick,index) in sliderTicksList" :key="tick.id" class="tick_line" :style="moveLineTick(tick.value,index)"></span>
     </div>
 </template>
 
 <script>
 export default {
     name:"iv-line-ticks",
-    props:["sliderTicksList","thumb_width"],
-    computed:{
-        tickPlace(){
-            return {
-                marginLeft: `calc(${(0.5)*this.thumb_width}px)`,
-                width: `calc(100% - ${this.thumb_width}px)`
+    props:["sliderTicksList","thumb_width","min","max"],
+    data(){
+        return{
+            number_width: 1//needs to be the same as the width of the span
+        }
+    },
+    methods:{
+        moveLineTick(tick_value,index){
+            let ratio = (tick_value - this.min)/(this.max - this.min);
+            return{
+                left:`calc(${ratio*100}% - ${index*this.number_width + this.number_width/2}px + ${(0.5 - ratio)*this.thumb_width}px)`
             }
         }
     }
@@ -22,21 +25,13 @@ export default {
 </script>
 
 <style>
-.ticksLineContainer{
+.tick_line{
+    display: inline-block;
     position: relative;
-}
-.vert_container_ticks{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.tick{
-  justify-content: center;
-  width: 1px;
-  background: gray;
-  height: 10px;
-  line-height: 10px;
-  margin-bottom: 10px;
+    text-align: center;
+    background: gray;
+    height: 10px;
+    width: 1px;
+    margin-bottom: 10px;
 }
 </style>
