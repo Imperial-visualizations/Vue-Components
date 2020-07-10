@@ -1,7 +1,7 @@
 <template>
     <div>
             <ul>
-                <li v-for="tab in tabs" :key="tab" :class="{ 'is-active': tab.isActive }">
+                <li v-for="(tab,tabIndex) in tabs" :key="tabIndex" :class="{ 'is-active': tab.isActive }">
                     <a :href="tab.href" @click="selectTab(tab)">{{ tab.tabName }}</a>
                 </li>
             </ul>
