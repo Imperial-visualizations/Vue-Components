@@ -1,6 +1,6 @@
 {
   "name": "@impvis/components",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "license": "BSD-3-Clause",
   "main": "./dist/main.js",
   "unpkg":"./dist/impvis-components.umd.js",
