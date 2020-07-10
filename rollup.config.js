@@ -31,6 +31,27 @@ export default [{
 },
 {
     input:'src/main.js',
+    external: [ // Include here any large external libraries that will be used as PeerDependencies.
+        'vue',
+        'katex',
+        'katex/dist/katex.min.css'
+    ],
+    output: {
+        format: 'cjs',
+        file:'./dist/impvis-components.common.js'
+    },
+    plugins:[
+        includePaths({ paths: ["./"] }),  
+        resolve(),
+        commonjs(), 
+        css({dest:"./dist/impvis-components.css"}),
+        image(),
+        vue({css:false}),
+        eslint()
+    ]
+},
+{
+    input:'src/main.js',
     external:[
         'vue',
         'katex',
