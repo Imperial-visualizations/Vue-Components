@@ -1,12 +1,14 @@
 <template>
-    <div>
+    <div class="tabContainer">
             <ul>
-                <li v-for="(tab,tabIndex) in tabs" :key="tabIndex" :class="{ 'is-active': tab.isActive }">
+                <li v-for="(tab,index) in tabs" :key="index" :class="{ 'is-active': tab.isActive }">
                     <a :href="tab.href" @click="selectTab(tab)">{{ tab.tabName }}</a>
                 </li>
             </ul>
+
             <slot></slot>
     </div>
+
 </template>
 <script>
 export default {
@@ -30,8 +32,13 @@ export default {
     }
 }
 </script>
-<style scoped>
-ul {
+<style>
+.tabContainer{
+  display: block;
+  background: #cce5ff;
+  margin: 5px;
+}
+.tabContainer ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -39,11 +46,11 @@ ul {
   background-color: #2876a3;
 }
 
-li {
+.tabContainer li {
   float: left;
 }
 
-li a {
+.tabContainer li a {
   display: block;
   color: rgb(1, 1, 1);
   text-align: center;
@@ -51,12 +58,9 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+.tabContainer li a:hover {
   background-color: #0b4079;
-}
-div { 
-  display: block;
-  background: #cce5ff;
-  margin: 5px;
+  border-style: solid;
+  border-color:black;
 }
 </style>

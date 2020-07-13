@@ -1,8 +1,8 @@
-import Vue from 'vue';
+import Vue from "vue";
 import ImpVisLib from "../src/main.js";
-import TabTest from "./TabTest.vue";
+import Examples_Tabs from "./Examples_Tabs.vue";
 Vue.use(ImpVisLib);
 Vue.config.productionTip= false;
 new Vue({
-    render:h=>h(TabTest)
+    render:h=>h(Examples_Tabs)
 }).$mount('#app');
