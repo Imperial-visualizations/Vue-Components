@@ -1,10 +1,10 @@
 <template>
-    <div class="banner">
+    <nav class="banner">
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
         </a>
         <div class="vis-title"><slot>Default Title</slot></div>
-    </div>
+    </nav>
     
 </template>
 
@@ -85,9 +85,9 @@ export default {
   color: #0FA0CE; }
 
 .vis-logo {
-  height: inherit;
+  height: 1.25rem;
   width:auto;
-  margin-right:0.25rem;
+  margin: 0.125rem 0.25rem;
 }
 
 </style>
