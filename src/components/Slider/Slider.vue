@@ -4,7 +4,7 @@
 
         <div class = "sliderGroup">
             <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" />
-            <input type="range" :class="[playSlider ? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
+            <input type="range" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
 
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
@@ -216,6 +216,7 @@ export default {
     height: 18px;
 }
 .iv-range-play{
+    -webkit-appearance: none;
     margin: 0px;
     width: 100%;
     height: 18px;
@@ -224,12 +225,14 @@ export default {
 /* removing input range track defualt for chrome, mozilla and IE - NON PLAY*/
 .iv-range::-webkit-slider-runnable-track{
     -webkit-appearance: none;
+    height: 20px;
     border: 1px solid black;
     border-radius: 9px;
     background-color:moccasin;
 }
 
 .iv-range::-moz-range-track{
+    height: 20px;
     border: 1px solid black;
     border-radius: 9px;
     background-color:moccasin;
@@ -237,6 +240,7 @@ export default {
 }
 
 .iv-range::-ms-track{
+    height: 20px;
     border: 1px solid black;
     border-radius: 9px;
     background-color:moccasin;
@@ -245,6 +249,7 @@ export default {
 /* removing input range track defualt for chrome, mozilla and IE - PLAY*/
 .iv-range-play::-webkit-slider-runnable-track{
     -webkit-appearance: none;
+    height: 20px;
     border: 1px solid black;
     border-radius: 9px;
     background-color:cornsilk;
@@ -252,12 +257,14 @@ export default {
 
 .iv-range-play::-moz-range-track{
     border: 1px solid black;
+    height: 20px;
     border-radius: 9px;
     background-color:cornsilk;
 }
 
 .iv-range-play::-ms-track{
     border: 1px solid black;
+    height: 20px;
     border-radius: 9px;
     background-color:moccasin;
 }
@@ -267,8 +274,8 @@ export default {
   -webkit-appearance: none;
   width: 18px;
   height: 18px;
-  border-radius: 10px;
-  background-color: hsl(50, 100%, 50%);
+  border-radius: 9px;
+  background-color: orange;
   overflow: visible;
   cursor: pointer;
 }
@@ -276,8 +283,8 @@ export default {
 .iv-range::-moz-range-thumb{
   width: 18px;
   height: 18px;
-  border-radius: 10px;
-  background-color: hsl(50, 100%, 50%);
+  border-radius: 9px;
+  background-color: orange;
   overflow: visible;
   cursor: pointer;
 }
@@ -285,8 +292,8 @@ export default {
 .iv-range::-ms-thumb{
   width: 18px;
   height: 18px;
-  border-radius: 10px;
-  background-color: hsl(50, 100%, 50%);
+  border-radius: 9px;
+  background-color: orange;
   overflow: visible;
   cursor: pointer;
 }
@@ -297,7 +304,7 @@ export default {
   width: 18px;
   height: 18px;
   border-radius: 9px;
-  background-color: hsl(5, 100%, 50%);
+  background-color: teal;
   overflow: visible;
   cursor: pointer;
 }
@@ -306,7 +313,7 @@ export default {
   width: 18px;
   height: 18px;
   border-radius: 9px;
-  background-color: hsl(5, 100%, 50%);
+  background-color: teal;
   overflow: visible;
   cursor: pointer;
 }
@@ -315,7 +322,7 @@ export default {
   width: 18px;
   height: 18px;
   border-radius: 9px;
-  background-color: hsl(5, 100%, 50%);
+  background-color: teal;
   overflow: visible;
   cursor: pointer;
 }
