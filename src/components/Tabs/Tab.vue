@@ -19,19 +19,17 @@ export default {
         };
         
     },
-
+    computed: {
+        
+        href() {
+            return '#' + this.tabName.toLowerCase().replace(/ /g, '-');
+        }
+    },
     
     mounted() {
         this.id = this._uid
         this.isActive = this.selected;
         
-    },
-
-    computed: {
-        
-        href() {
-            return '#' + this.id;
-        }
     }
 }
 </script>

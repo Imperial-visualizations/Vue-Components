@@ -19,7 +19,7 @@ export default {
     },
     
     created() {
-        
+      
         this.tabs = this.$children;
         
     },
