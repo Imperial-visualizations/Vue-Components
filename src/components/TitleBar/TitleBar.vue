@@ -1,10 +1,10 @@
 <template>
-    <div class="banner">
-        <a @click="openLinkNewTab" id="logo-container">
-            <img id="vis-logo" src="./VisualisationsLogoWhite2.png">
+    <nav class="banner">
+        <a @click="openLinkNewTab" class="logo-container">
+            <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
         </a>
-        <div id="vis-title"><slot>Default Title</slot></div>
-    </div>
+        <div class="vis-title"><slot>Default Title</slot></div>
+    </nav>
     
 </template>
 
@@ -40,9 +40,8 @@ export default {
   flex: 0 0 auto;
   justify-content: flex-end;
   align-items: center;
-  height: 4vh;
-  min-height: 30px;
-  width: 100vw;
+  padding: 0.25rem 0rem;
+  width: 100%;
   position: fixed; 
   top: 0;
   right: 0;
@@ -56,43 +55,39 @@ export default {
   z-index: 6;
 }
 
-#vis-title {
+.vis-title {
   flex-basis: 0;
   flex-grow: 1;
-  min-height: 30px;
   margin:0;
   padding: 0;
   position: fixed;
   text-align: center;
-  vertical-align: middle;
   font-weight: bolder;
   left: 0vw;
   right: 0;
   background: none;
   color: #ffffff;
-  font-size: 22pt;
-  letter-spacing: 2pt;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 }
 
-#logo-container {
+.logo-container {
   color: #1EAEDB; 
   z-index: 10;
   cursor: pointer;
-  }
+  display:block;
+  padding:0;
+  height:1.5rem;
 
-#logo-container:hover {
+}
+
+.logo-container:hover {
   color: #0FA0CE; }
 
-#vis-logo {
-  height: 2.7vh;
-  min-height: 18px;
-  margin-right: 7px;
-  margin-top: 0.3em;
+.vis-logo {
+  height: 1.25rem;
+  width:auto;
+  margin: 0.125rem 0.25rem;
 }
-
-#vis-logo img{
-   width: auto;
-}
-
 
 </style>
