@@ -1,7 +1,8 @@
 import Slider from "./Slider.vue";
-import lineTicksComp from './line-ticks.vue';
-import NumTicksComp from './num-ticks.vue';
-import BubbleComp from './bubble-comp.vue';
+import lineTicksComp from './lineTicks.vue';
+import NumTicksComp from './numTicks.vue';
+import BubbleComp from './bubble.vue';
+import inputButton from './inputButton.vue';
 
 export default Slider;
-export {lineTicksComp,NumTicksComp,BubbleComp};
+export {lineTicksComp,NumTicksComp,BubbleComp,inputButton};

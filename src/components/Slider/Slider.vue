@@ -1,10 +1,6 @@
 <template>
     <div class = "sliderContainer" ref="sliderContainer">
         <resize-observer @notify="update_step" />
-        <div class = "titleGroup">
-            <p v-if="description_val">{{description}}</p>
-            <p v-if="sliderValue">{{value}}</p>
-        </div>
 
         <div class = "sliderGroup">
             <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" />
@@ -12,27 +8,17 @@
 
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
-
         </div>
 
-        <div v-if="sliderButtons">
-            <template v-if="playSlider">
-                <button  class = "minusStep" @click="decreaseValue">Prev</button>
-                <button class = "addStep" @click="increaseValue">Next</button>
-            </template>
-            <template v-else>
-                <button class = "minusStep" @click="decreaseValue">- {{button_step}}</button>
-                <button class = "addStep" @click="increaseValue">+ {{button_step}}</button>
-                <input v-if="buttonInput" type="text" class = "buttonInput" v-model.number="button_step">
-            </template>
-        </div>
+        <iv-input-button v-if="sliderButtons" :sliderValue="value" :playSlider="playSlider" :buttonInput="buttonInput" :min="min" :max="max" :button_step_init="button_step_init" @inputButtonClicked="update_val_button"/>
 
     </div>
 </template>
 <script>
-import lineTicksComp from './line-ticks.vue'
-import NumTicksComp from './num-ticks.vue'
-import BubbleComp from './bubble-comp.vue'
+import lineTicksComp from './lineTicks.vue'
+import NumTicksComp from './numTicks.vue'
+import BubbleComp from './bubble.vue'
+import InputButton from './inputButton.vue'
 
 import 'vue-resize/dist/vue-resize.css'
 import Vue from 'vue'
@@ -44,13 +30,10 @@ export default {
     components: {
         "iv-line-ticks":lineTicksComp,
         "iv-num-ticks":NumTicksComp,
-        "iv-bubble":BubbleComp
+        "iv-bubble":BubbleComp,
+        "iv-input-button":InputButton
     },
     props:{
-        sliderValue:{
-            type:Boolean,
-            default:false
-        },
         bubble:{
             type:Boolean,
             default:false
@@ -75,14 +58,6 @@ export default {
             type:Boolean,
             default:false
         },
-        description_val:{
-            type:Boolean,
-            default:false
-        },
-        description:{
-            type:String,
-            default:"helloWorld"
-        },
         min:{
             type:Number,
             default:0.0
@@ -99,6 +74,10 @@ export default {
             type:Number,
             default:50.0
             },
+        button_step_init:{
+            type:Number,
+            default:10.0
+        },
         tick_decimals:{
             type:Number,
             default:0
@@ -109,7 +88,6 @@ export default {
             id: null,
             value: this.init_val,
             current_step: this.step,
-            button_step: this.step,
             smallStep:null,
             tick_list: null,
             tick_line_key: null,
@@ -138,28 +116,16 @@ export default {
                     step_size:0
                 }
             ],
-        maxTicks:{
-            ticks: 20,
-            step_size:0
-        }
+            maxTicks:{
+                ticks: 20,
+                step_size:0
+            }
         }
     },
     methods:{  
-        decreaseValue(){
-            if(this.value - this.button_step >= this.min){
-                this.value = this.value - this.button_step;
-            }
-            else{
-                this.value = this.min;
-            }
-        },
-        increaseValue(){
-            if(this.value + this.button_step <= this.max){
-                this.value = this.value + this.button_step;
-            }
-            else{
-                this.value = this.max;
-            }
+        update_val_button(e){
+            console.log(e);
+            this.value = e;
         },
         min_step_size(){
             for(let i=0;i< this.minDiv.length; i++){
@@ -231,10 +197,6 @@ export default {
 <style>
 
 /* div stuff*/
-.titleGroup{
-    display:flex;
-    flex-direction: row;
-}
 
 .sliderContainer{
     position:relative;
@@ -247,7 +209,6 @@ export default {
     height:20vh;
 }
 
-/* actual slider colours */
 .iv-range{
     -webkit-appearance: none;
     margin: 0px;
@@ -260,6 +221,7 @@ export default {
     height: 18px;
 }
 
+/* removing input range track defualt for chrome, mozilla and IE - NON PLAY*/
 .iv-range::-webkit-slider-runnable-track{
     -webkit-appearance: none;
     border: 1px solid black;
@@ -267,6 +229,20 @@ export default {
     background-color:moccasin;
 }
 
+.iv-range::-moz-range-track{
+    border: 1px solid black;
+    border-radius: 9px;
+    background-color:moccasin;
+    
+}
+
+.iv-range::-ms-track{
+    border: 1px solid black;
+    border-radius: 9px;
+    background-color:moccasin;
+}
+
+/* removing input range track defualt for chrome, mozilla and IE - PLAY*/
 .iv-range-play::-webkit-slider-runnable-track{
     -webkit-appearance: none;
     border: 1px solid black;
@@ -274,7 +250,19 @@ export default {
     background-color:cornsilk;
 }
 
-/* thumb css (dont know if this needs to be specified)*/
+.iv-range-play::-moz-range-track{
+    border: 1px solid black;
+    border-radius: 9px;
+    background-color:cornsilk;
+}
+
+.iv-range-play::-ms-track{
+    border: 1px solid black;
+    border-radius: 9px;
+    background-color:moccasin;
+}
+
+/* slider thumb css - NON PLAY */
 .iv-range::-webkit-slider-thumb{
   -webkit-appearance: none;
   width: 18px;
@@ -285,44 +273,51 @@ export default {
   cursor: pointer;
 }
 
+.iv-range::-moz-range-thumb{
+  width: 18px;
+  height: 18px;
+  border-radius: 10px;
+  background-color: hsl(50, 100%, 50%);
+  overflow: visible;
+  cursor: pointer;
+}
+
+.iv-range::-ms-thumb{
+  width: 18px;
+  height: 18px;
+  border-radius: 10px;
+  background-color: hsl(50, 100%, 50%);
+  overflow: visible;
+  cursor: pointer;
+}
+
+/* slider thumb css - PLAY */
 .iv-range-play::-webkit-slider-thumb{
   -webkit-appearance: none;
   width: 18px;
   height: 18px;
-  border:none;
   border-radius: 9px;
-  background: #FFAC4D;
+  background-color: hsl(5, 100%, 50%);
   overflow: visible;
-
-  
+  cursor: pointer;
 }
 
-
-
-/* stylying for ticks */
-datalist{
-    background-color: black;
-    width: 100%;
-    height: 20px;
-    top: 20px;
+.iv-range-play::-moz-range-thumb{
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background-color: hsl(5, 100%, 50%);
+  overflow: visible;
+  cursor: pointer;
 }
 
-option{
-    background-color: black;
-    height: 20px;
-    top: 20px;
-}
-
-/* Special styling for firefox to get the ticks*/
-.iv-range::-moz-range-track, .iv-range-play::-moz-range-track {
-  padding: 0 10px;
-  background: repeating-linear-gradient(to right, 
-    #ccc, 
-    #ccc 10%, 
-    #000 10%, 
-    #000 11%, 
-    #ccc 11%, 
-    #ccc 20%);
+.iv-range-play::-ms-thumb{
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background-color: hsl(5, 100%, 50%);
+  overflow: visible;
+  cursor: pointer;
 }
 
 </style>
