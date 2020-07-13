@@ -6,15 +6,15 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import {eslint} from "rollup-plugin-eslint";
 
-//TODO: Add browser and Common JS build paths for backwards compatibility
+const external = [
+    'vue',
+    'katex',
+    'katex/dist/katex.min.css'
+]
 
 export default [{
     input:'src/main.js',
-    external: [ // Include here any large external libraries that will be used as PeerDependencies.
-        'vue',
-        'katex',
-        'katex/dist/katex.min.css'
-    ],
+    external: external,
     output: {
         format: 'esm',
         dir: 'dist'
@@ -31,11 +31,7 @@ export default [{
 },
 {
     input:'src/main.js',
-    external: [ // Include here any large external libraries that will be used as PeerDependencies.
-        'vue',
-        'katex',
-        'katex/dist/katex.min.css'
-    ],
+    external: external,
     output: {
         format: 'cjs',
         file:'./dist/impvis-components.common.js'
@@ -52,11 +48,7 @@ export default [{
 },
 {
     input:'src/main.js',
-    external:[
-        'vue',
-        'katex',
-        'katex/dist/katex.min.css'
-    ],
+    external:external,
     output:{
         format:'umd',
         file:'./dist/impvis-components.umd.js',
