@@ -1,9 +1,9 @@
 <template>
     <div class="banner">
-        <a @click="openLinkNewTab" id="logo-container">
-            <img id="vis-logo" src="./VisualisationsLogoWhite2.png">
+        <a @click="openLinkNewTab" class="logo-container">
+            <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
         </a>
-        <div id="vis-title"><slot>Default Title</slot></div>
+        <div class="vis-title"><slot>Default Title</slot></div>
     </div>
     
 </template>
@@ -56,7 +56,7 @@ export default {
   z-index: 6;
 }
 
-#vis-title {
+.vis-title {
   flex-basis: 0;
   flex-grow: 1;
   min-height: 30px;
@@ -74,23 +74,23 @@ export default {
   letter-spacing: 2pt;
 }
 
-#logo-container {
+.logo-container {
   color: #1EAEDB; 
   z-index: 10;
   cursor: pointer;
   }
 
-#logo-container:hover {
+.logo-container:hover {
   color: #0FA0CE; }
 
-#vis-logo {
+.vis-logo {
   height: 2.7vh;
   min-height: 18px;
   margin-right: 7px;
   margin-top: 0.3em;
 }
 
-#vis-logo img{
+.vis-logo img{
    width: auto;
 }
 
