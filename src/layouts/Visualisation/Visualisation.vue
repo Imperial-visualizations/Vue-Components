@@ -12,7 +12,12 @@ export default {
 </script>
 <style>
 .iv-visualisation {
+    display:flex;
+    flex-direction: row;
     margin-top:2rem;
     height:calc(100vh - 2rem);
+}
+.iv-visualisation > .iv-main-stage{ 
+    flex: 1 1 auto;
 }
 </style>

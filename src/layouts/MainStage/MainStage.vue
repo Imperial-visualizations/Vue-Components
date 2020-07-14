@@ -1,5 +1,5 @@
 <template>
-    <div class="main-stage">
+    <div class="iv-main-stage">
         <slot>Insert your main content here!</slot>
     </div>
 </template>
@@ -8,7 +8,3 @@ export default {
     name:"iv-main-stage"
 }
 </script>
-<style>
-
-
-</style>
