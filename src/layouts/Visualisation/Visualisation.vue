@@ -1,0 +1,18 @@
+<template>
+    <div class="iv-visualisation">
+        <slot></slot>
+    </div>
+</template>
+<script>
+
+//Potentially at some point this should be renamed to something like visulaisation manager? Or something to make it explicit that this object manages the state of the panels and dropouts etc...
+export default {
+    name:"iv-visualisation"    
+}
+</script>
+<style>
+.iv-visualisation {
+    margin-top:2rem;
+    height:calc(100vh - 2rem);
+}
+</style>

@@ -10,8 +10,5 @@ export default {
 </script>
 <style>
 
-.main-stage {
-    margin-top:2rem;
-    height:calc(100vh - 2rem);
-}
+
 </style>
