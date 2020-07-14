@@ -1,4 +1,5 @@
 import * as components from './components';
+import * as layouts from './layouts';
 import "./main.css";
 
 // Install a plugin to Vue.js
@@ -7,6 +8,10 @@ const ImpVisLibrary={
   install(Vue){
     for(const componentName in components){
       const component = components[componentName]
+      Vue.component(component.name,component);
+    }
+    for(const componentName in layouts){
+      const component = layouts[componentName]
       Vue.component(component.name,component);
     }
   }
