@@ -1,75 +1,71 @@
 {
-  "name": "@impvis/components",
-  "version": "0.11.1",
-  "license": "BSD-3-Clause",
-  "main": "./dist/main.js",
-  "unpkg":"./dist/impvis-components.umd.js",
-  "scripts": {
-    "play": "vue-cli-service serve ./play/main.js",
-    "serve": "vue-cli-service serve",
-    "build": "rollup -c",
-    "lint": "vue-cli-service lint",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "svgdraganddrop": "vue-cli-service serve ./Examples/SVGDragAndDrop.js"
-  },
-  "dependencies": {
-    "component-fixture": "^1.14.0",
-    "core-js": "^3.6.5",
-    "katex": "^0.11.1",
-    "save": "^2.4.0"
-  },
-  "peerDependencies": {
-    "vue": "^2.6.11"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^13.0.0",
-    "@rollup/plugin-image": "^2.0.5",
-    "@rollup/plugin-node-resolve": "^8.1.0",
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-<<<<<<< Updated upstream
-    "rollup":"^2.20.0",
-=======
-    "rollup": "^2.20.0",
->>>>>>> Stashed changes
-    "rollup-plugin-css-only": "^2.1.0",
-    "rollup-plugin-css-porter": "^1.0.2",
-    "rollup-plugin-eslint": "^7.0.0",
-    "rollup-plugin-includepaths": "^0.2.3",
-    "rollup-plugin-svg": "^2.0.0",
-    "rollup-plugin-vue": "^5.1.9",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
+    "name": "@impvis/components",
+    "version": "0.11.1",
+    "license": "BSD-3-Clause",
+    "main": "./dist/main.js",
+    "unpkg":"./dist/impvis-components.umd.js",
+    "scripts": {
+      "play": "vue-cli-service serve ./play/main.js",
+      "serve": "vue-cli-service serve",
+      "build": "rollup -c",
+      "lint": "vue-cli-service lint",
+      "docs:dev": "vuepress dev docs",
+      "docs:build": "vuepress build docs",
+      "svgdraganddrop": "vue-cli-service serve ./Examples/SVGDragAndDrop.js"
     },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+    "dependencies": {
+      "component-fixture": "^1.14.0",
+      "core-js": "^3.6.5",
+      "katex": "^0.11.1",
+      "save": "^2.4.0"
+    },
+    "peerDependencies": {
+      "vue": "^2.6.11"
+    },
+    "devDependencies": {
+      "@rollup/plugin-commonjs": "^13.0.0",
+      "@rollup/plugin-image": "^2.0.5",
+      "@rollup/plugin-node-resolve": "^8.1.0",
+      "@vue/cli-plugin-babel": "~4.4.0",
+      "@vue/cli-plugin-eslint": "~4.4.0",
+      "@vue/cli-service": "~4.4.0",
+      "babel-eslint": "^10.1.0",
+      "eslint": "^6.7.2",
+      "eslint-plugin-vue": "^6.2.2",
+      "rollup":"^2.20.0",
+      "rollup-plugin-css-only": "^2.1.0",
+      "rollup-plugin-css-porter": "^1.0.2",
+      "rollup-plugin-eslint": "^7.0.0",
+      "rollup-plugin-includepaths": "^0.2.3",
+      "rollup-plugin-svg": "^2.0.0",
+      "rollup-plugin-vue": "^5.1.9",
+      "vue-template-compiler": "^2.6.11"
+    },
+    "eslintConfig": {
+      "root": true,
+      "env": {
+        "node": true
+      },
+      "extends": [
+        "plugin:vue/essential",
+        "eslint:recommended"
+      ],
+      "parserOptions": {
+        "parser": "babel-eslint"
+      },
+      "rules": {}
+    },
+    "browserslist": [
+      "> 1%",
+      "last 2 versions",
+      "not dead"
     ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
-  "files": [
-    "dist/*",
-    "src/*"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Imperial-visualizations/Vue-Components.git"
+    "files": [
+      "dist/*",
+      "src/*"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Imperial-visualizations/Vue-Components.git"
+    }
   }
-}
