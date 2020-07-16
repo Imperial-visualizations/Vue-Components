@@ -24,6 +24,7 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@rbnlffl/rollup-plugin-eslint": "^1.0.0",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-image": "^2.0.5",
     "@rollup/plugin-node-resolve": "^8.1.0",
@@ -36,7 +37,6 @@
     "rollup": "^2.20.0",
     "rollup-plugin-css-only": "^2.1.0",
     "rollup-plugin-css-porter": "^1.0.2",
-    "rollup-plugin-eslint": "^7.0.0",
     "rollup-plugin-includepaths": "^0.2.3",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-vue": "^5.1.9",
