@@ -1,0 +1,28 @@
+name: Check Rollup build
+on:
+  push:
+    branches-ignore:
+      - master
+  pull_request:
+    branches:
+      - '**'
+
+
+jobs:
+  rollup-build:
+    name: Rollup build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repo
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      
+      - name: Install NPM packages
+        run: npm install
+
+      - name: Perform rollup build
+        run: rollup -c
