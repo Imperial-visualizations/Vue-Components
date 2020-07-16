@@ -1,6 +1,13 @@
 name: Check Rollup build
 on:
-  pull_request
+  push:
+    branches-ignore:
+      - master
+  pull_request:
+    branches:
+      - '**'
+
+
 jobs:
   rollup-build:
     name: Rollup build
