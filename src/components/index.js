@@ -1,6 +1,7 @@
 // For folders containing a single exported component write:
 // export {default as ComponentName} from './ComponentFolder';
-
+export {default as Slider} from "./Slider";
+export {default as DragAndDrop} from "./DragAndDrop";
 export {SVGContainer, SVGDraggable} from "./SVGDragAndDrop";
 export {default as EquationBox} from "./EquationBox";
 export {default as EquationBoxAdvance} from "./EquationBoxAdvance";
@@ -17,6 +18,5 @@ export {default as Button} from "./Button";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
 export {Tab, Tabs} from "./Tabs";
-
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';
