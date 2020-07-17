@@ -17,5 +17,6 @@ export {DemoButton,DemoSlider} from "./demo";
 export {default as Button} from "./Button";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
+export {Tab, Tabs} from "./Tabs";
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';
