@@ -1,21 +1,22 @@
 <template>
-    <div class="iv-pane-wrapper" ref="paneWrapper" :style="widthObj">
-        <div class="iv-pane"  v-show=showPane>
+    <div class="iv-rhs-pane-wrapper" :style="widthObj">
+        <button class="iv-rhs-pane-button" ref="paneButton" @click="handleButton" :style="buttonMove">{{paneText}}</button>
+        <button class="iv-rhs-pane-drag-button" ref="dragButton" @mousedown="drag($event)" @mouseup="drop()" :style="buttonMove">
+                <svg width=10 height=10>
+                    <circle r=5 fill="#7E5AA2" opacity=0.5 stroke="black" stroke-width="3" />
+                </svg> 
+        </button>
+        <div class="iv-rhs-pane"  v-show=showPane>
             <slot>Default pane</slot>
         </div>
-        <button class="iv-pane-button" ref="paneButton" @click="handleButton" :style="buttonMove">{{paneText}}</button>
-        <button class="iv-pane-drag-button" ref="dragButton" @mousedown="drag($event)" @mouseup="drop()" :style="buttonMove">
-            
-                    <svg width=10 height=10>
-                        <circle r=5 fill="#7E5AA2" opacity=0.5 stroke="black" stroke-width="3" />
-                    </svg> 
-            </button>
+
     </div>
 </template>
 <script>
 export default {
-
-    name:"iv-pane",
+    //<img width="30" src="../../assets/drag.png" />
+    //<svg  width=10 height=10 src="../drag_test.svg" />
+    name:"iv-rhs-pane",
     data(){ 
         return{
             widthFraction:4,
@@ -38,17 +39,18 @@ export default {
             this.$parent.$el.removeEventListener('mousemove', this.move);
         },
         move(e) {
+            //this.x_mouse_positon = e.clientX;
             this.x_mouse_positon = e.clientX;
 
-            if((this.x_mouse_positon < this.widthFractionPixelMin) && (this.initDragPos > this.widthFractionPixelMin)){
+            if((this.x_mouse_positon > this.widthFractionPixelMin) && (this.initDragPos < this.widthFractionPixelMin)){
                 this.$parent.$el.removeEventListener('mousemove', this.move);
                 this.handleButton();
             }
             else{
-                this.currentWidth = this.x_mouse_positon;
+                this.currentWidth = this.$parent.$el.clientWidth - this.x_mouse_positon;
                 this.$refs.paneWrapper.width = `${this.currentWidth}px`;
-                this.$refs.paneButton.left = `${this.currentWidth}px`;
-                this.$refs.dragButton.left = `${this.currentWidth}px`;
+                this.$refs.paneButton.right = `${this.currentWidth}px`;
+                this.$refs.dragButton.right = `${this.currentWidth}px`;
             }
         },
         handleButton(){
@@ -68,14 +70,14 @@ export default {
         },
         paneText(){
             if(this.currentWidth == 0){
-                return "⬆️";
+                return "⬇️";
             }
             else{
-                return "⬇️";
+                return "⬆️";
             }
         },
         buttonMove(){
-            return {'left': `${this.currentWidth}px`}
+            return {'right': `${this.currentWidth}px`}
         }
     },
     mounted(){  
@@ -84,29 +86,30 @@ export default {
         this.currentWidth = this.widthFractionPixel;
     }
 }
+
 </script>
 <style>
-.iv-pane-wrapper{
+.iv-rhs-pane-wrapper{
     height:100%;
     border: 3px solid black;
 }
-.iv-pane {
+.iv-rhs-pane {
     height:100%;
     width:100%;
     margin:0;
-    box-shadow: -5px 0px 10px 5px #aaa;
 }
-.iv-pane-button{
+.iv-rhs-pane-button{
     position: absolute;
     top:45%;
     transform-origin: bottom;
-    transform:translate(-50%,-25%) rotate(90deg);
+    transform:translate(50%,-25%) rotate(90deg);
 }
-.iv-pane-drag-button{
+.iv-rhs-pane-drag-button{
     height: 50px;
     margin:0;
     width: 50px;
     position: absolute;
-    cursor: col-resize;
+    transform-origin: bottom;
+    transform:translate(50%,-25%);
 }
 </style>

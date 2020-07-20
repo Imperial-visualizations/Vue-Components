@@ -1,6 +1,6 @@
 <template>
-    <div class="iv-visualisation">
-        <slot></slot>
+    <div class="iv-visualisation" ref ="visulisation_container">
+        <slot ></slot>
     </div>
 </template>
 <script>
@@ -14,8 +14,7 @@ export default {
 .iv-visualisation {
     display:flex;
     flex-direction: row;
-    margin-top:2rem;
-    height:calc(100vh - 2rem);
+    height:100%;
 }
 .iv-visualisation > .iv-main-stage{ 
     flex: 1 1 auto;
