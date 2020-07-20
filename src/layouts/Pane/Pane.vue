@@ -10,15 +10,10 @@
     </div>
 </template>
 <script>
-
+import HotspotMixin from "../HotspotMixin.js"
 export default {
     name:"iv-pane",
-    props:{
-        position:{
-            type:String,
-            default:"left"
-        }
-    },
+    mixins:[HotspotMixin],
     data(){
         return{
             widthFraction:25,
@@ -42,7 +37,7 @@ export default {
             } else if(this.position == "right"){
                 return {'left':  this.showPane ? `${100 - this.widthFraction}%` : '100%'}
             }else{
-                throw Error("Unknown position");
+                throw Error("Pane may only have position left or position right");
             }
         },
     },

@@ -1,9 +1,11 @@
 import Hotspot from './Hotspot.js';
-export default {
-    topleft:Hotspot(0,0),
-    topright:Hotspot(100,0),
-    left:Hotspot(0,50),
-    right:Hotspot(100,50),
-    bottomleft:Hotspot(0,100),
-    bottomright:Hotspot(100,100)
+
+function DefaultLayout(){
+    this.topleft = Hotspot(0,0);
+    this.topright = Hotspot(100,0);
+    this.left = Hotspot(0,50);
+    this.right = Hotspot(100,50);
+    this.bottomleft = Hotspot(0,100);
+    this.bottomright = Hotspot(100,100);
 }
+export default DefaultLayout;
