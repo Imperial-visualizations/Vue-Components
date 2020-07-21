@@ -1,10 +1,6 @@
 <template>
     <div class="tabContainer">
-            <ul>
-                <li v-for="(tab,index) in tabs" :key="index" :class="{ 'is-active': tab.isActive }">
-                    <a :href="tab.href" @click="selectTab(tab)">{{ tab.tabName}}</a>
-                </li>
-            </ul>
+            <toggle-advance :modes="tabNames" @toggleswitched="selectTab" />
             <div class="tabDetails">
             <slot></slot>
             </div>
@@ -12,41 +8,40 @@
 
 </template>
 <script>
+import ToggleAdvance from '../ToggleAdvance';
 export default {
     name: "iv-tabs",
-
+    components:{
+      ToggleAdvance
+    },
     data() {
         return {
           tabs: [],
           tabActived:"Tab 1 is opened",
-          initialIndex: 1,
+          initialIndex: 0
           };
     },
-    
-    created() {
-      
-        this.tabs = this.$children;
-        
+    mounted() {
+      this.tabs = this.$children.filter(mtab => mtab.$options._componentTag != 'toggle-advance');
+    },
+    computed:{
+      tabNames(){
+        let tabNames = [];
+        for(let tab of this.tabs){
+          tabNames.push(tab.tabName);
+        }
+        return tabNames;
+      }
     },
     methods: {
-        selectTab(selectedTab) {
-            this.tabs.forEach(tab => {
-                clearInterval(this.interval)
-                tab.isActive = (tab.tabName == selectedTab.tabName);
-                this.tabActived = selectedTab.tabName + selectedTab.tabIndex + " is opened"
-            });
+        selectTab(selectedTabIndex) {
+          for(let i=0; i<this.tabs.length;i++){
+            this.tabs[i].isActive = i === selectedTabIndex;
+            if(i === selectedTabIndex){
+              this.tabActivated = this.tabs[i].tabName + i + " is opened";
+            }
+          }
         },
-    },
-    mounted(){
-      this.interval= setInterval(function(){
-        if (this.initialIndex >= this.tabs.length+1) {
-        this.initialIndex = 1;
-        }
-        this.tabs.forEach(tab => {
-              tab.isActive = (tab.tabIndex == this.initialIndex);
-        });
-        this.initialIndex += 1;
-      }.bind(this), 3000)
     }
 }
 </script>
