@@ -49,10 +49,12 @@ export default {
             this.resizer.adjusting=true;
             this.resizer.initPageX=e.pageX;
             window.addEventListener("mousemove",this.resize);
-            window.addEventListener("mouseup",this.mouseUp);    
+            window.addEventListener("mouseup",this.mouseUp);  
+            document.body.style.userSelect="none"; 
         },
         mouseUp(){
             this.resizer.adjusting=false;
+            document.body.style.userSelect="auto";
             window.removeEventListener("mouseup",this.mouseUp);
             window.removeEventListener("mousemove",this.resize);
         },
