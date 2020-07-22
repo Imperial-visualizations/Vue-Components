@@ -26,7 +26,7 @@ export default {
     },
     computed:{
         widthObj(){
-            return {width:(this.showPane)? `${this.widthFraction}%` : '0%'};
+            return {width:`${this.widthFraction}%`};
         },
         paneText(){
             return !(this.showPane ^ this.position == "left")? "⬇️":"⬆️";
