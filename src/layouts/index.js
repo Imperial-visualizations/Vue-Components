@@ -3,3 +3,5 @@ export {default as Visualisation} from './Visualisation';
 export {default as Pane} from './Pane';
 export {default as RHSPane} from './RHSPane';
 export {default as popUp} from './popUp';
+export {default as GuidanceBox} from './Guidance';
+export {GuidanceModal,GuidanceWrapper} from './Guidance';

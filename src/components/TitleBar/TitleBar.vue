@@ -3,15 +3,30 @@
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
         </a>
+
+        <button class="guidanceButton" @click="showMainGuidance=!showMainGuidance">?</button>
+        <iv-guidance-wrapper v-if="showMainGuidance" :guidance_texts_list="guidance_texts_list"  @close-guidance="showMainGuidance=false" />
+
         <div class="vis-title"><slot>Default Title</slot></div>
     </nav>
     
 </template>
 
 <script>
+
+//import guidanceWrapper from '../../layouts/Guidance/guidanceWrapper.vue'
+
 export default {
     name:"iv-title-bar",
+    /*
+    components:{
+      "iv-guidance-wrapper":guidanceWrapper
+    },*/
     props:{
+      defaultshowMainGuidance:{
+        type:Boolean,
+        default:false
+      },
       buttonLink:{
         type: String,
         default: "https://www.imperialvisualisations.com/learn/"
@@ -19,6 +34,15 @@ export default {
       newTab:{
         type: Boolean,
         default: true
+      },
+      guidance_texts_list:{
+          type:Array,
+          default:["testing guidance wrapper 1","testing guidance wrapper 2","testing guidance wrapper 3"]
+      }
+    },
+    data(){
+      return{
+        showMainGuidance:null
       }
     },
     methods:{
@@ -29,6 +53,10 @@ export default {
             open(this.buttonLink, "_self");
           }
         }
+    },
+    mounted(){
+      this.showMainGuidance = this.defaultshowMainGuidance;
+      console.log("title bar",this.guidance_texts_list)
     }
 }
 </script>
@@ -71,6 +99,12 @@ export default {
   line-height: 1.5rem;
 }
 
+.guidanceButton{
+  z-index: 999;
+  position: fixed;
+  left:0;
+}
+
 .logo-container {
   color: #1EAEDB; 
   z-index: 10;
@@ -78,7 +112,6 @@ export default {
   display:block;
   padding:0;
   height:1.5rem;
-
 }
 
 .logo-container:hover {
