@@ -1,30 +1,38 @@
 <template>
-    <div class="modal-backdrop">
-        <div class="modalGuidance">
-            <header class="modal-header">
-                <div name="header">{{guidanceHeaderText}}</div>
-                <button @click="closeGuidance">{{buttonElement}}</button>
-            </header>
-
-            <section class="modal-body">
-                <div name="body"><p>{{guidanceText}}</p></div>
-            </section>
-
-            <footer class="modal-footer">
-                <div name="footer"></div>
+    <div>
+        <iv-modal>
+            <template #header>
+                <button v-if="homeButton" @click="goHome">Home</button>
+                <div>{{guidanceHeaderText}}</div>
+                <button @click="closeWindow">X</button>
+            </template>
+            <template>
+                <div>{{guidanceText}}</div>
+            </template>
+            <template #footer>
                 <button v-if="prevButton" @click="prevGuidance">PREV</button>
                 <button v-if="nextButton" @click="nextGuidance">NEXT</button>
-            </footer>
-        </div>
+            </template>
+        </iv-modal>
     </div>
 </template>
+
 <script>
+
+import windowModal from "../WindowComp"
+
+import Vue from 'vue';
+const guidanceBus = new Vue();
+export {guidanceBus};
+
 export default {
     name:"iv-guidance-modal",
+    components:{
+        "iv-modal":windowModal
+    },
     props:{
         guidanceText:{
             type: String,
-            default: "This is the guidance"
         },
         guidanceHeaderText:{
             type: String,
@@ -37,26 +45,25 @@ export default {
         nextButton:{
             type:Boolean,
             default:false
-        }
-    },
-    data(){ 
-        return{
-            buttonElement:"X",
+        },
+        homeButton:{
+            type:Boolean,
+            default:false
         }
     },
     methods:{
-        closeGuidance(){
-            this.$emit('close-guidance');
-        },
         prevGuidance(){
-            this.$emit('prevGuidance');
+            guidanceBus.$emit("prev-guidance", this._uid);
         },
         nextGuidance(){
-            this.$emit('nextGuidance');
+            guidanceBus.$emit("next-guidance", this._uid);
         },
-    },
-    mounted(){
-        console.log("modal", this.guidanceText);
+        closeWindow(){
+            guidanceBus.$emit("close-window", this._uid);
+        },
+        goHome(){
+            guidanceBus.$emit("go-home", this._uid);
+        }
     }
 }
 </script>

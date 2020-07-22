@@ -1,10 +1,11 @@
 <template>
     <div class="iv-guidance-wrapper" ref ="iv-guidance-wrapper">
-        <iv-guidance-modal :guidanceText="returnText" :guidanceHeaderText="progressCount" :prevButton="currentPrevButton" :nextButton="currentNextButton" @prevGuidance="prevModal" @nextGuidance="nextModal" @close-guidance="closeGuidance"/>
+        <iv-guidance-modal :guidanceText="returnText" :guidanceHeaderText="progressCount" :prevButton="currentPrevButton" :nextButton="currentNextButton" :homeButton="true"/>
     </div>
 </template>
 <script>
-import guidanceModal from './guidanceModal.vue'
+import guidanceModal from './guidanceModal.vue';
+import {guidanceBus} from './guidanceModal.vue';
 export default {
     name:"iv-guidance-wrapper",
     components:{
@@ -12,8 +13,7 @@ export default {
     },
     props:{
         guidance_texts_list:{
-            type:Array,
-            default:["testing guidance wrapper 1","testing guidance wrapper 2","testing guidance wrapper 3"]
+            type:Array
         }
     },
     data(){
@@ -23,11 +23,16 @@ export default {
             currentNextButton:true,
         }
     },
-    methods:{
-        closeGuidance(){
-            this.$emit('close-guidance');
+    computed:{
+        progressCount(){
+            return `${this.indexModal +1}/${this.guidance_texts_list.length}`
         },
-        prevModal(){
+        returnText(){
+            return this.guidance_texts_list[this.indexModal]
+        }
+    }, 
+    created(){
+        guidanceBus.$on("prev-guidance",function(){
             this.indexModal = this.indexModal - 1
             if(this.indexModal == 0){
                 this.currentPrevButton=false;   
@@ -36,9 +41,9 @@ export default {
                 this.currentPrevButton=true;
                 this.currentNextButton=true;
             }
-            //console.log("wrapper- prev",this.guidance_texts_list[this.indexModal]);
-        },
-        nextModal(){
+        }.bind(this));
+
+        guidanceBus.$on("next-guidance",function(){
             this.indexModal = this.indexModal + 1
             if(this.indexModal == (this.guidance_texts_list.length -1)){
                 this.currentNextButton=false;
@@ -47,20 +52,7 @@ export default {
                 this.currentPrevButton=true;
                 this.currentNextButton=true;
             }
-        }
-    },
-    computed:{
-        progressCount(){
-            //console.log(`${this.indexModal +1}/${this.guidance_texts_list.length}`);
-            return `${this.indexModal +1}/${this.guidance_texts_list.length}`
-        },
-        returnText(){
-            console.log( "return text:",this.guidance_texts_list[this.indexModal], typeof this.guidance_texts_list[this.indexModal]);
-            return this.guidance_texts_list[this.indexModal]
-        }
-    },
-    mounted(){
-        console.log("wrapper",this.guidance_texts_list);
+        }.bind(this));
     }
 }
 </script>
