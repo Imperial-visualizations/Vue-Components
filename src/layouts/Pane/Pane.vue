@@ -107,6 +107,5 @@ export default {
     margin:0;
     width: 50px;
     position: absolute;
-    cursor: col-resize;
 }
 </style>

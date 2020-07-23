@@ -36,6 +36,7 @@ export default {
         for(let i=0; i<this.guidance_branches_list.length; i++){
             guidance_branches_all = guidance_branches_all.concat(this.guidance_branches_list[i].branch_data)
         }
+        //console.log("HEYYEYEYE", guidance_branches_all)
         this.guidance_branches_list.push({title:"All", branch_data: Array.from(new Set(guidance_branches_all))  });    
     }, 
     created(){

@@ -1,28 +1,50 @@
 <template>
     <div class="modal-backdrop">
-        <div class="modalContainer">
+      <template style="positon:relative">
+        <div class="modalContainer" :style="styleWindow">
             <header class="modal-header">
                 <slot name="header"></slot>
             </header>
-
             <section class="modal-body">
                 <slot></slot>
             </section>
-
             <footer class="modal-footer">
                 <slot name="footer"></slot>
             </footer>
         </div>
+      </template>
     </div>
 </template>
 <script>
-/*
-import Vue from 'vue';
-const windowBus = new Vue();
-export {windowBus};
-*/
 export default {
-    name:"iv-modal"
+    name:"iv-modal",
+    props:{
+        window_pos_left:{
+          type: String,
+          default: null
+        },
+        window_pos_right:{
+          type: String,
+          default: null
+        },
+        window_pos_top:{
+          type: String,
+          default: null
+        },
+        window_pos_bottom:{
+          type: String,
+          default: null
+        }
+    },
+    computed: {
+      styleWindow() {
+        return {left: this.window_pos_left,
+                right: this.window_pos_right,
+                top: this.window_pos_top,
+                bottom: this.window_pos_bottom,
+                }
+      }
+    },
 }
 </script>
 <style>
@@ -35,19 +57,19 @@ export default {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .modalContainer{
+  position: absolute;
   min-width: 300px;
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .modal-header,

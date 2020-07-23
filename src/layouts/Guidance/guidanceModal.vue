@@ -1,6 +1,6 @@
 <template>
     <div>
-        <iv-modal>
+        <iv-modal :window_pos_left="window_pos_left" :window_pos_right="window_pos_right" :window_pos_top="window_pos_top" :window_pos_bottom="window_pos_bottom" >
             <template #header>
                 <button v-if="homeButton" @click="goHome">Home</button>
                 <div>{{guidanceHeaderText}}</div>
@@ -49,6 +49,22 @@ export default {
         homeButton:{
             type:Boolean,
             default:false
+        },
+        window_pos_left:{
+            type: String,
+            default: null
+        },
+        window_pos_right:{
+            type: String,
+            default: null
+        },
+        window_pos_top:{
+            type: String,
+            default: null
+        },
+        window_pos_bottom:{
+            type: String,
+            default: null
         }
     },
     methods:{
