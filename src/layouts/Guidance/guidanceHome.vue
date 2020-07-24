@@ -1,6 +1,6 @@
 <template>
     <div>
-        <iv-modal>
+        <iv-modal :gridStructure="gridStructure" >
             <template #header>
                 <button @click="closeWindow">X</button>
             </template>
@@ -20,6 +20,11 @@ export default {
     props:{
         guidance_branches_list:{
             type:Array,
+        }
+    },
+    data(){
+        return{
+        gridStructure:false
         }
     },
     methods:{

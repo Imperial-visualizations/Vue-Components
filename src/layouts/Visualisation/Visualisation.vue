@@ -1,7 +1,7 @@
 <template>
     <div>
         <iv-guidance-home v-if="showMainGuidanceHome" :guidance_branches_list="guidance_branches_list" />
-        <iv-guidance-wrapper v-if="showMainGuidanceWrapper" :guidance_texts_list="guidance_texts_list" />
+        <iv-guidance-wrapper v-if="showMainGuidanceWrapper" :guidance_texts_list="guidance_texts_list"/>
         <div class="iv-visualisation" ref ="visulisation_container">
             <slot ></slot>
         </div>
@@ -25,7 +25,7 @@ export default {
       return{
         showMainGuidanceHome:null,
         showMainGuidanceWrapper:false,
-        guidance_texts_list:null,
+        guidance_texts_list:this.guidance_branches_input[0].branch_data,
       }
     },
     mounted(){

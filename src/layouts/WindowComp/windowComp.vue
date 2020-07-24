@@ -1,6 +1,5 @@
 <template>
-    <div class="modal-backdrop">
-      <template style="positon:relative">
+    <div class="modalBackdrop"  :style="styleBackdrop">
         <div class="modalContainer" :style="styleWindow">
             <header class="modal-header">
                 <slot name="header"></slot>
@@ -12,7 +11,6 @@
                 <slot name="footer"></slot>
             </footer>
         </div>
-      </template>
     </div>
 </template>
 <script>
@@ -34,22 +32,34 @@ export default {
         window_pos_bottom:{
           type: String,
           default: null
+        },
+        gridStructure:{
+          type: Boolean,
+          default: true
         }
     },
     computed: {
-      styleWindow() {
-        return {left: this.window_pos_left,
-                right: this.window_pos_right,
-                top: this.window_pos_top,
-                bottom: this.window_pos_bottom,
+      styleWindow(){
+        return {
+                gridTemplateColumns: "25% 50% 75%",
+                gridTemplateRows: "25% 50% 75%",
+                gridColumnStart: this.window_pos_left,
+                gridColumnEnd: this.window_pos_right,
+                gridRowStart: this.window_pos_top,
+                gridRowEnd: this.window_pos_bottom,
                 }
+      },
+      styleBackdrop(){
+        if(this.gridStructure){
+          return {display: "grid"}
+        }
       }
     },
 }
 </script>
 <style>
 
-.modal-backdrop {
+.modalBackdrop {
   z-index: 1;
   position: fixed;
   top: 0;
@@ -59,7 +69,6 @@ export default {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .modalContainer{
-  position: absolute;
   min-width: 300px;
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;

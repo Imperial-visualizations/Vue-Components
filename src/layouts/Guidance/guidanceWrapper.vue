@@ -21,45 +21,67 @@ export default {
             indexModal:0,
             currentPrevButton:false,
             currentNextButton:true,
-            currentWindowPosTop:null,
-            currentWindowPosBottom:null,
-            currentWindowPosLeft:null,
-            currentWindowPosRight:null,
+            //currentWindowPosTop:null,
+            //currentWindowPosBottom:null,
+            //currentWindowPosLeft:null,
+            //currentWindowPosRight:null,
         }
     },
     computed:{
         progressCount(){
-            return `${this.indexModal +1}/${this.guidance_texts_list.length}`
+            return `${this.indexModal + 1}/${this.guidance_texts_list.length}`
         },
         returnText(){
             return this.guidance_texts_list[this.indexModal].text
         },
-        
         modalPositionTop(){
-            console.log("TOP PLACE", this.guidance_texts_list[this.indexModal].element.getBoundingClientRect().top)
-            if(this.guidance_texts_list[this.indexModal].modalPostionVertical == "top"){
-                this.currentWindowPosTop = `${this.guidance_texts_list[this.indexModal].element.getBoundingClientRect().top}px`;
-            }
-            return this.currentWindowPosTop
+            return this.guidance_texts_list[this.indexModal].window_pos_top;
         },
         modalPositionBottom(){
-            if(this.guidance_texts_list[this.indexModal].modalPostionVertical == "bottom"){
-                this.currentWindowPosBottom = `${this.guidance_texts_list[this.indexModal].element.getBoundingClientRect().bottom}px`;
-            }
-            return this.currentWindowPosBottom
+            return this.guidance_texts_list[this.indexModal].window_pos_bottom;
         },
         modalPositionLeft(){
-            if(this.guidance_texts_list[this.indexModal].modalPostionHorizontal == "right"){
-                this.currentWindowPosLeft = `${this.guidance_texts_list[this.indexModal].element.getBoundingClientRect().right}px`;
-            }
-            return this.currentWindowPosLeft 
+            return this.guidance_texts_list[this.indexModal].window_pos_left;
         },
         modalPositionRight(){
-            if(this.guidance_texts_list[this.indexModal].modalPostionHorizontal == "left"){
-                this.currentWindowPosRight = `${this.guidance_texts_list[this.indexModal].element.getBoundingClientRect().left}px`;
-            }
-            return this.currentWindowPosRight
+            return this.guidance_texts_list[this.indexModal].window_pos_right;
         }
+        /*
+        modalPositionTop(){
+            this.$nextTick(function() {
+            console.log("TOP PLACE", this.$refs[this.guidance_texts_list[this.indexModal].element],this.$refs)
+            if(this.guidance_texts_list[this.indexModal].modalPostionVertical == "top"){
+                this.currentWindowPosTop = `${this.$refs[this.guidance_texts_list[this.indexModal].element].getBoundingClientRect().top}px`;
+            }
+            return this.currentWindowPosTop
+
+            });
+        },
+        modalPositionBottom(){
+            this.$nextTick(function() {
+                if(this.guidance_texts_list[this.indexModal].modalPostionVertical == "bottom"){
+                    this.currentWindowPosBottom = `${this.$refs[this.guidance_texts_list[this.indexModal].element].getBoundingClientRect().bottom}px`;
+                }
+                return this.currentWindowPosBottom
+            });
+        },
+        modalPositionLeft(){
+            this.$nextTick(function() {
+                if(this.guidance_texts_list[this.indexModal].modalPostionHorizontal == "right"){
+                    this.currentWindowPosLeft = `${this.$refs[this.guidance_texts_list[this.indexModal].element].getBoundingClientRect().right}px`;
+                }
+                return this.currentWindowPosLeft 
+            });      
+        },
+        modalPositionRight(){
+            this.$nextTick(function() {
+                if(this.guidance_texts_list[this.indexModal].modalPostionHorizontal == "left"){
+                    this.currentWindowPosRight = `${this.$refs[this.guidance_texts_list[this.indexModal].element].getBoundingClientRect().left}px`;
+                }
+                return this.currentWindowPosRight
+            });
+        }
+        */
     },
 
     created(){

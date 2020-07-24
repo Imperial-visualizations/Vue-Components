@@ -1,7 +1,7 @@
 <template>
     <div>
         <button @click="toggleGuidance" >{{buttonElement}}</button>
-        <iv-guidance-modal v-if="isGuidanceVisible" :guidanceText="guidanceText" :window_pos_left="modalPositionLeft" :window_pos_right="modalPositionRight" :window_pos_top="modalPositionTop" :window_pos_bottom="modalPositionBottom" />
+        <iv-guidance-modal v-if="isGuidanceVisible" :guidanceText="guidanceText" :window_pos_left="window_pos_left" :window_pos_right="window_pos_right" :window_pos_top="window_pos_top" :window_pos_bottom="window_pos_bottom" />
     </div>
 </template>
 <script>
@@ -18,26 +18,23 @@ export default {
             type:String,
             default:"hey guys its ya boi"
         },
-        modalPostionVertical:{
+        window_pos_top:{
             type:String,
-            default:"top" 
         },
-        modalPostionHorizontal:{
+        window_pos_bottom:{
             type:String,
-            default:"right" 
         },
-        modalDivRelative:{
-            default: null
+        window_pos_left:{
+            type:String,
+        },
+        window_pos_right:{
+            type:String,
         }
     },
     data(){ 
         return{
             buttonElement:"?",
             isGuidanceVisible: false,
-            window_pos_top:null,
-            window_pos_bottom:null,
-            window_pos_left:null,
-            window_pos_right:null,
         }
     },
     methods:{
@@ -45,41 +42,38 @@ export default {
             this.isGuidanceVisible = !this.isGuidanceVisible;
         },
     },
+    /*
     computed:{
         modalPositionTop(){
             if(this.modalPostionVertical == "top"){
-                this.window_pos_top = `${this.modalDivRelative.getBoundingClientRect().top}px`;
+                this.window_pos_top = `${this.$refs[this.modalDivRelative].getBoundingClientRect().top}px`;
             }
             return this.window_pos_top
         },
         modalPositionBottom(){
             if(this.modalPostionVertical == "bottom"){
-                this.window_pos_bottom = `${this.modalDivRelative.getBoundingClientRect().bottom}px`;
+                this.window_pos_bottom = `${this.$refs[this.modalDivRelative].getBoundingClientRect().bottom}px`;
             }
             return this.window_pos_bottom
         },
         modalPositionLeft(){
             if(this.modalPostionHorizontal == "right"){
-                this.window_pos_left = `${this.modalDivRelative.getBoundingClientRect().right}px`;
+                this.window_pos_left = `${this.$refs[this.modalDivRelative].getBoundingClientRect().right}px`;
             }
             return this.window_pos_left 
         },
         modalPositionRight(){
             if(this.modalPostionHorizontal == "left"){
-                this.window_pos_right = `${this.modalDivRelative.getBoundingClientRect().left}px`;
+                this.window_pos_right = `${this.$refs[this.modalDivRelative].getBoundingClientRect().left}px`;
             }
             return this.window_pos_right
         },
     },
+    */
     created(){
       guidanceBus.$on("close-window",function(){
           this.isGuidanceVisible = false;
       }.bind(this));
-    },
-    mounted(){
-        if(this.modalDivRelative == null){
-            throw Error("Must set relative div for window position")
-        }
     }
 }
 </script>
