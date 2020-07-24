@@ -71,9 +71,9 @@ export default {
     },
     */
     created(){
-      guidanceBus.$on("close-window",function(){
-          this.isGuidanceVisible = false;
-      }.bind(this));
+        guidanceBus.$on("close-window",function(){
+            this.isGuidanceVisible = false;
+        }.bind(this));
     }
 }
 </script>

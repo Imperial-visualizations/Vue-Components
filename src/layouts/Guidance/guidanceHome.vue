@@ -1,6 +1,6 @@
 <template>
     <div>
-        <iv-modal :gridStructure="gridStructure" >
+        <iv-modal window_pos_left="5" window_pos_right="7" window_pos_top="2" window_pos_bottom="4" >
             <template #header>
                 <button @click="closeWindow">X</button>
             </template>

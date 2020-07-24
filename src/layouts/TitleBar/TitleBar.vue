@@ -1,5 +1,5 @@
 <template>
-    <nav class="banner">
+    <nav class="banner" id="ivTitleBar">
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
         </a>
@@ -80,7 +80,7 @@ export default {
 }
 
 .guidanceButton{
-  z-index: 999;
+  z-index: 2;
   position: fixed;
   left:0;
 }
