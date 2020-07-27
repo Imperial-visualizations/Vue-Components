@@ -10,10 +10,10 @@
     </div>
 </template>
 <script>
-import HotspotMixin from "../HotspotMixin.js"
+import Hotspotable from '../Hotspotables/Hotspotable.js'
 export default {
     name:"iv-pane",
-    mixins:[HotspotMixin],
+    mixins:[Hotspotable],
     data(){
         return{
             widthFraction:25,
@@ -26,7 +26,7 @@ export default {
     },
     computed:{
         widthObj(){
-            return {width:`${this.widthFraction}%`};
+            return {width:`${ this.showPane? this.widthFraction:0}%`};
         },
         paneText(){
             return !(this.showPane ^ this.position == "left")? "⬇️":"⬆️";
@@ -110,6 +110,7 @@ export default {
 .iv-pane-wrapper{
     height:100%;
     flex:0 0 auto;
+    z-index: 50;
     
 }
 .iv-pane-button{

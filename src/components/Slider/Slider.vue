@@ -20,11 +20,6 @@ import NumTicksComp from './numTicks.vue'
 import BubbleComp from './bubble.vue'
 import InputButton from './inputButton.vue'
 
-import 'vue-resize/dist/vue-resize.css'
-import Vue from 'vue'
-import VueResize from 'vue-resize'
-Vue.use(VueResize)
-
 export default {
     name:"iv-slider",
     components: {

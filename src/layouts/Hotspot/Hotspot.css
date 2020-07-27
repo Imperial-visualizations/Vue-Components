@@ -1,0 +1,41 @@
+.iv-hotspot-corner{
+    display:block;
+}
+.iv-hotspot-edge{
+    display:flex;
+    justify-content: space-between;
+}
+.iv-hotspot-top,.iv-hotspot-bottom > *{
+    margin: 0 auto;
+}
+.iv-hotspot-left,.iv-hotspot-right > *{
+    margin: auto 0;
+}
+.iv-hotspot-left{
+    flex-direction: column;
+    grid-area:left;
+}
+.iv-hotspot-right{
+    flex-direction:column;
+    grid-area:right;
+}
+.iv-hotspot-top{
+    flex-direction:row;
+    grid-area:top;
+}
+.iv-hotspot-bottom{
+    flex-direction:row;
+    grid-area:bottom;
+}
+.iv-hotspot-topleft{
+    grid-area:topleft;
+}
+.iv-hotspot-topright{
+    grid-area:topright;
+}
+.iv-hotspot-bottomleft{
+    grid-area:bottomleft;
+}
+.iv-hotspot-bottomright{
+    grid-area:bottomright;
+}

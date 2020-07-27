@@ -4,27 +4,9 @@
     </div>
 </template>
 <script>
-
 //Potentially at some point this should be renamed to something like visulaisation manager? Or something to make it explicit that this object manages the state of the panels and dropouts etc...
 export default {
     name:"iv-visualisation",
-    // props:{
-
-
-    // },
-    // created(){
-    //     this._layout_ = new this.layout();
-    // },
-    // data(){
-    //     return {
-    //         _layout_: null
-    //     }
-    // },
-    // provides(){
-    //     return {
-    //         layout:this._layout_
-    //     }
-    // }
 }
 </script>
 <style>
