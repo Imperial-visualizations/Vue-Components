@@ -17,7 +17,7 @@ export default {
     data() {
         return {
           tabs: [],
-          tabActived:"Tab 1 is opened",
+          tabActivated:"Tab 1 is opened",
           initialIndex: 0
           };
     },
