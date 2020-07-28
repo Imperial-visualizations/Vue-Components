@@ -1,21 +1,26 @@
 <template>
-    <nav class="banner" id="ivTitleBar">
-        <a @click="openLinkNewTab" class="logo-container">
-            <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
-        </a>
-
-        <button class="guidanceButton" @click="handleButton">?</button>
-        <div class="vis-title"><slot>Default Title</slot></div>
-    </nav>
-    
+    <div>
+        <nav class="banner" id="ivTitleBar">
+            <iv-button class="guidanceButton" @click="handleButton">?</iv-button>
+            <a @click="openLinkNewTab" class="logo-container">
+                <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
+            </a>
+            <div class="vis-title"><slot>Default Title</slot></div>
+        </nav>
+        <iv-guidance-home v-if="showMainGuidanceHome" :guidance_branches_list="guidance_branches_list"/>
+        <iv-guidance-wrapper v-if="showMainGuidanceWrapper" :guidance_texts_list="guidance_texts_list"/>
+    </div>
 </template>
 
 <script>
-
 import {guidanceBus} from "../Guidance/guidanceModal.vue";
+import Button from "../../components/Button";
 
 export default {
     name:"iv-title-bar",
+    components:{
+        "iv-button":Button
+    },
     props:{
       buttonLink:{
         type: String,
@@ -24,6 +29,13 @@ export default {
       newTab:{
         type: Boolean,
         default: true
+      },
+      defaultshowMainGuidance:{
+          type:Boolean,
+          default:false
+      },
+      guidance_branches_input:{
+          type:Array
       }
     },
     methods:{
@@ -37,7 +49,40 @@ export default {
         handleButton(){
           guidanceBus.$emit("open-window", this._uid);
         }
-    }
+    },
+    mounted(){
+        console.log("Guidance Data",this.guidance_branches_input);
+        this.showMainGuidanceHome = this.defaultshowMainGuidance;
+
+        this.guidance_branches_list = this.guidance_branches_input;
+        let guidance_branches_all = [];
+        for(let i=0; i<this.guidance_branches_list.length; i++){
+            guidance_branches_all = guidance_branches_all.concat(this.guidance_branches_list[i].branch_data)
+        }
+        //console.log("HEYYEYEYE", guidance_branches_all)
+        this.guidance_branches_list.push({title:"All", branch_data: Array.from(new Set(guidance_branches_all))  });    
+    }, 
+    created(){
+        guidanceBus.$on("open-window",function(){
+            this.showMainGuidanceHome=true;
+        }.bind(this));
+
+        guidanceBus.$on("close-window",function(){
+            this.showMainGuidanceHome=false;
+            this.showMainGuidanceWrapper=false;
+        }.bind(this));
+
+        guidanceBus.$on("select-branch",function(branchData){
+            this.showMainGuidanceHome=false;
+            this.showMainGuidanceWrapper=true;
+            this.guidance_texts_list =  branchData;
+        }.bind(this));
+
+        guidanceBus.$on("go-home",function(){
+            this.showMainGuidanceHome=true;
+            this.showMainGuidanceWrapper=false;
+        }.bind(this));
+    },
 }
 </script>
 
@@ -79,12 +124,6 @@ export default {
   line-height: 1.5rem;
 }
 
-.guidanceButton{
-  z-index: 2;
-  position: fixed;
-  left:0;
-}
-
 .logo-container {
   color: #1EAEDB; 
   z-index: 10;
@@ -101,6 +140,12 @@ export default {
   height: 1.25rem;
   width:auto;
   margin: 0.125rem 0.25rem;
+}
+
+.guidanceButton{
+  z-index: 2;
+  position: absolute;
+  left:1%;
 }
 
 </style>

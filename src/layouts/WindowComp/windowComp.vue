@@ -1,6 +1,7 @@
 <template>
     <div class="modal-backdrop" >
-      <div class="modal-grid"  :style="styleGrid" >
+      <div class="modal-dumby-layer">
+        <div class="modal-grid" :style="styleGrid" >
           <div class="modalContainer" :style="styleWindow">
               <header class="modal-header">
                   <slot name="header"></slot>
@@ -13,36 +14,26 @@
               </footer>
           </div>
         </div>
+      </div>
     </div>
 </template>
 <script>
 export default {
     name:"iv-modal",
     props:{
-        window_pos_left:{
-          type: String,
-          default: null
-        },
-        window_pos_right:{
-          type: String,
-          default: null
-        },
-        window_pos_top:{
-          type: String,
-          default: null
-        },
-        window_pos_bottom:{
-          type: String,
-          default: null
-        }
+      positionModal:{
+      },
+    },
+    mounted(){
+      console.log("positionModal: ",this.positionModal);
     },
     computed: {
       styleWindow(){
         return {
-                gridColumnStart: this.window_pos_left,
-                gridColumnEnd: this.window_pos_right,
-                gridRowStart: this.window_pos_top,
-                gridRowEnd: this.window_pos_bottom,
+                gridColumnStart: this.position[0],
+                gridColumnEnd: this.position[1],
+                gridRowStart: this.position[2],
+                gridRowEnd: this.position[3],
                 }
       },
       styleGrid(){
@@ -56,24 +47,32 @@ export default {
 }
 </script>
 <style>
-
 .modal-backdrop {
-  z-index: 999;
+  z-index: 996;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
-
+}
+.modal-dumby-layer{
+  z-index: 998;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .modal-grid{
+  z-index: 999;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
 }
 .modalContainer{
+  z-index: 999;
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   overflow-x: auto;

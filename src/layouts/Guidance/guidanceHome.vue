@@ -1,12 +1,12 @@
 <template>
     <div>
-        <iv-modal window_pos_left="5" window_pos_right="7" window_pos_top="2" window_pos_bottom="4" >
+        <iv-modal :positionModal="returnPosition">
             <template #header>
-                <button @click="closeWindow">X</button>
+                <iv-button @click="closeWindow" class="close-button" >X</iv-button>
             </template>
             <template>
                 <div class ="branchList">
-                    <button v-for=" branch in guidance_branches_list" :key="branch.title" @click="handleBranch(branch.branch_data)" >{{branch.title}}</button>
+                    <iv-button v-for=" branch in guidance_branches_list" :key="branch.title" @click="handleBranch(branch.branch_data)" >{{branch.title}}</iv-button>
                 </div>
             </template>
         </iv-modal>
@@ -14,9 +14,14 @@
     </div>
 </template>
 <script>
+import Button from "../../components/Button";
 import {guidanceBus} from './guidanceModal.vue';
+
 export default {
     name:"iv-guidance-home",
+    components:{
+        "iv-button":Button
+    },
     props:{
         guidance_branches_list:{
             type:Array,
@@ -34,6 +39,9 @@ export default {
         closeWindow(){
             guidanceBus.$emit("close-window", this._uid);
         },
+        returnPosition(){
+            return [5,7,2,4];
+        }
     }
 }
 </script>
@@ -41,7 +49,11 @@ export default {
 .branchList{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+}
+.close-button{
+    position: absolute;
+    right: 5%
 }
 </style>

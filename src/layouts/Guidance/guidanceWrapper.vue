@@ -1,6 +1,6 @@
 <template>
     <div class="iv-guidance-wrapper" ref ="iv-guidance-wrapper">
-        <iv-guidance-modal :guidanceText="returnText" :guidanceHeaderText="progressCount" :prevButton="currentPrevButton" :nextButton="currentNextButton" :homeButton="true" :window_pos_left="modalPositionLeft" :window_pos_right="modalPositionRight" :window_pos_top="modalPositionTop" :window_pos_bottom="modalPositionBottom" />
+        <iv-guidance-modal :guidance_item="returnGuidanceItem" :guidanceHeaderText="progressCount" :prevButton="currentPrevButton" :nextButton="currentNextButton" :homeButton="true" />
     </div>
 </template>
 <script>
@@ -21,69 +21,16 @@ export default {
             indexModal:0,
             currentPrevButton:false,
             currentNextButton:true,
-            //currentWindowPosTop:null,
-            //currentWindowPosBottom:null,
-            //currentWindowPosLeft:null,
-            //currentWindowPosRight:null,
         }
     },
     computed:{
         progressCount(){
             return `${this.indexModal + 1}/${this.guidance_texts_list.length}`
         },
-        returnText(){
-            return this.guidance_texts_list[this.indexModal].text
-        },
-        modalPositionTop(){
-            return this.guidance_texts_list[this.indexModal].window_pos_top;
-        },
-        modalPositionBottom(){
-            return this.guidance_texts_list[this.indexModal].window_pos_bottom;
-        },
-        modalPositionLeft(){
-            return this.guidance_texts_list[this.indexModal].window_pos_left;
-        },
-        modalPositionRight(){
-            return this.guidance_texts_list[this.indexModal].window_pos_right;
+        returnGuidanceItem(){
+            return this.guidance_texts_list[this.indexModal]
         }
-        /*
-        modalPositionTop(){
-            this.$nextTick(function() {
-            console.log("TOP PLACE", this.$refs[this.guidance_texts_list[this.indexModal].element],this.$refs)
-            if(this.guidance_texts_list[this.indexModal].modalPostionVertical == "top"){
-                this.currentWindowPosTop = `${this.$refs[this.guidance_texts_list[this.indexModal].element].getBoundingClientRect().top}px`;
-            }
-            return this.currentWindowPosTop
-
-            });
-        },
-        modalPositionBottom(){
-            this.$nextTick(function() {
-                if(this.guidance_texts_list[this.indexModal].modalPostionVertical == "bottom"){
-                    this.currentWindowPosBottom = `${this.$refs[this.guidance_texts_list[this.indexModal].element].getBoundingClientRect().bottom}px`;
-                }
-                return this.currentWindowPosBottom
-            });
-        },
-        modalPositionLeft(){
-            this.$nextTick(function() {
-                if(this.guidance_texts_list[this.indexModal].modalPostionHorizontal == "right"){
-                    this.currentWindowPosLeft = `${this.$refs[this.guidance_texts_list[this.indexModal].element].getBoundingClientRect().right}px`;
-                }
-                return this.currentWindowPosLeft 
-            });      
-        },
-        modalPositionRight(){
-            this.$nextTick(function() {
-                if(this.guidance_texts_list[this.indexModal].modalPostionHorizontal == "left"){
-                    this.currentWindowPosRight = `${this.$refs[this.guidance_texts_list[this.indexModal].element].getBoundingClientRect().left}px`;
-                }
-                return this.currentWindowPosRight
-            });
-        }
-        */
     },
-
     created(){
         guidanceBus.$on("prev-guidance",function(){
             this.indexModal = this.indexModal - 1
@@ -106,6 +53,11 @@ export default {
                 this.currentNextButton=true;
             }
         }.bind(this));
+
+        guidanceBus.$on("close-window",function(){
+            this.guidance_texts_list[this.indexModal].indentifier.style.zIndex = 0;
+        }.bind(this));
+
     }
 }
 </script>
