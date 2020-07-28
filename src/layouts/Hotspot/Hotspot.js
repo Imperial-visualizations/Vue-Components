@@ -1,11 +1,12 @@
 import './Hotspot.css'
 const CORNERS = ['topleft','topright','bottomleft','bottomright'];
-//const EDGES = ['left','right','top','bottom'];
+const EDGES = ['left','right','top','bottom'];
 export default{
     props:{
         position:{
             type:String,
             required:true, // TODO: Add validator,
+            validator: (value) => CORNERS.concat(EDGES).indexOf(value) !== -1
         },
         content:{
             type:Array,

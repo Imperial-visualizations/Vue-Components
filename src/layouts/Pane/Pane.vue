@@ -10,10 +10,22 @@
     </div>
 </template>
 <script>
-import Hotspotable from '../Hotspotables/Hotspotable.js'
 export default {
     name:"iv-pane",
-    mixins:[Hotspotable],
+    props:{
+        position:{
+            type:String
+        }
+    },
+    inject:['reservedSlots'],
+    created(){
+        this.reservedSlots.push(this.position)
+    },
+    destroyed(){
+        if(this.reservedSlots.indexOf(this.position) !== -1){
+            this.reservedSlots.splice(this.reservedSlots.indexOf(this.position),1)
+        }
+    },
     data(){
         return{
             widthFraction:25,

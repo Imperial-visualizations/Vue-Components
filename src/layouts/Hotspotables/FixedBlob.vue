@@ -1,6 +1,6 @@
 <template>
     <div class="fixed-blob">
-        HELLO I AM A FIXED BLOB
+        <slot />
     </div>
 </template>
 <script>
