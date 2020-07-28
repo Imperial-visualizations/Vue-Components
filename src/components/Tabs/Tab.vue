@@ -7,6 +7,8 @@ export default {
     props: {
         tabName: {type: String,
         required: true },
+        tabIndex: {Type: Number,
+        required: true },
         selected: {type: Boolean,
         default: false}
     },
