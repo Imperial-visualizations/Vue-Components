@@ -21,7 +21,7 @@ export default{
             return [`iv-hotspot-${this.position}`,`iv-hotspot-${this.type}`]
         },
         processedContent(){
-            return (this.type == 'edge')? this.content : this.content[0];
+            return (this.type == 'edge')? this.content : [this.content[0]];
         }
     },
     render(createElem){
