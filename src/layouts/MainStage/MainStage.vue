@@ -8,3 +8,9 @@ export default {
     name:"iv-main-stage"
 }
 </script>
+<style>
+.iv-main-stage{
+    position:relative;
+    background-color: white;
+}
+</style>

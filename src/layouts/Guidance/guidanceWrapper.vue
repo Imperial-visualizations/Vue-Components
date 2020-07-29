@@ -1,6 +1,6 @@
 <template>
     <div class="iv-guidance-wrapper" ref ="iv-guidance-wrapper">
-        <iv-guidance-modal :guidance_item="returnGuidanceItem" :guidanceHeaderText="progressCount" :prevButton="currentPrevButton" :nextButton="currentNextButton" :homeButton="true" />
+        <iv-guidance-modal :guidanceInput="returnGuidanceItem" :guidanceHeaderText="progressCount" :prevButton="currentPrevButton" :nextButton="currentNextButton" :homeButton="true" />
     </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ export default {
         "iv-guidance-modal":guidanceModal
     },
     props:{
-        guidance_texts_list:{
+        guidanceInput:{
             type:Array
         }
     },
@@ -25,10 +25,10 @@ export default {
     },
     computed:{
         progressCount(){
-            return `${this.indexModal + 1}/${this.guidance_texts_list.length}`
+            return `${this.indexModal + 1}/${this.guidanceInput.length}`
         },
         returnGuidanceItem(){
-            return this.guidance_texts_list[this.indexModal]
+            return this.guidanceInput[this.indexModal]
         }
     },
     created(){
@@ -45,7 +45,7 @@ export default {
 
         guidanceBus.$on("next-guidance",function(){
             this.indexModal = this.indexModal + 1
-            if(this.indexModal == (this.guidance_texts_list.length -1)){
+            if(this.indexModal == (this.guidanceInput.length -1)){
                 this.currentNextButton=false;
             }
             else{
@@ -53,11 +53,6 @@ export default {
                 this.currentNextButton=true;
             }
         }.bind(this));
-
-        guidanceBus.$on("close-window",function(){
-            this.guidance_texts_list[this.indexModal].indentifier.style.zIndex = 0;
-        }.bind(this));
-
     }
 }
 </script>

@@ -87,14 +87,17 @@ export default {
 </script>
 <style>
 .iv-pane-wrapper{
+    position:relative;
     height:100%;
     border: 3px solid black;
+    background-color: white;
 }
 .iv-pane {
     height:100%;
     width:100%;
     margin:0;
     box-shadow: -5px 0px 10px 5px #aaa;
+
 }
 .iv-pane-button{
     position: absolute;

@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <div class="iv-visualisation" ref ="visulisation_container">
-            <slot ></slot>
-        </div>
+    <div class="iv-visualisation" ref ="visulisation_container">
+        <slot ></slot>
     </div>
 </template>
 <script>

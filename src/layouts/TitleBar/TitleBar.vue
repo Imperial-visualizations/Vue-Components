@@ -1,26 +1,18 @@
 <template>
-    <div>
-        <nav class="banner" id="ivTitleBar">
-            <iv-button class="guidanceButton" @click="handleButton">?</iv-button>
-            <a @click="openLinkNewTab" class="logo-container">
-                <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
-            </a>
-            <div class="vis-title"><slot>Default Title</slot></div>
-        </nav>
-        <iv-guidance-home v-if="showMainGuidanceHome" :guidance_branches_list="guidance_branches_list"/>
-        <iv-guidance-wrapper v-if="showMainGuidanceWrapper" :guidance_texts_list="guidance_texts_list"/>
-    </div>
+      <div class="banner" id="ivTitleBar">
+          <button class="guidanceButton" @click="handleGuidanceClick">?</button>
+          <div class="vis-title"><slot>Default Title</slot></div>
+          <a @click="openLinkNewTab" class="logo-container">
+              <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
+          </a>
+      </div>
 </template>
 
 <script>
 import {guidanceBus} from "../Guidance/guidanceModal.vue";
-import Button from "../../components/Button";
 
 export default {
     name:"iv-title-bar",
-    components:{
-        "iv-button":Button
-    },
     props:{
       buttonLink:{
         type: String,
@@ -30,13 +22,6 @@ export default {
         type: Boolean,
         default: true
       },
-      defaultshowMainGuidance:{
-          type:Boolean,
-          default:false
-      },
-      guidance_branches_input:{
-          type:Array
-      }
     },
     methods:{
         openLinkNewTab: function () {
@@ -46,42 +31,9 @@ export default {
             open(this.buttonLink, "_self");
           }
         },
-        handleButton(){
-          guidanceBus.$emit("open-window", this._uid);
+        handleGuidanceClick(){
+          guidanceBus.$emit("open-main-guidance");
         }
-    },
-    mounted(){
-        console.log("Guidance Data",this.guidance_branches_input);
-        this.showMainGuidanceHome = this.defaultshowMainGuidance;
-
-        this.guidance_branches_list = this.guidance_branches_input;
-        let guidance_branches_all = [];
-        for(let i=0; i<this.guidance_branches_list.length; i++){
-            guidance_branches_all = guidance_branches_all.concat(this.guidance_branches_list[i].branch_data)
-        }
-        //console.log("HEYYEYEYE", guidance_branches_all)
-        this.guidance_branches_list.push({title:"All", branch_data: Array.from(new Set(guidance_branches_all))  });    
-    }, 
-    created(){
-        guidanceBus.$on("open-window",function(){
-            this.showMainGuidanceHome=true;
-        }.bind(this));
-
-        guidanceBus.$on("close-window",function(){
-            this.showMainGuidanceHome=false;
-            this.showMainGuidanceWrapper=false;
-        }.bind(this));
-
-        guidanceBus.$on("select-branch",function(branchData){
-            this.showMainGuidanceHome=false;
-            this.showMainGuidanceWrapper=true;
-            this.guidance_texts_list =  branchData;
-        }.bind(this));
-
-        guidanceBus.$on("go-home",function(){
-            this.showMainGuidanceHome=true;
-            this.showMainGuidanceWrapper=false;
-        }.bind(this));
     },
 }
 </script>
@@ -105,7 +57,6 @@ export default {
           #37578b 100%
   );
   color: #ffffff;
-  z-index: 6;
 }
 
 .vis-title {
@@ -122,11 +73,11 @@ export default {
   color: #ffffff;
   font-size: 1.5rem;
   line-height: 1.5rem;
+  z-index: -1;
 }
 
 .logo-container {
   color: #1EAEDB; 
-  z-index: 10;
   cursor: pointer;
   display:block;
   padding:0;
@@ -143,8 +94,8 @@ export default {
 }
 
 .guidanceButton{
-  z-index: 2;
   position: absolute;
+  background-color: blanchedalmond;
   left:1%;
 }
 

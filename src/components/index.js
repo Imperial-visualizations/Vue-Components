@@ -13,6 +13,7 @@ export {default as Tickbox} from "./Tickbox";
 export {default as Play_Button} from "./Play_Button";
 export {DemoButton,DemoSlider} from "./demo";
 export {default as Button} from "./Button";
+export {default as guidanceButton} from "./GuidanceButton";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
 

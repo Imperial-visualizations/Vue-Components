@@ -1,13 +1,13 @@
 <template>
     <div>
-        <iv-modal :positionModal="guidance_item.positionModal" >
+        <iv-modal :positionModal="guidanceInput.positionModal" >
             <template #header style="positon:relative" >
                 <iv-button v-if="homeButton" @click="goHome" class="home-button" >Home</iv-button>
                 <div>{{guidanceHeaderText}}</div>
                 <iv-button @click="closeWindow" class="close-button" >X</iv-button>
             </template>
             <template>
-                <div>{{guidance_item.text}}</div>
+                <div>{{guidanceInput.text}}</div>
             </template>
             <template #footer>
                 <iv-button v-if="prevButton" @click="prevGuidance">PREV</iv-button>
@@ -37,7 +37,7 @@ export default {
             type: String,
             default: "Help!"
         },
-        guidance_item:{
+        guidanceInput:{
             type:Object
         },
         prevButton:{
@@ -55,36 +55,37 @@ export default {
     },
     methods:{
         prevGuidance(){
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
+            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
             guidanceBus.$emit("prev-guidance", this._uid);
         },
         nextGuidance(){
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
+            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
             guidanceBus.$emit("next-guidance", this._uid);
         },
         closeWindow(){
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
+            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
             guidanceBus.$emit("close-window", this._uid);
         },
         goHome(){
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
+            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
             guidanceBus.$emit("go-home", this._uid);
         }
     },
     mounted(){
-        console.log("positionModalGUIDANCE: ",this.guidance_item);
-        this.guidance_item.indentifier.style.zIndex = 997;
-        //guidanceBus.$emit(`${this.guidanceIdentifier}-show`, this._uid);
+        document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 2;
+        document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
     },
-
+    watch:{
+        guidanceInput:function(){
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 2;
+            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
+        }
+    }
 }
 </script>
 <style>
-
-.home-button{
-    position:relative;
-    left: 5px
-}
-
-.close-button{
-    position: relative;
-    right: 5px;
-}
-
 </style>

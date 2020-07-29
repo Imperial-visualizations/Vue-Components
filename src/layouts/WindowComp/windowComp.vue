@@ -1,21 +1,21 @@
 <template>
-    <div class="modal-backdrop" >
-      <div class="modal-dumby-layer">
-        <div class="modal-grid" :style="styleGrid" >
-          <div class="modalContainer" :style="styleWindow">
-              <header class="modal-header">
-                  <slot name="header"></slot>
-              </header>
-              <section class="modal-body">
-                  <slot></slot>
-              </section>
-              <footer class="modal-footer">
-                  <slot name="footer"></slot>
-              </footer>
-          </div>
-        </div>
+  <div>
+    <div class="modal-backdrop">
+    </div>
+    <div class="modal-grid" :style="styleGrid" >
+      <div class="modalContainer" :style="styleWindow">
+          <header class="modal-header">
+              <slot name="header"></slot>
+          </header>
+          <section class="modal-body">
+              <slot></slot>
+          </section>
+          <footer class="modal-footer">
+              <slot name="footer"></slot>
+          </footer>
       </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
@@ -24,20 +24,18 @@ export default {
       positionModal:{
       },
     },
-    mounted(){
-      console.log("positionModal: ",this.positionModal);
-    },
     computed: {
       styleWindow(){
         return {
-                gridColumnStart: this.position[0],
-                gridColumnEnd: this.position[1],
-                gridRowStart: this.position[2],
-                gridRowEnd: this.position[3],
+                gridRowStart: this.positionModal[0],
+                gridRowEnd: this.positionModal[1],
+                gridColumnStart: this.positionModal[2],
+                gridColumnEnd: this.positionModal[3],
                 }
       },
       styleGrid(){
-          return {display: "grid",
+          return {
+                  display: "grid",
                   top: `${document.getElementById("ivTitleBar").offsetHeight}px`,
                   gridTemplateColumns: "repeat(10, 10%)",
                   gridTemplateRows: "repeat(5, 20%)",
@@ -47,8 +45,9 @@ export default {
 }
 </script>
 <style>
+
 .modal-backdrop {
-  z-index: 996;
+  z-index: 1;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -56,25 +55,20 @@ export default {
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
 }
-.modal-dumby-layer{
-  z-index: 998;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
+
 .modal-grid{
-  z-index: 999;
+  z-index: 3;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
 }
 .modalContainer{
-  z-index: 999;
+  z-index: 900;
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
+  border:2px solid black;
+  background-color: burlywood;
   overflow-x: auto;
 
   display: flex;
