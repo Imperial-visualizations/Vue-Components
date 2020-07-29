@@ -52,7 +52,7 @@ export default {
           #37578b 100%
   );
   color: #ffffff;
-  z-index: 6;
+  z-index: 50;
 }
 
 .vis-title {
