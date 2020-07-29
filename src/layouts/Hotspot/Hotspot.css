@@ -1,6 +1,9 @@
 .iv-hotspot-corner{
     display:block;
 }
+.iv-hotspot-corner > *{
+    white-space:nowrap;
+}
 .iv-hotspot-edge{
     display:flex;
     justify-content: space-between;
@@ -14,18 +17,22 @@
 .iv-hotspot-left{
     flex-direction: column;
     grid-area:left;
+    align-items:start;
 }
 .iv-hotspot-right{
     flex-direction:column;
     grid-area:right;
+    align-items: end;
 }
 .iv-hotspot-top{
     flex-direction:row;
     grid-area:top;
+    align-items:start;
 }
 .iv-hotspot-bottom{
     flex-direction:row;
     grid-area:bottom;
+    align-items:end;
 }
 .iv-hotspot-topleft{
     grid-area:topleft;
@@ -38,4 +45,16 @@
 }
 .iv-hotspot-bottomright{
     grid-area:bottomright;
+}
+.iv-hotspot-topright > *{
+    float:right;
+}
+.iv-hotspot-bottomright > *{
+    float:right;
+}
+.iv-hotspot-topleft > *{
+    float:left;
+}
+.iv-hotspot-bottomleft > *{
+    float:left;
 }
