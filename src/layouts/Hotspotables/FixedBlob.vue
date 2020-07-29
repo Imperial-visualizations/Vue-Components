@@ -4,8 +4,10 @@
     </div>
 </template>
 <script>
+import Hotspotable from "./Hotspotable"
 export default {
-    name:"iv-fixed-blob"
+    name:"iv-fixed-blob",
+    mixins:[Hotspotable]
 }
 </script>
 <style>

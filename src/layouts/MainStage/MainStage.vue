@@ -70,8 +70,8 @@ export default {
         },
         getHotspotContent(pos){ 
             return this.$slots.hotspots.filter( (vnode) => {
-                if(typeof vnode.data.attrs.position !== 'undefined'){
-                    return vnode.data.attrs.position == pos
+                if(typeof vnode.componentOptions.propsData.position !== 'undefined'){
+                    return vnode.componentOptions.propsData.position == pos
                 }
                 return false;
             });
