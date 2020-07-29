@@ -47,7 +47,7 @@ export default {
 <style>
 
 .modal-backdrop {
-  z-index: 1;
+  z-index: 199;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -57,14 +57,13 @@ export default {
 }
 
 .modal-grid{
-  z-index: 3;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
 }
 .modalContainer{
-  z-index: 900;
+  z-index: 202;
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   border:2px solid black;

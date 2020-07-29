@@ -76,12 +76,12 @@ export default {
         }
     },
     mounted(){
-        document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 2;
+        document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 200;
         document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
     },
     watch:{
         guidanceInput:function(){
-            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 2;
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 200;
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
         }
     }

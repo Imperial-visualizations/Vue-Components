@@ -17,7 +17,8 @@
     "component-fixture": "^1.14.0",
     "core-js": "^3.6.5",
     "katex": "^0.11.1",
-    "save": "^2.4.0"
+    "save": "^2.4.0",
+    "vue-resize": "^0.5.0"
   },
   "peerDependencies": {
     "vue": "^2.6.11"
