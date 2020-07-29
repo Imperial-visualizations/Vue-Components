@@ -81,6 +81,7 @@ export default {
 </script>
 <style>
 .hotspot-manager{
+    z-index: 0;
     display:grid;
     grid-template-areas: "topleft top topright" "left . right" "bottomleft bottom bottomright";
     height:100%;
@@ -89,6 +90,7 @@ export default {
     position:absolute;
 }
 .iv-main-stage{
+    z-index: 0;
     position:relative;
 }
 </style>
