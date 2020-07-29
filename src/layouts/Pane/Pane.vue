@@ -17,13 +17,12 @@ export default {
             type:String
         }
     },
-    inject:['reservedSlots'],
     created(){
-        this.reservedSlots.push(this.position)
+        this.$parent.reservedSlots.push(this.position)
     },
     destroyed(){
-        if(this.reservedSlots.indexOf(this.position) !== -1){
-            this.reservedSlots.splice(this.reservedSlots.indexOf(this.position),1)
+        if(this.$parent.reservedSlots.indexOf(this.position) !== -1){
+            this.$parent.reservedSlots.splice(this.$parent.reservedSlots.indexOf(this.position),1)
         }
     },
     data(){

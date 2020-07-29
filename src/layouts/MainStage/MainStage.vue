@@ -11,7 +11,6 @@
 import Hotspot from '../Hotspot'
 export default {
     name:"iv-main-stage",
-    inject:['reservedSlots'],
     props:{
         corners:{
             type:Array,
@@ -56,12 +55,12 @@ export default {
         },
         hotspots(){
             let concated = this.corners.concat(this.edges)
-            for(let i=0; i < this.reservedSlots.length; i++){
-                if(concated.indexOf(this.reservedSlots[i]) !== -1){
-                    concated.splice(concated.indexOf(this.reservedSlots[i]),1)
+            for(let i=0; i < this.$parent.reservedSlots.length; i++){
+                if(concated.indexOf(this.$parent.reservedSlots[i]) !== -1){
+                    concated.splice(concated.indexOf(this.$parent.reservedSlots[i]),1)
                 }
             }
-            return this.corners.cocat(this.edges)
+            return concated
         }
     },
     methods:{
