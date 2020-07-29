@@ -1,21 +1,13 @@
 <template>
     <div class="iv-main-stage">
-
         <div class="hotspot-manager" :style="gridStyle">
             <hotspot v-for="pos in hotspots" :key=pos :position=pos :content="getHotspotContent(pos)"/>
         </div>
         <resize-observer @notify="updateDims"/>
-
         <slot>Insert your main content here!</slot>
     </div>
 </template>
 <script>
-
-import 'vue-resize/dist/vue-resize.css';
-import Vue from 'vue';
-import VueResize from 'vue-resize';
-Vue.use(VueResize);
- 
 import Hotspot from '../Hotspot'
 export default {
     name:"iv-main-stage",

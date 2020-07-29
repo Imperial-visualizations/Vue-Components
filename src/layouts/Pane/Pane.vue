@@ -6,7 +6,6 @@
             </div>
             <div class="iv-drag-selector" :class="positionalClass('iv-drag-selector')" @mousedown="mouseDown"  ></div>
         </div>
-        
         <button class="iv-pane-button" :class="positionalClass('iv-pane-button')" @click="showPane = !showPane" :style="buttonLeft">{{paneText}}</button>
     </div>
 </template>

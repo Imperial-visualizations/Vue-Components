@@ -27,16 +27,7 @@ export default {
 }
 </script>
 
-<style scoped>
-body, html {
-  height: 100%;
-  background: #333344;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
+<style>
 @keyframes animate-stripes {
     0% {
         background-position: 0 0;

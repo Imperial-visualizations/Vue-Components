@@ -4,7 +4,7 @@ import css from 'rollup-plugin-css-porter';
 import image from '@rollup/plugin-image';
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
-import {eslint} from "rollup-plugin-eslint";
+import eslint from "@rbnlffl/rollup-plugin-eslint"
 
 const external = [
     'vue',
