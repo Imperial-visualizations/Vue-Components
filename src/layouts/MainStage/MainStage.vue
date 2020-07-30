@@ -90,5 +90,6 @@ export default {
 }
 .iv-main-stage{
     position:relative;
+    z-index:0;
 }
 </style>
