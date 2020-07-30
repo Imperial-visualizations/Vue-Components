@@ -1,9 +1,10 @@
 <template>
-    <nav class="banner" id="ivTitleBar">
+    <nav class="banner" :class="theme" id="ivTitleBar">
       <button class="guidanceButton" @click="handleGuidanceClick">?</button>
         <a @click="openLinkNewTab" class="logo-container">
-            <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
+            <img class="vis-logo" :src="logo">
         </a>
+
         <div class="vis-title"><slot>Default Title</slot></div>
     </nav>
     
@@ -11,8 +12,11 @@
 
 <script>
 import {guidanceBus} from "../Guidance/guidanceModal.vue";
+import Logo from "assets/ImpVis-logo-white.svg"
+import LTMode from "mixins/LTMode.js"
 export default {
     name:"iv-title-bar",
+    mixins:[LTMode],
     props:{
       buttonLink:{
         type: String,
@@ -21,6 +25,11 @@ export default {
       newTab:{
         type: Boolean,
         default: true
+      }
+    },
+    data(){
+      return{
+        logo:Logo
       }
     },
     methods:{
@@ -34,12 +43,17 @@ export default {
         handleGuidanceClick(){
           guidanceBus.$emit("open-main-guidance");
         }
+    },
+    computed:{
+      theme(){
+        return [this.mode]
+      }
     }
 }
 </script>
 
-<style>
-
+<style lang="scss">
+@import "src/globals.scss";
 .banner {
   display: flex;
   flex: 0 0 auto;
@@ -50,16 +64,20 @@ export default {
   position: fixed; 
   top: 0;
   right: 0;
-  background: linear-gradient(
-          90deg,
-          #003E74 0%,
-          #37578b 15%,
-          #37578b 100%
-  );
+  &.learn{
+    background: linear-gradient(
+            90deg,
+            #003E74 0%,
+            #37578b 15%,
+            #37578b 100%
+    );
+  }
+  &.teach{
+    background: $secondaryGreen;
+  }
   color: #ffffff;
-  z-index: 51;
+  z-index: $titlebarZLevel;
 }
-
 .vis-title {
   flex-basis: 0;
   flex-grow: 1;
@@ -71,28 +89,27 @@ export default {
   left: 0vw;
   right: 0;
   background: none;
-  color: #ffffff;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+  color: $white;
+  font-size: calc(#{$titleBarHeight} - 0.5em);
+  line-height: calc(#{$titleBarHeight} - 0.5em);
 }
 
 .logo-container {
   color: #1EAEDB; 
-  z-index: 10;
+  z-index: $titlebarZLevel;
   cursor: pointer;
   display:block;
   padding:0;
-  height:1.5rem;
+  height:calc(#{$titleBarHeight} - 0.5em);
+  :hover {
+    color: #0FA0CE;
+  }
 
 }
-
-.logo-container:hover {
-  color: #0FA0CE; }
-
 .vis-logo {
   height: 1.25rem;
   width:auto;
-  margin: 0.125rem 0.25rem;
+  margin: 0.125rem 0.5rem;
 }
 
 .guidanceButton{

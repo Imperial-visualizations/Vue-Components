@@ -14,12 +14,13 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="scss">
+@import "src/globals.scss";
 .iv-visualisation {
     display:flex;
     flex-direction: row;
-    margin-top:2rem;
-    height:calc(100vh - 2rem);
+    margin-top:$titleBarHeight;
+    height:calc(100vh - #{$titleBarHeight});
     position:relative;
 }
 .iv-visualisation > .iv-main-stage{ 

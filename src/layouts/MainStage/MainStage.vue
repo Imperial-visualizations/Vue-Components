@@ -54,6 +54,9 @@ export default {
                 'grid-template-rows': `1fr 1fr 1fr`
             }
         },
+        showSpots(){
+            return typeof this.$slots.hotspot !== 'undefined';
+        },
         hotspots(){
             let concated = this.corners.concat(this.edges)
             for(let i=0; i < this.$parent.reservedSlots.length; i++){
