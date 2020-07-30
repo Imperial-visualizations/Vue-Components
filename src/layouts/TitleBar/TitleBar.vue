@@ -1,7 +1,7 @@
 <template>
     <nav class="banner">
         <a @click="openLinkNewTab" class="logo-container">
-            <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
+            <img class="vis-logo" :src="logo">
         </a>
         <div class="vis-title"><slot>Default Title</slot></div>
     </nav>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import Logo from "src/assets/ImpVis-logo-white.svg"
 export default {
     name:"iv-title-bar",
     props:{
@@ -19,6 +20,11 @@ export default {
       newTab:{
         type: Boolean,
         default: true
+      }
+    },
+    data(){
+      return{
+        logo:Logo
       }
     },
     methods:{
@@ -33,8 +39,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+@import "src/globals.scss";
 .banner {
   display: flex;
   flex: 0 0 auto;
@@ -52,7 +58,7 @@ export default {
           #37578b 100%
   );
   color: #ffffff;
-  z-index: 51;
+  z-index: $titlebarZLevel;
 }
 
 .vis-title {
@@ -66,9 +72,9 @@ export default {
   left: 0vw;
   right: 0;
   background: none;
-  color: #ffffff;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+  color: $white;
+  font-size: calc(#{$titleBarHeight} - 0.5em);
+  line-height: calc(#{$titleBarHeight} - 0.5em);
 }
 
 .logo-container {
@@ -77,17 +83,16 @@ export default {
   cursor: pointer;
   display:block;
   padding:0;
-  height:1.5rem;
+  height:calc(#{$titleBarHeight} - 0.5em);
+  :hover {
+    color: #0FA0CE;
+  }
 
 }
-
-.logo-container:hover {
-  color: #0FA0CE; }
-
 .vis-logo {
   height: 1.25rem;
   width:auto;
-  margin: 0.125rem 0.25rem;
+  margin: 0.125rem 0.5rem;
 }
 
 </style>

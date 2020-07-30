@@ -107,10 +107,10 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="scss">
+@import "src/globals.scss";
 .iv-pane-content{
     height:100%;
-    width:calc(100% - 0.5em);
 }
 .iv-drag-selector{
     padding:0;
@@ -148,7 +148,7 @@ export default {
 .iv-pane-wrapper{
     height:100%;
     flex:0 0 auto;
-    z-index: 50;
+    z-index: $sidebarZLevel;
     
 }
 .iv-pane-button{
@@ -171,7 +171,7 @@ export default {
   top:250px;
   background-color: rgb(163, 223, 124);
   border:none;
-  box-shadow: 0px 0px 4px #008033;
+  box-shadow: 0px 0px 4px $secondaryGreen;
   outline:none;
   transition: 0.5s;
 }

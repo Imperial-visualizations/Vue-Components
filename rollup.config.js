@@ -1,6 +1,6 @@
 import vue from 'rollup-plugin-vue';
 import includePaths from 'rollup-plugin-includepaths';
-import css from 'rollup-plugin-css-porter';
+import scss from 'rollup-plugin-scss';
 import image from '@rollup/plugin-image';
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
@@ -20,10 +20,12 @@ export default [{
         dir: 'dist'
     },
     plugins:[
-        includePaths({ paths: ["./"] }),  
+        includePaths({
+             paths: ["./"]
+        }),  
         resolve(),
         commonjs(), 
-        css({dest:"./dist/impvis-components.css"}),
+        scss({output:'impvis-components.css'}),
         image(),
         vue({css:false}),
         eslint()
@@ -40,8 +42,8 @@ export default [{
         includePaths({ paths: ["./"] }),  
         resolve(),
         commonjs(), 
-        css({dest:"./dist/impvis-components.css"}),
         image(),
+        scss({output:'impvis-components.css'}),
         vue({css:false}),
         eslint()
     ]
@@ -58,8 +60,8 @@ export default [{
         includePaths({ paths: ["./"] }),  
         resolve(),
         commonjs(), 
-        css({minified: false,raw:false}),
         image(),
+        scss({output:'impvis-components.css'}),
         vue({css:false}),
         eslint()
     ]
