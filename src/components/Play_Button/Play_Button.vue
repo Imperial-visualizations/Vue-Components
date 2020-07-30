@@ -1,12 +1,14 @@
 <template>
     <button class="iv-play-button" :class="dyn_class" @click="changeState">
-        <img v-if="!play" class="play-icon" src="./assets/play.svg" />
-        <img v-else class="play-icon" src="./assets/pause.svg" />
+        <img v-if="!play" class="play-icon" :src="playImg" />
+        <img v-else class="play-icon" :src="pauseImg" />
         <span>{{text}}</span>
     </button>
 </template>
 
 <script>
+import PlayButton from "assets/play.png"
+import PauseButton from "assets/pause.png"
 export default {
     name: "iv-play-button",
     data(){
@@ -14,6 +16,8 @@ export default {
             play:false,
             text:"Play",
             dyn_class:"iv-button-play",
+            playImg:PlayButton,
+            pauseImg:PauseButton
         }
     },
     methods:{
