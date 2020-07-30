@@ -47,7 +47,7 @@ export default {
 </script>
 <style>
 .toggleAdvanceClass {
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
   padding: 4px 10px 4px 10px;
   display: flex;
   overflow: hidden;
