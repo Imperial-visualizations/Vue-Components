@@ -7,6 +7,7 @@
 </template>
 
 <script>
+// TODO: Fix this!
 import PlayButton from "assets/play.png"
 import PauseButton from "assets/pause.png"
 export default {
