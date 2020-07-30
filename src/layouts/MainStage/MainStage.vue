@@ -1,10 +1,11 @@
 <template>
     <div class="iv-main-stage">
+        <slot class="contentMainStage">Insert your main content here!</slot>
         <div class="hotspot-manager" :style="gridStyle">
             <hotspot v-for="pos in hotspots" :key=pos :position=pos :content="getHotspotContent(pos)"/>
         </div>
         <resize-observer @notify="updateDims"/>
-        <slot>Insert your main content here!</slot>
+        
     </div>
 </template>
 <script>
