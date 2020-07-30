@@ -16,7 +16,7 @@ import ImpVis from "@impvis/components"
 Vue.use(ImpVis);
 ```
 
-And that's it! The full library of Imperial Visualisation components will now be globally registered to your project allowing them to use them anywhere in your project. All Imperial Visualistions components are named beginning with the **iv-** prefix and for a full reference of the avalible components please see the **project wiki**.
+And that's it! The full library of Imperial Visualisation components will now be globally registered to your project allowing them to use them anywhere in your project. All Imperial Visualistions components are named beginning with the **iv-** prefix and for a full reference of the available components please see the **project wiki**.
 
 ## Development Setup
 For a full guide to how to develop **new** components please follow the [contributing guide](./CONTRIBUTING.md).
