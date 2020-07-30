@@ -93,5 +93,6 @@ export default {
     z-index: 0;
     position:relative;
     background-color: white;
+    z-index:0;
 }
 </style>

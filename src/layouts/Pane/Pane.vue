@@ -1,21 +1,41 @@
 <template>
-    <div class="iv-pane-wrapper" :style="widthObj" :class="positionalClass('iv-pane-wrapper')">
+    <div class="iv-pane-wrapper" :style="widthObj" :class="ivPaneClass">
         <div class="iv-pane"  v-show=showPane>
-            <div class="iv-pane-content" :class="positionalClass('iv-pane-content')">
+            <div class="iv-drag-selector" :class="positionalClass('iv-drag-selector')" @mousedown="mouseDown"  ></div>
+            <div class="iv-pane-content" :class="positionalClass('iv-pane')">
                 <slot>Default pane</slot>
             </div>
-            <div class="iv-drag-selector" :class="positionalClass('iv-drag-selector')" @mousedown="mouseDown"  ></div>
+
         </div>
-        <button class="iv-pane-button" :class="positionalClass('iv-pane-button')" @click="showPane = !showPane" :style="buttonLeft">{{paneText}}</button>
+        <button class="iv-pane-button" :class="positionalClass('iv-pane-button')" @click="showPane = !showPane" :style="buttonLeft"> 
+                  <img v-if="pointLeft" class="navImage"  src="./assets/right.svg" />
+                <img v-else class="navImage"  src="./assets/left.svg" />
+
+        </button>
     </div>
 </template>
 <script>
 import {guidanceBus} from "../Guidance/guidanceModal.vue";
+import Hotspotable from '../Hotspotables/Hotspotable.js';
 export default {
     name:"iv-pane",
+    mixins:[Hotspotable],
     props:{
-        position:{
-            type:String
+        width:{
+            type:Number,
+            required:false,
+            default:250,
+        },
+        format:{
+            type:String,
+            required:false,
+            default:'overlay',
+            validator: (value) => ['push','full','overlay'].indexOf(value) > -1
+        },
+        opacity:{ //Be aware that this might break Dan's stuff.
+            type:Number,
+            required:false,
+            default:0
         }
     },
     created(){
@@ -41,7 +61,7 @@ export default {
     },
     data(){
         return{
-            widthFraction:25,
+            widthPx:this.width,
             showPane:true,
             resizer:{
               adjusting:false,
@@ -51,20 +71,28 @@ export default {
     },
     computed:{
         widthObj(){
-            return {width:`${ this.showPane? this.widthFraction:0}%`};
+            return {width:`${ this.showPane? this.widthPx:0}px`};
         },
-        paneText(){
-            return !(this.showPane ^ this.position == "left")? "⬇️":"⬆️";
+        pointLeft(){
+            return !(this.showPane ^ this.position == "left");
         },
         buttonLeft(){
             if(this.position == "left"){
-                return {'left':  this.showPane ? `${this.widthFraction}%` : 0}
+                return {'left':  this.showPane ? `${this.widthPx}px` : 0}
             } else if(this.position == "right"){
-                return {'left':  this.showPane ? `${100 - this.widthFraction}%` : '100%'}
+                return {'right':  this.showPane ? `${this.widthPx}px` : '0%'}
             }else{
                 throw Error("Pane may only have position left or position right");
             }
         },
+        ivPaneClass(){
+            if (this.format === 'overlay'){
+               let arr = this.positionalClass('iv-pane-wrapper');
+               arr.push('iv-pane-overlay',`iv-pane-overlay-${this.position}`)
+               return arr
+            }
+            return this.positionalClass('iv-pane-wrapper')
+        }
     },
     methods:{
         positionalClass(base){
@@ -86,8 +114,7 @@ export default {
         resize(e){
             if(this.resizer.adjusting){
                 let deltaX = (e.pageX - this.resizer.initPageX) * ((this.position == "left")? 1:-1);
-                let deltaFrac = 100*deltaX/window.innerWidth;
-                this.widthFraction += deltaFrac;
+                this.widthPx += deltaX;
                 this.resizer.initPageX = e.pageX;
             }   
         }
@@ -102,8 +129,7 @@ export default {
 .iv-drag-selector{
     padding:0;
     height:100%;
-    width:0.5em;
-
+    width:15px;
     cursor: col-resize;
 }
 .iv-pane-content-left{
@@ -125,6 +151,7 @@ export default {
     width:100%;
     margin:0;
     box-shadow: -5px 0px 10px 5px #aaa;
+    background-color:white;
 }
 .iv-pane-wrapper-left{
     order:-1;
@@ -143,12 +170,38 @@ export default {
     position: absolute;
     top:50%;
 }
-.iv-pane-button-left{
-    transform-origin: left;
-    transform: translate(25%,-50%) rotate(90deg);  
+.iv-pane-overlay{
+    position:absolute;
 }
-.iv-pane-button-right{
-    transform-origin: left;
-    transform: translate(-25%,-50%) rotate(90deg);  
+.iv-pane-overlay-left{
+    left:0;
 }
+.iv-pane-overlay-right{
+    right:0;
+}
+.navIcon{
+  position: relative;
+  z-index: 1;
+  top:250px;
+  background-color: rgb(163, 223, 124);
+  border:none;
+  box-shadow: 0px 0px 4px #008033;
+  outline:none;
+  transition: 0.5s;
+}
+
+.navImage{
+  width: 1.2rem;
+  height: 2.5rem;
+  transition: 0.5s;
+}
+@media screen and (max-height: 450px) {
+  .navMenu {
+    padding-top: 15px;
+  }
+  .navMenu   a {
+    font-size: 18px;
+  }
+}
+
 </style>

@@ -1,8 +1,10 @@
 .iv-hotspot-corner{
     display:block;
+    z-index:50;
 }
 .iv-hotspot-corner > *{
     white-space:nowrap;
+    z-index:50;
 }
 .iv-hotspot-edge{
     display:flex;
@@ -22,7 +24,7 @@
 .iv-hotspot-right{
     flex-direction:column;
     grid-area:right;
-    align-items:flex-end;
+    align-items: flex-end;
 }
 .iv-hotspot-top{
     flex-direction:row;
@@ -57,4 +59,7 @@
 }
 .iv-hotspot-bottomleft > *{
     float:left;
+}
+.iv-hotspotable{
+    pointer-events: auto;
 }

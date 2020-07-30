@@ -1,2 +1,2 @@
-import HotspotComp from './HotspotComp.vue'
+import HotspotComp from './HotspotComp.vue';
 export default HotspotComp;

@@ -20,6 +20,7 @@ export default {
     flex-direction: row;
     margin-top:2rem;
     height:calc(100vh - 2rem);
+    position:relative;
 }
 .iv-visualisation > .iv-main-stage{ 
     flex: 1 1 auto;
