@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed-blob">
+    <div class="fixed-blob iv-hotspotable">     
         <slot />
     </div>
 </template>
@@ -7,7 +7,10 @@
 import Hotspotable from "./Hotspotable"
 export default {
     name:"iv-fixed-blob",
-    mixins:[Hotspotable]
+    mixins:[Hotspotable],
+    computed:{
+        
+    }
 }
 </script>
 <style>
