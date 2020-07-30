@@ -11,6 +11,17 @@ const external = [
     'katex',
     'katex/dist/katex.min.css'
 ]
+const pluginConfig = [
+    includePaths({
+         paths: ["./","src"]
+    }),  
+    resolve(),
+    commonjs(), 
+    scss({output:'./dist/impvis-components.css'}),
+    image(),
+    vue({css:false}),
+    eslint()
+];
 
 export default [{
     input:'src/main.js',
@@ -19,17 +30,7 @@ export default [{
         format: 'esm',
         dir: 'dist'
     },
-    plugins:[
-        includePaths({
-             paths: ["./"]
-        }),  
-        resolve(),
-        commonjs(), 
-        scss({output:'impvis-components.css'}),
-        image(),
-        vue({css:false}),
-        eslint()
-    ]
+    plugins:pluginConfig
 },
 {
     input:'src/main.js',
@@ -38,15 +39,7 @@ export default [{
         format: 'cjs',
         file:'./dist/impvis-components.common.js'
     },
-    plugins:[
-        includePaths({ paths: ["./"] }),  
-        resolve(),
-        commonjs(), 
-        image(),
-        scss({output:'impvis-components.css'}),
-        vue({css:false}),
-        eslint()
-    ]
+    plugins:pluginConfig
 },
 {
     input:'src/main.js',
@@ -56,14 +49,6 @@ export default [{
         file:'./dist/impvis-components.umd.js',
         name:"ImpVis"
     },
-    plugins:[
-        includePaths({ paths: ["./"] }),  
-        resolve(),
-        commonjs(), 
-        image(),
-        scss({output:'impvis-components.css'}),
-        vue({css:false}),
-        eslint()
-    ]
+    plugins:pluginConfig
 }
 ]

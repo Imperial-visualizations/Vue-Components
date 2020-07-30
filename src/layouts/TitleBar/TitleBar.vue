@@ -1,17 +1,20 @@
 <template>
-    <nav class="banner">
+    <nav class="banner" :class="theme">
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" :src="logo">
         </a>
+
         <div class="vis-title"><slot>Default Title</slot></div>
     </nav>
     
 </template>
 
 <script>
-import Logo from "src/assets/ImpVis-logo-white.svg"
+import Logo from "assets/ImpVis-logo-white.svg"
+import LTMode from "mixins/LTMode.js"
 export default {
     name:"iv-title-bar",
+    mixins:[LTMode],
     props:{
       buttonLink:{
         type: String,
@@ -35,6 +38,11 @@ export default {
             open(this.buttonLink, "_self");
           }
         }
+    },
+    computed:{
+      theme(){
+        return [this.mode]
+      }
     }
 }
 </script>
@@ -51,16 +59,20 @@ export default {
   position: fixed; 
   top: 0;
   right: 0;
-  background: linear-gradient(
-          90deg,
-          #003E74 0%,
-          #37578b 15%,
-          #37578b 100%
-  );
+  &.learn{
+    background: linear-gradient(
+            90deg,
+            #003E74 0%,
+            #37578b 15%,
+            #37578b 100%
+    );
+  }
+  &.teach{
+    background: $secondaryGreen;
+  }
   color: #ffffff;
   z-index: $titlebarZLevel;
 }
-
 .vis-title {
   flex-basis: 0;
   flex-grow: 1;
@@ -79,7 +91,7 @@ export default {
 
 .logo-container {
   color: #1EAEDB; 
-  z-index: 10;
+  z-index: $titlebarZLevel;
   cursor: pointer;
   display:block;
   padding:0;

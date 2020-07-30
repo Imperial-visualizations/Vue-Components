@@ -1,6 +1,6 @@
 <template>
     <div class="iv-main-stage">
-        <div class="hotspot-manager" :style="gridStyle">
+        <div class="hotspot-manager" :style="gridStyle" v-if="showSpots">
             <hotspot v-for="pos in hotspots" :key=pos :position=pos :content="getHotspotContent(pos)"/>
         </div>
         <resize-observer @notify="updateDims"/>
@@ -52,6 +52,9 @@ export default {
                 'grid-template-columns': `${this.hotspotColumnWidth}px 1fr ${this.hotspotColumnWidth}px`,
                 'grid-template-rows': `1fr 1fr 1fr`
             }
+        },
+        showSpots(){
+            return typeof this.$slots.hotspot !== 'undefined';
         },
         hotspots(){
             let concated = this.corners.concat(this.edges)

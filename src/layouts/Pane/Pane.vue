@@ -15,10 +15,11 @@
     </div>
 </template>
 <script>
-import Hotspotable from '../Hotspotables/Hotspotable.js';
+import Hotspotable from 'mixins/Hotspotable.js';
+import LTMode from "mixins/LTMode.js";
 export default {
     name:"iv-pane",
-    mixins:[Hotspotable],
+    mixins:[Hotspotable,LTMode],
     props:{
         width:{
             type:Number,
@@ -39,11 +40,13 @@ export default {
     },
     created(){
         this.$parent.reservedSlots.push(this.position)
+        this.showPane = this.mode === 'learn';
     },
     destroyed(){
         if(this.$parent.reservedSlots.indexOf(this.position) !== -1){
             this.$parent.reservedSlots.splice(this.$parent.reservedSlots.indexOf(this.position),1)
         }
+        
     },
     data(){
         return{
