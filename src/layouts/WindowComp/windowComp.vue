@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div class="modal-backdrop">
-    </div>
+
     <div class="modal-grid" :style="styleGrid" >
       <div class="modalContainer" :style="styleWindow">
           <header class="modal-header">
@@ -15,6 +14,10 @@
           </footer>
       </div>
     </div>
+
+    <div class="modal-backdrop">
+  </div>
+
   </div>
 </template>
 <script>
@@ -38,7 +41,7 @@ export default {
                   display: "grid",
                   top: `${document.getElementById("ivTitleBar").offsetHeight}px`,
                   gridTemplateColumns: "repeat(10, 10%)",
-                  gridTemplateRows: "repeat(5, 20%)",
+                  gridTemplateRows: "repeat(10, 10%)",
                   }
       }
     },
@@ -47,7 +50,7 @@ export default {
 <style>
 
 .modal-backdrop {
-  z-index: 199;
+  z-index: 150;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -57,13 +60,14 @@ export default {
 }
 
 .modal-grid{
+  z-index: 230;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
 }
 .modalContainer{
-  z-index: 202;
+  z-index: 250;
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   border:2px solid black;

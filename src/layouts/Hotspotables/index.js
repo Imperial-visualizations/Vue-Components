@@ -1,2 +1,2 @@
-import FixedBlob from './FixedBlob.vue'
-export default FixedBlob;
+import HotspotComp from './HotspotComp.vue'
+export default HotspotComp;

@@ -1,16 +1,16 @@
 <template>
-      <div class="banner" id="ivTitleBar">
-          <button class="guidanceButton" @click="handleGuidanceClick">?</button>
-          <div class="vis-title"><slot>Default Title</slot></div>
-          <a @click="openLinkNewTab" class="logo-container">
-              <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
-          </a>
-      </div>
+    <nav class="banner" id="ivTitleBar">
+      <button class="guidanceButton" @click="handleGuidanceClick">?</button>
+        <a @click="openLinkNewTab" class="logo-container">
+            <img class="vis-logo" src="./VisualisationsLogoWhite2.png">
+        </a>
+        <div class="vis-title"><slot>Default Title</slot></div>
+    </nav>
+    
 </template>
 
 <script>
 import {guidanceBus} from "../Guidance/guidanceModal.vue";
-
 export default {
     name:"iv-title-bar",
     props:{
@@ -21,7 +21,7 @@ export default {
       newTab:{
         type: Boolean,
         default: true
-      },
+      }
     },
     methods:{
         openLinkNewTab: function () {
@@ -34,7 +34,7 @@ export default {
         handleGuidanceClick(){
           guidanceBus.$emit("open-main-guidance");
         }
-    },
+    }
 }
 </script>
 
@@ -57,6 +57,7 @@ export default {
           #37578b 100%
   );
   color: #ffffff;
+  z-index: 51;
 }
 
 .vis-title {
@@ -73,15 +74,16 @@ export default {
   color: #ffffff;
   font-size: 1.5rem;
   line-height: 1.5rem;
-  z-index: -1;
 }
 
 .logo-container {
   color: #1EAEDB; 
+  z-index: 10;
   cursor: pointer;
   display:block;
   padding:0;
   height:1.5rem;
+
 }
 
 .logo-container:hover {
@@ -94,9 +96,7 @@ export default {
 }
 
 .guidanceButton{
-  position: absolute;
-  background-color: blanchedalmond;
-  left:1%;
+  z-index:20
 }
 
 </style>

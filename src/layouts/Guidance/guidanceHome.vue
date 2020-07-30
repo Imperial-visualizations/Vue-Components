@@ -29,7 +29,7 @@ export default {
     data(){
         return{
         gridStructure:false,
-        positionData:[2,4,4,8]
+        positionData:[3,9,4,8]
         }
     },
     methods:{

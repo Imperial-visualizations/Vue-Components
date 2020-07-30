@@ -8,7 +8,7 @@
     </div>
 </template>
 <script>
-import Hotspot from '../Hotspot'
+import Hotspot from '../HotspotWrapper'
 export default {
     name:"iv-main-stage",
     props:{
@@ -92,5 +92,6 @@ export default {
 .iv-main-stage{
     z-index: 0;
     position:relative;
+    background-color: white;
 }
 </style>

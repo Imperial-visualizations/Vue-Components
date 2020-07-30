@@ -17,22 +17,22 @@
 .iv-hotspot-left{
     flex-direction: column;
     grid-area:left;
-    align-items:start;
+    align-items:flex-start;
 }
 .iv-hotspot-right{
     flex-direction:column;
     grid-area:right;
-    align-items: end;
+    align-items:flex-end;
 }
 .iv-hotspot-top{
     flex-direction:row;
     grid-area:top;
-    align-items:start;
+    align-items:flex-start;
 }
 .iv-hotspot-bottom{
     flex-direction:row;
     grid-area:bottom;
-    align-items:end;
+    align-items:flex-end;
 }
 .iv-hotspot-topleft{
     grid-area:topleft;

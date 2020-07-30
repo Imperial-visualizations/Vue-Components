@@ -10,6 +10,7 @@
     </div>
 </template>
 <script>
+import {guidanceBus} from "../Guidance/guidanceModal.vue";
 export default {
     name:"iv-pane",
     props:{
@@ -18,7 +19,20 @@ export default {
         }
     },
     created(){
-        this.$parent.reservedSlots.push(this.position)
+        this.$parent.reservedSlots.push(this.position);
+        guidanceBus.$on("show-component",function(guidanceIdentifier){
+            console.log("show", guidanceIdentifier,this.$el.id )
+            if(this.$el.id == guidanceIdentifier){
+                this.showPane=true
+            }
+            
+        }.bind(this));
+        guidanceBus.$on("hide-component",function(guidanceIdentifier){
+            console.log("close", guidanceIdentifier, this.$el.id)
+            //if(this.$el.id == guidanceIdentifier){
+            //    this.showPane=false
+            //}
+        }.bind(this));
     },
     destroyed(){
         if(this.$parent.reservedSlots.indexOf(this.position) !== -1){
@@ -77,7 +91,7 @@ export default {
                 this.resizer.initPageX = e.pageX;
             }   
         }
-    }
+    },
 }
 </script>
 <style>
@@ -119,6 +133,7 @@ export default {
     order:1;
 }
 .iv-pane-wrapper{
+    background-color: white;
     height:100%;
     flex:0 0 auto;
     z-index: 50;
@@ -127,7 +142,6 @@ export default {
 .iv-pane-button{
     position: absolute;
     top:50%;
-     
 }
 .iv-pane-button-left{
     transform-origin: left;

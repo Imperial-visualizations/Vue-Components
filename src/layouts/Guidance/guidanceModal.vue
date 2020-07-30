@@ -57,31 +57,37 @@ export default {
         prevGuidance(){
             document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
+            guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv);
             guidanceBus.$emit("prev-guidance", this._uid);
         },
         nextGuidance(){
             document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
+            guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv);
             guidanceBus.$emit("next-guidance", this._uid);
         },
         closeWindow(){
             document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
+            guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv);
             guidanceBus.$emit("close-window", this._uid);
         },
         goHome(){
             document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
+            guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv);
             guidanceBus.$emit("go-home", this._uid);
         }
     },
     mounted(){
-        document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 200;
+        guidanceBus.$emit("show-component", this.guidanceInput.highlightDiv);
+        document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 220;
         document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
     },
     watch:{
         guidanceInput:function(){
-            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 200;
+            guidanceBus.$emit("show-component", this.guidanceInput.highlightDiv);
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 220;
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
         }
     }

@@ -18,7 +18,8 @@ export default {
 .iv-visualisation {
     display:flex;
     flex-direction: row;
-    height:100%;
+    margin-top:2rem;
+    height:calc(100vh - 2rem);
 }
 .iv-visualisation > .iv-main-stage{ 
     flex: 1 1 auto;
