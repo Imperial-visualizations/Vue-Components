@@ -14,7 +14,7 @@
 </template>
 <script>
 import Button from "../../components/Button";
-import {guidanceBus} from './guidanceModal.vue';
+import guidanceBus from 'buses/guidanceBus.js';
 
 export default {
     name:"iv-guidance-home",

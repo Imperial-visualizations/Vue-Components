@@ -18,14 +18,9 @@
 </template>
 
 <script>
-
 import Button from "../../components/Button";
 import windowModal from "../WindowComp";
-
-import Vue from 'vue';
-const guidanceBus = new Vue();
-export {guidanceBus};
-
+import guidanceBus from "buses/guidanceBus"
 export default {
     name:"iv-guidance-modal",
     components:{

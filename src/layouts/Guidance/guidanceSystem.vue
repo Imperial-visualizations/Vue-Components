@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {guidanceBus} from "../Guidance/guidanceModal.vue";
+import guidanceBus from 'buses/guidanceBus.js';
 //:guidance_branches_list="guidance_branches_list" :guidance_texts_list="guidance_texts_list" :guidance_item="guidance_item"
 export default {
     name:"iv-guidance-system",

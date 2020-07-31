@@ -15,7 +15,7 @@
     </div>
 </template>
 <script>
-import {guidanceBus} from "../Guidance/guidanceModal.vue";
+import guidanceBus from "buses/guidanceBus.js";
 import Hotspotable from 'mixins/Hotspotable.js';
 import LTMode from "mixins/LTMode.js";
 export default {

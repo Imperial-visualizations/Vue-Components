@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {guidanceBus} from "../Guidance/guidanceModal.vue";
+import guidanceBus from "buses/guidanceBus.js"
 import Logo from "assets/ImpVis-logo-white.svg"
 import LTMode from "mixins/LTMode.js"
 export default {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {guidanceBus} from "../../layouts/Guidance/guidanceModal.vue"
+import guidanceBus from "buses/guidanceBus.js"
 
 export default {
     name: "iv-guidance-button",
