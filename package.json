@@ -8,7 +8,7 @@
     "play": "vue-cli-service serve ./play/main.js",
     "serve": "vue-cli-service serve",
     "build": "rollup -c",
-    "build:watch":"rollup -cw",
+    "build:watch": "rollup -cw",
     "lint": "vue-cli-service lint",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",

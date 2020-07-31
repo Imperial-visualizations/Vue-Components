@@ -16,7 +16,6 @@
 </template>
 <script>
 import {guidanceBus} from "../Guidance/guidanceModal.vue";
-import Hotspotable from '../Hotspotables/Hotspotable.js';
 import Hotspotable from 'mixins/Hotspotable.js';
 import LTMode from "mixins/LTMode.js";
 export default {
