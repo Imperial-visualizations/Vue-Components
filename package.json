@@ -8,7 +8,7 @@
     "play": "vue-cli-service serve ./play/main.js",
     "serve": "vue-cli-service serve",
     "build": "rollup -c",
-    "build:watch":"rollup -cw",
+    "build:watch": "rollup -cw",
     "lint": "vue-cli-service lint",
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
@@ -42,6 +42,7 @@
     "rollup-plugin-css-porter": "^1.0.2",
     "rollup-plugin-includepaths": "^0.2.3",
     "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-vue": "^5.1.9",
     "vue-template-compiler": "^2.6.11"
   },
