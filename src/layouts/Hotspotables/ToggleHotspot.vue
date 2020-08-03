@@ -48,6 +48,8 @@ export default {
                     case 'top':
                     case 'bottom':
                         return {'width':`${this.size}px`,'flex':'0 0 auto'}
+                    default:
+                        return {}
                 }
             }else{
                 return {}
