@@ -1,6 +1,6 @@
 <template>
     <nav class="banner" :class="theme" id="ivTitleBar">
-      <button class="guidanceButton" @click="handleGuidanceClick">?</button>
+      <!-- <button class="guidanceButton" @click="handleGuidanceClick">?</button> -->
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" :src="logo">
         </a>

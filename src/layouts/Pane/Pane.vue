@@ -1,13 +1,13 @@
 <template>
     <div class="iv-pane-wrapper" :style="widthObj" :class="ivPaneClass">
         <div class="iv-pane"  v-show=showPane>
-            <div class="iv-drag-selector" :class="positionalClass('iv-drag-selector')" @mousedown="mouseDown"  ></div>
-            <div class="iv-pane-content" :class="positionalClass('iv-pane')">
-                <slot>Default pane</slot>
+            <div class="iv-drag-selector" :class="[positionalClass('iv-drag-selector')]" @mousedown="mouseDown"  ></div>
+            <div class="iv-pane-content" :class="[positionalClass('iv-pane')]">
+                <slot :toggle="togglePos" :position="position_">Default pane</slot>
             </div>
 
         </div>
-        <button class="iv-pane-button" :class="positionalClass('iv-pane-button')" @click="showPane = !showPane" :style="buttonLeft"> 
+        <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" @click="showPane = !showPane" :style="buttonLeft"> 
                   <img v-if="pointLeft" class="navImage"  src="./assets/right.svg" />
                 <img v-else class="navImage"  src="./assets/left.svg" />
 
@@ -40,7 +40,7 @@ export default {
         }
     },
     created(){
-        this.$parent.reservedSlots.push(this.position);
+        this.large = true;
         guidanceBus.$on("show-component",function(guidanceIdentifier){
             console.log("show", guidanceIdentifier,this.$el.id )
             if(this.$el.id == guidanceIdentifier){
@@ -55,12 +55,6 @@ export default {
             //}
         }.bind(this));
         this.showPane = this.mode === 'learn';
-    },
-    destroyed(){
-        if(this.$parent.reservedSlots.indexOf(this.position) !== -1){
-            this.$parent.reservedSlots.splice(this.$parent.reservedSlots.indexOf(this.position),1)
-        }
-        
     },
     data(){
         return{
@@ -77,12 +71,12 @@ export default {
             return {width:`${ this.showPane? this.widthPx:0}px`};
         },
         pointLeft(){
-            return !(this.showPane ^ this.position == "left");
+            return !(this.showPane ^ this.position_ == "left");
         },
         buttonLeft(){
-            if(this.position == "left"){
+            if(this.position_ == "left"){
                 return {'left':  this.showPane ? `${this.widthPx}px` : 0}
-            } else if(this.position == "right"){
+            } else if(this.position_ == "right"){
                 return {'right':  this.showPane ? `${this.widthPx}px` : '0%'}
             }else{
                 throw Error("Pane may only have position left or position right");
@@ -90,16 +84,18 @@ export default {
         },
         ivPaneClass(){
             if (this.format === 'overlay'){
-               let arr = this.positionalClass('iv-pane-wrapper');
-               arr.push('iv-pane-overlay',`iv-pane-overlay-${this.position}`)
-               return arr
+               return [this.positionalClass('iv-pane-wrapper'),'iv-pane-overlay',`iv-pane-overlay-${this.position_}`]
             }
-            return this.positionalClass('iv-pane-wrapper')
-        }
+            return [this.positionalClass('iv-pane-wrapper')]
+        },
     },
     methods:{
-        positionalClass(base){
-            return [`${base}-${this.position}`]
+        togglePos(){
+            if(this.position_ == 'left'){
+                this.setPosition('right')
+            }else{
+                this.setPosition('left')
+            }
         },
         mouseDown(e){
             this.resizer.adjusting=true;
@@ -116,12 +112,12 @@ export default {
         },
         resize(e){
             if(this.resizer.adjusting){
-                let deltaX = (e.pageX - this.resizer.initPageX) * ((this.position == "left")? 1:-1);
+                let deltaX = (e.pageX - this.resizer.initPageX) * ((this.position_ == "left")? 1:-1);
                 this.widthPx += deltaX;
                 this.resizer.initPageX = e.pageX;
             }   
         }
-    },
+    }
 }
 </script>
 <style lang="scss">
