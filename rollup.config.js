@@ -4,7 +4,7 @@ import scss from 'rollup-plugin-scss';
 import image from '@rollup/plugin-image';
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
-import eslint from "@rbnlffl/rollup-plugin-eslint"
+import eslint from "@rbnlffl/rollup-plugin-eslint";
 
 const external = [
     'vue',
@@ -28,7 +28,7 @@ export default [{
     external: external,
     output: {
         format: 'esm',
-        dir: 'dist'
+        file:"./dist/impvis-components.js"
     },
     plugins:pluginConfig,
 },
