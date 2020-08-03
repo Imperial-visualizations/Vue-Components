@@ -29,7 +29,7 @@ export default {
             return (large && this.childCount > 0 )? false : !this.isLarge;
         },
         addComponent(instance,isLarge){
-            if(this.isLarge ) throw Error("Component already contains large element")
+            if(this.isLarge ) throw Error("Hotspotable unable to be positioned. Please check iv-overflow to find the unpostionable element")
             if(isLarge){
                 this.childCount = 1
                 this.isLarge = true;
@@ -38,6 +38,7 @@ export default {
                 this.childCount++
                 this.$el.appendChild(instance)
             }
+
             
         },
         removeComponent(){ 
@@ -68,64 +69,75 @@ export default {
 .iv-hotspot-edge{
     display:flex;
     z-index:$hotspotZLevel;
-    justify-content: space-between;
+    justify-content: space-around;
+
 }
-/* .iv-hotspot-top,.iv-hotspot-bottom > *{
-    margin: 0 auto;
-}
-.iv-hotspot-left,.iv-hotspot-right > *{
-    margin: auto 0;
-} */
+
 .iv-hotspot-left{
     flex-direction: column;
     grid-area:left;
     align-items:flex-start;
+    > * {
+        margin: $hotspotItemMargin 0;
+    }
 }
 .iv-hotspot-right{
     flex-direction:column;
     grid-area:right;
     align-items: flex-end;
+     > * {
+        margin: $hotspotItemMargin 0;
+    }
 }
 .iv-hotspot-top{
     flex-direction:row;
     grid-area:top;
     align-items:flex-start;
+     > * {
+        margin: 0 $hotspotItemMargin ;
+    }
 }
 .iv-hotspot-bottom{
     flex-direction:row;
     grid-area:bottom;
     align-items:flex-end;
+     > * {
+        margin: 0 $hotspotItemMargin ;
+    }
 }
 .iv-hotspot-topleft{
     grid-area:topleft;
+    > *{
+        float:left;
+    }
 }
 .iv-hotspot-topright{
     justify-content: flex-end;
     grid-area:topright;
+    > *{
+        float:right;
+    }
 }
 .iv-hotspot-bottomleft{
     flex-direction: column;
     justify-content: flex-end;
     grid-area:bottomleft;
+     > *{
+        float:left;
+    }
 }
 .iv-hotspot-bottomright{
     justify-content: flex-end;
     align-items: flex-end;
     grid-area:bottomright;
+    > *{
+        float:right;
+    }
 }
-.iv-hotspot-topright > *{
-    float:right;
-}
-.iv-hotspot-bottomright > *{
-    float:right;
-}
-.iv-hotspot-topleft > *{
-    float:left;
-}
-.iv-hotspot-bottomleft > *{
-    float:left;
-}
+
+
 .iv-hotspotable{
     pointer-events: auto;
+    flex:1 1 auto;
 }
 </style>

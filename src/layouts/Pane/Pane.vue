@@ -30,7 +30,7 @@ export default {
         format:{
             type:String,
             required:false,
-            default:'overlay',
+            default:'push',
             validator: (value) => ['push','full','overlay'].indexOf(value) > -1
         },
         opacity:{ //Be aware that this might break Dan's stuff.

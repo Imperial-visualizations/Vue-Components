@@ -1,9 +1,9 @@
 <template>
-    <div class="iv-hotspotable iv-toggle-hotspot" :class=toggleClass>
-        <div v-if="showHotspot" class="hotspot-content" :class="[positionalClass('iv')]">
+    <div class="iv-hotspotable iv-toggle-hotspot" :class=toggleClass :style="toggleSize">
+        <div v-if="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
             <slot> DEFAULT SLOT CONTENT. Position:{{position_}} </slot>
         </div>
-        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot"></div>
+        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot">{{title}}</div>
     </div>
 </template>
 <script>
@@ -12,14 +12,18 @@ export default {
     name:"iv-toggle-hotspot",
     mixins:[Hotspotable],
     props:{
-        show:{
+        show:{ //If on edge set size to this
             type:Boolean,
             default:true
         },
-        label:{
+        title:{ 
             type:String,
             required:false,
             default:""
+        },
+        noWastedSpace:{
+            type:Boolean,
+            default:false
         }
     },
     data(){
@@ -33,6 +37,20 @@ export default {
                 return [this.positionalClass('iv-toggled')]
             }else{
                 return []
+            }
+        },
+        toggleSize(){
+            if(this.spotType === 'edge' && this.size > 0){
+                switch(this.position_){
+                    case 'left':
+                    case 'right':
+                        return {'height':`${this.size}px`,'flex':'0 0 auto'}
+                    case 'top':
+                    case 'bottom':
+                        return {'width':`${this.size}px`,'flex':'0 0 auto'}
+                }
+            }else{
+                return {}
             }
         }
     }
@@ -64,12 +82,31 @@ $curvatureRadius:20px;
             transform: translate(-100%,-100%);
         }
     }
+    &.iv-toggled-topleft{
+        width:0;
+        height:0;
+        >.iv-hotspot-button{
+            transform: translateX(0%)
+        }
+    }
+    &.iv-toggled-topright{
+        width:0;
+        height:0;
+        >.iv-hotspot-button{
+            transform: translateX(-100%);
+        }
+    }
 }
 .hotspot-content{
     width:100%;
     height:100%;
     background-color: red;
     word-wrap: break-word;
+    display:flex;
+    &.no-wasted-space{
+        width:auto;
+        height:auto;
+    }
     &.iv-bottomleft{
         border-radius: 0 $curvatureRadius 0 0;
     }
@@ -85,14 +122,41 @@ $curvatureRadius:20px;
         box-sizing: border-box;
         border-radius: 0 0 0 $curvatureRadius;
     }
-
-    
-
+    &.iv-topleft{
+        padding-right:$curvatureRadius;
+        padding-bottom: $curvatureRadius;
+        box-sizing: border-box;
+        border-radius: 0 0 $curvatureRadius 0;
+    }
+    &.iv-top{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    &.iv-bottom{
+        flex-direction: column-reverse;
+        justify-content:flex-start;
+        align-items:center;
+    }
+    &.iv-left{
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items:center;
+    }
+    &.iv-right{
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        align-items:center;
+    }
 }
 .iv-hotspot-button{
     margin: 0px;
-    width: 20px;
-    height:20px;
+    min-width: 20px;
+    min-height:20px;
+    box-sizing: border-box;
+    padding: 5px 15px;
+    color:white;
+    font-weight: bold;
     background-color: blue; 
     position:absolute;
     &.iv-left{
@@ -130,6 +194,8 @@ $curvatureRadius:20px;
     }
     &.iv-topleft{
         border-radius: 0 0 $curvatureRadius 0;
+        left:100%;
+        transform:translate(-100%,-100%);
     }
     &.iv-topright{
         transform:translateY(-100%);

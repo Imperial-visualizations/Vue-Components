@@ -28,7 +28,6 @@ export default{
         },
         setPosition(newPosition){
             if(this.checkElement(newPosition,this.large)){
-                console.log("HE")
                 this.getElement(newPosition).addComponent(this.$el,this.large)
                 this.getElement(this.position_).removeComponent()
                 this.position_ = newPosition
@@ -41,6 +40,9 @@ export default{
     computed:{
         edgeClass(){
             return `${(['left','right','top','bottom'].indexOf(this.position_) > -1)? 'iv-edge':'iv-corner'}`
+        },
+        spotType(){
+            return `${(['left','right','top','bottom'].indexOf(this.position_) > -1)? 'edge':'corner'}`
         }
     }
 }
