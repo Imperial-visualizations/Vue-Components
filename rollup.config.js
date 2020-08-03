@@ -30,16 +30,7 @@ export default [{
         format: 'esm',
         dir: 'dist'
     },
-    plugins:pluginConfig
-},
-{
-    input:'src/main.js',
-    external: external,
-    output: {
-        format: 'cjs',
-        file:'./dist/impvis-components.common.js'
-    },
-    plugins:pluginConfig
+    plugins:pluginConfig,
 },
 {
     input:'src/main.js',
