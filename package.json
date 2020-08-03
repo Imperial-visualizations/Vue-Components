@@ -2,7 +2,7 @@
   "name": "@impvis/components",
   "version": "0.11.1",
   "license": "BSD-3-Clause",
-  "main": "./dist/main.js",
+  "main": "./dist/impvis-components.js",
   "unpkg": "./dist/impvis-components.umd.js",
   "scripts": {
     "play": "vue-cli-service serve ./play/main.js",
@@ -19,7 +19,6 @@
     "component-fixture": "^1.14.0",
     "core-js": "^3.6.5",
     "katex": "^0.11.1",
-    "rollup-plugin-scss": "^2.5.0",
     "save": "^2.4.0",
     "vue-resize": "^0.5.0"
   },
@@ -33,6 +32,7 @@
     "@rollup/plugin-node-resolve": "^8.1.0",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
+    "rollup-plugin-scss": "^2.5.0",
     "@vue/cli-service": "~4.4.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",

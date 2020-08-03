@@ -1,2 +1,2 @@
-import Hotspot from './Hotspot.js'
+import Hotspot from './Hotspot.vue'
 export default Hotspot;

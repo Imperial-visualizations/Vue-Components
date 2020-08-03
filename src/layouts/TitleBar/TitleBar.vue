@@ -1,5 +1,6 @@
 <template>
-    <nav class="banner" :class="theme">
+    <nav class="banner" :class="theme" id="ivTitleBar">
+      <!-- <button class="guidanceButton" @click="handleGuidanceClick">?</button> -->
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" :src="logo">
         </a>
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+import guidanceBus from "buses/guidanceBus.js"
 import Logo from "assets/ImpVis-logo-white.svg"
 import LTMode from "mixins/LTMode.js"
 export default {
@@ -37,6 +39,9 @@ export default {
           } else{
             open(this.buttonLink, "_self");
           }
+        },
+        handleGuidanceClick(){
+          guidanceBus.$emit("open-main-guidance");
         }
     },
     computed:{
@@ -105,6 +110,10 @@ export default {
   height: 1.25rem;
   width:auto;
   margin: 0.125rem 0.5rem;
+}
+
+.guidanceButton{
+  z-index:20
 }
 
 </style>
