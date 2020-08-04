@@ -32,7 +32,9 @@ export default [{
         format: 'esm',
         file:"./dist/impvis-components.js"
     },
+
     plugins:pluginConfig,
+
 },
 {
     input:'src/main.js',
