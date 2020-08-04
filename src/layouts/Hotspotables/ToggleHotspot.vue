@@ -59,11 +59,16 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "src/globals.scss";
 $curvatureRadius:20px;
+
 .iv-toggle-hotspot{
     position:relative;
     width:100%;
     height:100%;
+    >.iv-hello{
+        width:100px; 
+    }
     &.iv-toggled-left,&.iv-toggled-right{
         width:0;
     }
