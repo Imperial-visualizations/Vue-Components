@@ -1,3 +1,16 @@
+/*
+    ____              _    ___     
+   /  _/___ ___  ____| |  / (_)____
+   / // __ `__ \/ __ \ | / / / ___/
+ _/ // / / / / / /_/ / |/ / (__  ) 
+/___/_/ /_/ /_/ .___/|___/_/____/  
+             /_/                  
+    
+    CSS Stylesheet. Licensed under the BSD 3-Clause License.
+    This file is created automatically, do not edit directly!
+    © 2020, Imperial College London 
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 * {
     font-family: "Fira Sans",Arial, Helvetica, sans-serif;
