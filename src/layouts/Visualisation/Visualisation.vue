@@ -6,7 +6,7 @@
                     <hotspot v-for="hotspot in hotspots" :key=hotspot :ref="hotspot" :position="hotspot"/>
                  </div>          
                 <resize-observer @notify="updateDims"/>
-                <slot>INSERT CONTENT HERE </slot>
+                <slot name="main-stage" />
             </div>
         </div>
         <div class="iv-overflow"> 

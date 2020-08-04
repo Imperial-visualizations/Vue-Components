@@ -1,7 +1,7 @@
 <template>
     <div class="iv-hotspotable iv-toggle-hotspot" :class=toggleClass :style="toggleSize">
         <div v-if="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
-            <slot> DEFAULT SLOT CONTENT. Position:{{position_}} </slot>
+            <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}} </slot>
         </div>
         <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot">{{title}}</div>
     </div>
