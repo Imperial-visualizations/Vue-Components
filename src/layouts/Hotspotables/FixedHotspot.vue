@@ -1,6 +1,8 @@
 <template>
-    <div class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
-        <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
+    <div class="iv-hotspotable iv-fixed-hotspot">
+        <div class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
+            <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
+        </div>
     </div>
 </template>
 <script>
@@ -18,6 +20,11 @@ export default {
 </script>
 <style lang="scss">
 @import "src/globals.scss";
+.iv-fixed-hotspot{
+    position:relative;
+    width:100%;
+    height:100%;
+}
 .hotspot-content{
     //border: 2px solid black;
     width:100%;

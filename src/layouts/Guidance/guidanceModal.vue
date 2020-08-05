@@ -76,17 +76,21 @@ export default {
     },
     mounted(){
         guidanceBus.$emit("show-component", this.guidanceInput.highlightDiv);
-        document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 220;
+        console.log("before", document.getElementById(this.guidanceInput.highlightDiv).style.zIndex, "brus", this.guidanceInput.highlightDiv,  document.getElementById(this.guidanceInput.highlightDiv) );
+        document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 900;
+        console.log("after", document.getElementById(this.guidanceInput.highlightDiv).style.zIndex   );
         document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
     },
     watch:{
         guidanceInput:function(){
             guidanceBus.$emit("show-component", this.guidanceInput.highlightDiv);
-            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 220;
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 900;
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
         }
     }
 }
 </script>
-<style>
+
+<style lang="scss">
+@import "src/globals.scss";
 </style>

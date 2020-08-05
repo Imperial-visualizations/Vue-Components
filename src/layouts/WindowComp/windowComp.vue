@@ -47,10 +47,11 @@ export default {
     },
 }
 </script>
-<style>
 
+<style lang="scss">
+@import "src/globals.scss";
 .modal-backdrop {
-  z-index: 150;
+  z-index: $middleZLevel;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -60,14 +61,14 @@ export default {
 }
 
 .modal-grid{
-  z-index: 230;
+  z-index: $highZLevel;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
 }
 .modalContainer{
-  z-index: 250;
+  z-index: $topZLevel;
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   border:2px solid black;
