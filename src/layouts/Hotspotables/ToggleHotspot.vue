@@ -1,9 +1,9 @@
 <template>
     <div class="iv-hotspotable iv-toggle-hotspot" :class=toggleClass :style="toggleSize">
-        <div v-if="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
-            <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}} </slot>
+        <div v-show="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
+            <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
         </div>
-        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot">{{title}}</div>
+        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot"><div class = "title-text">{{title}}</div></div>
     </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ export default {
     props:{
         show:{ //If on edge set size to this
             type:Boolean,
-            default:true
+            default:false
         },
         title:{ 
             type:String,
@@ -54,23 +54,36 @@ export default {
             }else{
                 return {}
             }
-        }
+        },
     }
 }
 </script>
 <style lang="scss">
 @import "src/globals.scss";
-$curvatureRadius:20px;
 
 .iv-toggle-hotspot{
     position:relative;
     width:100%;
     height:100%;
-    >.iv-hello{
-        width:100px; 
-    }
-    &.iv-toggled-left,&.iv-toggled-right{
+    &.iv-toggled-left{
         width:0;
+        >.iv-hotspot-button{
+            left:0;
+            >.title-text{
+                top: 50%;
+                transform:  translateX(-50%) translateY(-50%) rotate(90deg);
+            }
+        }
+    }
+    &.iv-toggled-right{
+        width:0;
+        >.iv-hotspot-button{
+            right:0;
+            >.title-text{
+                top: 50%;
+                transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+            }
+        }
     }
     &.iv-toggled-top,&.iv-toggled-bottom{
         height:0;
@@ -79,35 +92,44 @@ $curvatureRadius:20px;
         width:0;
         height:0;
         >.iv-hotspot-button{
+            left:0;
+            border-radius: 0 $curvatureRadius 0 0;
             transform: translateY(-100%);
         }
     }
     &.iv-toggled-bottomright{
-        width:0;
+        width: 0;
         height:0;
         >.iv-hotspot-button{
-            transform: translate(-100%,-100%);
+            right:0;
+            border-radius: $curvatureRadius 0 0 0;
+            transform: translate(0,-100%);
         }
     }
     &.iv-toggled-topleft{
         width:0;
         height:0;
         >.iv-hotspot-button{
-            transform: translateX(0%)
+            border-radius: 0 0 $curvatureRadius 0;
+            left:0;
+            transform: translateY(100%);
         }
     }
     &.iv-toggled-topright{
         width:0;
         height:0;
         >.iv-hotspot-button{
-            transform: translateX(-100%);
+            border-radius: 0 0 0 $curvatureRadius;
+            right:0;
+            transform: translateY(100%);
         }
     }
 }
 .hotspot-content{
+    //border: 2px solid black;
     width:100%;
     height:100%;
-    background-color: red;
+    background-color:white;
     word-wrap: break-word;
     display:flex;
     &.no-wasted-space{
@@ -115,99 +137,139 @@ $curvatureRadius:20px;
         height:auto;
     }
     &.iv-bottomleft{
-        border-radius: 0 $curvatureRadius 0 0;
+        box-shadow: $hotspotShadow $hotspotShadow black;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 1px -1px 5px 0px;
     }
     &.iv-bottomright{
-        border-radius: $curvatureRadius 0 0 0;
-        padding-left:$curvatureRadius;
-        padding-top:$curvatureRadius;
+        box-shadow: -$hotspotShadow $hotspotShadow black;
         box-sizing: border-box;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: -1px -1px 5px 0px;
     }
     &.iv-topright{
-        padding-left:$curvatureRadius;
-        padding-bottom: $curvatureRadius;
+        box-shadow: -$hotspotShadow -$hotspotShadow black;
         box-sizing: border-box;
-        border-radius: 0 0 0 $curvatureRadius;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: -1px 1px 5px 0px;
     }
     &.iv-topleft{
-        padding-right:$curvatureRadius;
-        padding-bottom: $curvatureRadius;
+        box-shadow: $hotspotShadow -$hotspotShadow black;
         box-sizing: border-box;
-        border-radius: 0 0 $curvatureRadius 0;
-    }
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 1px 1px 5px 0px;
+    } 
     &.iv-top{
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
+        box-shadow: 1px 1px 5px 0px;
     }
     &.iv-bottom{
         flex-direction: column-reverse;
         justify-content:flex-start;
         align-items:center;
+        box-shadow: 1px -1px 5px 0px;
     }
     &.iv-left{
         flex-direction: row;
         justify-content: flex-start;
         align-items:center;
+        box-shadow: 1px 1px 5px 0px;
     }
     &.iv-right{
         flex-direction: row-reverse;
         justify-content: flex-start;
         align-items:center;
+        box-shadow: -1px 1px 5px 0px;
     }
 }
 .iv-hotspot-button{
-    margin: 0px;
-    min-width: 20px;
-    min-height:20px;
-    box-sizing: border-box;
-    padding: 5px 15px;
-    color:white;
-    font-weight: bold;
-    background-color: blue; 
     position:absolute;
+    margin: 0px;
+    //min-width: 20px;
+    //min-height: 20px;
+    box-sizing: border-box;
+    font-weight: bold;
+    background-color: $hospotButtonColour;
+    color: white;
+    z-index: 1;
+
     &.iv-left{
         border-radius: 0 $curvatureRadius $curvatureRadius 0;
-        top: calc(50%);
-        transform:translateY(-50%);
+        top: 50%;
+        transform: translateY(-50%);
         left:100%;
+        height: 50%;
+        width: $hotpotTextHeight;
+        >.title-text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+            transform:  translateX(-50%) translateY(-50%) rotate(90deg);
+        }
     }
     &.iv-right{
-        top: 50%;
-        transform:translate(-100%,-50%);
         border-radius: $curvatureRadius 0 0 $curvatureRadius;
+        top: 50%;
+        transform: translateY(-50%);
+        right:100%;
+        height: 50%;
+        width: $hotpotTextHeight;
+        >.title-text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+            transform:  translateX(-50%) translateY(-50%) rotate(-90deg);
+        }
     }
     &.iv-top{
-        left:50%;
+        width: 25%;
         transform:translateX(-50%);
+        left:50%;
         border-radius: 0 0 $curvatureRadius $curvatureRadius;
     }
     &.iv-bottom{
         left: 50%;
+        width: 25%;
         top: 0;
-        transform:translate(50%,-100%);
+        transform:translate(-50%,-100%);
         border-radius: $curvatureRadius $curvatureRadius 0 0;
     }
     &.iv-bottomleft{
         top:0;
-        left:100%;
-        transform:translateX(-100%);
-        border-radius: 0 $curvatureRadius 0 0;
+        right:0;
+        border-radius: 0 0 0 $curvatureRadius;
+        width: 75%;
     }
     &.iv-bottomright{
         top:0;
         left:0;
-        border-radius: $curvatureRadius 0 0 0;
+        border-radius: 0 0 $curvatureRadius 0;
+        width: 75%;
     }
     &.iv-topleft{
-        border-radius: 0 0 $curvatureRadius 0;
-        left:100%;
-        transform:translate(-100%,-100%);
+        bottom:0;
+        right:0;
+        border-radius: $curvatureRadius 0 0 0;
+        width: 75%;
     }
     &.iv-topright{
-        transform:translateY(-100%);
-        border-radius: 0 0 0 $curvatureRadius;
+        bottom:0;
+        left:0;
+        border-radius: 0 $curvatureRadius 0  0;
+        width: 75%;
     }
-
 }
 </style>

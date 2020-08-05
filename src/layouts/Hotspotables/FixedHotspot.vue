@@ -1,23 +1,90 @@
 <template>
-    <div class="iv-hotspotable iv-fixed-hotspot" :class="[edgeClass]"> 
-       <slot />
+    <div class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
+        <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
     </div>
 </template>
 <script>
-import Hotspotable from 'mixins/Hotspotable.js'
+import Hotspotable from "mixins/Hotspotable"
 export default {
-    name:'iv-fixed-hotspot',
-    mixins:[Hotspotable]
+    name:"iv-fixed-hotspot",
+    mixins:[Hotspotable],
+    props:{
+        noWastedSpace:{
+            type:Boolean,
+            default:false
+        }
+    },
 }
 </script>
 <style lang="scss">
-.iv-fixed-hotspot{
-    flex: 1 1 auto;
-    &.iv-edge{
-
+@import "src/globals.scss";
+.hotspot-content{
+    //border: 2px solid black;
+    width:100%;
+    height:100%;
+    background-color:white;
+    word-wrap: break-word;
+    display:flex;
+    &.no-wasted-space{
+        width:auto;
+        height:auto;
     }
-    &.iv-corner{
-        
+    &.iv-bottomleft{
+        box-shadow: $hotspotShadow $hotspotShadow black;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 1px -1px 5px 0px;
+    }
+    &.iv-bottomright{
+        box-shadow: -$hotspotShadow $hotspotShadow black;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: -1px -1px 5px 0px;
+    }
+    &.iv-topright{
+        box-shadow: -$hotspotShadow -$hotspotShadow black;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: -1px 1px 5px 0px;
+    }
+    &.iv-topleft{
+        box-shadow: $hotspotShadow -$hotspotShadow black;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 1px 1px 5px 0px;
+    } 
+    &.iv-top{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 1px 1px 5px 0px;
+    }
+    &.iv-bottom{
+        flex-direction: column-reverse;
+        justify-content:flex-start;
+        align-items:center;
+        box-shadow: 1px -1px 5px 0px;
+    }
+    &.iv-left{
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items:center;
+        box-shadow: 1px 1px 5px 0px;
+    }
+    &.iv-right{
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        align-items:center;
+        box-shadow: -1px 1px 5px 0px;
     }
 }
+
 </style>

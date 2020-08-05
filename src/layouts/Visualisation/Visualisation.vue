@@ -86,7 +86,7 @@ export default {
 .iv-visualisation {
     margin-top:$titleBarHeight;
     height:calc(100vh - #{$titleBarHeight});
-
+    //height:100%;
 }
 
 .iv-visualisation-flow{
