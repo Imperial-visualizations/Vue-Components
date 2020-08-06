@@ -23,3 +23,9 @@ $hospotButtonColour: rgb(255,144,28);
 $curvatureRadius: 20px;
 $hotspotShadow: 5px;
 $hotpotTextHeight: 1.25rem;
+
+:exports{
+    imperialBlue:$primaryImperialBlue;
+    secondaryGreen:$secondaryGreen;
+    secondaryOrange:$hotspotButtonColor;
+}
