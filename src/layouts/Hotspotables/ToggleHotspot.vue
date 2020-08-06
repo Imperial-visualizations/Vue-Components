@@ -103,7 +103,7 @@ export default {
         >.iv-hotspot-button{
             right:0;
             border-radius: $curvatureRadius 0 0 0;
-            transform: translate(0,-100%);
+            transform: translate(33.333333333%,-100%);
         }
     }
     &.iv-toggled-topleft{
@@ -121,7 +121,7 @@ export default {
         >.iv-hotspot-button{
             border-radius: 0 0 0 $curvatureRadius;
             right:0;
-            transform: translateY(100%);
+            transform: translateY(33.333333333%,100%);
         }
     }
 }
@@ -194,11 +194,11 @@ export default {
     }
 }
 .iv-hotspot-button{
+    text-align: center;
     position:absolute;
     margin: 0px;
     //min-width: 20px;
     //min-height: 20px;
-
     box-sizing: border-box;
     font-weight: bold;
     background-color: $hotspotButtonColor;
