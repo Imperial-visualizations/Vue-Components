@@ -175,7 +175,7 @@ export default {
     position: absolute;
     top:50%;
     transform: translateY(-50%);
-    background-color: $hospotButtonColour;
+    background-color: $hotspotButtonColor;
     border-radius: 0 40px 40px 0;
     border:none;
     //box-shadow: 1px 1px 5px 0px;
@@ -187,7 +187,7 @@ export default {
     position: absolute;
     top:50%;
     transform: translateY(-50%);
-    background-color: $hospotButtonColour;
+    background-color: $hotspotButtonColor;
     border-radius: 40px 0  0 40px;
     border:none;
     //box-shadow: 1px 1px 5px 0px;

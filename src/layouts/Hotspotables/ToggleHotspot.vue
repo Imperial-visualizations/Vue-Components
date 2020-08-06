@@ -201,7 +201,7 @@ export default {
 
     box-sizing: border-box;
     font-weight: bold;
-    background-color: $hospotButtonColour;
+    background-color: $hotspotButtonColor;
     color: white;
     z-index: 1; 
     &.iv-left,&.iv-right{
