@@ -32,8 +32,12 @@ export default {
             default: () => ['left','right','top','bottom']
         },
         hotspotColumnWidth:{
-            type:Number,
-            default:250
+            type:String,
+            default:"250px"
+        },
+        hotspotColumnHeight:{
+            type:String,
+            default:"250px"
         }
     },
     data(){
@@ -51,8 +55,8 @@ export default {
     computed:{
         gridStyle(){
             return {
-                'grid-template-columns': `${this.hotspotColumnWidth}px 1fr ${this.hotspotColumnWidth}px`,
-                'grid-template-rows': `1fr 1fr 1fr`
+                'grid-template-columns': `${this.hotspotColumnWidth} 1fr ${this.hotspotColumnWidth}`,
+                'grid-template-rows': `${this.hotspotColumnHeight} 1fr ${this.hotspotColumnHeight}`
             }
         },
         showSpots(){
