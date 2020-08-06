@@ -32,9 +32,7 @@ export default [{
         format: 'esm',
         file:"./dist/impvis-components.js"
     },
-
     plugins:pluginConfig,
-
 },
 {
     input:'src/main.js',
@@ -42,8 +40,10 @@ export default [{
     output:{
         format:'umd',
         file:'./dist/impvis-components.umd.js',
-        name:"ImpVis"
+        name:"ImpVis",
+        globals:{
+                vue:"Vue"
+        }
     },
     plugins:pluginConfig
-}
-]
+}]
