@@ -72,36 +72,37 @@ export default {
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   border:2px solid black;
-  background-color: burlywood;
+  background-color: white;
   overflow-x: auto;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
 }
 
 .modal-header,
 .modal-footer {
+  position: relative;
   padding: 15px;
-  display: flex;
+  width: 100%
 }
 
 .modal-header {
   border-bottom: 1px solid #eeeeee;
   color: #003e74;
-  justify-content: space-between;
 }
 
 .modal-footer {
   border-top: 1px solid #eeeeee;
-  justify-content: flex-end;
 }
 
 .modal-body {
   position: relative;
   padding: 20px 10px;
+  width: 100%
 }
 
 </style>

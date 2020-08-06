@@ -104,35 +104,22 @@ export default {
 	justify-content: flex-start;	
     align-items: flex-start;	
     grid-area: topleft;
-    > *{
-        float:left;
-    }
 }
 .iv-hotspot-topright{
     justify-content: flex-end;	
     align-items: flex-start;	
     grid-area:topright;
-    > *{
-        float:right;
-    }
 }
 .iv-hotspot-bottomleft{
 	justify-content: flex-start;	
     grid-area:bottomleft;	
     align-items: flex-end;
-     > *{
-        float:left;
-    }
 }
 .iv-hotspot-bottomright{
     justify-content: flex-end;
     align-items: flex-end;
     grid-area:bottomright;
-    > *{
-        float:right;
-    }
 }
-
 
 .iv-hotspotable{
     pointer-events: auto;

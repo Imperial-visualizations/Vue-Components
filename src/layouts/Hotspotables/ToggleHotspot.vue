@@ -3,7 +3,7 @@
         <div v-show="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
             <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
         </div>
-        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot"><div class = "title-text">{{title}}</div></div>
+        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot"><span v-if="title !== ''" class = "title-text">{{title}}</span></div>
     </div>
 </template>
 <script>
@@ -198,11 +198,20 @@ export default {
     margin: 0px;
     //min-width: 20px;
     //min-height: 20px;
+
     box-sizing: border-box;
     font-weight: bold;
     background-color: $hospotButtonColour;
     color: white;
-    z-index: 1;
+    z-index: 1; 
+    &.iv-left,&.iv-right{
+        min-height: $minButtonWidth;
+        min-width: $minButtonHeight;
+    }
+    &.iv-topleft,&.iv-top,&.iv-top-right,&.iv-bottomright,&.iv-bottom,&.iv-bottomright{
+        min-width: $minButtonWidth;
+        min-height: $minButtonHeight;
+    }
 
     &.iv-left{
         border-radius: 0 $curvatureRadius $curvatureRadius 0;

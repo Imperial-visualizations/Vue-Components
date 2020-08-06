@@ -2,11 +2,11 @@
     <div>
         <iv-modal :positionModal="positionData">
             <template #header>
-                <iv-button @click="closeWindow" class="close-button" >X</iv-button>
+                <button @click="closeWindow" class="close-button modal-button" >X</button>
             </template>
             <template>
                 <div class ="branchList">
-                    <iv-button v-for=" branch in guidanceInput" :key="branch.title" @click="handleBranch(branch.branch_data)" >{{branch.title}}</iv-button>
+                    <button class="modal-button" v-for=" branch in guidanceInput" :key="branch.title" @click="handleBranch(branch.branch_data)" >{{branch.title}}</button>
                 </div>
             </template>
         </iv-modal>
@@ -42,12 +42,29 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="scss">
+@import "src/globals.scss";
 .branchList{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    width: 100%
+}
+.close-button{
+    position: relative;
+    right: 10px;
+}
+.modal-button{
+    position: relative;
+    color: white;
+    background-color: $secondaryGreen;
+    box-shadow: 1px 1px 5px 0px;
+    //border:1px solid black;
+    outline: none;
+    //height: 3rem;
+    width: 40%;
+    padding:10px 5px 10px 5px
 }
 
 </style>

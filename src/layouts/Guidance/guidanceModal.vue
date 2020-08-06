@@ -2,30 +2,28 @@
     <div>
         <iv-modal :positionModal="guidanceInput.positionModal" >
             <template #header style="positon:relative" >
-                <iv-button v-if="homeButton" @click="goHome" class="home-button" >Home</iv-button>
+                <button v-if="homeButton" @click="goHome" class="home-button modal-button" >Home</button>
                 <div>{{guidanceHeaderText}}</div>
-                <iv-button @click="closeWindow" class="close-button" >X</iv-button>
+                <button @click="closeWindow" class="close-button modal-button" >X</button>
             </template>
             <template>
                 <div>{{guidanceInput.text}}</div>
             </template>
             <template #footer>
-                <iv-button v-if="prevButton" @click="prevGuidance">PREV</iv-button>
-                <iv-button v-if="nextButton" @click="nextGuidance">NEXT</iv-button>
+                <button v-if="prevButton" @click="prevGuidance" class="modal-button">PREV</button>
+                <button v-if="nextButton" @click="nextGuidance" class="modal-button">NEXT</button>
             </template>
         </iv-modal>
     </div>
 </template>
 
 <script>
-import Button from "../../components/Button";
 import windowModal from "../WindowComp";
 import guidanceBus from "buses/guidanceBus"
 export default {
     name:"iv-guidance-modal",
     components:{
         "iv-modal":windowModal,
-        "iv-button":Button
     },
     props:{
         guidanceHeaderText:{
@@ -93,4 +91,11 @@ export default {
 
 <style lang="scss">
 @import "src/globals.scss";
+.modal-button{
+    color: white;
+    background-color: $secondaryGreen;
+    box-shadow: 1px 1px 5px 0px;
+    //border:1px solid black;
+    outline: none;
+}
 </style>
