@@ -78,21 +78,22 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  //align-items: center;
 
 }
 
 .modal-header,
 .modal-footer {
+  flex: 0 0;
   position: relative;
-  padding: 15px;
-  width: 100%
+  height: 15%;
+  min-height: 50px;
+  width: 100%;
+  padding: 5px 0px 5px 0px;
 }
 
 .modal-header {
   border-bottom: 1px solid #eeeeee;
-  color: #003e74;
 }
 
 .modal-footer {
@@ -100,9 +101,9 @@ export default {
 }
 
 .modal-body {
+  flex: 1 1;
   position: relative;
-  padding: 20px 10px;
-  width: 100%
+  padding: 10px 10px 10px 10px;
 }
 
 </style>

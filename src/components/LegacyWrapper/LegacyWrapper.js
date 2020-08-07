@@ -16,7 +16,7 @@ export default{
     },
     mounted(){
         if(this.execute){
-            this.execute(id);
+            this.execute(this.id);
         } else if(this.src){
             var id = this.id
             import(this.src).then(

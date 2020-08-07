@@ -2,16 +2,20 @@
     <div>
         <iv-modal :positionModal="guidanceInput.positionModal" >
             <template #header style="positon:relative" >
-                <button v-if="homeButton" @click="goHome" class="home-button modal-button" >Home</button>
-                <div>{{guidanceHeaderText}}</div>
-                <button @click="closeWindow" class="close-button modal-button" >X</button>
+                <button v-show="homeButton" @click="goHome" class="iv-guidance-modal-home-button" >Home</button>
+                <div class="iv-guidance-modal-title">{{guidanceHeaderText}}</div>
+                <button @click="closeWindow" class="iv-guidance-modal-close-button" >X</button>
             </template>
             <template>
                 <div>{{guidanceInput.text}}</div>
             </template>
-            <template #footer>
-                <button v-if="prevButton" @click="prevGuidance" class="modal-button">PREV</button>
-                <button v-if="nextButton" @click="nextGuidance" class="modal-button">NEXT</button>
+            <template #footer>    
+                <button v-show="prevButton" @click="prevGuidance" class="iv-guidance-modal-prev-button">
+                    <img class="iv-guidance-modal-navImage"  src="./assets/right.svg" />
+                </button>
+                <button v-show="nextButton" @click="nextGuidance" class="iv-guidance-modal-next-button">
+                    <img class="iv-guidance-modal-navImage" src="./assets/left.svg" />
+                </button>
             </template>
         </iv-modal>
     </div>
@@ -91,11 +95,84 @@ export default {
 
 <style lang="scss">
 @import "src/globals.scss";
-.modal-button{
+
+.iv-guidance-modal-close-button{
+    position: absolute;
+    right: 10px;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: center;
     color: white;
     background-color: $secondaryGreen;
-    box-shadow: 1px 1px 5px 0px;
-    //border:1px solid black;
+    height: 80%;
+    width: 60px;
+    padding: 0px 10px 0px 10px;
+    vertical-align: middle;
+    cursor: pointer;
     outline: none;
+    font: bold;
+    font-size: 20px;
+}
+
+.iv-guidance-modal-home-button{
+    position: absolute;
+    left: 10px;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: white;
+    background-color: $secondaryGreen;
+    height: 80%;
+    padding: 0px 10px 0px 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: none;
+    font: bold;
+    font-size: 20px;
+}
+
+.iv-guidance-modal-title{
+    text-align: center;
+    padding: 15px 0px 10px 10px;
+}
+
+
+.iv-guidance-modal-next-button{
+    position: absolute;
+    right: 25%;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: white;
+    background-color: $secondaryGreen;
+    height: 80%;
+    width: 60px;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: none;
+    font: bold;
+    font-size: 20px;
+}
+.iv-guidance-modal-prev-button{
+    position: absolute;
+    left: 25%;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: white;
+    background-color: $secondaryGreen;
+    height: 80%;
+    width: 60px;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: none;
+    font: bold;
+    font-size: 20px;
+}
+.iv-guidance-modal-navImage{
+  //width: 100%;
+  padding: 5px 0px 5px 0px;
+  height: 70%;
+  transition: 0.5s;
 }
 </style>

@@ -103,7 +103,7 @@ export default {
         >.iv-hotspot-button{
             right:0;
             border-radius: $curvatureRadius 0 0 0;
-            transform: translate(33.333333333%,-100%);
+            transform: translate(100/3 * 100%,-100%);
         }
     }
     &.iv-toggled-topleft{
@@ -121,7 +121,7 @@ export default {
         >.iv-hotspot-button{
             border-radius: 0 0 0 $curvatureRadius;
             right:0;
-            transform: translateY(33.333333333%,100%);
+            transform: translateY(100/3 * 100%,100%);
         }
     }
 }
@@ -137,63 +137,64 @@ export default {
         height:auto;
     }
     &.iv-bottomleft{
-        box-shadow: $hotspotShadow $hotspotShadow black;
+        //box-shadow: $hotspotShadow $hotspotShadow black;
         box-sizing: border-box;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px -1px 5px 0px;
+        box-shadow: 1px -1px 5px -2px;
     }
     &.iv-bottomright{
-        box-shadow: -$hotspotShadow $hotspotShadow black;
+        //box-shadow: -$hotspotShadow $hotspotShadow black;
         box-sizing: border-box;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: -1px -1px 5px 0px;
+        box-shadow: -1px -1px 5px -2px;
     }
     &.iv-topright{
-        box-shadow: -$hotspotShadow -$hotspotShadow black;
+        //box-shadow: -$hotspotShadow -$hotspotShadow black;
         box-sizing: border-box;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: -1px 1px 5px 0px;
+        box-shadow: -1px 1px 5px -2px;
     }
     &.iv-topleft{
-        box-shadow: $hotspotShadow -$hotspotShadow black;
+        //box-shadow: $hotspotShadow -$hotspotShadow black;
         box-sizing: border-box;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px 1px 5px 0px;
+        box-shadow: 1px 1px 5px -2px;
     } 
     &.iv-top{
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px 1px 5px 0px;
+        box-shadow: 1px 1px 5px -2px;
     }
     &.iv-bottom{
         flex-direction: column-reverse;
         justify-content:flex-start;
         align-items:center;
-        box-shadow: 1px -1px 5px 0px;
+        box-shadow: 1px -1px 5px -2px;
     }
     &.iv-left{
         flex-direction: row;
         justify-content: flex-start;
         align-items:center;
-        box-shadow: 1px 1px 5px 0px;
+        box-shadow: 1px 1px 5px -2px;
     }
     &.iv-right{
         flex-direction: row-reverse;
         justify-content: flex-start;
         align-items:center;
-        box-shadow: -1px 1px 5px 0px;
+        box-shadow: -1px 1px 5px -2px;
     }
 }
 .iv-hotspot-button{
+    cursor:pointer;
     text-align: center;
     position:absolute;
     margin: 0px;

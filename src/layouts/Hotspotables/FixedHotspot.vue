@@ -42,7 +42,7 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px -1px 5px 0px;
+        box-shadow: 1px -1px 5px -2px;
     }
     &.iv-bottomright{
         box-shadow: -$hotspotShadow $hotspotShadow black;
@@ -50,7 +50,7 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: -1px -1px 5px 0px;
+        box-shadow: -1px -1px 5px -2px;
     }
     &.iv-topright{
         box-shadow: -$hotspotShadow -$hotspotShadow black;
@@ -58,7 +58,7 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: -1px 1px 5px 0px;
+        box-shadow: -1px 1px 5px -2px;
     }
     &.iv-topleft{
         box-shadow: $hotspotShadow -$hotspotShadow black;
@@ -66,31 +66,31 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px 1px 5px 0px;
+        box-shadow: 1px 1px 5px -2px;
     } 
     &.iv-top{
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px 1px 5px 0px;
+        box-shadow: 1px 1px 5px -2px;
     }
     &.iv-bottom{
         flex-direction: column-reverse;
         justify-content:flex-start;
         align-items:center;
-        box-shadow: 1px -1px 5px 0px;
+        box-shadow: 1px -1px 5px -2px;
     }
     &.iv-left{
         flex-direction: row;
         justify-content: flex-start;
         align-items:center;
-        box-shadow: 1px 1px 5px 0px;
+        box-shadow: 1px 1px 5px -2px;
     }
     &.iv-right{
         flex-direction: row-reverse;
         justify-content: flex-start;
         align-items:center;
-        box-shadow: -1px 1px 5px 0px;
+        box-shadow: -1px 1px 5px -2px;
     }
 }
 
