@@ -63,16 +63,11 @@ export default {
     display:flex;
     z-index:$hotspotZLevel;
 }
-.iv-hotspot-corner > *{
-    z-index:$hotspotZLevel;
-}
 .iv-hotspot-edge{
     display:flex;
-    z-index:$hotspotZLevel;
     justify-content: space-around;
-
+    z-index:$hotspotZLevel;
 }
-
 .iv-hotspot-left{
     flex-direction: column;
     grid-area:left;
@@ -101,40 +96,30 @@ export default {
     flex-direction:row;
     grid-area:bottom;
     align-items:flex-end;
-     > * {
-        margin: 0 $hotspotItemMargin ;
+    > * {
+        margin: 0 $hotspotItemMargin;
     }
 }
 .iv-hotspot-topleft{
-    grid-area:topleft;
-    > *{
-        float:left;
-    }
+	justify-content: flex-start;	
+    align-items: flex-start;	
+    grid-area: topleft;
 }
 .iv-hotspot-topright{
-    justify-content: flex-end;
+    justify-content: flex-end;	
+    align-items: flex-start;	
     grid-area:topright;
-    > *{
-        float:right;
-    }
 }
 .iv-hotspot-bottomleft{
-    flex-direction: column;
-    justify-content: flex-end;
-    grid-area:bottomleft;
-     > *{
-        float:left;
-    }
+	justify-content: flex-start;	
+    grid-area:bottomleft;	
+    align-items: flex-end;
 }
 .iv-hotspot-bottomright{
     justify-content: flex-end;
     align-items: flex-end;
     grid-area:bottomright;
-    > *{
-        float:right;
-    }
 }
-
 
 .iv-hotspotable{
     pointer-events: auto;
