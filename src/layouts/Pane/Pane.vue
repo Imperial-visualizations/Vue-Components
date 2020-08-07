@@ -171,29 +171,23 @@ export default {
     flex:0 0 auto;
     z-index: $sidebarZLevel;
 }
-.iv-pane-button-left{
+.iv-pane-button{
     position: absolute;
+    cursor: pointer;
     top:50%;
     transform: translateY(-50%);
     background-color: $hotspotButtonColor;
-    border-radius: 0 40px 40px 0;
     border:none;
     //box-shadow: 1px 1px 5px 0px;
     outline:none;
     width: 40px;
     height: 80px;
 }
+.iv-pane-button-left{
+    border-radius: 0 40px 40px 0;
+}
 .iv-pane-button-right{
-    position: absolute;
-    top:50%;
-    transform: translateY(-50%);
-    background-color: $hotspotButtonColor;
     border-radius: 40px 0  0 40px;
-    border:none;
-    //box-shadow: 1px 1px 5px 0px;
-    outline:none;
-    width: 40px;
-    height: 80px;
 }
 .iv-pane-overlay{
     position:absolute;
