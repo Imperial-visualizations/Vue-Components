@@ -10,9 +10,24 @@ $topZLevel:500;
 $primaryImperialBlue:#133f6f ;
 $secondaryGreen: #a6cc77;
 $white: #ffffff;
+$hotspotButtonColor: #FF901C;
+
+//Guidance
+$guidanceButtonHeight:28px;
 
 //Sizes 
 $titleBarHeight:2rem;
 
 //Hotspots
 $hotspotItemMargin:1rem;
+$curvatureRadius: 20px;
+$hotspotShadow: 5px;
+$hotpotTextHeight: 1.25rem;
+$minButtonHeight: 1.25rem;
+$minButtonWidth: 80px;
+
+:exports{
+    imperialBlue:$primaryImperialBlue;
+    secondaryGreen:$secondaryGreen;
+    secondaryOrange:$hotspotButtonColor;
+}

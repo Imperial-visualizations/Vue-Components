@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ equationbox: stylise }">
+    <div class="iv-equation-box" :class="{ equationbox: stylise }">
         <iv-loading-spinner v-if="!loaded"/>
         <div ref='equationBox' v-show="loaded"></div>
     </div>
@@ -51,6 +51,9 @@ export default {
 </script>
 
 <style>
+.iv-equation-box{
+    display:inline-block;
+}
 .equationbox{
     border-style: solid;
     border-color: #37578b;

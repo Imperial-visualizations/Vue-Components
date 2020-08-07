@@ -1,10 +1,9 @@
 <template>
     <nav class="banner" :class="theme" id="ivTitleBar">
-      <!-- <button class="guidanceButton" @click="handleGuidanceClick">?</button> -->
+        <button class="guidanceButton" @click="handleGuidanceClick">?</button>
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" :src="logo">
         </a>
-
         <div class="vis-title"><slot>Default Title</slot></div>
     </nav>
     
@@ -54,6 +53,7 @@ export default {
 
 <style lang="scss">
 @import "src/globals.scss";
+
 .banner {
   display: flex;
   flex: 0 0 auto;
@@ -113,7 +113,23 @@ export default {
 }
 
 .guidanceButton{
-  z-index:20
+  position: absolute;
+  left: calc((#{$titleBarHeight} - #{$guidanceButtonHeight})/2);
+  z-index: $titlebarZLevel;
+  padding:0;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  border-radius: 14px 14px 14px 14px;
+  box-shadow: 1px 1px 2px 0px;
+  width: 28px;
+  height: 28px;
+  outline: none;
+  font: bold;
+  font-size: 20px;
+  text-align: center;
+  line-height: 20px;
 }
 
 </style>

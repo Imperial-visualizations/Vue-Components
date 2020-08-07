@@ -1,6 +1,6 @@
 <template>
     <div class="iv-pane-wrapper" :style="widthObj" :class="ivPaneClass">
-        <div class="iv-pane"  v-show=showPane>
+        <div class="iv-pane" :class="[positionalClass('iv-pane')]" v-show=showPane>
             <div class="iv-drag-selector" :class="[positionalClass('iv-drag-selector')]" @mousedown="mouseDown"  ></div>
             <div class="iv-pane-content" :class="[positionalClass('iv-pane')]">
                 <slot :toggle="togglePos" :position="position_">Default pane</slot>
@@ -8,9 +8,8 @@
 
         </div>
         <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" @click="showPane = !showPane" :style="buttonLeft"> 
-                  <img v-if="pointLeft" class="navImage"  src="./assets/right.svg" />
+                <img v-if="pointLeft" class="navImage" src="./assets/right.svg" />
                 <img v-else class="navImage"  src="./assets/left.svg" />
-
         </button>
     </div>
 </template>
@@ -41,19 +40,22 @@ export default {
     },
     created(){
         this.large = true;
+
         guidanceBus.$on("show-component",function(guidanceIdentifier){
-            console.log("show", guidanceIdentifier,this.$el.id )
+            //console.log("show", guidanceIdentifier,this.$el.id )
             if(this.$el.id == guidanceIdentifier){
                 this.showPane=true
             }
             
         }.bind(this));
-        guidanceBus.$on("hide-component",function(guidanceIdentifier){
-            console.log("close", guidanceIdentifier, this.$el.id)
+
+        //guidanceBus.$on("hide-component",function(guidanceIdentifier){
+            //console.log("close", guidanceIdentifier, this.$el.id)
             //if(this.$el.id == guidanceIdentifier){
             //    this.showPane=false
             //}
-        }.bind(this));
+        //}.bind(this));
+
         this.showPane = this.mode === 'learn';
     },
     data(){
@@ -145,12 +147,17 @@ export default {
     float:left;
     transform:translateX(-50%);
 }
-.iv-pane {
+.iv-pane{
     height:100%;
     width:100%;
     margin:0;
-    box-shadow: -5px 0px 10px 5px #aaa;
     background-color:white;
+}
+.iv-pane-left{
+    box-shadow: 2px 0px 20px -7px #aaa;
+}
+.iv-pane-right{
+    box-shadow: -2px 0px 20px -7px #aaa;
 }
 .iv-pane-wrapper-left{
     order:-1;
@@ -163,11 +170,24 @@ export default {
     height:100%;
     flex:0 0 auto;
     z-index: $sidebarZLevel;
-    
 }
 .iv-pane-button{
     position: absolute;
+    cursor: pointer;
     top:50%;
+    transform: translateY(-50%);
+    background-color: $hotspotButtonColor;
+    border:none;
+    //box-shadow: 1px 1px 5px 0px;
+    outline:none;
+    width: 40px;
+    height: 80px;
+}
+.iv-pane-button-left{
+    border-radius: 0 40px 40px 0;
+}
+.iv-pane-button-right{
+    border-radius: 40px 0  0 40px;
 }
 .iv-pane-overlay{
     position:absolute;
@@ -175,20 +195,9 @@ export default {
 .iv-pane-overlay-left{
     left:0;
 }
-.iv-pane-overlay-right{
+.iv-pane-overlay-right{ 
     right:0;
 }
-.navIcon{
-  position: relative;
-  z-index: 1;
-  top:250px;
-  background-color: rgb(163, 223, 124);
-  border:none;
-  box-shadow: 0px 0px 4px $secondaryGreen;
-  outline:none;
-  transition: 0.5s;
-}
-
 .navImage{
   width: 1.2rem;
   height: 2.5rem;

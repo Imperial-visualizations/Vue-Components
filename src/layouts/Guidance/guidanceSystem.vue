@@ -1,5 +1,5 @@
 <template>
-    <div id ="guidanceSystem" >
+    <div id ="guidanceSystem" class="guidance-system" >
         <component v-if="guidanceData!=null" :is="whichGuidance" :guidanceInput="guidanceData"/>
     </div>
 </template>
@@ -83,4 +83,7 @@ export default {
 </script>
 
 <style>
+.guidance-system{
+    z-index:0;
+}
 </style>

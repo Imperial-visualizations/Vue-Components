@@ -47,10 +47,11 @@ export default {
     },
 }
 </script>
-<style>
 
+<style lang="scss">
+@import "src/globals.scss";
 .modal-backdrop {
-  z-index: 150;
+  z-index: $middleZLevel;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -60,47 +61,49 @@ export default {
 }
 
 .modal-grid{
-  z-index: 230;
+  z-index: $highZLevel;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
 }
 .modalContainer{
-  z-index: 250;
+  z-index: $topZLevel;
   background: #ffffff;
   box-shadow: 2px 2px 20px 1px;
   border:2px solid black;
-  background-color: burlywood;
+  background-color: white;
   overflow-x: auto;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  //align-items: center;
 
 }
 
 .modal-header,
 .modal-footer {
-  padding: 15px;
-  display: flex;
+  flex: 0 0;
+  position: relative;
+  height: 15%;
+  min-height: 50px;
+  width: 100%;
+  padding: 5px 0px 5px 0px;
 }
 
 .modal-header {
   border-bottom: 1px solid #eeeeee;
-  color: #003e74;
-  justify-content: space-between;
 }
 
 .modal-footer {
   border-top: 1px solid #eeeeee;
-  justify-content: flex-end;
 }
 
 .modal-body {
+  flex: 1 1;
   position: relative;
-  padding: 20px 10px;
+  padding: 10px 10px 10px 10px;
 }
 
 </style>
