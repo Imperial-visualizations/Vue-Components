@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import windowModal from "../WindowComp";
+import windowModal from "../Window";
 import guidanceBus from "buses/guidanceBus"
 export default {
     name:"iv-guidance-modal",

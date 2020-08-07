@@ -1,7 +1,6 @@
 import vue from 'rollup-plugin-vue';
 import includePaths from 'rollup-plugin-includepaths';
 import scss from 'rollup-plugin-scss';
-import scssVars from "rollup-plugin-sass-variables";
 import image from '@rollup/plugin-image';
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
@@ -19,7 +18,6 @@ const pluginConfig = [
     }),  
     resolve(),
     commonjs(), 
-    scssVars(),
     scss({output:'./dist/impvis-components.css'}),
     image(),
     vue({css:false}),

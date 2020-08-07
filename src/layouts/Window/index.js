@@ -1,2 +1,2 @@
-import WindowComp from './windowComp.vue';
-export default WindowComp;
+import Window from './Window.vue';
+export default Window;
