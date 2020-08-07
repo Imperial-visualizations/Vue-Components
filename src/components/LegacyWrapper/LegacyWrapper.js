@@ -1,7 +1,6 @@
 export default{
     name:'iv-legacy-wrapper',
-    props:{        }
-
+    props:{       
         src:{
             type:String,
             required:false
