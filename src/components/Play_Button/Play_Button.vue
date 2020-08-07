@@ -1,12 +1,15 @@
 <template>
     <button class="iv-play-button" :class="dyn_class" @click="changeState">
-        <img v-if="!play" class="play-icon" src="./assets/play.svg" />
-        <img v-else class="play-icon" src="./assets/pause.svg" />
-        {{text}}
+        <img v-if="!play" class="play-icon" :src="playImg" />
+        <img v-else class="play-icon" :src="pauseImg" />
+        <span>{{text}}</span>
     </button>
 </template>
 
 <script>
+// TODO: Fix this!
+import PlayButton from "assets/play.svg"
+import PauseButton from "assets/pause.svg"
 export default {
     name: "iv-play-button",
     data(){
@@ -14,6 +17,8 @@ export default {
             play:false,
             text:"Play",
             dyn_class:"iv-button-play",
+            playImg:PlayButton,
+            pauseImg:PauseButton
         }
     },
     methods:{
@@ -37,15 +42,17 @@ export default {
 .iv-play-button{
     background-color: #0F8291;
     color: white;
-    font-size: 1.5vw;
     border:none;
-    width:7.8vw;
-    padding-top: 0.4vw;
-    padding-bottom: 0.4vw;
-    text-align: left;
     box-shadow: 0px 0px 4px rgba(0,0,0,0.25);
-    border-radius: 0.2vw;
-    transition: 0.5s;
+    padding: 0.2rem 0.4rem;
+    width:5rem;
+    white-space:nowrap;
+}
+.iv-play-button span{
+    display:inline-block;
+    line-height: 1.2rem;
+    font-size:1rem;
+    text-align: left;
 }
 .iv-button-pause{
     /* This class is active when this.play is true (when the button is showing the option to pause) */
@@ -55,10 +62,12 @@ export default {
    outline: 0;
 }
 .play-icon{
-    float:left bottom;
-    width:1.25vw;
-    padding-right:0.5vw;
+    float:left;
+    height:1rem;
+    padding-top: 0.1rem;
+    padding-bottom:0.1rem;
     transition: 0.5s;
+    padding-right: 0.25rem;
     transform: translateY(0.1vw);
 }
 </style>
