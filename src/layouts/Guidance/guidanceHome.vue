@@ -13,13 +13,13 @@
     </div>
 </template>
 <script>
-import Button from "../../components/Button";
+//import Button from 'components/Button'; Commmented because unused
 import guidanceBus from 'buses/guidanceBus.js';
 
 export default {
     name:"iv-guidance-home",
     components:{
-        "iv-button":Button
+       // "iv-button":Button
     },
     props:{
         guidanceInput:{
