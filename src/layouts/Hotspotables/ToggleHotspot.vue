@@ -103,7 +103,7 @@ export default {
         >.iv-hotspot-button{
             right:0;
             border-radius: $curvatureRadius 0 0 0;
-            transform: translate(100/3 * 100%,-100%);
+            transform: translate(100/3 * 1%,-100%);
         }
     }
     &.iv-toggled-topleft{
@@ -121,7 +121,7 @@ export default {
         >.iv-hotspot-button{
             border-radius: 0 0 0 $curvatureRadius;
             right:0;
-            transform: translateY(100/3 * 100%,100%);
+            transform: translateY(100/3 * 1%,100%);
         }
     }
 }
