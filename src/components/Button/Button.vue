@@ -7,24 +7,23 @@
 export default {
     name: "iv-button",
     methods:{
-        mouseOn(){
-            this.$emit("mouseonbutton")
+        mouseOn(e){
+            this.$emit("mouseover",e)
         },
         mouseOff(){
-            this.$emit("mouseoffbutton")
+            this.$emit("mouseleave",e)
         },
         buttonClick(event){
           this.$emit("click", event)
         },
     },
     props:{
-      buttonDisabled: {
+      disabled: {
         type:Boolean,
         required: false,
         default: false
       }
-    }
-    
+    }  
 }
 </script>
 
