@@ -5,7 +5,7 @@
 </template>
 <script>
 import guidanceModal from './guidanceModal.vue';
-import guidanceBus from 'buses/guidanceBus.js';
+import guidanceBus from '@/buses/guidanceBus.js';
 export default {
     name:"iv-guidance-wrapper",
     components:{

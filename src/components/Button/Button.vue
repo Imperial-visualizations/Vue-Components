@@ -13,8 +13,8 @@ export default {
         mouseOff(e){
             this.$emit("mouseleave",e)
         },
-        buttonClick(event){
-          this.$emit("click", event)
+        buttonClick(e){
+          this.$emit("click", e)
         },
     },
     props:{

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import guidanceBus from "buses/guidanceBus.js"
+import guidanceBus from "@/buses/guidanceBus.js"
 
 export default {
     name: "iv-guidance-button",

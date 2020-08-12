@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-import Hotspotable from "mixins/Hotspotable"
+import Hotspotable from "@/mixins/Hotspotable"
 export default {
     name:"iv-toggle-hotspot",
     mixins:[Hotspotable],

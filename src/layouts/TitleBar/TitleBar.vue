@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import guidanceBus from "buses/guidanceBus.js"
-import Logo from "assets/ImpVis-logo-white.svg"
-import LTMode from "mixins/LTMode.js"
+import guidanceBus from "@/buses/guidanceBus.js"
+import Logo from "@/assets/ImpVis-logo-white.svg"
+import LTMode from "@/mixins/LTMode.js"
 export default {
     name:"iv-title-bar",
     mixins:[LTMode],

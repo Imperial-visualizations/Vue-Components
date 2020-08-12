@@ -8,8 +8,8 @@
 
 <script>
 // TODO: Fix this!
-import PlayButton from "assets/play.svg"
-import PauseButton from "assets/pause.svg"
+import PlayButton from "@/assets/play.svg"
+import PauseButton from "@/assets/pause.svg"
 export default {
     name: "iv-play-button",
     data(){

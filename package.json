@@ -6,7 +6,6 @@
   "unpkg": "./dist/impvis-components.umd.js",
   "scripts": {
     "play": "vue-cli-service serve ./play/main.js",
-    "serve": "vue-cli-service serve",
     "build": "rollup -c",
     "build:watch": "rollup -cw",
     "lint": "vue-cli-service lint",
@@ -16,6 +15,7 @@
     "examples:dragdrop": "vue-cli-service serve ./Examples/SVGDragAndDrop.js"
   },
   "dependencies": {
+    "@rollup/plugin-alias": "^3.1.1",
     "component-fixture": "^1.14.0",
     "core-js": "^3.6.5",
     "katex": "^0.11.1",
@@ -44,6 +44,7 @@
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-vue": "^5.1.9",
+    "sass-loader": "^9.0.3",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
