@@ -10,7 +10,7 @@ export default {
         mouseOn(e){
             this.$emit("mouseover",e)
         },
-        mouseOff(){
+        mouseOff(e){
             this.$emit("mouseleave",e)
         },
         buttonClick(event){
