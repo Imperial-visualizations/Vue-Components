@@ -14,9 +14,9 @@
     </div>
 </template>
 <script>
-import guidanceBus from "buses/guidanceBus.js";
-import Hotspotable from 'mixins/Hotspotable.js';
-import LTMode from "mixins/LTMode.js";
+import guidanceBus from "@/buses/guidanceBus.js";
+import Hotspotable from '@/mixins/Hotspotable.js';
+import LTMode from "@/mixins/LTMode.js";
 export default {
     name:"iv-pane",
     mixins:[Hotspotable,LTMode],

@@ -5,6 +5,7 @@ import image from '@rollup/plugin-image';
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import eslint from "@rbnlffl/rollup-plugin-eslint";
+import alias from "@rollup/plugin-alias";
 import {terser} from "rollup-plugin-terser"
 
 const external = [
@@ -13,8 +14,13 @@ const external = [
     'katex/dist/katex.min.css'
 ]
 const pluginConfig = [
+    alias({
+        entries:[
+            {find:"@",replacement:"src"}
+        ]
+    }),
     includePaths({
-         paths: ["./","src"]
+         paths: ["./"]
     }),  
     resolve(),
     commonjs(), 
