@@ -103,7 +103,7 @@ export default {
         >.iv-hotspot-button{
             right:0;
             border-radius: $curvatureRadius 0 0 0;
-            transform: translate(100/3 * 100%,-100%);
+            transform: translate(33.33333%,-100%);
         }
     }
     &.iv-toggled-topleft{
@@ -121,7 +121,7 @@ export default {
         >.iv-hotspot-button{
             border-radius: 0 0 0 $curvatureRadius;
             right:0;
-            transform: translateY(100/3 * 100%,100%);
+            transform: translateY(33.33333%,100%);
         }
     }
 }
@@ -150,7 +150,7 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: -1px -1px 5px -2px;
+        box-shadow: -1px -1px 5px -2px #aaaaaa;
     }
     &.iv-topright{
         //box-shadow: -$hotspotShadow -$hotspotShadow black;
@@ -166,7 +166,7 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px 1px 5px -2px;
+        box-shadow: 1px 1px 10px -2px  #aaaaaa;
     } 
     &.iv-top{
         flex-direction: column;

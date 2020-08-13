@@ -1,22 +1,23 @@
 <template>
   <div>
-
-    <div class="modal-grid" :style="styleGrid" >
       <div class="modalContainer" :style="styleWindow">
-          <header class="modal-header">
+
+          <header >
               <slot name="header"></slot>
           </header>
-          <section class="modal-body">
-              <slot></slot>
+
+          <section >
+              <slot name="body"></slot>
           </section>
-          <footer class="modal-footer">
+
+          <footer >
               <slot name="footer"></slot>
           </footer>
-      </div>
-    </div>
 
-    <div class="modal-backdrop">
-  </div>
+      </div>
+
+      <div class="modal-backdrop">
+      </div>
 
   </div>
 </template>
@@ -26,14 +27,18 @@ export default {
     props:{
       positionModal:{
       },
+      color:{
+        default: "rgb(230,230,255)",
+      }
     },
     computed: {
       styleWindow(){
         return {
-                gridRowStart: this.positionModal[0],
-                gridRowEnd: this.positionModal[1],
-                gridColumnStart: this.positionModal[2],
-                gridColumnEnd: this.positionModal[3],
+                //gridRowStart: this.positionModal[0],
+                //gridRowEnd: this.positionModal[1],
+                //gridColumnStart: this.positionModal[2],
+                //gridColumnEnd: this.positionModal[3],
+                backgroundColor: this.color,//THIS IS THE KEY LINE THAT SETS THE COLOUT
                 }
       },
       styleGrid(){
@@ -57,53 +62,19 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-.modal-grid{
-  z-index: $highZLevel;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
 .modalContainer{
+  position: absolute;
+  top: 25%;
+  left: 25%;
+
   z-index: $topZLevel;
-  background: #ffffff;
-  box-shadow: 2px 2px 20px 1px;
-  border:2px solid black;
-  background-color: white;
-  overflow-x: auto;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  //align-items: center;
+  box-shadow: 1px 1px 30px 0px  rgba(0, 0, 0, 0.4);
+  >*{
+    box-sizing:border-box;
+  }
 
 }
-
-.modal-header,
-.modal-footer {
-  flex: 0 0;
-  position: relative;
-  height: 15%;
-  min-height: 50px;
-  width: 100%;
-  padding: 5px 0px 5px 0px;
-}
-
-.modal-header {
-  border-bottom: 1px solid #eeeeee;
-}
-
-.modal-footer {
-  border-top: 1px solid #eeeeee;
-}
-
-.modal-body {
-  flex: 1 1;
-  position: relative;
-  padding: 10px 10px 10px 10px;
-}
-
 </style>

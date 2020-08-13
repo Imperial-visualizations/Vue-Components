@@ -118,11 +118,11 @@ export default {
   z-index: $titlebarZLevel;
   padding:0;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid black;
+  background-color: $primaryImperialBlue;
+  color: white;
+  border: 2px solid white;
   border-radius: 14px 14px 14px 14px;
-  box-shadow: 1px 1px 2px 0px;
+  //box-shadow: 1px 1px 2px 0px;
   width: 28px;
   height: 28px;
   outline: none;

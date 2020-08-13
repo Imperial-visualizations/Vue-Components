@@ -178,16 +178,17 @@ export default {
     transform: translateY(-50%);
     background-color: $hotspotButtonColor;
     border:none;
-    //box-shadow: 1px 1px 5px 0px;
     outline:none;
     width: 40px;
     height: 80px;
 }
 .iv-pane-button-left{
     border-radius: 0 40px 40px 0;
+    box-shadow: 2px 2px 20px -7px #aaa;
 }
 .iv-pane-button-right{
     border-radius: 40px 0  0 40px;
+    box-shadow: -2px 2px 20px -7px #aaa;
 }
 .iv-pane-overlay{
     position:absolute;
