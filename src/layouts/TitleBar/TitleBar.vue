@@ -85,7 +85,7 @@ export default {
   padding: 0;
   position: fixed;
   text-align: center;
-  font-weight: bolder;
+  font-weight: 600;
   left: 0vw;
   right: 0;
   background: none;
