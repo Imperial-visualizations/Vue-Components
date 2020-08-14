@@ -125,12 +125,12 @@ export default {
             this.resizer.adjusting = true;
             this.resizer.initPageX = e.touches[0].pageX;
             window.addEventListener("touchmove",this.resize);
-            window.addEventListener("touchend",this.fingerUp);
+            window.addEventListener("touchend",this.touchup);
         },
-        fingerUp(){
+        touchup(){
             this.resizer.adjusting = false;
-            window.removeEventListener("fingerup",this.fingerUp);
-            window.removeEventListener("fingermove",this.resize);
+            window.removeEventListener("touchend",this.touchup);
+            window.removeEventListener("touchmove",this.resize);
         },
         mouseUp(){
             this.resizer.adjusting=false;
