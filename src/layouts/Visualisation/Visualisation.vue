@@ -120,4 +120,7 @@ export default {
 .iv-overflow{
     display:none;
 }
+.iv-main-stage{
+    position:relative;
+}
 </style>
