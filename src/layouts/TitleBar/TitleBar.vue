@@ -1,10 +1,10 @@
 <template>
-    <nav class="banner" :class="theme" id="ivTitleBar">
-        <button class="guidanceButton" @click="handleGuidanceClick">?</button>
-        <a @click="openLinkNewTab" class="logo-container">
-            <img class="vis-logo" :src="logo">
+    <nav class="iv-title-bar" :class="theme" id="iv-title-bar">
+        <button class="iv-guidance-button" @click="handleGuidanceClick">?</button>
+        <a @click="openLinkNewTab" class="iv-logo-container">
+            <img class="iv-vis-logo" :src="logo">
         </a>
-        <div class="vis-title"><slot>Default Title</slot></div>
+        <div class="iv-vis-title"><slot>Default Title</slot></div>
     </nav>
     
 </template>
@@ -54,7 +54,7 @@ export default {
 <style lang="scss">
 @import "src/globals.scss";
 
-.banner {
+.iv-title-bar{
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
@@ -78,7 +78,7 @@ export default {
   color: #ffffff;
   z-index: $titlebarZLevel;
 }
-.vis-title {
+.iv-vis-title {
   flex-basis: 0;
   flex-grow: 1;
   margin:0;
@@ -94,7 +94,7 @@ export default {
   line-height: calc(#{$titleBarHeight} - 0.5em);
 }
 
-.logo-container {
+.iv-logo-container {
   color: #1EAEDB; 
   z-index: $titlebarZLevel;
   cursor: pointer;
@@ -106,13 +106,13 @@ export default {
   }
 
 }
-.vis-logo {
+.iv-vis-logo {
   height: 1.25rem;
   width:auto;
   margin: 0.125rem 0.5rem;
 }
 
-.guidanceButton{
+.iv-guidance-button{
   position: absolute;
   left: calc((#{$titleBarHeight} - #{$guidanceButtonHeight})/2);
   z-index: $titlebarZLevel;
