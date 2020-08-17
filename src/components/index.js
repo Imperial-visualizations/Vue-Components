@@ -11,6 +11,7 @@ export {default as DropdownList} from "./DropdownList";
 export {default as ToggleBasic} from "./ToggleBasic";
 export {default as ToggleAdvance} from "./ToggleAdvance";
 export {default as Tickbox} from "./Tickbox";
+export {default as SectionTitle} from "./Titles";
 //export {default as Play_Button} from "./Play_Button";
 export {SymbolButton,Button} from "./Button";
 export {default as guidanceButton} from "./GuidanceButton";

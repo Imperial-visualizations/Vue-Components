@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import Guidance from "mixins/Guidance";
+import Guidance from "@/mixins/Guidance";
 //import { relative } from 'path';
 import windowModal from "../Window";
 import guidanceBus from "@/buses/guidanceBus"
@@ -78,6 +78,7 @@ export default {
                     backgroundColor: this.color.shade_500,
                 }
             }
+            return {}
         },
     },
     methods:{
