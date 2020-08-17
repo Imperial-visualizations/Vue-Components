@@ -9,7 +9,7 @@ export default {
     mounted(){
         this.$next(function(){
             //Here guidanceTree should be fully established
-            console.log(guidanceTree);
+            console.log(this.guidanceTree);
         })
     },
     render(h){

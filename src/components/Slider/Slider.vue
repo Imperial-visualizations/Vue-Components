@@ -74,7 +74,7 @@ export default {
         },
         colors: {
             type:Array,
-            default:["#133F6F","#022B57"]
+            default: () => ["#133F6F","#022B57"]
         }
     },
     data(){
