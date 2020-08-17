@@ -171,8 +171,8 @@ export default {
     position: absolute;
     left:50%;
     top:50%;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     transform:translate(-50%,-50%);
     cursor: pointer;
     background-color: $hotspotButtonColor;
@@ -221,9 +221,10 @@ export default {
     position: absolute;
     left:50%;
     top:50%;
-    height:80%;
+    height:70%;
     transform:translate(-50%,-55%);
     transition: 0.5s;
+    padding:2px;
 }
 
 </style>

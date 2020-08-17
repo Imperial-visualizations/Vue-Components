@@ -1,5 +1,5 @@
 <template>
-    <div style="position:relative">
+    <div class="hi-line">
         <span v-for="(tick,index) in sliderTicksList" :key="tick.id" class="tick_line" :style="moveLineTick(tick.value,index)"></span>
     </div>
 </template>
@@ -25,6 +25,10 @@ export default {
 </script>
 
 <style>
+.hi-line{
+position:relative;
+height:10px;
+}
 .tick_line{
     display: inline-block;
     position: relative;
@@ -33,5 +37,6 @@ export default {
     height: 10px;
     width: 1px;
     margin-bottom: 10px;
+    margin-top: -10px;
 }
 </style>
