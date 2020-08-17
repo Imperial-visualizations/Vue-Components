@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import windowModal from "../WindowComp";
-import guidanceBus from "buses/guidanceBus";
 import Guidance from "mixins/Guidance";
 //import { relative } from 'path';
+import windowModal from "../Window";
+import guidanceBus from "@/buses/guidanceBus"
 export default {
     name:"iv-guidance-modal",
     components:{

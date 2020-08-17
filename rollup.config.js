@@ -5,7 +5,12 @@ import image from '@rollup/plugin-image';
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import eslint from "@rbnlffl/rollup-plugin-eslint";
+<<<<<<< HEAD
 import {terser} from "rollup-plugin-terser";
+=======
+import alias from "@rollup/plugin-alias";
+import {terser} from "rollup-plugin-terser"
+>>>>>>> 46d5855d35b8ee880acedc41e94f19e7686dcccf
 
 const external = [
     'vue',
@@ -13,8 +18,13 @@ const external = [
     'katex/dist/katex.min.css'
 ]
 const pluginConfig = [
+    alias({
+        entries:[
+            {find:"@",replacement:"src"}
+        ]
+    }),
     includePaths({
-         paths: ["./","src"]
+         paths: ["./"]
     }),  
     resolve(),
     commonjs(), 

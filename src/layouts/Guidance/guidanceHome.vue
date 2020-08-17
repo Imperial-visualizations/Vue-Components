@@ -21,8 +21,8 @@
     </div>
 </template>
 <script>
-import guidanceBus from 'buses/guidanceBus.js';
 import Guidance from "mixins/Guidance";
+import guidanceBus from '@/buses/guidanceBus.js';
 
 export default {
     name:"iv-guidance-home",
