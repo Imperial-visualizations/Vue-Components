@@ -102,6 +102,8 @@ export default {
   box-sizing: border-box; 
   position: relative;
   width:100%;
+  height:100%;
+
   max-width: 800px;
   min-width: 200px;
   border: 4px solid;

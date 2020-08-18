@@ -88,7 +88,7 @@ export default {
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
         },
         lowerComponent(){
-            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = "auto";
             document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
             guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv);
         },
