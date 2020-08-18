@@ -1,7 +1,7 @@
 <template>
     <div class="iv-pane-wrapper" :style="widthObj" :class="ivPaneClass">
         <div class="iv-pane" :class="[positionalClass('iv-pane')]" v-show=showPane>
-            <div class="iv-drag-selector" :class="[positionalClass('iv-drag-selector')]" @mousedown="mouseDown"  ></div>
+            <div class="iv-drag-selector" :class="[positionalClass('iv-drag-selector')]" @mousedown="mouseDown" @touchstart="touchdown"  ></div>
             <div class="iv-pane-content" :class="[positionalClass('iv-pane')]">
                 <slot :toggle="togglePos" :position="position_">Default pane</slot>
             </div>
@@ -14,9 +14,11 @@
     </div>
 </template>
 <script>
-import guidanceBus from "buses/guidanceBus.js";
-import Hotspotable from 'mixins/Hotspotable.js';
-import LTMode from "mixins/LTMode.js";
+import guidanceBus from "@/buses/guidanceBus.js";
+import Hotspotable from '@/mixins/Hotspotable.js';
+import LTMode from "@/mixins/LTMode.js";
+const minWidth = 250;
+const maxWidthRatio = 50;
 export default {
     name:"iv-pane",
     mixins:[Hotspotable,LTMode],
@@ -24,7 +26,7 @@ export default {
         width:{
             type:Number,
             required:false,
-            default:250,
+            default:300,
         },
         format:{
             type:String,
@@ -58,10 +60,20 @@ export default {
 
         this.showPane = this.mode === 'learn';
     },
+    mounted(){
+        this.windowWidth = window.innerWidth;
+        window.addEventListener('resize',() => {
+            this.windowWidth = window.innerWidth;
+            if(this.widthPx > this.maxWidth){
+                this.widthPx = this.maxWidth
+            }
+        })
+    },
     data(){
         return{
             widthPx:this.width,
             showPane:true,
+            windowWidth:0,
             resizer:{
               adjusting:false,
               initPageX:null
@@ -69,6 +81,9 @@ export default {
         }
     },
     computed:{
+        maxWidth(){
+            return (this.format === 'push')? this.windowWidth * maxWidthRatio/100: this.windowWidth;
+        },
         widthObj(){
             return {width:`${ this.showPane? this.widthPx:0}px`};
         },
@@ -106,6 +121,17 @@ export default {
             window.addEventListener("mouseup",this.mouseUp);  
             document.body.style.userSelect="none"; 
         },
+        touchdown(e){
+            this.resizer.adjusting = true;
+            this.resizer.initPageX = e.touches[0].pageX;
+            window.addEventListener("touchmove",this.resize);
+            window.addEventListener("touchend",this.touchup);
+        },
+        touchup(){
+            this.resizer.adjusting = false;
+            window.removeEventListener("touchend",this.touchup);
+            window.removeEventListener("touchmove",this.resize);
+        },
         mouseUp(){
             this.resizer.adjusting=false;
             document.body.style.userSelect="auto";
@@ -113,10 +139,11 @@ export default {
             window.removeEventListener("mousemove",this.resize);
         },
         resize(e){
+            let pageX = (e.constructor.name === "TouchEvent")? e.touches[0].pageX : e.pageX;
             if(this.resizer.adjusting){
-                let deltaX = (e.pageX - this.resizer.initPageX) * ((this.position_ == "left")? 1:-1);
-                this.widthPx += deltaX;
-                this.resizer.initPageX = e.pageX;
+                let deltaX = (pageX - this.resizer.initPageX) * ((this.position_ == "left")? 1:-1);
+                this.widthPx += (this.widthPx + deltaX > minWidth && this.widthPx + deltaX < this.maxWidth)? deltaX : 0;
+                this.resizer.initPageX = pageX;
             }   
         }
     }
@@ -178,16 +205,17 @@ export default {
     transform: translateY(-50%);
     background-color: $hotspotButtonColor;
     border:none;
-    //box-shadow: 1px 1px 5px 0px;
     outline:none;
     width: 40px;
     height: 80px;
 }
 .iv-pane-button-left{
     border-radius: 0 40px 40px 0;
+    box-shadow: 2px 2px 20px -7px #aaa;
 }
 .iv-pane-button-right{
     border-radius: 40px 0  0 40px;
+    box-shadow: -2px 2px 20px -7px #aaa;
 }
 .iv-pane-overlay{
     position:absolute;

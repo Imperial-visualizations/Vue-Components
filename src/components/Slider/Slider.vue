@@ -1,17 +1,13 @@
 <template>
     <div class = "sliderContainer" ref="sliderContainer">
         <resize-observer @notify="update_step" />
-
-        <div class = "sliderGroup">
-            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" />
-            <input type="range" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
-
+        <div class = "sliderGroup"  style="height: 40px">
+            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colors="colors"/>
+            <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
         </div>
-
         <iv-input-button v-if="sliderButtons" :sliderValue="value" :playSlider="playSlider" :buttonInput="buttonInput" :min="min" :max="max" :button_step_init="button_step_init" @inputButtonClicked="update_val_button"/>
-
     </div>
 </template>
 <script>
@@ -19,7 +15,6 @@ import lineTicksComp from './lineTicks.vue'
 import NumTicksComp from './numTicks.vue'
 import BubbleComp from './bubble.vue'
 import InputButton from './inputButton.vue'
-
 export default {
     name:"iv-slider",
     components: {
@@ -31,7 +26,7 @@ export default {
     props:{
         bubble:{
             type:Boolean,
-            default:false
+            default:true
         },
         sliderButtons:{
             type:Boolean,
@@ -76,8 +71,12 @@ export default {
         tick_decimals:{
             type:Number,
             default:0
-            }
         },
+        colors: {
+            type:Array,
+            default: () => ["#133F6F","#022B57"]
+        }
+    },
     data(){
         return {
             id: null,
@@ -129,7 +128,6 @@ export default {
             this.maxTicks.step_size = ((this.max - this.min)/this.maxTicks.ticks);
         },
         update_step(){
-
             if(this.$refs.sliderContainer.clientWidth > this.minDiv[0].width){
                 this.smallStep = this.maxTicks.step_size
             }
@@ -140,14 +138,12 @@ export default {
                     } 
                 }
             }
-
             if(this.step < this.smallStep){
                 this.current_step = this.smallStep
             }
             else{
                 this.current_step = this.step
             }
-
         },
         calc_ticks(){
             let tick_list = [];
@@ -158,6 +154,13 @@ export default {
         },
         emitSlider(){
             this.$emit("sliderChanged",this.value);
+        }
+    },
+    computed:{
+        cssColor(){
+            return {'--primary-color': this.colors[0],
+                    '--secondary-color': this.colors[1]
+            }
         }
     },
     mounted () {
@@ -188,11 +191,8 @@ export default {
     }
 }
 </script>
-
 <style>
-
 /* div stuff*/
-
 .sliderContainer{
     position:relative;
     display:flex;
@@ -203,123 +203,106 @@ export default {
     position: relative;
     height:20vh;
 }
-
 .iv-range{
     -webkit-appearance: none;
     margin: 0px;
     width: 100%;
-    height: 18px;
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: -20px;
 }
 .iv-range-play{
     -webkit-appearance: none;
     margin: 0px;
     width: 100%;
-    height: 18px;
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: -20px;
 }
-
 /* removing input range track defualt for chrome, mozilla and IE - NON PLAY*/
 .iv-range::-webkit-slider-runnable-track{
     -webkit-appearance: none;
     height: 20px;
-    border: 1px solid black;
-    border-radius: 9px;
-    background-color:moccasin;
+    border-radius: 10px;
+    background-color: var(--primary-color);
 }
-
 .iv-range::-moz-range-track{
     height: 20px;
-    border: 1px solid black;
-    border-radius: 9px;
-    background-color:moccasin;
-    
+    border-radius: 10px;
+    background-color: var(--primary-color);
 }
-
 .iv-range::-ms-track{
     height: 20px;
-    border: 1px solid black;
-    border-radius: 9px;
-    background-color:moccasin;
+    border-radius: 10px;
+    background-color: var(--primary-color);
 }
-
 /* removing input range track defualt for chrome, mozilla and IE - PLAY*/
 .iv-range-play::-webkit-slider-runnable-track{
     -webkit-appearance: none;
     height: 20px;
-    border: 1px solid black;
-    border-radius: 9px;
-    background-color:cornsilk;
+    border-radius: 10px;
+    background-color: var(--primary-color);
 }
-
 .iv-range-play::-moz-range-track{
-    border: 1px solid black;
     height: 20px;
-    border-radius: 9px;
-    background-color:cornsilk;
+    border-radius: 10px;
+    background-color: var(--primary-color);
 }
-
 .iv-range-play::-ms-track{
-    border: 1px solid black;
     height: 20px;
-    border-radius: 9px;
-    background-color:moccasin;
+    border-radius: 10px;
+    background-color: var(--primary-color);
 }
-
 /* slider thumb css - NON PLAY */
 .iv-range::-webkit-slider-thumb{
   -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  background-color: orange;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
   overflow: visible;
   cursor: pointer;
 }
-
 .iv-range::-moz-range-thumb{
-  width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  background-color: orange;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
   overflow: visible;
   cursor: pointer;
 }
-
 .iv-range::-ms-thumb{
-  width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  background-color: orange;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color:  var(--secondary-color);
   overflow: visible;
   cursor: pointer;
 }
-
 /* slider thumb css - PLAY */
 .iv-range-play::-webkit-slider-thumb{
   -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  background-color: teal;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color:  var(--secondary-color);
   overflow: visible;
   cursor: pointer;
 }
-
 .iv-range-play::-moz-range-thumb{
-  width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  background-color: teal;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color:  var(--secondary-color);
   overflow: visible;
   cursor: pointer;
 }
-
 .iv-range-play::-ms-thumb{
-  width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  background-color: teal;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color:  var(--secondary-color);
   overflow: visible;
   cursor: pointer;
 }
-
 </style>

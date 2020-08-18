@@ -1,11 +1,11 @@
 import vue from 'rollup-plugin-vue';
 import includePaths from 'rollup-plugin-includepaths';
 import scss from 'rollup-plugin-scss';
-import scssVars from "rollup-plugin-sass-variables";
 import image from '@rollup/plugin-image';
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import eslint from "@rbnlffl/rollup-plugin-eslint";
+import alias from "@rollup/plugin-alias";
 import {terser} from "rollup-plugin-terser"
 
 const external = [
@@ -14,12 +14,16 @@ const external = [
     'katex/dist/katex.min.css'
 ]
 const pluginConfig = [
+    alias({
+        entries:[
+            {find:"@",replacement:"src"}
+        ]
+    }),
     includePaths({
-         paths: ["./","src"]
+         paths: ["./"]
     }),  
     resolve(),
     commonjs(), 
-    scssVars(),
     scss({output:'./dist/impvis-components.css'}),
     image(),
     vue({css:false}),
