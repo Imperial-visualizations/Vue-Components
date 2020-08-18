@@ -78,6 +78,7 @@ export default {
                     backgroundColor: this.color.shade_500,
                 }
             }
+            return {}
         },
     },
     methods:{

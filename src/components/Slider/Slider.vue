@@ -1,7 +1,7 @@
 <template>
-    <div class = "sliderContainer" ref="sliderContainer">
+    <div ref="sliderContainer">
         <resize-observer @notify="update_step" />
-        <div class = "sliderGroup"  style="height: 40px">
+        <div class = "sliderGroup">
             <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colors="colors"/>
             <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
@@ -74,7 +74,7 @@ export default {
         },
         colors: {
             type:Array,
-            default:["#133F6F","#022B57"]
+            default: () => ["#133F6F","#022B57"]
         }
     },
     data(){
@@ -118,7 +118,7 @@ export default {
     },
     methods:{  
         update_val_button(e){
-            console.log(e);
+            //console.log(e);
             this.value = e;
         },
         min_step_size(){
@@ -191,17 +191,11 @@ export default {
     }
 }
 </script>
-<style>
-/* div stuff*/
-.sliderContainer{
-    position:relative;
-    display:flex;
-    flex-direction: column;
-    height:30vh;
-}
+
+<style lang="scss">
+@import "src/globals.scss";
 .sliderGroup{
     position: relative;
-    height:20vh;
 }
 .iv-range{
     -webkit-appearance: none;
@@ -209,7 +203,7 @@ export default {
     width: 100%;
     height: 20px;
     border-radius: 10px;
-    margin-bottom: -20px;
+    outline:none;
 }
 .iv-range-play{
     -webkit-appearance: none;
@@ -217,7 +211,7 @@ export default {
     width: 100%;
     height: 20px;
     border-radius: 10px;
-    margin-bottom: -20px;
+    outline:none;
 }
 /* removing input range track defualt for chrome, mozilla and IE - NON PLAY*/
 .iv-range::-webkit-slider-runnable-track{

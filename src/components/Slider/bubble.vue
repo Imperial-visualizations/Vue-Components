@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bubble-wrapper">
         <div  ref="SliderValueMarkerRef" class="sliderValueMarker" :style="moveLabel" ><p>{{sliderValue}}</p></div>
     </div>
 </template>
@@ -18,8 +18,14 @@ export default {
     }
 }
 </script>
-<style>
+
+<style lang="scss">
+@import "src/globals.scss";
 /*Marker ie bubble */
+.bubble-wrapper{
+    height: 25px;
+    margin-bottom: 8px;
+}
 .sliderValueMarker {
   margin: 0;
   width: 25px;
@@ -29,8 +35,10 @@ export default {
   text-align: center;
   line-height: 0px;
   transform: rotate(45deg);
+  
   position: absolute;
-  top: -35px;
+  //top: -35px;
+  
 }
 .sliderValueMarker p{
   font-size: 14px;
