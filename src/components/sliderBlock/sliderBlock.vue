@@ -123,8 +123,9 @@ export default {
     //margin: 0px 2px 0px 2px;
 }
 .iv-slider-block-footer{
-    position: relative;
+    position: absolute;
     bottom:0;
+    right:0;
     min-height: 1.2rem;
 }
 
