@@ -196,6 +196,8 @@ export default {
 @import "src/globals.scss";
 .sliderGroup{
     position: relative;
+    width:90%;
+    margin:auto;
 }
 .iv-range{
     -webkit-appearance: none;

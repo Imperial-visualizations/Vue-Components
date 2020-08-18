@@ -117,7 +117,8 @@ export default {
 }
 .iv-slider-block-body{
     position:relative;
-    padding: 0px 5px 0px 5px;
+    //padding: 0px 7px 0px 7px;
+    //margin: 0px 2px 0px 2px;
 }
 .iv-slider-block-footer{
     position: relative;
