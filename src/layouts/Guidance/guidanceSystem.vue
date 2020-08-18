@@ -82,7 +82,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "src/globals.scss";
 .guidance-system{
     z-index:0;
 }

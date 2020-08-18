@@ -205,6 +205,7 @@ export default {
     background-color: $hotspotButtonColor;
     color: white;
     z-index: 1; 
+    
     &.iv-left,&.iv-right{
         min-height: $minButtonWidth;
         min-width: $minButtonHeight;

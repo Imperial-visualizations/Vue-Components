@@ -61,12 +61,12 @@ export default {
 @import "src/globals.scss";
 .iv-hotspot-corner{
     display:flex;
-    z-index:$hotspotZLevel;
+    //z-index:50;//$hotspotZLevel;
 }
 .iv-hotspot-edge{
     display:flex;
     justify-content: space-around;
-    z-index:$hotspotZLevel;
+    //z-index:50;//$hotspotZLevel;
 }
 .iv-hotspot-left{
     flex-direction: column;

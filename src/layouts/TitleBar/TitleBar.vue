@@ -1,6 +1,6 @@
 <template>
     <nav class="banner" :class="theme" id="ivTitleBar">
-        <button class="guidanceButton" @click="handleGuidanceClick">?</button>
+        <button v-if="showGuidanceSymbol" class="guidanceButton" @click="handleGuidanceClick">?</button>
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" :src="logo">
         </a>
@@ -28,7 +28,8 @@ export default {
     },
     data(){
       return{
-        logo:Logo
+        logo:Logo,
+        showGuidanceSymbol:false
       }
     },
     methods:{
@@ -47,6 +48,11 @@ export default {
       theme(){
         return [this.mode]
       }
+    },
+    mounted(){
+      if(typeof this.$parent.guidance_branch_list !== "undefined"){
+          this.showGuidanceSymbol = true
+      }
     }
 }
 </script>
@@ -55,6 +61,8 @@ export default {
 @import "src/globals.scss";
 
 .banner {
+  z-index: 1;
+
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
@@ -64,6 +72,7 @@ export default {
   position: fixed; 
   top: 0;
   right: 0;
+
   &.learn{
     background: linear-gradient(
             90deg,
@@ -76,7 +85,7 @@ export default {
     background: $secondaryGreen;
   }
   color: #ffffff;
-  z-index: $titlebarZLevel;
+
 }
 .vis-title {
   flex-basis: 0;

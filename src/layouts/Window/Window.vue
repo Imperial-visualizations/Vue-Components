@@ -56,7 +56,7 @@ export default {
 <style lang="scss">
 @import "src/globals.scss";
 .modal-backdrop {
-  z-index: $middleZLevel;
+  z-index: 100;//$middleZLevel;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -70,7 +70,8 @@ export default {
   top: 25%;
   left: 25%;
 
-  z-index: $topZLevel;
+  z-index: 500;
+  
   box-shadow: 1px 1px 30px 0px  rgba(0, 0, 0, 0.4);
   >*{
     box-sizing:border-box;

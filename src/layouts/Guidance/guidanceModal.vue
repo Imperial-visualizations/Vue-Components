@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import Guidance from "mixins/Guidance";
+import Guidance from "@/mixins/Guidance";
 //import { relative } from 'path';
 import windowModal from "../Window";
 import guidanceBus from "@/buses/guidanceBus"
@@ -83,12 +83,12 @@ export default {
     methods:{
         
         raiseComponent(){
-            //document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 900;
-            //document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 900;
+            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
         },
         lowerComponent(){
-            //document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
-            //document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
+            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 0;
+            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
             guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv);
         },
         prevGuidance(){
@@ -171,8 +171,8 @@ export default {
     position: absolute;
     left:50%;
     top:50%;
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
     transform:translate(-50%,-50%);
     cursor: pointer;
     background-color: $hotspotButtonColor;

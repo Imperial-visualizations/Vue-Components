@@ -21,7 +21,7 @@
     </div>
 </template>
 <script>
-import Guidance from "mixins/Guidance";
+import Guidance from "@/mixins/Guidance";
 import guidanceBus from '@/buses/guidanceBus.js';
 
 export default {
