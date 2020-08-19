@@ -1,6 +1,6 @@
 <template>
     <nav class="banner" :class="theme" id="ivTitleBar">
-        <button v-if="showGuidanceSymbol" class="guidanceButton" @click="handleGuidanceClick">?</button>
+        <button v-if="showGuidanceSymbol" class="titleBarGuidanceButton" @click="handleGuidanceClick">?</button>
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" :src="logo">
         </a>
@@ -121,7 +121,7 @@ export default {
   margin: 0.125rem 0.5rem;
 }
 
-.guidanceButton{
+.titleBarGuidanceButton{
   position: absolute;
   left: calc((#{$titleBarHeight} - #{$guidanceButtonHeight})/2);
   z-index: $titlebarZLevel;

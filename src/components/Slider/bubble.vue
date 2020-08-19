@@ -42,7 +42,9 @@ export default {
 }
 .sliderValueMarker p{
   font-size: 14px;
-  text-align: center;
-  transform: rotate(-45deg);
+  //text-align: center;
+  transform: translateX(1px) rotate(-45deg);
+  color: white;
+
 }
 </style>

@@ -50,7 +50,6 @@ export default {
             default: "Help!"
         },
         guidanceInput:{
-            type:Object
         },
         prevButton:{
             type:Boolean,
@@ -82,15 +81,50 @@ export default {
         },
     },
     methods:{
-        
         raiseComponent(){
-            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 900;
-            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
+            if(typeof this.guidanceInput.highlightDiv == "string"){
+                document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = 200;//$highZLevel
+                document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "none";
+            }
+            else if(typeof this.guidanceInput.highlightDiv == "object"){
+                for(let i=0;i < this.guidanceInput.highlightDiv.length; i++){
+                    document.getElementById(this.guidanceInput.highlightDiv[i]).style.zIndex = 200;//$highZLevel
+                    document.getElementById(this.guidanceInput.highlightDiv[i]).style.pointerEvents = "none";
+                }
+            }
+            else{
+                throw "Error Raising: highlightDiv must be string or object of strings of HTML element IDs";
+            }
         },
         lowerComponent(){
-            document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = "auto";
-            document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
-            guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv);
+            if(typeof this.guidanceInput.highlightDiv == "string"){
+                document.getElementById(this.guidanceInput.highlightDiv).style.zIndex = "auto";
+                document.getElementById(this.guidanceInput.highlightDiv).style.pointerEvents = "auto";
+                guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv);
+            }
+            else if(typeof this.guidanceInput.highlightDiv == "object"){
+                for(let i=0;i < this.guidanceInput.highlightDiv.length; i++){
+                    document.getElementById(this.guidanceInput.highlightDiv[i]).style.zIndex = "auto";
+                    document.getElementById(this.guidanceInput.highlightDiv[i]).style.pointerEvents = "auto";
+                    guidanceBus.$emit("hide-component", this.guidanceInput.highlightDiv[i]);
+                }
+            }
+            else{
+                throw "Error Lowering: highlightDiv must be string or object of strings of HTML element IDs";
+            }
+        },
+        showComponent(){
+            if(typeof this.guidanceInput.highlightDiv == "string"){
+                guidanceBus.$emit("show-component", this.guidanceInput.highlightDiv);
+            }
+            else if(typeof this.guidanceInput.highlightDiv == "object"){
+                for(let i=0;i < this.guidanceInput.highlightDiv.length; i++){
+                    guidanceBus.$emit("show-component", this.guidanceInput.highlightDiv[i]);
+                }
+            }
+            else{
+                throw "Error Showing: highlightDiv must be string or object of strings of HTML element IDs";
+            }
         },
         prevGuidance(){
             this.lowerComponent();
@@ -111,14 +145,14 @@ export default {
     },
     mounted(){
         this.raiseComponent();
-        guidanceBus.$emit("show-component", this.guidanceInput.highlightDiv);
+        this.showComponent();
     },
     watch:{
         guidanceInput:function(){
             this.color_rgb = this.guidanceInput.color_rgb;
             this.produceColor();
             this.raiseComponent();
-            guidanceBus.$emit("show-component", this.guidanceInput.highlightDiv);
+            this.showComponent();
         }
     }
 }
