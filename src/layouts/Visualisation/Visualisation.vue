@@ -113,11 +113,9 @@ export default {
         order:0;
         position:relative;
         background-color: white;
-        z-index:0;
     }  
 }
 .hotspot-manager{
-    z-index: 0;
     display:grid;
     grid-template-areas: "topleft top topright" "left . right" "bottomleft bottom bottomright";
     height:100%;

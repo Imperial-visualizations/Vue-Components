@@ -40,7 +40,7 @@ export default {
             color: null,
             color_rgb: this.color_rgb_home,
             gridStructure:false,
-            positionData:[3,7,4,8],
+            positionData:["50%",null,null,"50%"],
         }
     },
     methods:{

@@ -33,12 +33,30 @@ export default {
     },
     computed: {
       styleWindow(){
+        let translate_X = "0%";
+        let translate_Y = "0%";
+
+        if(this.positionModal[3] !== null){
+            translate_X = "-50%"
+        }
+        else{
+            translate_X = "50%"
+        }
+
+        if(this.positionModal[0] !== null){
+            translate_Y = "-50%"
+        }
+        else{
+            translate_Y = "50%"
+        }
+
         return {
-                //gridRowStart: this.positionModal[0],
-                //gridRowEnd: this.positionModal[1],
-                //gridColumnStart: this.positionModal[2],
-                //gridColumnEnd: this.positionModal[3],
-                backgroundColor: this.color,//THIS IS THE KEY LINE THAT SETS THE COLOUT
+                top: this.positionModal[0],
+                right: this.positionModal[1],
+                bottom: this.positionModal[2],
+                left: this.positionModal[3],
+                transform: `translate(${translate_X},${translate_Y})`,
+                backgroundColor: this.color,
                 }
       },
       styleGrid(){
@@ -56,7 +74,7 @@ export default {
 <style lang="scss">
 @import "src/globals.scss";
 .modal-backdrop {
-  z-index: $middleZLevel;
+  z-index: $middleZLevel;//$middleZLevel;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -67,10 +85,11 @@ export default {
 
 .modalContainer{
   position: absolute;
-  top: 25%;
-  left: 25%;
+  //top: 25%;
+  //left: 25%;
 
   z-index: $topZLevel;
+  
   box-shadow: 1px 1px 30px 0px  rgba(0, 0, 0, 0.4);
   >*{
     box-sizing:border-box;

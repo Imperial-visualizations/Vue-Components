@@ -24,10 +24,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "src/globals.scss";
 .hi-line{
-position:relative;
-height:10px;
+    position:relative;
+    height:10px;
+    //margin:0px;
+    //padding:0px;
+    margin-bottom: 4px;
+    margin-top: -10px;
 }
 .tick_line{
     display: inline-block;
@@ -36,7 +41,7 @@ height:10px;
     background: gray;
     height: 10px;
     width: 1px;
-    margin-bottom: 10px;
-    margin-top: -10px;
+    //font-size: 14px;
+
 }
 </style>
