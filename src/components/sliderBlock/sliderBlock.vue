@@ -59,7 +59,7 @@ export default {
     color: {
       type: Array,
       required: true,
-      default: ['#133f6f','#022b57','#80aad1']
+      default: () => ['#133f6f','#022b57','#80aad1']
     },
     sliderName: {
       type: String,
