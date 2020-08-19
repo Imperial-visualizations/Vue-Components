@@ -216,6 +216,7 @@ export default {
     }
 
     &.iv-left{
+        box-shadow: 2px 2px 20px -7px #aaa;
         border-radius: 0 $curvatureRadius $curvatureRadius 0;
         top: 50%;
         transform: translateY(-50%);
@@ -231,6 +232,7 @@ export default {
         }
     }
     &.iv-right{
+        box-shadow: -2px 2px 20px -7px #aaa;
         border-radius: $curvatureRadius 0 0 $curvatureRadius;
         top: 50%;
         transform: translateY(-50%);
@@ -246,12 +248,14 @@ export default {
         }
     }
     &.iv-top{
+        box-shadow: 2px 2px 20px -7px #aaa;
         width: 25%;
         transform:translateX(-50%);
         left:50%;
         border-radius: 0 0 $curvatureRadius $curvatureRadius;
     }
     &.iv-bottom{
+        box-shadow: 2px -2px 20px -7px #aaa;
         left: 50%;
         width: 25%;
         top: 0;
@@ -259,24 +263,28 @@ export default {
         border-radius: $curvatureRadius $curvatureRadius 0 0;
     }
     &.iv-bottomleft{
+        box-shadow: 2px -2px 20px -7px #aaa;
         top:0;
         right:0;
         border-radius: 0 0 0 $curvatureRadius;
         width: 75%;
     }
     &.iv-bottomright{
+        box-shadow: -2px -2px 20px -7px #aaa;
         top:0;
         left:0;
         border-radius: 0 0 $curvatureRadius 0;
         width: 75%;
     }
     &.iv-topleft{
+        box-shadow: 2px 2px 20px -7px #aaa;
         bottom:0;
         right:0;
         border-radius: $curvatureRadius 0 0 0;
         width: 75%;
     }
     &.iv-topright{
+        box-shadow: -2px 2px 20px -7px #aaa;
         bottom:0;
         left:0;
         border-radius: 0 $curvatureRadius 0  0;
