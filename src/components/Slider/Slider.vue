@@ -2,7 +2,7 @@
     <div ref="sliderContainer">
         <resize-observer @notify="update_step" />
         <div class = "sliderGroup">
-            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colors="colors"/>
+            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colorBubble="color.shade_200"/>
             <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
@@ -11,10 +11,11 @@
     </div>
 </template>
 <script>
-import lineTicksComp from './lineTicks.vue'
-import NumTicksComp from './numTicks.vue'
-import BubbleComp from './bubble.vue'
-import InputButton from './inputButton.vue'
+import lineTicksComp from './lineTicks.vue';
+import NumTicksComp from './numTicks.vue';
+import BubbleComp from './bubble.vue';
+import InputButton from './inputButton.vue';
+import colorStore from "@/buses/colorStore";
 export default {
     name:"iv-slider",
     components: {
@@ -72,13 +73,15 @@ export default {
             type:Number,
             default:0
         },
-        colors: {
-            type:Array,
-            default: () => ["#133F6F","#022B57"]
-        }
+        colorSlider: {
+            type: String,
+            required: true,
+            default: "green"
+        },
     },
     data(){
         return {
+            color: colorStore.color_full_list[this.colorSlider],
             id: null,
             value: this.init_val,
             current_step: this.step,
@@ -158,8 +161,8 @@ export default {
     },
     computed:{
         cssColor(){
-            return {'--primary-color': this.colors[0],
-                    '--secondary-color': this.colors[1]
+            return {'--primary-color': this.color.shade_500,
+                    '--secondary-color': this.color.shade_200
             }
         }
     },

@@ -6,13 +6,13 @@
 <script>
 export default {
     name:"iv-bubble",
-    props:["sliderValue","thumb_width","value_marker_width","min","max","colors"],
+    props:["sliderValue","thumb_width","value_marker_width","min","max","colorBubble"],
     computed:{
         moveLabel(){
             let ratio = (this.sliderValue - this.min)/(this.max - this.min);
             return {
                 left: `calc(${ratio*100}% - ${this.value_marker_width/2}px + ${(0.5 - ratio)*this.thumb_width}px)`,
-                '--secondary-color': this.colors[1]
+                '--secondary-color': this.colorBubble
             }
         }
     }

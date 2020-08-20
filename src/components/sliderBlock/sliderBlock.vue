@@ -7,7 +7,7 @@
       </div>
 
       <div class = "iv-slider-block-body">
-        <iv-slider :bubble="bubble" :max="max" :min="min" :step="step" :init_val="init_val" :tick_decimals="tick_decimals" :lineTick="true" :numTick="true" :playSlider="playSlider" :colors="color"/>
+        <iv-slider :bubble="bubble" :max="max" :min="min" :step="step" :init_val="init_val" :tick_decimals="tick_decimals" :lineTick="true" :numTick="true" :playSlider="playSlider" :colorSlider="colorBlock"/>
       </div>
 
       <div class = "iv-slider-block-footer">
@@ -19,8 +19,9 @@
 </template>
 
 <script>
-import guidanceBus from "@/buses/guidanceBus"
-import Slider from "../Slider/Slider.vue"
+import guidanceBus from "@/buses/guidanceBus";
+import Slider from "../Slider/Slider.vue";
+import colorStore from "@/buses/colorStore";
 export default {
   name: 'iv-slider-block',
   components:{
@@ -56,10 +57,10 @@ export default {
       type:Number,
       default:0
     },
-    color: {
-      type: Array,
+    colorBlock: {
+      type: String,
       required: true,
-      default: ['#133f6f','#022b57','#80aad1']
+      default: "green"
     },
     sliderName: {
       type: String,
@@ -79,12 +80,17 @@ export default {
       default: true
     }
   },
+  data(){
+    return{
+        color: colorStore.color_full_list[this.colorBlock],
+    };
+  },
   computed: {
     colorStyling(){
       return{
-        '--prim-color': this.color[0],
-        '--sec-color': this.color[1],
-        '--tert-color': this.color[2]
+        '--prim-color': this.color.shade_500,
+        '--sec-color': this.color.shade_200,
+        '--tert-color': this.color.shade_900
       }
     }
   },
@@ -134,7 +140,7 @@ export default {
   float:left;
   color: white;
   padding: 2px 0px 0px 5px;
-  color: var(--prim-color);
+  color: var(--sec-color);
   font-family: sans-serif;
   font-size: 15px;
   text-align: center;

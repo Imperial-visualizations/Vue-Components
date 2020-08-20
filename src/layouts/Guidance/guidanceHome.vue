@@ -23,6 +23,7 @@
 <script>
 import Guidance from "@/mixins/Guidance";
 import guidanceBus from '@/buses/guidanceBus.js';
+import colorStore from "@/buses/colorStore";
 
 export default {
     name:"iv-guidance-home",
@@ -30,16 +31,11 @@ export default {
         guidanceInput:{
             type:Array,
         },
-        color_rgb_home:{
-            default: () => [0, 102, 255]
-        }
     },
     mixins:[Guidance],
     data(){
         return{
-            color: null,
-            color_rgb: this.color_rgb_home,
-            gridStructure:false,
+            color: colorStore.color_full_list["navy"],
             positionData:["50%",null,null,"50%"],
         }
     },

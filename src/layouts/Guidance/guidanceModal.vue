@@ -35,9 +35,9 @@
 
 <script>
 import Guidance from "@/mixins/Guidance";
-//import { relative } from 'path';
 import windowModal from "../Window";
-import guidanceBus from "@/buses/guidanceBus"
+import guidanceBus from "@/buses/guidanceBus";
+import colorStore from "@/buses/colorStore";
 export default {
     name:"iv-guidance-modal",
     components:{
@@ -66,8 +66,7 @@ export default {
     },
     data(){
         return{
-            color: null,
-            color_rgb: this.guidanceInput.color_rgb,
+            color: colorStore.color_full_list[this.guidanceInput.color_rgb],
         }
     },
     computed:{
@@ -149,8 +148,7 @@ export default {
     },
     watch:{
         guidanceInput:function(){
-            this.color_rgb = this.guidanceInput.color_rgb;
-            this.produceColor();
+            this.color = colorStore.color_full_list[this.guidanceInput.color_rgb],
             this.raiseComponent();
             this.showComponent();
         }
