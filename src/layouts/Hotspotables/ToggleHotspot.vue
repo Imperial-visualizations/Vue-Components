@@ -1,6 +1,6 @@
 <template>
     <div class="iv-hotspotable iv-toggle-hotspot" :class=toggleClass :style="toggleSize">
-        <div v-show="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
+        <div v-show="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace},{'iv-glass-effect':glass}]">
             <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
         </div>
         <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot"><span v-if="title !== ''" class = "title-text">{{title}}</span></div>
@@ -22,6 +22,10 @@ export default {
             default:""
         },
         noWastedSpace:{
+            type:Boolean,
+            default:false
+        },
+        glass:{
             type:Boolean,
             default:false
         }
