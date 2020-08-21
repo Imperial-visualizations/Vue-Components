@@ -12,10 +12,6 @@ export {default as ToggleBasic} from "./ToggleBasic";
 export {default as ToggleAdvance} from "./ToggleAdvance";
 export {default as Tickbox} from "./Tickbox";
 export {default as SectionTitle} from "./Titles";
-<<<<<<< HEAD
-export {default as LegacyWrapper} from './LegacyWrapper';
-=======
->>>>>>> master
 //export {default as Play_Button} from "./Play_Button";
 export {SymbolButton,Button} from "./Button";
 export {default as guidanceButton} from "./GuidanceButton";
@@ -23,10 +19,7 @@ export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
 export {Tab, Tabs} from "./Tabs";
 export {default as sliderBlock} from "./sliderBlock";
-<<<<<<< HEAD
-=======
 export {default as LegacyWrapper} from './LegacyWrapper';
 
->>>>>>> master
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';
