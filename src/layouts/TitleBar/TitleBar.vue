@@ -63,7 +63,9 @@ export default {
 
 .banner {
   z-index: 1;
+
 }
+
 
 .iv-title-bar{
 
