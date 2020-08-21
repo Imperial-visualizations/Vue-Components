@@ -7,7 +7,7 @@
       </div>
 
       <div class = "iv-slider-block-body">
-        <iv-slider :bubble="bubble" :max="max" :min="min" :step="step" :init_val="init_val" :tick_decimals="tick_decimals" :lineTick="true" :numTick="true" :playSlider="playSlider" :colorSlider="colorBlock"/>
+        <iv-slider @sliderChanged="emitSlider" :bubble="bubble" :max="max" :min="min" :step="step" :init_val="init_val" :tick_decimals="tick_decimals" :lineTick="true" :numTick="true" :playSlider="playSlider" :colorSlider="colorBlock"/>
       </div>
 
       <div class = "iv-slider-block-footer">
@@ -98,6 +98,9 @@ export default {
         buttonClick(){
            guidanceBus.$emit("guidance-button-click", this.guidanceIdentifier);
         },
+        emitSlider(e){
+            this.$emit("sliderChanged",e);
+        }
   },
 }
 </script>
