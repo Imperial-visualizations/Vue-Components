@@ -13,7 +13,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   sodipodi:docname="right.svg">
+   sodipodi:docname="close.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -23,18 +23,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-740.00002"
-     inkscape:cy="431.33692"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="750.38219"
+     inkscape:cy="456.85467"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="705"
      inkscape:window-x="228"
      inkscape:window-y="1072"
      inkscape:window-maximized="1"
-     inkscape:document-rotation="0" />
+     units="mm"
+     width="200mm" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -43,32 +45,17 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-120.95239,-6.4865281)">
+     id="layer1">
     <path
-       sodipodi:type="star"
-       id="path10"
-       sodipodi:sides="3"
-       sodipodi:cx="139.8512"
-       sodipodi:cy="39.220226"
-       sodipodi:r1="37.797619"
-       sodipodi:r2="18.898809"
-       sodipodi:arg1="0"
-       sodipodi:arg2="1.0471976"
-       inkscape:flatsided="false"
-       inkscape:rounded="0"
-       inkscape:randomized="0"
-       d="m 177.64882,39.220226 -28.34822,16.36685 -28.34821,16.366848 0,-32.733699 0,-32.7336969 28.34821,16.3668499 z"
-       inkscape:transform-center-x="103.92305"
-       inkscape:transform-center-y="101.95955"
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
-       transform="matrix(1.7614453,2.6465449,-3.0549558,1.5259613,128.0981,-323.40436)" />
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.496366px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 0.85233811,33.947174 34.193716,0.60172775 100.1244,66.540469 166.30577,0.35100515 l 33.3414,33.34544985 -66.43209,66.440175 65.68001,65.68802 -32.84,32.844 -65.68,-65.68801 L 33.692343,199.67152 0.35096241,166.32609 66.783032,99.885922 Z"
+       id="path14" />
   </g>
 </svg>

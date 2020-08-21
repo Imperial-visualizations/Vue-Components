@@ -1,5 +1,5 @@
 <template>
-    <button class="guidance-button" @click="buttonClick">
+    <button :class="{guidanceButton: buttonStyle}"  @click="buttonClick">
         <slot>?</slot>
     </button>
 </template>
@@ -12,6 +12,10 @@ export default {
     props:{
         guidanceIdentifier:{
             type:String
+        },
+        buttonStyle:{
+            type: Boolean,
+            default: true
         }
     },
     methods:{
@@ -23,7 +27,7 @@ export default {
 </script>
 
 <style>
-.guidance-button{
+.guidanceButton{
     position: relative;
     z-index: 1;
     cursor: pointer;
@@ -31,7 +35,6 @@ export default {
     color: black;
     border: 2px solid black;
     border-radius: 14px 14px 14px 14px;
-    box-shadow: 1px 1px 2px 0px;
     width: 28px;
     height: 28px;
     outline: none;

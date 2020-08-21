@@ -28,7 +28,8 @@ export default {
     },
     data(){
       return{
-        logo:Logo
+        logo:Logo,
+        showGuidanceSymbol:false
       }
     },
     methods:{
@@ -47,6 +48,11 @@ export default {
       theme(){
         return [this.mode]
       }
+    },
+    mounted(){
+      if(typeof this.$parent.guidance_branch_list !== "undefined"){
+          this.showGuidanceSymbol = true
+      }
     }
 }
 </script>
@@ -54,7 +60,13 @@ export default {
 <style lang="scss">
 @import "src/globals.scss";
 
+
+.banner {
+  z-index: 1;
+
+
 .iv-title-bar{
+
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
@@ -64,6 +76,7 @@ export default {
   position: fixed; 
   top: 0;
   right: 0;
+
   &.learn{
     background: linear-gradient(
             90deg,
@@ -76,7 +89,7 @@ export default {
     background: $secondaryGreen;
   }
   color: #ffffff;
-  z-index: $titlebarZLevel;
+
 }
 .iv-vis-title {
   flex-basis: 0;
@@ -85,7 +98,7 @@ export default {
   padding: 0;
   position: fixed;
   text-align: center;
-  font-weight: bolder;
+  font-weight: 600;
   left: 0vw;
   right: 0;
   background: none;
@@ -112,17 +125,18 @@ export default {
   margin: 0.125rem 0.5rem;
 }
 
+
 .iv-guidance-button{
   position: absolute;
   left: calc((#{$titleBarHeight} - #{$guidanceButtonHeight})/2);
   z-index: $titlebarZLevel;
   padding:0;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid black;
+  background-color: $primaryImperialBlue;
+  color: white;
+  border: 2px solid white;
   border-radius: 14px 14px 14px 14px;
-  box-shadow: 1px 1px 2px 0px;
+  //box-shadow: 1px 1px 2px 0px;
   width: 28px;
   height: 28px;
   outline: none;

@@ -1,6 +1,6 @@
 <template>
     <div class="iv-hotspotable iv-fixed-hotspot">
-        <div class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace}]">
+        <div class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace},{'iv-transparent':transparent},{'iv-glass-effect':glass}]">
             <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
         </div>
     </div>
@@ -12,6 +12,14 @@ export default {
     mixins:[Hotspotable],
     props:{
         noWastedSpace:{
+            type:Boolean,
+            default:false
+        },
+        transparent:{
+            type:Boolean,
+            default:false
+        },
+        glass:{
             type:Boolean,
             default:false
         }
@@ -32,6 +40,11 @@ export default {
     background-color:white;
     word-wrap: break-word;
     display:flex;
+
+    &.iv-transparent{
+        background: none;
+        box-shadow: none !important;
+    }
     &.no-wasted-space{
         width:auto;
         height:auto;
