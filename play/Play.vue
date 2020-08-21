@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
       <header class="appheader">
           <div class="start-items">
             <h1>Playground!</h1>

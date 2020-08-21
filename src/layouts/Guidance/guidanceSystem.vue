@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import guidanceBus from 'buses/guidanceBus.js';
-//:guidance_branches_list="guidance_branches_list" :guidance_texts_list="guidance_texts_list" :guidance_item="guidance_item"
+import guidanceBus from '@/buses/guidanceBus.js';
 export default {
     name:"iv-guidance-system",
     props:{
@@ -20,12 +19,8 @@ export default {
     data(){
         return{
             whichGuidance: this.defaultGuidance,
-
             guidanceData:null,
-
             guidance_branches_list: this.guidance_branches_input,
-            guidance_texts_list:null,
-            guidance_item:null,
         }
     },
     mounted(){
@@ -82,7 +77,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "src/globals.scss";
 .guidance-system{
     z-index:0;
 }

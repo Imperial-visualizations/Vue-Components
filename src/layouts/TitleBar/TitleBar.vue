@@ -1,6 +1,6 @@
 <template>
     <nav class="banner" :class="theme" id="ivTitleBar">
-        <button class="guidanceButton" @click="handleGuidanceClick">?</button>
+        <button v-if="showGuidanceSymbol" class="titleBarGuidanceButton" @click="handleGuidanceClick">?</button>
         <a @click="openLinkNewTab" class="logo-container">
             <img class="vis-logo" :src="logo">
         </a>
@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import guidanceBus from "buses/guidanceBus.js"
-import Logo from "assets/ImpVis-logo-white.svg"
-import LTMode from "mixins/LTMode.js"
+import guidanceBus from "@/buses/guidanceBus.js"
+import Logo from "@/assets/ImpVis-logo-white.svg"
+import LTMode from "@/mixins/LTMode.js"
 export default {
     name:"iv-title-bar",
     mixins:[LTMode],
@@ -28,7 +28,8 @@ export default {
     },
     data(){
       return{
-        logo:Logo
+        logo:Logo,
+        showGuidanceSymbol:false
       }
     },
     methods:{
@@ -47,6 +48,11 @@ export default {
       theme(){
         return [this.mode]
       }
+    },
+    mounted(){
+      if(typeof this.$parent.guidance_branch_list !== "undefined"){
+          this.showGuidanceSymbol = true
+      }
     }
 }
 </script>
@@ -55,6 +61,8 @@ export default {
 @import "src/globals.scss";
 
 .banner {
+  z-index: 1;
+
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
@@ -64,6 +72,7 @@ export default {
   position: fixed; 
   top: 0;
   right: 0;
+
   &.learn{
     background: linear-gradient(
             90deg,
@@ -76,7 +85,7 @@ export default {
     background: $secondaryGreen;
   }
   color: #ffffff;
-  z-index: $titlebarZLevel;
+
 }
 .vis-title {
   flex-basis: 0;
@@ -85,7 +94,7 @@ export default {
   padding: 0;
   position: fixed;
   text-align: center;
-  font-weight: bolder;
+  font-weight: 600;
   left: 0vw;
   right: 0;
   background: none;
@@ -112,17 +121,17 @@ export default {
   margin: 0.125rem 0.5rem;
 }
 
-.guidanceButton{
+.titleBarGuidanceButton{
   position: absolute;
   left: calc((#{$titleBarHeight} - #{$guidanceButtonHeight})/2);
   z-index: $titlebarZLevel;
   padding:0;
   cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid black;
+  background-color: $primaryImperialBlue;
+  color: white;
+  border: 2px solid white;
   border-radius: 14px 14px 14px 14px;
-  box-shadow: 1px 1px 2px 0px;
+  //box-shadow: 1px 1px 2px 0px;
   width: 28px;
   height: 28px;
   outline: none;

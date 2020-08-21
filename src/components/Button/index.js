@@ -1,2 +1,3 @@
 import Button from "./Button.vue";
-export default Button; 
+import SymbolButton from "./SymbolButton.vue";
+export {Button,SymbolButton};

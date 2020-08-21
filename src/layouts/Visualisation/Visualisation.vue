@@ -82,6 +82,14 @@ export default {
                 return this.$refs[position][0].isSpace(large)
             }
         }
+    },
+    mounted(){
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh',`${vh}px`)
+        window.addEventListener('resize',()=>{ // May need to debounce this
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh',`${vh}px`)
+        })
     }
 }
 </script>
@@ -89,7 +97,7 @@ export default {
 @import "src/globals.scss";
 .iv-visualisation {
     margin-top:$titleBarHeight;
-    height:calc(100vh - #{$titleBarHeight});
+    height:calc(var(--vh,1vh) * 100 - #{$titleBarHeight});
     z-index:0;
     //height:100%;
 }
@@ -105,11 +113,9 @@ export default {
         order:0;
         position:relative;
         background-color: white;
-        z-index:0;
     }  
 }
 .hotspot-manager{
-    z-index: 0;
     display:grid;
     grid-template-areas: "topleft top topright" "left . right" "bottomleft bottom bottomright";
     height:100%;
@@ -119,5 +125,8 @@ export default {
 }
 .iv-overflow{
     display:none;
+}
+.iv-main-stage{
+    position:relative;
 }
 </style>

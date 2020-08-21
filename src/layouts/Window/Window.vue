@@ -1,22 +1,23 @@
 <template>
   <div>
-
-    <div class="modal-grid" :style="styleGrid" >
       <div class="modalContainer" :style="styleWindow">
-          <header class="modal-header">
+
+          <header >
               <slot name="header"></slot>
           </header>
-          <section class="modal-body">
-              <slot></slot>
+
+          <section >
+              <slot name="body"></slot>
           </section>
-          <footer class="modal-footer">
+
+          <footer >
               <slot name="footer"></slot>
           </footer>
-      </div>
-    </div>
 
-    <div class="modal-backdrop">
-  </div>
+      </div>
+
+      <div class="modal-backdrop">
+      </div>
 
   </div>
 </template>
@@ -26,14 +27,36 @@ export default {
     props:{
       positionModal:{
       },
+      color:{
+        default: "rgb(230,230,255)",
+      }
     },
     computed: {
       styleWindow(){
+        let translate_X = "0%";
+        let translate_Y = "0%";
+
+        if(this.positionModal[3] !== null){
+            translate_X = "-50%"
+        }
+        else{
+            translate_X = "50%"
+        }
+
+        if(this.positionModal[0] !== null){
+            translate_Y = "-50%"
+        }
+        else{
+            translate_Y = "50%"
+        }
+
         return {
-                gridRowStart: this.positionModal[0],
-                gridRowEnd: this.positionModal[1],
-                gridColumnStart: this.positionModal[2],
-                gridColumnEnd: this.positionModal[3],
+                top: this.positionModal[0],
+                right: this.positionModal[1],
+                bottom: this.positionModal[2],
+                left: this.positionModal[3],
+                transform: `translate(${translate_X},${translate_Y})`,
+                backgroundColor: this.color,
                 }
       },
       styleGrid(){
@@ -51,58 +74,26 @@ export default {
 <style lang="scss">
 @import "src/globals.scss";
 .modal-backdrop {
-  z-index: $middleZLevel;
+  z-index: $middleZLevel;//$middleZLevel;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-.modal-grid{
-  z-index: $highZLevel;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
 .modalContainer{
+  position: absolute;
+  //top: 25%;
+  //left: 25%;
+
   z-index: $topZLevel;
-  background: #ffffff;
-  box-shadow: 2px 2px 20px 1px;
-  border:2px solid black;
-  background-color: white;
-  overflow-x: auto;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  
+  box-shadow: 1px 1px 30px 0px  rgba(0, 0, 0, 0.4);
+  >*{
+    box-sizing:border-box;
+  }
 
 }
-
-.modal-header,
-.modal-footer {
-  position: relative;
-  padding: 15px;
-  width: 100%
-}
-
-.modal-header {
-  border-bottom: 1px solid #eeeeee;
-  color: #003e74;
-}
-
-.modal-footer {
-  border-top: 1px solid #eeeeee;
-}
-
-.modal-body {
-  position: relative;
-  padding: 20px 10px;
-  width: 100%
-}
-
 </style>

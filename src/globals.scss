@@ -26,8 +26,10 @@ $hotpotTextHeight: 1.25rem;
 $minButtonHeight: 1.25rem;
 $minButtonWidth: 80px;
 
-:exports{
-    imperialBlue:$primaryImperialBlue;
-    secondaryGreen:$secondaryGreen;
-    secondaryOrange:$hotspotButtonColor;
+$blurAmount:15px;
+.iv-glass-effect{
+    backdrop-filter: blur($blurAmount);
+    -webkit-backdrop-filter:blur($blurAmount);
+    box-shadow: none;
+    background-color: rgba(255,255,255,0.6) !important;
 }

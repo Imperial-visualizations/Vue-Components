@@ -1,5 +1,5 @@
 <template>
-    <button class="iv-button" @mouseover="mouseOn" @mouseleave="mouseOff" @click="buttonClick" :disabled="buttonDisabled">
+    <button class="iv-button iv-drop-shadow-medium" @mouseover="mouseOn" @mouseleave="mouseOff" @click="buttonClick" :disabled="disabled">
         <slot>Default text</slot></button>
 </template>
 
@@ -10,11 +10,11 @@ export default {
         mouseOn(e){
             this.$emit("mouseover",e)
         },
-        mouseOff(){
+        mouseOff(e){
             this.$emit("mouseleave",e)
         },
-        buttonClick(event){
-          this.$emit("click", event)
+        buttonClick(e){
+          this.$emit("click", e)
         },
     },
     props:{
@@ -22,72 +22,47 @@ export default {
         type:Boolean,
         required: false,
         default: false
-      }
+      },
+
     }  
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "src/globals";
+$green:#19CF86;
+$greenHover:#1BDE90;
+$greenClick:#139C65;
+$disabledColor:#D3D3D3;
 .iv-button{
-    color:white;
-    background-color:darkblue;
     border: none;
-    padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    box-shadow: 0 8px 16px 0 rgba(20, 102, 224, 0.8), 0 6px 20px 0 rgba(0,0,0,0.19);
-    transition: 2s;
-}
-
-.iv-button:focus{
-    outline:0;
-}
-
-.iv-button:active{
-    /* background-color:#040252; */
-    background-color:black;
+    font-size: 1rem;
+    padding: 0.25em 0.5em;
+    background-color: $green;
+    color:$white;
+    font-weight:500;
+    transition: all 0.2s;
+    &:focus{
+        outline:0;
     }
 
-.iv-button:hover{
-    color:white;
-    background-color:darkblue;
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    box-shadow: 0 8px 16px 0 rgba(209, 18, 18, 1), 0 6px 20px 0 rgba(0,0,0,0.19);
-    transition: 0.2s;
-}
-
-.iv-button:disabled{
-    color:white;
-    background-color:#ccc;
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    box-shadow: 0 8px 16px 0 rgba(209, 18, 18, 0), 0 6px 20px 0 rgba(0,0,0,0);
-    transition: 2s;
-}
+    &:hover{
+        background-color:$greenHover;
+    }
+    &:active{
+        background:$greenClick;
+        color:#F0FFF0;
+    }
 
 
-.iv-button:hover:disabled{
-    color:white;
-    background-color:#ccc;
-    border: none;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    box-shadow: 0 8px 16px 0 rgba(209, 18, 18, 0), 0 6px 20px 0 rgba(0,0,0,0);
-    transition: 2s;
+    &:disabled{
+        background-color:$disabledColor;
+        color:#a3a3a3;
+    }
 }
+
 
 </style>
