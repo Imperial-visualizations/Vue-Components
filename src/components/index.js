@@ -17,5 +17,6 @@ export {default as guidanceButton} from "./GuidanceButton";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
 export {Tab, Tabs} from "./Tabs";
+export {default as LegacyWrapper} from './LegacyWrapper';
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';
