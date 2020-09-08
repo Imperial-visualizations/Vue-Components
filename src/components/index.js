@@ -3,8 +3,6 @@
 export {default as Slider} from "./Slider";
 export {default as DragAndDrop} from "./DragAndDrop";
 export {SVGContainer, SVGDraggable} from "./SVGDragAndDrop";
-export {default as EquationBox} from "./EquationBox";
-export {default as EquationBoxAdvance} from "./EquationBoxAdvance";
 export {default as HoverText} from "./HoverText";
 export {default as DropdownTextBox} from "./DropdownTextBox";
 export {default as DropdownList} from "./DropdownList";

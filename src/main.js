@@ -8,6 +8,8 @@ import VueResize from 'vue-resize'
 // Install a plugin to Vue.js
 // Can then be installed simply by using the Vue.use syntax, which is preferred by the Vue docs 
 const ImpVisLibrary={
+  ...components,
+  ...layouts,
   install(Vue){
     Vue.use(VueResize)
     for(const componentName in components){
