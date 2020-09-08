@@ -1,8 +1,9 @@
 {
   "name": "@impvis/components",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "license": "BSD-3-Clause",
   "main": "./dist/impvis-components.js",
+  "module":"./dist/impvis-components.js",
   "unpkg": "./dist/impvis-components.umd.js",
   "scripts": {
     "play": "vue-cli-service serve ./play/main.js",
