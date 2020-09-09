@@ -153,6 +153,7 @@ export default {
 @import "src/globals.scss";
 .iv-pane-content{
     height:100%;
+    overflow-y:scroll;
 }
 .iv-drag-selector{
     padding:0;
@@ -164,20 +165,23 @@ export default {
     float:left;
 }
 .iv-drag-selector-left{
-    float:right;
-    transform:translateX(50%);
+    left:100%;
+    transform:translateX(-50%);
+    position:absolute;
 }
 .iv-pane-content-right{
     float:right;
 }
 .iv-drag-selector-right{
-    float:left;
+    left:0%;
+    position:absolute;
     transform:translateX(-50%);
 }
 .iv-pane{
     height:100%;
     width:100%;
     margin:0;
+    position:relative;
     background-color:white;
 }
 .iv-pane-left{
