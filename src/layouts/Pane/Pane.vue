@@ -153,7 +153,7 @@ export default {
 @import "src/globals.scss";
 .iv-pane-content{
     height:100%;
-    overflow-y:scroll;
+    overflow-y:auto;
 }
 .iv-drag-selector{
     padding:0;
@@ -197,6 +197,7 @@ export default {
     order:1;
 }
 .iv-pane-wrapper{
+    position:relative;
     background-color: white;
     height:100%;
     flex:0 0 auto;
