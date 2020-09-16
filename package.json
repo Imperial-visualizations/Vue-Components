@@ -15,6 +15,7 @@
     "examples:dragdrop": "vue-cli-service serve ./Examples/SVGDragAndDrop.js"
   },
   "dependencies": {
+    "compare-versions": "^3.6.0",
     "component-fixture": "^1.14.0",
     "core-js": "^3.6.5",
     "save": "^2.4.0",
@@ -24,10 +25,11 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^3.1.1",
     "@rbnlffl/rollup-plugin-eslint": "^1.0.0",
+    "@rollup/plugin-alias": "^3.1.1",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-image": "^2.0.5",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.1.0",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
