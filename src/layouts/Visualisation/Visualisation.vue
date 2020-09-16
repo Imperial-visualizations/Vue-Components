@@ -113,6 +113,7 @@ export default {
         order:0;
         position:relative;
         background-color: white;
+        overflow-y:auto;
     }  
 }
 .hotspot-manager{
@@ -128,5 +129,6 @@ export default {
 }
 .iv-main-stage{
     position:relative;
+
 }
 </style>
