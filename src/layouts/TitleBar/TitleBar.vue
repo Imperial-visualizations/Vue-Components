@@ -66,7 +66,6 @@ export default {
 }
 
 .iv-title-bar{
-
   display: flex;
   flex: 0 0 auto;
   justify-content: flex-end;
@@ -76,7 +75,7 @@ export default {
   position: fixed; 
   top: 0;
   right: 0;
-
+  z-index: $titlebarZLevel;
   &.learn{
     background: linear-gradient(
             90deg,
