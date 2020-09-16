@@ -17,7 +17,7 @@
 import guidanceBus from "@/buses/guidanceBus.js";
 import Hotspotable from '@/mixins/Hotspotable.js';
 import LTMode from "@/mixins/LTMode.js";
-const minWidth = 250;
+const minWidth = 350;
 const maxWidthRatio = 50;
 export default {
     name:"iv-pane",
@@ -26,7 +26,7 @@ export default {
         width:{
             type:Number,
             required:false,
-            default:300,
+            default:400,
         },
         format:{
             type:String,
@@ -154,6 +154,8 @@ export default {
 .iv-pane-content{
     height:100%;
     overflow-y:auto;
+    padding: 0rem 1.25rem;
+    box-sizing: border-box;
 }
 .iv-drag-selector{
     padding:0;
@@ -182,7 +184,7 @@ export default {
     width:100%;
     margin:0;
     position:relative;
-    background-color:white;
+    background-color:#ededed;
 }
 .iv-pane-left{
     box-shadow: 2px 0px 20px -7px #aaa;

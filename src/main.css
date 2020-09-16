@@ -29,3 +29,13 @@ html,body{
 .iv-drop-shadow-high{
     box-shadow: 3px 3px 20px rgba(0,0,0,0.18);
 }
+@media screen and (max-width:768px){
+    html,body{
+        font-size:13pt;
+    }
+}
+@media screen and (max-width:480px){
+    html,body{
+        font-size:12pt;
+    }
+}
