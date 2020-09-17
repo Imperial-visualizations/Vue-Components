@@ -1,6 +1,7 @@
 <template>
     <div class="iv-visualisation" id="visualisation">
         <div class="iv-visualisation-flow" id="iv-visualisation-flow">
+            <title-bar>{{title}}</title-bar>
             <div class="iv-main-stage">
                 <div class="hotspot-manager" v-if="showSpots" :style="gridStyle">
                     <hotspot v-for="hotspot in hotspots" :key=hotspot :ref="hotspot" :position="hotspot"/>
@@ -15,12 +16,13 @@
     </div>
 </template>
 <script> 
-
+import TitleBar from '../TitleBar'
 import Hotspot from '../Hotspot'
 export default {
     name:"iv-visualisation",
     components:{
-        Hotspot
+        Hotspot,
+        TitleBar
     },
     props:{
         corners:{
@@ -38,6 +40,11 @@ export default {
         hotspotColumnHeight:{
             type:String,
             default:"250px"
+        },
+        title:{
+            type:String,
+            required:true,
+            default:"Default Title"
         }
     },
     data(){
@@ -98,7 +105,7 @@ export default {
 .iv-visualisation {
     margin-top:$titleBarHeight;
     height:calc(var(--vh,1vh) * 100 - #{$titleBarHeight});
-    z-index:0;
+    // z-index:0;
     //height:100%;
 }
 
@@ -114,6 +121,7 @@ export default {
         position:relative;
         background-color: white;
         overflow-y:auto;
+        z-index:-10;
     }  
 }
 .hotspot-manager{

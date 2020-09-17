@@ -180,7 +180,7 @@ export default {
 .iv-guidance-modal-title{
     text-align: center;
     float:left;
-    color: white;
+    color:$white;
     padding: 5px 5px 5px 5px;
 }
 .iv-guidance-modal-body-text{
@@ -188,7 +188,7 @@ export default {
     text-align: center;
     float:left;
     padding: 5px 5px 5px 5px;
-    color: black;
+    color: $black;
 }
 
 //BUTTONS
@@ -208,7 +208,7 @@ export default {
     height: 36px;
     transform:translate(-50%,-50%);
     cursor: pointer;
-    background-color: $hotspotButtonColor;
+    background-color: $yellow;
     border-radius: 100% 100% 100% 100%;
 }
 

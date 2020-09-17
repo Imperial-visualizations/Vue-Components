@@ -206,7 +206,7 @@ export default {
     //min-height: 20px;
     box-sizing: border-box;
     font-weight: bold;
-    background-color: $hotspotButtonColor;
+    background-color: $yellow;
     color: white;
     //z-index: 1; 
     

@@ -20,15 +20,6 @@ html,body{
     padding:0;
     font-size:15pt;
 }
-.iv-drop-shadow-low{
-    box-shadow: 3px 3px 20px rgba(0,0,0,0.18);
-}
-.iv-drop-shadow-medium{
-    box-shadow: 3px 3px 15px rgba(0,0,0,0.3);
-}
-.iv-drop-shadow-high{
-    box-shadow: 3px 3px 20px rgba(0,0,0,0.18);
-}
 @media screen and (max-width:768px){
     html,body{
         font-size:13pt;

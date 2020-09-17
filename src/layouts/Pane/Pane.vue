@@ -184,13 +184,10 @@ export default {
     width:100%;
     margin:0;
     position:relative;
-    background-color:#ededed;
-}
-.iv-pane-left{
-    box-shadow: 2px 0px 20px -7px #aaa;
-}
-.iv-pane-right{
-    box-shadow: -2px 0px 20px -7px #aaa;
+    background-color: $black;
+    color:$white; 
+    // For firefox
+    scrollbar-color: $white $black;
 }
 .iv-pane-wrapper-left{
     order:-1;
@@ -198,19 +195,21 @@ export default {
 .iv-pane-wrapper-right{
     order:1;
 }
+
+
 .iv-pane-wrapper{
     position:relative;
     background-color: white;
     height:100%;
     flex:0 0 auto;
-    z-index: $sidebarZLevel;
+    filter:drop-shadow(0px 0px 5px #222);
 }
 .iv-pane-button{
     position: absolute;
     cursor: pointer;
     top:50%;
     transform: translateY(-50%);
-    background-color: $hotspotButtonColor;
+    background-color: $black;
     border:none;
     outline:none;
     width: 40px;
@@ -218,11 +217,9 @@ export default {
 }
 .iv-pane-button-left{
     border-radius: 0 40px 40px 0;
-    box-shadow: 2px 2px 20px -7px #aaa;
 }
 .iv-pane-button-right{
     border-radius: 40px 0  0 40px;
-    box-shadow: -2px 2px 20px -7px #aaa;
 }
 .iv-pane-overlay{
     position:absolute;

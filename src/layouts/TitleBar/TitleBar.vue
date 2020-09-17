@@ -65,6 +65,17 @@ export default {
   z-index: 1;
 }
 
+.iv-title-bar:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  z-index:-1;
+  box-shadow: 0 0 5px #222;
+}
+
 .iv-title-bar{
   display: flex;
   flex: 0 0 auto;
@@ -72,22 +83,17 @@ export default {
   align-items: center;
   padding: 0.25rem 0rem;
   width: 100%;
-  position: fixed; 
-  top: 0;
+  top: -1 * $titleBarHeight;
   right: 0;
-  z-index: $titlebarZLevel;
+  position: absolute;
+  flex-basis: 100%;
   &.learn{
-    background: linear-gradient(
-            90deg,
-            #003E74 0%,
-            #37578b 15%,
-            #37578b 100%
-    );
+    background:$primaryDarkBlue;
   }
   &.teach{
-    background: $secondaryGreen;
+    background: $secondaryDarkGreen;
   }
-  color: #ffffff;
+  color: $white;
 
 }
 .iv-vis-title {
@@ -107,7 +113,6 @@ export default {
 }
 
 .iv-logo-container {
-  color: #1EAEDB; 
   z-index: $titlebarZLevel;
   cursor: pointer;
   display:block;
@@ -131,11 +136,10 @@ export default {
   z-index: $titlebarZLevel;
   padding:0;
   cursor: pointer;
-  background-color: $primaryImperialBlue;
-  color: white;
-  border: 2px solid white;
+  background-color: $primaryDarkBlue;
+  color: $white;
+  border: 2px solid $white;
   border-radius: 14px 14px 14px 14px;
-  //box-shadow: 1px 1px 2px 0px;
   width: 28px;
   height: 28px;
   outline: none;

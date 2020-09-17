@@ -8,9 +8,20 @@ $highZLevel:200;
 $topZLevel:500;
 // Colours
 $primaryImperialBlue:#133f6f ;
-$secondaryGreen: #a6cc77;
-$white: #ffffff;
-$hotspotButtonColor: #FF901C;
+//Primary
+$primaryDarkBlue: #133f6f;
+$primaryMediumBlue:#008bd2;
+$secondaryMediumGreen: #11b1a2;
+$secondaryDarkGreen: #a8cc6a;
+//Accents
+$magenta:#62296b;
+$red:#cf103f;
+$orange:#ef7814;
+$yellow:#fcd916;
+// Base colours
+$black: #242424;
+$white: #fafafa;
+
 
 //Guidance
 $guidanceButtonHeight:28px;
@@ -26,10 +37,20 @@ $hotpotTextHeight: 1.25rem;
 $minButtonHeight: 1.25rem;
 $minButtonWidth: 80px;
 
+
+//Mixins
+@mixin backdrop-filter($property){
+    -webkit-backdrop-filter: $property;
+    filter:$property;
+}
+@mixin filter($property){
+    -webkit-filter:$property;
+    filter:$property;
+}
+
 $blurAmount:15px;
 .iv-glass-effect{
-    backdrop-filter: blur($blurAmount);
-    -webkit-backdrop-filter:blur($blurAmount);
+    @include backdrop-filter(blur(15px));
     box-shadow: none;
     background-color: rgba(255,255,255,0.6) !important;
 }

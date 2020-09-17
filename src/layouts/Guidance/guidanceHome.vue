@@ -82,8 +82,8 @@ export default {
     cursor: pointer;
     font-size: 20px;
     text-align: center;
-    color: white;
-    background-color: $secondaryGreen;
+    color: $white;
+    background-color:$secondaryMediumGreen;
 }
 
 </style>
