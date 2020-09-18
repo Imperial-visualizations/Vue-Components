@@ -1,2 +1,2 @@
-import sliderBlock from "./sliderBlock.vue";
-export default sliderBlock; 
+import SliderBlock from "./SliderBlock.vue";
+export default SliderBlock; 
