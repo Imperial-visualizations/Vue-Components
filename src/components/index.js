@@ -18,6 +18,6 @@ export {default as LoadingSpinner} from "./LoadingSpinner";
 export {Tab, Tabs} from "./Tabs";
 export {default as SliderBlock} from "./SliderBlock";
 export {default as LegacyWrapper} from './LegacyWrapper';
-
+export {SectionHeading,SidebarSection,SidebarContent} from './SidebarPagination';
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';

@@ -137,6 +137,14 @@ export default {
 }
 .iv-main-stage{
     position:relative;
-
+}
+.iv-main-stage::after{
+    content:"";
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+    pointer-events: none;
 }
 </style>

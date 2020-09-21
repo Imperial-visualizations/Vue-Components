@@ -153,8 +153,6 @@ export default {
 @import "src/globals.scss";
 .iv-pane-content{
     height:100%;
-    overflow-y:auto;
-    padding: 0rem 1.25rem;
     box-sizing: border-box;
 }
 .iv-drag-selector{
@@ -184,10 +182,8 @@ export default {
     width:100%;
     margin:0;
     position:relative;
-    background-color: $black;
-    color:$white; 
     // For firefox
-    scrollbar-color: $white $black;
+    scrollbar-color: $black $white;
 }
 .iv-pane-wrapper-left{
     order:-1;

@@ -1,6 +1,6 @@
 import * as components from './components';
 import * as layouts from './layouts';
-import "./main.css";
+import "./main.scss";
 import 'vue-resize/dist/vue-resize.css'
 import {version} from '../package.json'
 import VueResize from 'vue-resize'
