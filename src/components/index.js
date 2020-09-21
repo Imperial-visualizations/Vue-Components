@@ -19,5 +19,6 @@ export {Tab, Tabs} from "./Tabs";
 export {default as SliderBlock} from "./SliderBlock";
 export {default as LegacyWrapper} from './LegacyWrapper';
 export {SectionHeading,SidebarSection,SidebarContent} from './SidebarPagination';
+export {default as Meter} from './Meter';
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';

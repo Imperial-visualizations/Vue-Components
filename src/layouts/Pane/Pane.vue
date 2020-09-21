@@ -198,7 +198,8 @@ export default {
     background-color: white;
     height:100%;
     flex:0 0 auto;
-    filter:drop-shadow(0px 0px 5px #222);
+    z-index:5;
+    filter:drop-shadow(0px 0px 5px #aaa);
 }
 .iv-pane-button{
     position: absolute;

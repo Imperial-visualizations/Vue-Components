@@ -121,7 +121,7 @@ export default {
         position:relative;
         background-color: white;
         overflow-y:auto;
-        z-index:-10;
+        z-index:0;
     }  
 }
 .hotspot-manager{

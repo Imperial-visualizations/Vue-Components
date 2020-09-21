@@ -94,7 +94,7 @@ export default {
     background: $secondaryDarkGreen;
   }
   color: $white;
-
+  z-index: 10;
 }
 .iv-vis-title {
   flex-basis: 0;

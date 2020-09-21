@@ -1,15 +1,13 @@
 <template>
     <div class="iv-sidebar-content">
         <div class="iv-progress-container">
-            <div class="iv-section-overlay">
                 <button v-for="(section, i) in sectionTitles" :key="section.title"
                 :class="{'iv-active-button':currentTitle===i,'iv-overlay-button':currentTitle!==i}"
                 @click="scrollTo(i)" >
+                <iv-meter
+                    :min="section.min()" :max="section.max()" :value="scrollPos" />
                     {{getCurrentRepr(i)}}
                 </button>
-            </div>
-            <meter v-for="(section,i) in sectionTitles" :key="i" :class="{'iv-active-meter': currentTitle ===i}"
-            :min="section.min()" :max="section.max()" :value="scrollPos"></meter>
         </div>
         <div class="iv-sidebar-content-body" ref="body">
             <slot/>
@@ -17,8 +15,12 @@
     </div>
 </template>
 <script>
+import Meter from '../Meter'
 export default {
     name:'iv-sidebar-content',
+    components:{
+        'iv-meter':Meter
+    },
     provide(){
         return {
             addToMenu: async (icon,title,theme,el) => {
@@ -81,8 +83,40 @@ export default {
 .iv-progress-container{
     height:100px;
     flex: 0 0 auto;
-
     z-index: 1;
+    display: flex;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border:none;
+    button{
+        padding:0;        
+        transition: flex-grow 450ms ease;
+        visibility: visible;
+        flex-basis: auto;
+        flex-grow: 1;
+        border: none;
+        min-width: 30px;
+        margin: 1rem 0.5rem;
+        font-size:1rem;
+        font-weight: 600;
+        position:relative;
+        opacity:0.5;
+        &.iv-active-button{
+            flex-grow:6;
+        }
+        &:active,&:focus,&.iv-active-button{
+            border:none;
+            outline:none;
+            opacity:1;
+        }
+    }
+    .iv-meter{
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    
 }
 .iv-sidebar-content{
     display:flex;
@@ -90,4 +124,5 @@ export default {
     height:100%;
 
 }
+
 </style>
