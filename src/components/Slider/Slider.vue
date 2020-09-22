@@ -2,7 +2,7 @@
     <div ref="sliderContainer">
         <resize-observer @notify="update_step" />
         <div class = "sliderGroup">
-            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colorBubble="color.shade_200"/>
+            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colorBubble="color.dark"/>
             <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
@@ -15,7 +15,7 @@ import lineTicksComp from './lineTicks.vue';
 import NumTicksComp from './numTicks.vue';
 import BubbleComp from './bubble.vue';
 import InputButton from './inputButton.vue';
-import colorStore from "@/buses/colorStore";
+import Theme from '@/Theme.js';
 export default {
     name:"iv-slider",
     components: {
@@ -81,7 +81,7 @@ export default {
     },
     data(){
         return {
-            color: colorStore.color_full_list[this.colorSlider],
+            color: Theme[this.colorSlider],
             id: null,
             value: this.init_val,
             current_step: this.step,
@@ -161,8 +161,8 @@ export default {
     },
     computed:{
         cssColor(){
-            return {'--primary-color': this.color.shade_500,
-                    '--secondary-color': this.color.shade_200
+            return {'--primary-color': this.color.main,
+                    '--secondary-color': this.color.dark
             }
         }
     },

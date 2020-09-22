@@ -11,7 +11,9 @@ import json from "@rollup/plugin-json";
 const external = [
     'vue',
     'katex',
-    'katex/dist/katex.min.css' 
+    'katex/dist/katex.min.css',
+    'vue-awesome/components/Icon',
+    'vue-awesome/icons'
 ]
 const pluginConfig = [
     alias({

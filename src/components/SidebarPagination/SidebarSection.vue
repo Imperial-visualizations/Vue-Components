@@ -1,14 +1,14 @@
 <template>
-    <section class="iv-sidebar-section" :class="[`iv-section-${theme}`,{'iv-fill-space':isLast}]">
+    <section class="iv-sidebar-section" :class="[`iv-section-${theme}`,{'iv-fill-space':isLast}]" :style="themeStyling">
         <section-heading :icon="icon" :theme="theme" :highlight="highlight">{{title}}</section-heading>
         <div class="iv-sidebar-section-content" :class="{'iv-section-highlight':highlight}">
             <slot>Default text</slot>  
         </div>
-  
     </section>    
 </template>
 <script>
 import SectionHeading from './SectionHeading.vue'
+import Theme from "@/Theme.js"
 export default {
     name:'iv-sidebar-section',
     components:{
@@ -17,7 +17,7 @@ export default {
     props:{
         theme:{
             type:String,
-            default:'blue'
+            default:'Blue'
         },
         title:{
             type:String,
@@ -25,7 +25,8 @@ export default {
         },
         icon:{
             type:String,
-            required:false
+            required:true,
+            default:'star'
         },
         highlight:{
             type:Boolean,
@@ -35,7 +36,8 @@ export default {
     inject:['addToMenu','sections'],
     data(){
         return {
-            position:0
+            position:0,
+            themer: Theme[this.theme]
         }
     },
     computed:{
@@ -44,6 +46,14 @@ export default {
                 return this.position === this.sections.length  -1 
             }
             return false;
+        },
+        themeStyling(){
+            return {
+                '--primary-color':this.themer.main,
+                '--dark-color':this.themer.dark,
+                '--light-color':this.themer.light,
+                '--highlight':this.themer.highlight
+            }
         }
     },
     mounted(){
@@ -58,15 +68,20 @@ export default {
     position: relative;
     &.iv-fill-space{
         min-height:100%;
+        .iv-sidebar-section-content{
+            min-height: 100%;
+        }
     }
 }
 .iv-sidebar-section-content{
-    padding: 1rem;
+    padding: 0 1.5rem;
+    padding-bottom: 1rem;  
+
     &.iv-section-highlight{
-        background: lightcoral;
-        opacity:0.5;
+        background: var(--highlight);
     }
-    font-size:1.2rem;
+    font-size:1rem;
+    line-height: 1.4rem;
 }
 
 </style>

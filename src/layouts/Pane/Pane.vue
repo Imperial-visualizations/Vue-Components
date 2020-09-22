@@ -206,7 +206,7 @@ export default {
     cursor: pointer;
     top:50%;
     transform: translateY(-50%);
-    background-color: $black;
+    background-color: $primaryImperialBlue;
     border:none;
     outline:none;
     width: 40px;

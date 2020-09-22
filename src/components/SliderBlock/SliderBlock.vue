@@ -1,5 +1,5 @@
 <template>
-    <div id="sliderblock" class="slider-wrapper" :color="color" :style="colorStyling">
+    <div id="sliderblock" class="slider-wrapper" :style="colorStyling">
 
       <div class = "iv-slider-block-header" >
         <div class="iv-slider-block-title">{{sliderName}}</div>
@@ -21,7 +21,7 @@
 <script>
 import guidanceBus from "@/buses/guidanceBus";
 import Slider from "../Slider/Slider.vue";
-import colorStore from "@/buses/colorStore";
+import Theme from "@/Theme.js"
 export default {
   name: 'iv-slider-block',
   components:{
@@ -82,15 +82,15 @@ export default {
   },
   data(){
     return{
-        color: colorStore.color_full_list[this.colorBlock],
+        color: Theme[this.colorBlock],
     };
   },
   computed: {
     colorStyling(){
       return{
-        '--prim-color': this.color.shade_500,
-        '--sec-color': this.color.shade_200,
-        '--tert-color': this.color.shade_900
+        '--prim-color': this.color.main,
+        '--sec-color': this.color.dark,
+        '--tert-color': this.color.highlight
       }
     }
   },

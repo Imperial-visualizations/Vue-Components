@@ -1,5 +1,5 @@
 <template>
-    <iv-modal :color="color.shade_500" :positionModal="guidanceInput.positionModal" >
+    <iv-modal :theme="theme" :positionModal="guidanceInput.positionModal" >
 
         <template #header>
             <div :style="modalHeader" class="iv-guidance-modal-header">
@@ -37,7 +37,7 @@
 import Guidance from "@/mixins/Guidance";
 import windowModal from "../Window";
 import guidanceBus from "@/buses/guidanceBus";
-import colorStore from "@/buses/colorStore";
+import Theme from '@/Theme.js';
 export default {
     name:"iv-guidance-modal",
     components:{
@@ -50,6 +50,7 @@ export default {
             default: "Help!"
         },
         guidanceInput:{
+
         },
         prevButton:{
             type:Boolean,
@@ -63,17 +64,21 @@ export default {
             type:Boolean,
             default:false
         },
+        theme:{
+            type:String,
+            required:true
+        }
     },
     data(){
         return{
-            color: colorStore.color_full_list[this.guidanceInput.color_rgb],
+            theme:null
         }
     },
     computed:{
         modalFooter(){
             if(this.prevButton || this.nextButton ||  this.homeButton){
                 return{
-                    backgroundColor: this.color.shade_500,
+                    backgroundColor: this.theme.main
                 }
             }
             return {}
@@ -143,12 +148,13 @@ export default {
         }
     },
     mounted(){
+        this.theme = Theme[this.theme]
         this.raiseComponent();
         this.showComponent();
     },
     watch:{
-        guidanceInput:function(){
-            this.color = colorStore.color_full_list[this.guidanceInput.color_rgb],
+        theme:function(){
+            this.color = Theme[this.theme]
             this.raiseComponent();
             this.showComponent();
         }

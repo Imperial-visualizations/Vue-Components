@@ -3,10 +3,14 @@
         <div class="iv-progress-container">
                 <button v-for="(section, i) in sectionTitles" :key="section.title"
                 :class="{'iv-active-button':currentTitle===i,'iv-overlay-button':currentTitle!==i}"
-                @click="scrollTo(i)" >
+                @click="scrollTo(i)" :style="themeVars(section.theme)">
                 <iv-meter
                     :min="section.min()" :max="section.max()" :value="scrollPos" />
-                    {{getCurrentRepr(i)}}
+                    <v-icon v-if="currentTitle !==i" :name="section.icon"/>
+                    <template v-else>
+                        {{section.title}}
+                    </template>
+                   
                 </button>
         </div>
         <div class="iv-sidebar-content-body" ref="body">
@@ -16,10 +20,14 @@
 </template>
 <script>
 import Meter from '../Meter'
+import Theme from '@/Theme.js'
+import Icon from 'vue-awesome/components/Icon'
+import 'vue-awesome/icons'
 export default {
     name:'iv-sidebar-content',
     components:{
-        'iv-meter':Meter
+        'iv-meter':Meter,
+        'v-icon':Icon
     },
     provide(){
         return {
@@ -45,11 +53,16 @@ export default {
         }
     },
     methods:{
-        getCurrentRepr(i){
-            return (this.currentTitle === i) ? this.sectionTitles[i].title : this.sectionTitles[i].icon
-        },
         scrollTo(i){
             return this.sectionTitles[i].el.scrollIntoView({behavior:'smooth'})
+        },
+        themeVars(theme){
+            return {
+                '--primary-color':Theme[theme].main,
+                '--dark-color':Theme[theme].dark,
+                '--light-color':Theme[theme].light,
+                '--highlight':Theme[theme].highlight
+            }
         }
     },
     computed:{
@@ -70,6 +83,7 @@ export default {
 }
 </script>
 <style lang="scss">
+@import 'src/globals.scss';
 .iv-sidebar-content-body{
     flex:1 1 auto;
     overflow-y:scroll;
@@ -96,12 +110,14 @@ export default {
         flex-basis: auto;
         flex-grow: 1;
         border: none;
+        background:var(--primary-color);
+        color:$white;
         min-width: 30px;
         margin: 1rem 0.5rem;
         font-size:1rem;
         font-weight: 600;
         position:relative;
-        opacity:0.5;
+        opacity:0.75;
         &.iv-active-button{
             flex-grow:6;
         }

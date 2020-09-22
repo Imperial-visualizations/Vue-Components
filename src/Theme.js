@@ -1,6 +1,9 @@
 class Theme{
     constructor(baseHex){
         this.main = baseHex;
+        this.light = this.generateTint(0.2)
+        this.dark = this.generateShade(0.8)
+        this.highlight = this.generateTint(0.8)
     }
     generateShade(fraction){
         if(fraction > 1 || fraction < 0) throw Error("fraction must be between 0 and 1");
