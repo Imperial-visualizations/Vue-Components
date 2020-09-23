@@ -16,10 +16,12 @@
         <div class="iv-sidebar-content-body" ref="body">
             <slot/>
         </div>
+        <iv-pane-navigator/>
     </div>
 </template>
 <script>
 import Meter from '../Meter'
+import PaneNavigator from '../PaneNavigation';
 import Theme from '@/Theme.js'
 import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons'
@@ -27,7 +29,14 @@ export default {
     name:'iv-sidebar-content',
     components:{
         'iv-meter':Meter,
-        'v-icon':Icon
+        'v-icon':Icon,
+        'iv-pane-navigator':PaneNavigator
+    },
+    props:{
+        showPagination:{
+            type:Boolean,
+            default:true
+        }
     },
     provide(){
         return {
@@ -92,17 +101,21 @@ export default {
     }
     scrollbar-width: none;
     position: relative;
-    box-shadow: inset 0 20px 20px -20px #aaaaaa;
+
 }
 .iv-progress-container{
-    height:100px;
+    height:4rem;
     flex: 0 0 auto;
     z-index: 1;
+    padding: 0 1rem;
     display: flex;
+    justify-content: space-between;
     width: 100%;
     left: 0;
     top: 0;
     border:none;
+    box-sizing: border-box;
+    background:$lightgray;
     button{
         padding:0;        
         transition: flex-grow 450ms ease;
@@ -113,7 +126,7 @@ export default {
         background:var(--primary-color);
         color:$white;
         min-width: 30px;
-        margin: 1rem 0.5rem;
+        margin: 0.5rem 0.5rem;
         font-size:1rem;
         font-weight: 600;
         position:relative;

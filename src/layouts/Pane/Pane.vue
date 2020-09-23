@@ -5,9 +5,8 @@
             <div class="iv-pane-content" :class="[positionalClass('iv-pane')]">
                 <slot :toggle="togglePos" :position="position_">Default pane</slot>
             </div>
-
         </div>
-        <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" @click="showPane = !showPane" :style="buttonLeft"> 
+        <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" @click="togglePane" :style="buttonLeft"> 
                 <img v-if="pointLeft" class="navImage" src="./assets/right.svg" />
                 <img v-else class="navImage"  src="./assets/left.svg" />
         </button>
@@ -113,6 +112,20 @@ export default {
             }else{
                 this.setPosition('left')
             }
+        },
+        togglePane(){
+            //animation hooks#
+            const initState = this.showPane
+            if(initState){
+                this.$el.classList.add('iv-slide-animation-reverse');
+            }else{
+                this.$el.classList.add('iv-slide-animation')
+                this.showPane = true;
+            }
+            setTimeout(()=>{
+                this.$el.classList.remove((initState)? 'iv-slide-animation-reverse':'iv-slide-animation');
+                this.showPane = !initState;
+            },500);
         },
         mouseDown(e){
             this.resizer.adjusting=true;
@@ -239,6 +252,19 @@ export default {
   .navMenu   a {
     font-size: 18px;
   }
+}
+@keyframes slider{
+    0%{ transform:translateX(-100%);
+    position:absolute;}
+    100% { transform: translateX(0%);
+    position:absolute;}
+}
+.iv-slide-animation{
+    animation: slider 0.5s ease-in-out;
+}
+.iv-slide-animation-reverse{
+    animation: slider 0.5s ease-in-out;
+    animation-direction: reverse;
 }
 
 </style>

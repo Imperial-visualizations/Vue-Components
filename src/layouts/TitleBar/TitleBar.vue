@@ -1,6 +1,6 @@
 <template>
     <nav class="iv-title-bar" :class="theme" id="iv-title-bar">
-        <button class="iv-guidance-button" @click="handleGuidanceClick">?</button>
+        <button class="iv-guidance-button" @click="handleGuidanceClick" v-if="isGuidance">?</button>
         <a @click="openLinkNewTab" class="iv-logo-container">
             <img class="iv-vis-logo" :src="logo">
         </a>
@@ -47,6 +47,9 @@ export default {
     computed:{
       theme(){
         return [this.mode]
+      },
+      isGuidance(){
+        return guidanceBus.$data.active;
       }
     },
     mounted(){

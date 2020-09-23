@@ -80,6 +80,12 @@ export default {
     &.iv-section-highlight{
         background: var(--highlight);
     }
+    > p:first-child{
+        margin-top:0;
+    }
+    > p:last-child{
+        margin-bottom:0;
+    }
     font-size:1rem;
     line-height: 1.4rem;
 }
