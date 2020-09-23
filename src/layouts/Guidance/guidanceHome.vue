@@ -1,6 +1,6 @@
 <template>
     <div>
-        <iv-modal :color="color.shade_500" :positionModal="positionData">
+        <iv-modal :color="theme" :positionModal="positionData">
 
             <template #header>
                 <div :style="modalHeader" class="iv-guidance-modal-header">
@@ -23,7 +23,7 @@
 <script>
 import Guidance from "@/mixins/Guidance";
 import guidanceBus from '@/buses/guidanceBus.js';
-import colorStore from "@/buses/colorStore";
+import Theme from '@/Theme.js'
 
 export default {
     name:"iv-guidance-home",
@@ -35,7 +35,7 @@ export default {
     mixins:[Guidance],
     data(){
         return{
-            color: colorStore.color_full_list["navy"],
+            theme: Theme.DeepBlue,
             positionData:["50%",null,null,"50%"],
         }
     },
@@ -50,7 +50,7 @@ export default {
     computed:{
         modalBranch(){
             return{
-                backgroundColor: this.color.shade_400,
+                backgroundColor: this.theme.dark,
             }
         },
     }
@@ -82,8 +82,8 @@ export default {
     cursor: pointer;
     font-size: 20px;
     text-align: center;
-    color: white;
-    background-color: $secondaryGreen;
+    color: $white;
+    background-color:$secondaryMediumGreen;
 }
 
 </style>

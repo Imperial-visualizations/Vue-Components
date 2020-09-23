@@ -1,6 +1,7 @@
 <template>
     <nav class="iv-title-bar" :class="theme" id="iv-title-bar">
-        <button class="iv-guidance-button" @click="handleGuidanceClick">?</button>
+        <button class="iv-guidance-button" @click="handleGuidanceClick" v-if="isGuidance">?</button>
+        <page-indicator/>
         <a @click="openLinkNewTab" class="iv-logo-container">
             <img class="iv-vis-logo" :src="logo">
         </a>
@@ -13,9 +14,14 @@
 import guidanceBus from "@/buses/guidanceBus.js"
 import Logo from "@/assets/ImpVis-logo-white.svg"
 import LTMode from "@/mixins/LTMode.js"
+import {PageIndicator} from '@/components'
+
 export default {
     name:"iv-title-bar",
     mixins:[LTMode],
+    components:{
+      PageIndicator
+    },
     props:{
       buttonLink:{
         type: String,
@@ -47,6 +53,9 @@ export default {
     computed:{
       theme(){
         return [this.mode]
+      },
+      isGuidance(){
+        return guidanceBus.$data.active;
       }
     },
     mounted(){
@@ -65,31 +74,36 @@ export default {
   z-index: 1;
 }
 
-.iv-title-bar{
+.iv-title-bar:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  right:0;
+  bottom:0;
+  z-index:-1;
+  box-shadow: 0 0 5px #222;
+}
 
+.iv-title-bar{
   display: flex;
   flex: 0 0 auto;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 0.25rem 0rem;
   width: 100%;
-  position: fixed; 
-  top: 0;
+  top: -1 * $titleBarHeight;
   right: 0;
-
+  position: absolute;
+  flex-basis: 100%;
   &.learn{
-    background: linear-gradient(
-            90deg,
-            #003E74 0%,
-            #37578b 15%,
-            #37578b 100%
-    );
+    background:$primaryDarkBlue;
   }
   &.teach{
-    background: $secondaryGreen;
+    background: $secondaryDarkGreen;
   }
-  color: #ffffff;
-
+  color: $white;
+  z-index: 10;
 }
 .iv-vis-title {
   flex-basis: 0;
@@ -103,17 +117,16 @@ export default {
   right: 0;
   background: none;
   color: $white;
-  font-size: calc(#{$titleBarHeight} - 0.5em);
-  line-height: calc(#{$titleBarHeight} - 0.5em);
+  font-size: $titleBarHeight - 0.5rem;
+  line-height: $titleBarHeight - 0.5rem;
 }
 
 .iv-logo-container {
-  color: #1EAEDB; 
   z-index: $titlebarZLevel;
   cursor: pointer;
   display:block;
   padding:0;
-  height:calc(#{$titleBarHeight} - 0.5em);
+  height:$titleBarHeight - 0.5rem;
   :hover {
     color: #0FA0CE;
   }
@@ -131,12 +144,12 @@ export default {
   left: calc((#{$titleBarHeight} - #{$guidanceButtonHeight})/2);
   z-index: $titlebarZLevel;
   padding:0;
+  order:-1;
   cursor: pointer;
-  background-color: $primaryImperialBlue;
-  color: white;
-  border: 2px solid white;
+  background-color: $primaryDarkBlue;
+  color: $white;
+  border: 2px solid $white;
   border-radius: 14px 14px 14px 14px;
-  //box-shadow: 1px 1px 2px 0px;
   width: 28px;
   height: 28px;
   outline: none;

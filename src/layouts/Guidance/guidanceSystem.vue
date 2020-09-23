@@ -35,6 +35,7 @@ export default {
 
     }, 
     created(){
+        guidanceBus.$data.active = true;
         guidanceBus.$on("guidance-button-click",function(guidanceIdentifier){
             let isDone=false;
             for(let i=0; i<this.guidance_branches_list.length; i++){

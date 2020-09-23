@@ -16,8 +16,10 @@ export {default as guidanceButton} from "./GuidanceButton";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
 export {Tab, Tabs} from "./Tabs";
-export {default as sliderBlock} from "./sliderBlock";
+export {default as SliderBlock} from "./SliderBlock";
 export {default as LegacyWrapper} from './LegacyWrapper';
-
+export {SectionHeading,SidebarSection,SidebarContent} from './SidebarText';
+export {PageIndicator,PaneNavigator} from './Navigation';
+export {default as Meter} from './Meter';
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';

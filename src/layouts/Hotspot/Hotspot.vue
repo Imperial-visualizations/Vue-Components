@@ -33,7 +33,7 @@ export default {
             if(isLarge){
                 this.childCount = 1
                 this.isLarge = true;
-                document.getElementById('iv-visualisation-flow').appendChild(instance)
+                document.getElementById('iv-visualisation-flow').prepend(instance)
             }else{
                 this.childCount++
                 this.$el.appendChild(instance)

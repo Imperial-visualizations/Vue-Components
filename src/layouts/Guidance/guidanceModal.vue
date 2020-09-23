@@ -1,5 +1,5 @@
 <template>
-    <iv-modal :color="color.shade_500" :positionModal="guidanceInput.positionModal" >
+    <iv-modal :theme="themer" :positionModal="guidanceInput.positionModal" >
 
         <template #header>
             <div :style="modalHeader" class="iv-guidance-modal-header">
@@ -37,7 +37,7 @@
 import Guidance from "@/mixins/Guidance";
 import windowModal from "../Window";
 import guidanceBus from "@/buses/guidanceBus";
-import colorStore from "@/buses/colorStore";
+import Theme from '@/Theme.js';
 export default {
     name:"iv-guidance-modal",
     components:{
@@ -50,6 +50,7 @@ export default {
             default: "Help!"
         },
         guidanceInput:{
+
         },
         prevButton:{
             type:Boolean,
@@ -63,17 +64,21 @@ export default {
             type:Boolean,
             default:false
         },
+        theme:{
+            type:String,
+            required:true
+        }
     },
     data(){
         return{
-            color: colorStore.color_full_list[this.guidanceInput.color_rgb],
+            themer:null
         }
     },
     computed:{
         modalFooter(){
             if(this.prevButton || this.nextButton ||  this.homeButton){
                 return{
-                    backgroundColor: this.color.shade_500,
+                    backgroundColor: this.themer.main
                 }
             }
             return {}
@@ -143,12 +148,13 @@ export default {
         }
     },
     mounted(){
+        this.themer = Theme[this.theme]
         this.raiseComponent();
         this.showComponent();
     },
     watch:{
-        guidanceInput:function(){
-            this.color = colorStore.color_full_list[this.guidanceInput.color_rgb],
+        theme:function(){
+            this.themer = Theme[this.theme]
             this.raiseComponent();
             this.showComponent();
         }
@@ -180,7 +186,7 @@ export default {
 .iv-guidance-modal-title{
     text-align: center;
     float:left;
-    color: white;
+    color:$white;
     padding: 5px 5px 5px 5px;
 }
 .iv-guidance-modal-body-text{
@@ -188,7 +194,7 @@ export default {
     text-align: center;
     float:left;
     padding: 5px 5px 5px 5px;
-    color: black;
+    color: $black;
 }
 
 //BUTTONS
@@ -208,7 +214,7 @@ export default {
     height: 36px;
     transform:translate(-50%,-50%);
     cursor: pointer;
-    background-color: $hotspotButtonColor;
+    background-color: $yellow;
     border-radius: 100% 100% 100% 100%;
 }
 

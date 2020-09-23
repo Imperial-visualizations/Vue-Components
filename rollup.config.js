@@ -7,11 +7,13 @@ import resolve from "@rollup/plugin-node-resolve";
 import eslint from "@rbnlffl/rollup-plugin-eslint";
 import alias from "@rollup/plugin-alias";
 import {terser} from "rollup-plugin-terser";
-
+import json from "@rollup/plugin-json";
 const external = [
     'vue',
     'katex',
-    'katex/dist/katex.min.css' 
+    'katex/dist/katex.min.css',
+    'vue-awesome/components/Icon',
+    'vue-awesome/icons'
 ]
 const pluginConfig = [
     alias({
@@ -26,6 +28,7 @@ const pluginConfig = [
     commonjs(), 
     scss({output:'./dist/impvis-components.css'}),
     image(),
+    json(),
     vue({css:false}),
     eslint(),
     terser()

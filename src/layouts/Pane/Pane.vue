@@ -5,9 +5,8 @@
             <div class="iv-pane-content" :class="[positionalClass('iv-pane')]">
                 <slot :toggle="togglePos" :position="position_">Default pane</slot>
             </div>
-
         </div>
-        <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" @click="showPane = !showPane" :style="buttonLeft"> 
+        <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" @click="togglePane" :style="buttonLeft"> 
                 <img v-if="pointLeft" class="navImage" src="./assets/right.svg" />
                 <img v-else class="navImage"  src="./assets/left.svg" />
         </button>
@@ -17,7 +16,7 @@
 import guidanceBus from "@/buses/guidanceBus.js";
 import Hotspotable from '@/mixins/Hotspotable.js';
 import LTMode from "@/mixins/LTMode.js";
-const minWidth = 250;
+const minWidth = 350;
 const maxWidthRatio = 50;
 export default {
     name:"iv-pane",
@@ -26,7 +25,7 @@ export default {
         width:{
             type:Number,
             required:false,
-            default:300,
+            default:400,
         },
         format:{
             type:String,
@@ -114,6 +113,20 @@ export default {
                 this.setPosition('left')
             }
         },
+        togglePane(){
+            //animation hooks#
+            const initState = this.showPane
+            if(initState){
+                this.$el.classList.add('iv-slide-animation-reverse');
+            }else{
+                this.$el.classList.add('iv-slide-animation')
+                this.showPane = true;
+            }
+            setTimeout(()=>{
+                this.$el.classList.remove((initState)? 'iv-slide-animation-reverse':'iv-slide-animation');
+                this.showPane = !initState;
+            },500);
+        },
         mouseDown(e){
             this.resizer.adjusting=true;
             this.resizer.initPageX=e.pageX;
@@ -153,6 +166,7 @@ export default {
 @import "src/globals.scss";
 .iv-pane-content{
     height:100%;
+    box-sizing: border-box;
 }
 .iv-drag-selector{
     padding:0;
@@ -164,27 +178,25 @@ export default {
     float:left;
 }
 .iv-drag-selector-left{
-    float:right;
-    transform:translateX(50%);
+    left:100%;
+    transform:translateX(-50%);
+    position:absolute;
 }
 .iv-pane-content-right{
     float:right;
 }
 .iv-drag-selector-right{
-    float:left;
+    left:0%;
+    position:absolute;
     transform:translateX(-50%);
 }
 .iv-pane{
     height:100%;
     width:100%;
     margin:0;
-    background-color:white;
-}
-.iv-pane-left{
-    box-shadow: 2px 0px 20px -7px #aaa;
-}
-.iv-pane-right{
-    box-shadow: -2px 0px 20px -7px #aaa;
+    position:relative;
+    // For firefox
+    scrollbar-color: $black $white;
 }
 .iv-pane-wrapper-left{
     order:-1;
@@ -192,18 +204,22 @@ export default {
 .iv-pane-wrapper-right{
     order:1;
 }
+
+
 .iv-pane-wrapper{
+    position:relative;
     background-color: white;
     height:100%;
     flex:0 0 auto;
-    z-index: $sidebarZLevel;
+    z-index:5;
+    filter:drop-shadow(0px 0px 5px #aaa);
 }
 .iv-pane-button{
     position: absolute;
     cursor: pointer;
     top:50%;
     transform: translateY(-50%);
-    background-color: $hotspotButtonColor;
+    background-color: $primaryImperialBlue;
     border:none;
     outline:none;
     width: 40px;
@@ -211,11 +227,9 @@ export default {
 }
 .iv-pane-button-left{
     border-radius: 0 40px 40px 0;
-    box-shadow: 2px 2px 20px -7px #aaa;
 }
 .iv-pane-button-right{
     border-radius: 40px 0  0 40px;
-    box-shadow: -2px 2px 20px -7px #aaa;
 }
 .iv-pane-overlay{
     position:absolute;
@@ -238,6 +252,19 @@ export default {
   .navMenu   a {
     font-size: 18px;
   }
+}
+@keyframes slider{
+    0%{ transform:translateX(-100%);
+    position:absolute;}
+    100% { transform: translateX(0%);
+    position:absolute;}
+}
+.iv-slide-animation{
+    animation: slider 0.5s ease-in-out;
+}
+.iv-slide-animation-reverse{
+    animation: slider 0.5s ease-in-out;
+    animation-direction: reverse;
 }
 
 </style>

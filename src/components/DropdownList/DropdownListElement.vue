@@ -29,8 +29,6 @@ export default {
 <style>
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content-element {
-    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
     font-weight: normal;
     letter-spacing: .05rem;
     text-align: center;

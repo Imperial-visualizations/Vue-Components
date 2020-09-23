@@ -27,8 +27,9 @@ export default {
     props:{
       positionModal:{
       },
-      color:{
-        default: "rgb(230,230,255)",
+      theme:{
+        type:Object,
+        required:true
       }
     },
     computed: {
@@ -56,7 +57,7 @@ export default {
                 bottom: this.positionModal[2],
                 left: this.positionModal[3],
                 transform: `translate(${translate_X},${translate_Y})`,
-                backgroundColor: this.color,
+                backgroundColor: this.theme.main,
                 }
       },
       styleGrid(){
