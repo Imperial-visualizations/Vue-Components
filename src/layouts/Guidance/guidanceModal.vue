@@ -1,5 +1,5 @@
 <template>
-    <iv-modal :theme="theme" :positionModal="guidanceInput.positionModal" >
+    <iv-modal :theme="themer" :positionModal="guidanceInput.positionModal" >
 
         <template #header>
             <div :style="modalHeader" class="iv-guidance-modal-header">
@@ -71,14 +71,14 @@ export default {
     },
     data(){
         return{
-            theme:null
+            themer:null
         }
     },
     computed:{
         modalFooter(){
             if(this.prevButton || this.nextButton ||  this.homeButton){
                 return{
-                    backgroundColor: this.theme.main
+                    backgroundColor: this.themer.main
                 }
             }
             return {}
@@ -148,13 +148,13 @@ export default {
         }
     },
     mounted(){
-        this.theme = Theme[this.theme]
+        this.themer = Theme[this.theme]
         this.raiseComponent();
         this.showComponent();
     },
     watch:{
         theme:function(){
-            this.color = Theme[this.theme]
+            this.themer = Theme[this.theme]
             this.raiseComponent();
             this.showComponent();
         }
