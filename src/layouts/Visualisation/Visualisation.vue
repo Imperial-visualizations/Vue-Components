@@ -122,7 +122,7 @@ export default {
         background-color: white;
         overflow-y:auto;
         z-index:0;
-        transition: width 0.5s ease-in-out;
+
     }  
 }
 .hotspot-manager{

@@ -16,12 +16,12 @@
         <div class="iv-sidebar-content-body" ref="body">
             <slot/>
         </div>
-        <iv-pane-navigator/>
+        <iv-pane-navigator v-if="showPagination"/>
     </div>
 </template>
 <script>
 import Meter from '../Meter'
-import PaneNavigator from '../PaneNavigation';
+import {PaneNavigator} from '../Navigation';
 import Theme from '@/Theme.js'
 import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons'
@@ -104,7 +104,7 @@ export default {
 
 }
 .iv-progress-container{
-    height:4rem;
+    height:3rem;
     flex: 0 0 auto;
     z-index: 1;
     padding: 0 1rem;

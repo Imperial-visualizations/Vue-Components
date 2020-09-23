@@ -1,6 +1,7 @@
 <template>
     <nav class="iv-title-bar" :class="theme" id="iv-title-bar">
         <button class="iv-guidance-button" @click="handleGuidanceClick" v-if="isGuidance">?</button>
+        <page-indicator/>
         <a @click="openLinkNewTab" class="iv-logo-container">
             <img class="iv-vis-logo" :src="logo">
         </a>
@@ -13,9 +14,14 @@
 import guidanceBus from "@/buses/guidanceBus.js"
 import Logo from "@/assets/ImpVis-logo-white.svg"
 import LTMode from "@/mixins/LTMode.js"
+import {PageIndicator} from '@/components'
+
 export default {
     name:"iv-title-bar",
     mixins:[LTMode],
+    components:{
+      PageIndicator
+    },
     props:{
       buttonLink:{
         type: String,
@@ -82,7 +88,7 @@ export default {
 .iv-title-bar{
   display: flex;
   flex: 0 0 auto;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 0.25rem 0rem;
   width: 100%;
@@ -111,8 +117,8 @@ export default {
   right: 0;
   background: none;
   color: $white;
-  font-size: calc(#{$titleBarHeight} - 0.5em);
-  line-height: calc(#{$titleBarHeight} - 0.5em);
+  font-size: $titleBarHeight - 0.5rem;
+  line-height: $titleBarHeight - 0.5rem;
 }
 
 .iv-logo-container {
@@ -120,7 +126,7 @@ export default {
   cursor: pointer;
   display:block;
   padding:0;
-  height:calc(#{$titleBarHeight} - 0.5em);
+  height:$titleBarHeight - 0.5rem;
   :hover {
     color: #0FA0CE;
   }
@@ -138,6 +144,7 @@ export default {
   left: calc((#{$titleBarHeight} - #{$guidanceButtonHeight})/2);
   z-index: $titlebarZLevel;
   padding:0;
+  order:-1;
   cursor: pointer;
   background-color: $primaryDarkBlue;
   color: $white;

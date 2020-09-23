@@ -136,6 +136,7 @@ export default {
     background-color:white;
     word-wrap: break-word;
     display:flex;
+    z-index:2;
     &.no-wasted-space{
         width:auto;
         height:auto;
@@ -146,7 +147,7 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px -1px 5px -2px;
+        box-shadow: 2px -2px 5px #e2e2e2;
     }
     &.iv-bottomright{
         //box-shadow: -$hotspotShadow $hotspotShadow black;
@@ -154,7 +155,7 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: -1px -1px 5px -2px #aaaaaa;
+        box-shadow: -2px -2px 5px #e2e2e2;
     }
     &.iv-topright{
         //box-shadow: -$hotspotShadow -$hotspotShadow black;
@@ -162,7 +163,7 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: -1px 1px 5px -2px;
+        box-shadow: -2px 2px 5px #e2e2e2;
     }
     &.iv-topleft{
         //box-shadow: $hotspotShadow -$hotspotShadow black;
@@ -170,31 +171,31 @@ export default {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px 1px 10px -2px  #aaaaaa;
+        box-shadow: 2px 2px 5px #e2e2e2;
     } 
     &.iv-top{
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 1px 1px 5px -2px;
+        box-shadow: 0px 2px 5px #e2e2e2;
     }
     &.iv-bottom{
         flex-direction: column-reverse;
         justify-content:flex-start;
         align-items:center;
-        box-shadow: 1px -1px 5px -2px;
+        box-shadow: 0px -2px 5px #e2e2e2;
     }
     &.iv-left{
         flex-direction: row;
         justify-content: flex-start;
         align-items:center;
-        box-shadow: 1px 1px 5px -2px;
+        box-shadow: 2px 0px 5px #e2e2e2;
     }
     &.iv-right{
         flex-direction: row-reverse;
         justify-content: flex-start;
         align-items:center;
-        box-shadow: -1px 1px 5px -2px;
+        box-shadow: -2px 0px 5px #e2e2e2;
     }
 }
 .iv-hotspot-button{
@@ -208,7 +209,7 @@ export default {
     font-weight: bold;
     background-color: $yellow;
     color: white;
-    //z-index: 1; 
+    z-index: 1; 
     
     &.iv-left,&.iv-right{
         min-height: $minButtonWidth;
@@ -220,7 +221,7 @@ export default {
     }
 
     &.iv-left{
-        box-shadow: 2px 2px 20px -7px #aaa;
+        box-shadow: 2px 0px 5px #e2e2e2;
         border-radius: 0 $curvatureRadius $curvatureRadius 0;
         top: 50%;
         transform: translateY(-50%);
@@ -236,7 +237,7 @@ export default {
         }
     }
     &.iv-right{
-        box-shadow: -2px 2px 20px -7px #aaa;
+        box-shadow: -2px 0px 5px #e2e2e2;
         border-radius: $curvatureRadius 0 0 $curvatureRadius;
         top: 50%;
         transform: translateY(-50%);
@@ -252,14 +253,14 @@ export default {
         }
     }
     &.iv-top{
-        box-shadow: 2px 2px 20px -7px #aaa;
+        box-shadow: 0px 2px 5px #e2e2e2;
         width: 25%;
         transform:translateX(-50%);
         left:50%;
         border-radius: 0 0 $curvatureRadius $curvatureRadius;
     }
     &.iv-bottom{
-        box-shadow: 2px -2px 20px -7px #aaa;
+        box-shadow: 0px -2px 5px #e2e2e2;
         left: 50%;
         width: 25%;
         top: 0;
@@ -267,28 +268,28 @@ export default {
         border-radius: $curvatureRadius $curvatureRadius 0 0;
     }
     &.iv-bottomleft{
-        box-shadow: 2px -2px 20px -7px #aaa;
+        box-shadow:2px -2px 5px #e2e2e2;
         top:0;
         right:0;
         border-radius: 0 0 0 $curvatureRadius;
         width: 75%;
     }
     &.iv-bottomright{
-        box-shadow: -2px -2px 20px -7px #aaa;
+        box-shadow: -2px -2px 5px #e2e2e2;
         top:0;
         left:0;
         border-radius: 0 0 $curvatureRadius 0;
         width: 75%;
     }
     &.iv-topleft{
-        box-shadow: 2px 2px 20px -7px #aaa;
+        box-shadow: 2px 2px 5px #e2e2e2;
         bottom:0;
         right:0;
         border-radius: $curvatureRadius 0 0 0;
         width: 75%;
     }
     &.iv-topright{
-        box-shadow: -2px 2px 20px -7px #aaa;
+        box-shadow:-2px 2px 5px #e2e2e2;
         bottom:0;
         left:0;
         border-radius: 0 $curvatureRadius 0  0;
