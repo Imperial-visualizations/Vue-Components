@@ -73,14 +73,14 @@ export default {
             type:Number,
             default:0
         },
-        colorSlider: {
-            type: String,
-            default: "green"
-        },
+        theme:{
+            type:String,
+            default:"Blue"
+        }
     },
     data(){
         return {
-            color: Theme[this.colorSlider],
+            color: Theme[this.theme],
             id: null,
             value: this.init_val,
             current_step: this.step,
