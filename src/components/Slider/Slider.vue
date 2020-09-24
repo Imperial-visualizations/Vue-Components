@@ -75,7 +75,6 @@ export default {
         },
         colorSlider: {
             type: String,
-            required: true,
             default: "green"
         },
     },
