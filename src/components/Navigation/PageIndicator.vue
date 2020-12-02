@@ -1,24 +1,14 @@
 <template>
     <div id="iv-page-indicator">
-        <a v-for="i in number_of_pages" :key="i" href="#" :id="`iv-page-indicator-no-${i}`"
-        class="iv-page-indicator-button" :class="{'iv-current-page': (i) === current_page}">{{i}}</a>
+        <a v-for="(url,i) in page_urls" :key="i"  :id="`iv-page-indicator-no-${i+1}`"
+        class="iv-page-indicator-button" :class="{'iv-current-page': (i+1) === current_page}"
+        :href=url>{{i+1}}</a>
     </div>
 </template>
 <script>
 export default {
     name:'iv-page-indicator',
-    props:{
-        number_of_pages:{
-            type:Number,
-            required:true,
-            default: 5 
-        },
-        current_page:{
-            type:Number,
-            required:true,
-            default:3
-        }
-    }
+    inject:['current_page','page_urls']
 }
 </script>
 <style lang="scss">
