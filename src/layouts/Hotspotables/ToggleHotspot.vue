@@ -68,7 +68,8 @@ export default {
 .iv-toggle-hotspot{
     position:relative;
     width:100%;
-    height:100%;
+
+    height:auto;
     &.iv-toggled-left{
         width:0;
         >.iv-hotspot-button{
@@ -132,11 +133,13 @@ export default {
 .hotspot-content{
     //border: 2px solid black;
     width:100%;
-    height:100%;
+
     background-color:white;
     word-wrap: break-word;
     display:flex;
     z-index:2;
+    box-sizing: border-box;
+    padding:0.5rem;
     &.no-wasted-space{
         width:auto;
         height:auto;
@@ -146,7 +149,6 @@ export default {
         box-sizing: border-box;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
         box-shadow: 2px -2px 5px #e2e2e2;
     }
     &.iv-bottomright{
@@ -154,7 +156,6 @@ export default {
         box-sizing: border-box;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
         box-shadow: -2px -2px 5px #e2e2e2;
     }
     &.iv-topright{
@@ -162,7 +163,6 @@ export default {
         box-sizing: border-box;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
         box-shadow: -2px 2px 5px #e2e2e2;
     }
     &.iv-topleft{
@@ -170,31 +170,32 @@ export default {
         box-sizing: border-box;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
         box-shadow: 2px 2px 5px #e2e2e2;
     } 
     &.iv-top{
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
         box-shadow: 0px 2px 5px #e2e2e2;
+        min-height:100%;
+        max-height: 50vh;
+        overflow-y:auto;
     }
     &.iv-bottom{
         flex-direction: column-reverse;
         justify-content:flex-start;
-        align-items:center;
         box-shadow: 0px -2px 5px #e2e2e2;
+        min-height:100%;
+        max-height: 50vh;
+        overflow-y:auto;
     }
     &.iv-left{
         flex-direction: row;
         justify-content: flex-start;
-        align-items:center;
         box-shadow: 2px 0px 5px #e2e2e2;
     }
     &.iv-right{
         flex-direction: row-reverse;
         justify-content: flex-start;
-        align-items:center;
         box-shadow: -2px 0px 5px #e2e2e2;
     }
 }

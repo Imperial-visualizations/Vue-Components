@@ -1,7 +1,7 @@
 <template>
     <div class="iv-visualisation" id="visualisation">
         <div class="iv-visualisation-flow" id="iv-visualisation-flow">
-            <title-bar>{{title}}</title-bar>
+            <title-bar >{{title}}</title-bar>
             <div class="iv-main-stage">
                 <div class="hotspot-manager" v-if="showSpots" :style="gridStyle">
                     <hotspot v-for="hotspot in hotspots" :key=hotspot :ref="hotspot" :position="hotspot"/>
@@ -45,6 +45,14 @@ export default {
             type:String,
             required:true,
             default:"Default Title"
+        },
+        vue_config:{
+            type:Object,
+            required:false
+        },
+        page_number:{
+            type:Number,
+            required:false
         }
     },
     data(){
@@ -56,7 +64,9 @@ export default {
     provide(){
         return {
             getElement:this.getElement,
-            checkElement:this.checkElement
+            checkElement:this.checkElement,
+            current_page:this.page_number,
+            page_urls: this.page_urls
         }
     },
     computed:{
@@ -71,6 +81,12 @@ export default {
         },
         hotspots(){
             return this.corners.concat(this.edges)
+        },
+        page_urls(){
+            if(typeof this.vue_config !== 'undefined'){
+                return Object.keys(this.vue_config.pages).filter(x=> x != 'index').map(x => `./${x}.html`)
+            }
+            return []
         }
     },
     methods:{
