@@ -27,16 +27,7 @@ export default {
 }
 </script>
 
-<style scoped>
-body, html {
-  height: 100%;
-  background: #333344;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
+<style>
 @keyframes animate-stripes {
     0% {
         background-position: 0 0;
@@ -49,8 +40,8 @@ body, html {
 
 .progress-bar {
     background-color: #302f2f;
-    height: 20px;
-    width: 450px;
+    height: 3vh;
+    width: 35vw;
     margin: 50px auto;
     border-radius: 5px;
     box-shadow: 0 1px 5px rgb(44, 44, 44) inset, 0 1px 0 #bcbdbc;
@@ -84,7 +75,7 @@ body, html {
 
 .progress-bar-inner {
   display: block;
-  height: 20px;
+  height: 3vh;
   width: 0%;
   background-color: #3498db;
   border-radius: 3px;

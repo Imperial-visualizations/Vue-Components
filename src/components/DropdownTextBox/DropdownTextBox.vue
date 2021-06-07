@@ -90,8 +90,6 @@ export default {
     display: block;
     border: 1px solid rgba(0, 0, 0, 0.2);
     color: black;
-    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
     font-weight: normal;
     letter-spacing: .05rem;
     text-align: center;

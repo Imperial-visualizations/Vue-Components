@@ -1,0 +1,53 @@
+// Z Level Definitions
+$bottomZLevel:0;
+$hotspotZLevel:50;
+$sidebarZLevel:75;
+$titlebarZLevel:76;
+$middleZLevel:100;
+$highZLevel:200;
+$topZLevel:500;
+// Colours
+$primaryImperialBlue:#133f6f ;
+$lightgray:#e2e2e2;
+//Primary
+$primaryDarkBlue: #133f6f;
+$primaryMediumBlue:#008bd2;
+$secondaryMediumGreen: #11b1a2;
+$secondaryDarkGreen: #a8cc6a;
+//Accents
+$magenta:#62296b;
+$red:#cf103f;
+$orange:#ef7814;
+$yellow:#fcd916;
+// Base colours
+$black: #242424;
+$white: #fafafa;
+
+
+//Guidance
+$guidanceButtonHeight:28px;
+
+//Sizes 
+$titleBarHeight:2.2rem;
+
+//Hotspots
+$hotspotItemMargin:1rem;
+$curvatureRadius: 20px;
+$hotspotShadow: 5px;
+$hotpotTextHeight: 1.25rem;
+$minButtonHeight: 1.25rem;
+$minButtonWidth: 80px;
+
+
+//Mixins
+@mixin backdrop-filter($property){
+    -webkit-backdrop-filter: $property;
+    backdrop-filter:$property;
+}
+@mixin filter($property){
+    -webkit-filter:$property;
+    filter:$property;
+}
+
+$blurAmount:15px;
+

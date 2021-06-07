@@ -59,7 +59,6 @@ export default {
 <style scoped>
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: relative;
   display: inline-block;
 }
