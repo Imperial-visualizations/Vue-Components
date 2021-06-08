@@ -25,7 +25,7 @@ export default {
     props:{
       buttonLink:{
         type: String,
-        default: "https://www.imperialvisualisations.com/learn/"
+        default: "https://www.impvis.co.uk"
       },
       newTab:{
         type: Boolean,
