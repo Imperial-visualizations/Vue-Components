@@ -1,12 +1,12 @@
 <template>
     <div class="iv-pane-wrapper" :style="widthObj" :class="ivPaneClass">
-        <div class="iv-pane" :class="[positionalClass('iv-pane')]" v-show=showPane>
+        <div class="iv-pane" :class="[positionalClass('iv-pane'),{'iv-glass-effect':glass}]" v-show=showPane >
             <div class="iv-drag-selector" :class="[positionalClass('iv-drag-selector')]" @mousedown="mouseDown" @touchstart="touchdown"  ></div>
             <div class="iv-pane-content" :class="[positionalClass('iv-pane')]">
                 <slot :toggle="togglePos" :position="position_">Default pane</slot>
             </div>
-        </div>
-        <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" @click="togglePane" :style="buttonLeft"> 
+        </div>\
+        <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" v-if="allowResize" @click="togglePane" :style="buttonLeft"> 
                 <img v-if="pointLeft" class="navImage" src="./assets/right.svg" />
                 <img v-else class="navImage"  src="./assets/left.svg" />
         </button>
@@ -33,10 +33,15 @@ export default {
             default:'push',
             validator: (value) => ['push','full','overlay'].indexOf(value) > -1
         },
-        opacity:{ //Be aware that this might break Dan's stuff.
-            type:Number,
+        glass:{ //Be aware that this might break Dan's stuff.
+            type:Boolean,
             required:false,
-            default:0
+            default:false
+        },
+        allowResize:{
+            type:Boolean,
+            required:false,
+            default:true
         }
     },
     created(){
@@ -153,7 +158,7 @@ export default {
         },
         resize(e){
             let pageX = (e.constructor.name === "TouchEvent")? e.touches[0].pageX : e.pageX;
-            if(this.resizer.adjusting){
+            if(this.resizer.adjusting && this.allowResize){
                 let deltaX = (pageX - this.resizer.initPageX) * ((this.position_ == "left")? 1:-1);
                 this.widthPx += (this.widthPx + deltaX > minWidth && this.widthPx + deltaX < this.maxWidth)? deltaX : 0;
                 this.resizer.initPageX = pageX;
