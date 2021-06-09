@@ -33,11 +33,11 @@ export default {
             type:Array,
             default: () => ['left','right','top','bottom']
         },
-        hotspotColumnWidth:{
+        hotspotColumnSize:{
             type:String,
             default:"250px"
         },
-        hotspotColumnHeight:{
+        hotspotRowSize:{
             type:String,
             default:"250px"
         },
@@ -72,8 +72,8 @@ export default {
     computed:{
         gridStyle(){
             return {
-                'grid-template-columns': `${this.hotspotColumnWidth} 1fr ${this.hotspotColumnWidth}`,
-                'grid-template-rows': `${this.hotspotColumnHeight} 1fr ${this.hotspotColumnHeight}`
+                'grid-template-columns': `${this.hotspotColumnSize} 1fr ${this.hotspotColumnSize}`,
+                'grid-template-rows': `${this.hotspotRowSize} 1fr ${this.hotspotRowSize}`
             }
         },
         showSpots(){
