@@ -1,6 +1,6 @@
 {
   "name": "@impvis/components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "BSD-3-Clause",
   "main": "./dist/impvis-components.js",
   "unpkg": "./dist/impvis-components.umd.js",
@@ -12,7 +12,8 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "examples:tabs": "vue-cli-service serve ./Examples/Examples_Tabs.js",
-    "examples:dragdrop": "vue-cli-service serve ./Examples/SVGDragAndDrop.js"
+    "examples:dragdrop": "vue-cli-service serve ./Examples/SVGDragAndDrop.js",
+    "template": "vue-cli-service serve ./Template/main.js"
   },
   "dependencies": {
     "compare-versions": "^3.6.0",
