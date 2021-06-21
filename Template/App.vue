@@ -10,7 +10,7 @@
             
 
             <template #hotspots>
-                <iv-pane :allowResize=false position='left' format='overlay' :glass=true></iv-pane>
+                <iv-pane :allowResize=false position='left' format='push' :glass=true></iv-pane>
 
                 <iv-toggle-hotspot position='top' title='Toggle Hotspot' :glass=true>
                     I am in a toggle hotspot

@@ -10,7 +10,7 @@ export default {
     props:["sliderTicksList","thumb_width","min","max"],
     data(){
         return{
-            number_width: 14//needs to be the same as the width of the span
+            number_width: 42//needs to be the same as the width of the span
         }
     },
     methods:{
@@ -31,7 +31,7 @@ export default {
     position: relative;
     text-align: center;
     //height: 10px;
-    width: 14px;
+    width: 42px;
     font-size: 14px;
     //margin-bottom: 10px;
 }

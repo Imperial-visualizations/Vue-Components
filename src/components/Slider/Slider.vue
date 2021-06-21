@@ -51,27 +51,31 @@ export default {
         },
         min:{
             type:Number,
-            default:0.0
+            default:-1
             },
         max:{
             type:Number,
-            default:100.0
+            default:1
             },
         step:{
             type:Number,
-            default:10.0
+            default:0.01
             },
         init_val:{
             type:Number,
-            default:50.0
+            default:-1
             },
         button_step_init:{
             type:Number,
-            default:10.0
+            default:10
         },
         tick_decimals:{
             type:Number,
             default:0
+        },
+        tick_step:{
+            type:Number,
+            default:1
         },
         theme:{
             type:String,
@@ -90,32 +94,6 @@ export default {
             tick_num_key: null,
             value_marker_width: 25,//same as the width of the marker showing the value
             thumb_width: 18,//same as the width of the range slider thumb 
-            minDiv: [
-                {
-                    width: 400,
-                    ticks: 5,
-                    step_size:0
-                },
-                {
-                    width: 300,
-                    ticks: 4,
-                    step_size:0
-                },
-                {
-                    width: 200,
-                    ticks: 3,
-                    step_size:0
-                },
-                {
-                    width: 100,
-                    ticks: 2,
-                    step_size:0
-                }
-            ],
-            maxTicks:{
-                ticks: 20,
-                step_size:0
-            }
         }
     },
     methods:{  
@@ -123,35 +101,12 @@ export default {
             //console.log(e);
             this.value = e;
         },
-        min_step_size(){
-            for(let i=0;i< this.minDiv.length; i++){
-                this.minDiv[i].step_size = ((this.max - this.min)/this.minDiv[i].ticks);
-            }
-            this.maxTicks.step_size = ((this.max - this.min)/this.maxTicks.ticks);
-        },
-        update_step(){
-            if(this.$refs.sliderContainer.clientWidth > this.minDiv[0].width){
-                this.smallStep = this.maxTicks.step_size
-            }
-            else{
-                for(let i=0;i<this.minDiv.length;i++){
-                    if(this.$refs.sliderContainer.clientWidth < this.minDiv[i].width){
-                        this.smallStep = this.minDiv[i].step_size
-                    } 
-                }
-            }
-            if(this.step < this.smallStep){
-                this.current_step = this.smallStep
-            }
-            else{
-                this.current_step = this.step
-            }
-        },
         calc_ticks(){
             let tick_list = [];
-            for(let i=this.min; i <= this.max; i+=this.current_step){
+            for(let i=this.min; i <= this.max; i+=this.tick_step){
                 tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i.toFixed(this.tick_decimals)});
             }
+            console.log(tick_list)
             return tick_list
         },
         emitSlider(){
@@ -167,7 +122,7 @@ export default {
     },
     mounted () {
         this.id = this._uid;
-        this.min_step_size();
+        //this.min_step_size();
         this.tick_list = this.calc_ticks(); 
         this.tick_line_key = "tick_line_" + this._uid;
         this.tick_num_key = "tick_num_" + this._uid;
@@ -183,11 +138,11 @@ export default {
             this.tick_list = this.calc_ticks();
         },
         min:function(){
-            this.min_step_size();
+            //this.min_step_size();
             this.tick_list = this.calc_ticks();
         },
         max:function(){
-            this.min_step_size();
+            //this.min_step_size();
             this.tick_list = this.calc_ticks();
         }
     }

@@ -20,6 +20,8 @@
     "component-fixture": "^1.14.0",
     "core-js": "^3.6.5",
     "save": "^2.4.0",
+    "vue": "^2.6.14",
+    "vue-awesome": "^4.3.1",
     "vue-resize": "^0.5.0"
   },
   "peerDependencies": {
@@ -48,7 +50,7 @@
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-vue": "^5.1.9",
     "sass-loader": "^9.0.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
     "root": true,
