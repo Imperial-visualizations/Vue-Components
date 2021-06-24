@@ -39,6 +39,7 @@ export default {
             this.tabs[i].isActive = i === selectedTabIndex;
             if(i === selectedTabIndex){
               this.tabActivated = this.tabs[i].tabName + i + " is opened";
+              this.$emit("tabSelected", this.tabs[i].tabName)
             }
           }
         },

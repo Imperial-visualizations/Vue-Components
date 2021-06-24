@@ -1,9 +1,8 @@
 <template>
     <div ref="sliderContainer">
-        <resize-observer @notify="update_step" />
         <div class = "sliderGroup">
             <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colorBubble="color.dark"/>
-            <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step"  @change="emitSlider">
+            <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step" @mousedown="startDrag"  @mousemove="emitSlider" @mouseup="stopDrag">
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
         </div>
@@ -92,6 +91,7 @@ export default {
             tick_list: null,
             tick_line_key: null,
             tick_num_key: null,
+            dragging: false,
             value_marker_width: 25,//same as the width of the marker showing the value
             thumb_width: 18,//same as the width of the range slider thumb 
         }
@@ -109,9 +109,17 @@ export default {
             console.log(tick_list)
             return tick_list
         },
+        startDrag(){
+            this.dragging = true;
+        },
         emitSlider(){
-            this.$emit("sliderChanged",this.value);
-        }
+            if (this.dragging){
+                this.$emit("sliderChanged",this.value);
+            }
+        },
+        stopDrag(){
+            this.dragging = false;
+        },        
     },
     computed:{
         cssColor(){
@@ -128,9 +136,6 @@ export default {
         this.tick_num_key = "tick_num_" + this._uid;
     },
     watch:{
-        step:{
-            handler:"update_step"
-        },
         current_step:function(){
             this.tick_list = this.calc_ticks();
         },
