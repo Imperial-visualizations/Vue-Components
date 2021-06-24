@@ -5,7 +5,7 @@
             <div class="iv-pane-content" :class="[positionalClass('iv-pane')]">
                 <slot :toggle="togglePos" :position="position_">Default pane</slot>
             </div>
-        </div>\
+        </div>
         <button class="iv-pane-button" :class="[positionalClass('iv-pane-button')]" v-if="allowResize" @click="togglePane" :style="buttonLeft"> 
                 <img v-if="pointLeft" class="navImage" src="./assets/right.svg" />
                 <img v-else class="navImage"  src="./assets/left.svg" />
