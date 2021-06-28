@@ -2,9 +2,10 @@
     <div ref="sliderContainer">
         <div class = "sliderGroup">
             <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colorBubble="color.dark"/>
-            <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step" @mousedown="startDrag"  @mousemove="emitSlider" @mouseup="stopDrag">
+            <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step" @mousedown="startDrag"  @mousemove="emitSlider" @mouseup="stopDrag" @change="emitSliderAgain">
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
+            <iv-button v-if="resetButton" style="height:100%" @click="reset">Reset</iv-button>
         </div>
         <iv-input-button v-if="sliderButtons" :sliderValue="value" :playSlider="playSlider" :buttonInput="buttonInput" :min="min" :max="max" :button_step_init="button_step_init" @inputButtonClicked="update_val_button"/>
     </div>
@@ -15,13 +16,15 @@ import NumTicksComp from './numTicks.vue';
 import BubbleComp from './bubble.vue';
 import InputButton from './inputButton.vue';
 import Theme from '@/Theme.js';
+import Button from '../Button/Button.vue';
 export default {
     name:"iv-slider",
     components: {
         "iv-line-ticks":lineTicksComp,
         "iv-num-ticks":NumTicksComp,
         "iv-bubble":BubbleComp,
-        "iv-input-button":InputButton
+        "iv-input-button":InputButton,
+        "iv-button":Button
     },
     props:{
         bubble:{
@@ -79,7 +82,11 @@ export default {
         theme:{
             type:String,
             default:"Blue"
-        }
+        },
+        resetButton:{
+            type:Boolean,
+            default:true 
+        },
     },
     data(){
         return {
@@ -114,12 +121,20 @@ export default {
         },
         emitSlider(){
             if (this.dragging){
-                this.$emit("sliderChanged",this.value);
+                this.$emit("sliderChangedbyDragging",this.value);
             }
         },
         stopDrag(){
             this.dragging = false;
-        },        
+        },
+        reset(){
+            this.value = this.min;
+            this.$emit("click",this.value);
+        },
+        emitSliderAgain(){
+            this.$emit("sliderChangedbyClick",this.value);
+
+        },       
     },
     computed:{
         cssColor(){
