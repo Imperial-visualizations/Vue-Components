@@ -25,24 +25,29 @@ export default {
   props: {
     value:{
       type: Boolean,
-      required: true
+      default: false
+    }
+  },
+  data(){
+    return{
+      toggleValue: this.value
     }
   },
   computed: {
     backgroundStyles() {
       return {
-        'switchedOn': this.value,
-        'switchedOff': !this.value
+        'switchedOn': this.toggleValue,
+        'switchedOff': !this.toggleValue
       };
     },
     indicatorStyles() {
-      return { transform: this.value ? 'translateX(14px)' : 'translateX(0)' };
+      return { transform: this.toggleValue ? 'translateX(14px)' : 'translateX(0)' };
     }
   },
   methods: {
     toggle() {
-      this.value =! this.value
-      this.$emit('input', !this.value);
+      this.toggleValue =! this.toggleValue
+      this.$emit('input', !this.toggleValue);
     }
   }
 };
