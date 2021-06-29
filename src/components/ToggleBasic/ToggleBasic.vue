@@ -1,85 +1,92 @@
 <template>
-  <label>
-    <input type="checkbox" id="unchecked" class="toggleBasicInput hidden" @click="changeMode" :disabled="toggleDisabled">
-    <label for="unchecked" class="toggleBasicLabel"></label>
-  </label>
+  <div>
+    <span
+      class="toggle-wrapper"
+      role="checkbox"
+      :aria-checked="value.toString()"
+      tabindex="0"
+      @click="toggle"
+      @keydown.space.prevent="toggle"
+    >
+      <span
+        class="toggle-background"
+        :class="backgroundStyles"
+      />
+      <span
+        class="toggle-indicator"
+        :style="indicatorStyles" 
+      />
+    </span>
+  </div>
 </template>
 <script>
 export default {
-    name:"iv-toggle-basic",
-    props:{
-      initialMode:{
-        type: Boolean,
-        default: true
-      },
-      toggleDisabled: {
-        type: Boolean,
-        required: false,
-        default: false
-      }
-    },
-    data(){
-      return {
-        toggleMode: this.initialMode
-      }
-    },
-    methods:{
-      changeMode(){
-        this.toggleMode = !this.toggleMode;
-        this.$emit("toggleswitched", this.toggleMode);
-      }
+  name:"iv-toggle-basic",
+  props: {
+    value:{
+      type: Boolean,
+      required: true
     }
-}
+  },
+  computed: {
+    backgroundStyles() {
+      return {
+        'switchedOn': this.value,
+        'switchedOff': !this.value
+      };
+    },
+    indicatorStyles() {
+      return { transform: this.value ? 'translateX(14px)' : 'translateX(0)' };
+    }
+  },
+  methods: {
+    toggle() {
+      this.value =! this.value
+      this.$emit('input', !this.value);
+    }
+  }
+};
 </script>
 <style>
-.toggleBasicLabel {
-  position: relative;
-  display: block;
-  height: 20px;
-  width: 44px;
+.switchedOn{
   background-color: #003E74;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.toggleBasicLabel:after {
+.switchedOff{
+  background-color: #2980B9;
+}
+
+.toggle-wrapper {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  width: 32px;
+  height: 18px;
+  border-radius: 9999px;
+}
+
+.toggle-wrapper:focus {
+  outline: 0;
+}
+
+.toggle-background {
+  display: inline-block;
+  border-radius: 9999px;
+  height: 100%;
+  width: 100%;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color .4s ease;
+}
+
+.toggle-indicator {
   position: absolute;
-  left: -2px;
-  top: -3px;
-  display: block;
-  width: 26px;
-  height: 26px;
-  border-radius: 100px;
-  background: #2980B9;
-  box-shadow: 0 0 1px #ccc;
-  content: '';
-  transition: all 0.3s ease;
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #ffffff;
+  border-radius: 9999px;
+  box-shadow:  0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform .4s ease;
 }
-
-.toggleBasicLabel:active:after { transform: scale(1.15, 0.85); }
-
-.toggleBasicInput:checked ~ label:after {
-  left: 20px;
-}
-
-.toggleBasicInput:disabled ~ label {
-  background: #d5d5d5;
-  pointer-events: none;
-}
-
-/* toggle on hover */
-.toggleBasicLabel:hover {
-  cursor: pointer;
-  background: #37538B;
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition:    all 0.4s ease-in-out;
-  -ms-transition:     all 0.4s ease-in-out;
-  -o-transition:      all 0.4s ease-in-out;
-  transition:         all 0.4s ease-in-out;
-}
-
-.toggleBasicInput:disabled ~ label:after { background: #bcbdbc; }
-
-.hidden { display: none; }
 </style>
