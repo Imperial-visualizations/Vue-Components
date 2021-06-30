@@ -1,7 +1,8 @@
 <template>
-    <div ref="sliderContainer">
+    <label for="slider">{{sliderName}}
+    <div ref="sliderContainer" id="slider">
         <div class = "sliderGroup">
-            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colorBubble="color.dark"/>
+            <iv-bubble v-if="bubble" :sliderValue="value" :min="min" :max="max" :thumb_width="thumb_width" :value_marker_width="value_marker_width" :colorBubble="color.dark"/>            
             <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step" @mousedown="startDrag"  @mousemove="emitSlider" @mouseup="stopDrag" @change="emitSliderAgain">
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
@@ -9,6 +10,7 @@
         </div>
         <iv-input-button v-if="sliderButtons" :sliderValue="value" :playSlider="playSlider" :buttonInput="buttonInput" :min="min" :max="max" :button_step_init="button_step_init" @inputButtonClicked="update_val_button"/>
     </div>
+    </label>
 </template>
 <script>
 import lineTicksComp from './lineTicks.vue';
@@ -27,6 +29,10 @@ export default {
         "iv-button":Button
     },
     props:{
+        name:{
+            type:String,
+            default: "Slider Name"
+        },
         bubble:{
             type:Boolean,
             default:true
@@ -85,7 +91,7 @@ export default {
         },
         resetButton:{
             type:Boolean,
-            default:true 
+            default:false 
         },
     },
     data(){
@@ -101,6 +107,7 @@ export default {
             dragging: false,
             value_marker_width: 25,//same as the width of the marker showing the value
             thumb_width: 18,//same as the width of the range slider thumb 
+            sliderName: this.name,
         }
     },
     methods:{  

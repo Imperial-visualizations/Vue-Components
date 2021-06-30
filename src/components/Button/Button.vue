@@ -1,5 +1,5 @@
 <template>
-    <button class="iv-button iv-drop-shadow-medium" @mouseover="mouseOn" @mouseleave="mouseOff" @click="buttonClick" :disabled="disabled">
+    <button class="iv-button iv-drop-shadow-medium" style="height:100%" @mouseover="mouseOn" @mouseleave="mouseOff" @click="buttonClick" :disabled="disabled">
         <slot>Default text</slot></button>
 </template>
 
