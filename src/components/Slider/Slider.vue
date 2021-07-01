@@ -19,6 +19,7 @@ import BubbleComp from './bubble.vue';
 import InputButton from './inputButton.vue';
 import Theme from '@/Theme.js';
 import Button from '../Button/Button.vue';
+import {eventBus} from "@/buses/eventBus";
 export default {
     name:"iv-slider",
     components: {
@@ -150,12 +151,20 @@ export default {
             }
         }
     },
+
     mounted () {
         this.id = this._uid;
         //this.min_step_size();
         this.tick_list = this.calc_ticks(); 
         this.tick_line_key = "tick_line_" + this._uid;
         this.tick_num_key = "tick_num_" + this._uid;
+
+
+        eventBus.$on("reset-data", data => {
+            console.log(data);
+            
+            this.value=this.init_val;
+        })
     },
     watch:{
         current_step:function(){
