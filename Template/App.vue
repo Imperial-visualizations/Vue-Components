@@ -15,7 +15,17 @@
                 <iv-toggle-hotspot position='top' title='Toggle Hotspot' :glass=true>
                     I am in a toggle hotspot
                     <iv-slider></iv-slider>
+
+                    <iv-reset-button> Reset </iv-reset-button>
+
+                    <iv-toggle-basic> </iv-toggle-basic>
+
+                    <!-- <iv-resetbutton> Reset </iv-resetbutton> -->
+
                 </iv-toggle-hotspot>
+
+
+                
 
                 <iv-fixed-hotspot position='topright'>
                     I am in a fixed hotspot

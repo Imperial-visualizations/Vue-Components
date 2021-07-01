@@ -20,6 +20,7 @@
   </div>
 </template>
 <script>
+import {eventBus} from "@/buses/eventBus";
 export default {
   name:"iv-toggle-basic",
   props: {
@@ -49,6 +50,20 @@ export default {
       this.toggleValue =! this.toggleValue
       this.$emit('input', !this.toggleValue);
     }
+  },
+
+  mounted(){
+    eventBus.$on("reset-data", data => {
+      console.log(data);
+      console.log("made it!")
+      this.toggleValue=0;
+      console.log(this.toggleValue)
+    });
+
+  
+
+
+
   }
 };
 </script>
