@@ -102,7 +102,7 @@ export default {
         },
         playButton:{
             type:Boolean,
-            default:true,
+            default:false,
         },
         time_step: {
             type: Number,
