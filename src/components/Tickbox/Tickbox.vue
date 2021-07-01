@@ -34,7 +34,7 @@ export default {
             this.$emit("unchecked", this.checkboxStatus)
           }
         }    
-    }
+    },
 }
 </script>
 <style>

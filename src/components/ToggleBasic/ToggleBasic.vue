@@ -55,15 +55,8 @@ export default {
   mounted(){
     eventBus.$on("reset-data", data => {
       console.log(data);
-      console.log("made it!")
       this.toggleValue=0;
-      console.log(this.toggleValue)
     });
-
-  
-
-
-
   }
 };
 </script>

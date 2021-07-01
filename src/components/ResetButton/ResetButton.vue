@@ -5,7 +5,6 @@
 
 <script>
 import { eventBus } from "@/buses/eventBus";
-//import SymbolButton from "SymbolButton.js";
 export default {
     name: "iv-reset-button",
     methods:{
@@ -16,9 +15,8 @@ export default {
             this.$emit("mouseleave",e)
         },
         buttonClick(e){
-            let resetChoice=true;
             this.$emit("click", e)
-            eventBus.$emit("reset-data", resetChoice)
+            eventBus.$emit("reset-data", this.resetChoice)
         },
     },
     props:{
@@ -27,6 +25,11 @@ export default {
         required: false,
         default: false
       },
+      resetChoice: {
+        type:Boolean,
+        required: false,
+        default: true,
+      }
 
     }  
 }
