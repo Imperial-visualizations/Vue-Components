@@ -7,6 +7,13 @@
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
             <iv-button v-if="resetButton" style="height:100%" @click="reset">Reset</iv-button>
+            <iv-button v-if="playButton" style="height:100%" @click="togglePlay">
+                <span v-if="isPlaying">Pause</span>
+                <span v-if="!isPlaying">
+                    <span v-if="value>=max">Reset</span>
+                    <span v-else>Play</span>
+                    </span>
+                </iv-button>
         </div>
         <iv-input-button v-if="sliderButtons" :sliderValue="value" :playSlider="playSlider" :buttonInput="buttonInput" :min="min" :max="max" :button_step_init="button_step_init" @inputButtonClicked="update_val_button"/>
     </div>
@@ -75,7 +82,7 @@ export default {
             },
         button_step_init:{
             type:Number,
-            default:10
+            default:0.01
         },
         tick_decimals:{
             type:Number,
@@ -91,8 +98,16 @@ export default {
         },
         resetButton:{
             type:Boolean,
-            default:false 
+            default:false, 
         },
+        playButton:{
+            type:Boolean,
+            default:true,
+        },
+        time_step: {
+            type: Number,
+            default: 100,
+        }
     },
     data(){
         return {
@@ -108,6 +123,9 @@ export default {
             value_marker_width: 25,//same as the width of the marker showing the value
             thumb_width: 18,//same as the width of the range slider thumb 
             sliderName: this.name,
+            playButtonState: "Play",
+            isPlaying: false,
+            timer: null,
         }
     },
     methods:{  
@@ -141,14 +159,30 @@ export default {
         emitSliderAgain(){
             this.$emit("sliderChangedbyClick",this.value);
 
-        },       
+        },
+        togglePlay() {
+            this.isPlaying = !this.isPlaying;
+        },
+        startSlider() {
+            this.timer = setInterval(() => {
+                if (this.value < this.max) {
+                    this.value += this.step;
+                    this.value = Math.round(this.value * 100) / 100;
+                    this.$emit("sliderChangedbyPlay",this.value);
+                }              
+            }, this.time_step);
+        },
+        stopSlider() {
+            clearInterval(this.timer);
+            this.isPlaying = false;
+        }       
     },
     computed:{
         cssColor(){
             return {'--primary-color': this.color.main,
                     '--secondary-color': this.color.dark
             }
-        }
+        },
     },
     mounted () {
         this.id = this._uid;
@@ -171,6 +205,23 @@ export default {
         max:function(){
             //this.min_step_size();
             this.tick_list = this.calc_ticks();
+        },
+        isPlaying:function(){
+            // console.log(`${this.isPlaying}`);
+            if (this.isPlaying) {
+                if (this.value >= this.max) {
+                    this.reset();
+                    this.isPlaying = !this.isPlaying;
+                }
+                this.startSlider();
+            } else {
+                this.stopSlider();
+            }            
+        },
+        value:function(){
+            if (this.value >= this.max) {
+                this.stopSlider();
+            }
         }
     }
 }
