@@ -1,2 +1,3 @@
 import ResetButton from "./ResetButton.vue";
-export default ResetButton; 
+//import SymbolButton from "./SymbolButton.vue";
+export default ResetButton;
