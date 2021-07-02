@@ -19,7 +19,7 @@
 
                     <iv-toggle-basic> </iv-toggle-basic>
                     <iv-toggle-advance @toggleswitched="toggleChange"></iv-toggle-advance>
-                    <iv-toggle-advance :toggleDisabled=disableList></iv-toggle-advance>
+                    <iv-toggle-advance :togglesDisabled=disableList></iv-toggle-advance>
                     <iv-tickbox></iv-tickbox>
                 </iv-toggle-hotspot>
 
