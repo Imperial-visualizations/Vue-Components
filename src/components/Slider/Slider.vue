@@ -165,8 +165,8 @@ export default {
         },
         startSlider() {
             this.timer = setInterval(() => {
-                if (this.value < this.max) {
-                    this.value += this.step;
+                if ((this.value + Number(this.step)) <= Number(this.max)){
+                    this.value += Number(this.step);
                     this.value = Math.round(this.value * 100) / 100;
                     this.$emit("sliderChangedbyPlay",this.value);
                 }              
@@ -209,7 +209,7 @@ export default {
         isPlaying:function(){
             // console.log(`${this.isPlaying}`);
             if (this.isPlaying) {
-                if (this.value >= this.max) {
+                if (this.value >= Number(this.max)) {
                     this.reset();
                     this.isPlaying = !this.isPlaying;
                 }
