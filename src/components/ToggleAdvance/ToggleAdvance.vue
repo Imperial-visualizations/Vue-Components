@@ -21,10 +21,17 @@ export default {
         type: Number,
         default: 0
       },
-      toggleDisabled: {
-        type: Boolean,
+      togglesDisabled: {
+        type: Array,
         required: false,
-        default: false
+        default:  function () {
+          let arr = [];
+          for(let i = 0; i < this.modes.length; i++){
+            arr.push(false);
+          }
+          return arr
+        } 
+
       }
     },
     data(){
