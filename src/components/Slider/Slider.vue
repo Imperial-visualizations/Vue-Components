@@ -26,11 +26,7 @@ import BubbleComp from './bubble.vue';
 import InputButton from './inputButton.vue';
 import Theme from '@/Theme.js';
 import Button from '../Button/Button.vue';
-<<<<<<< HEAD
-import { EventBus } from "@/buses/EventBus";
-=======
 import {eventBus} from "@/buses/eventBus";
->>>>>>> f568d3bd5eb97181f16ea1d8bc491960ec3370e2
 export default {
     name:"iv-slider",
     components: {
