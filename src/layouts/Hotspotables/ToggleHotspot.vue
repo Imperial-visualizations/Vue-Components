@@ -1,6 +1,6 @@
 <template>
     <div class="iv-hotspotable iv-toggle-hotspot" :class=toggleClass :style="toggleSize">
-        <div v-show="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace},{'iv-glass-effect':glass}]">
+        <div v-show="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace},{'iv-transparent':transparent},{'iv-glass-effect':glass}]">
             <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
         </div>
         <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot"><span v-if="title !== ''" class = "title-text">{{title}}</span></div>
@@ -26,6 +26,10 @@ export default {
             default:false
         },
         glass:{
+            type:Boolean,
+            default:false
+        },
+        transparent:{
             type:Boolean,
             default:false
         }
@@ -197,6 +201,10 @@ export default {
         flex-direction: row-reverse;
         justify-content: flex-start;
         box-shadow: -2px 0px 5px #e2e2e2;
+    }
+    &.iv-transparent{
+    background: none;
+    box-shadow: none !important;
     }
 }
 .iv-hotspot-button{

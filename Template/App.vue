@@ -11,7 +11,7 @@
             <template #hotspots>
                 <iv-pane position='left' format='push' :glass=true></iv-pane>
 
-                <iv-toggle-hotspot position='top' title='Toggle Hotspot' :glass=true>
+                <iv-toggle-hotspot position='top' title='Toggle Hotspot' :glass="false" :transparent="true">
                     I am in a toggle hotspot
                     <iv-slider time_step=10 step=0.01 playButton="true"></iv-slider>
 
@@ -23,7 +23,7 @@
                 </iv-toggle-hotspot>
 
 
-                <iv-fixed-hotspot position='topright'>
+                <iv-fixed-hotspot position='topright' :glass="true" :transparent="true">
                     I am in a fixed hotspot
                 </iv-fixed-hotspot>
             </template>
