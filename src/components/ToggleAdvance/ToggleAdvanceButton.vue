@@ -2,7 +2,7 @@
     <div>
         <input class="toggleAdvanceInput" type="radio" 
         @click="$parent.changeMode(modeIndex)" :checked="$parent.isChecked(modeIndex)" 
-        :disabled="$parent.toggleDisabled" :id="id" :value="modeIndex"/>
+        :disabled="$parent.toggleDisabled[modeIndex]" :id="id" :value="modeIndex"/>
         <label :for="id">{{ modeName }}</label>
     </div>
 </template>
@@ -24,7 +24,7 @@ export default {
         modeIndex:{
             type: Number
         }
-    }
+    },
 }
 </script>
 

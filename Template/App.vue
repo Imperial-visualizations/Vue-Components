@@ -18,7 +18,8 @@
                     <iv-reset-button> Reset </iv-reset-button>
 
                     <iv-toggle-basic> </iv-toggle-basic>
-                    <iv-toggle-advance></iv-toggle-advance>
+                    <iv-toggle-advance @toggleswitched="toggleChange"></iv-toggle-advance>
+                    <iv-toggle-advance :toggleDisabled=disableList></iv-toggle-advance>
                     <iv-tickbox></iv-tickbox>
                 </iv-toggle-hotspot>
 
@@ -38,7 +39,19 @@ export default {
     name:"App",
     data(){
         return {
-            projectName: name
+            projectName: name,
+            disableList: [false, true, false]
+        }
+    },
+    methods: {
+        toggleChange(e){
+            console.log('event', e);
+            if(e == 1){
+                this.disableList = [false, true, false];
+            }
+            if(e == 2){
+                this.disableList = [false, false, true];
+            }
         }
     }
 }

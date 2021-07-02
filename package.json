@@ -1,6 +1,6 @@
 {
   "name": "@impvis/components",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "license": "BSD-3-Clause",
   "main": "./dist/impvis-components.js",
   "unpkg": "./dist/impvis-components.umd.js",
@@ -49,7 +49,7 @@
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-vue": "^5.1.9",
-    "sass-loader": "^9.0.3",
+    "sass-loader": "^10",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {
