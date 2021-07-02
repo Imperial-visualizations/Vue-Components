@@ -9,6 +9,7 @@ export {default as DropdownList} from "./DropdownList";
 export {default as ToggleBasic} from "./ToggleBasic";
 export {default as ToggleAdvance} from "./ToggleAdvance";
 export {default as Tickbox} from "./Tickbox";
+
 export {default as SectionTitle} from "./Titles";
 //export {default as Play_Button} from "./Play_Button";
 export {SymbolButton,Button} from "./Button";
@@ -21,5 +22,6 @@ export {default as LegacyWrapper} from './LegacyWrapper';
 export {SectionHeading,SidebarSection,SidebarContent} from './SidebarText';
 export {PageIndicator,PaneNavigator} from './Navigation';
 export {default as Meter} from './Meter';
+export {default as ResetButton} from "./ResetButton";
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';

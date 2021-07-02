@@ -5,7 +5,9 @@
 </template>
 
 <script>
-import ToggleAdvanceButton from "./ToggleAdvanceButton.vue"
+import ToggleAdvanceButton from "./ToggleAdvanceButton.vue";
+import {eventBus} from "@/buses/eventBus";
+
 export default {
     name:"iv-toggle-advance",
     components: {"iv-toggle-advance-button": ToggleAdvanceButton},
@@ -42,6 +44,12 @@ export default {
           return false;
         }
       }
+    },
+    mounted(){
+      eventBus.$on("reset-data", data => {
+        console.log(data);
+        this.toggleModeIndex = this.initialModeIndex;
+      });
     }
 }
 </script>
