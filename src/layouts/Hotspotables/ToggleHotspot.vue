@@ -70,8 +70,8 @@ export default {
 @import "src/globals.scss";
 
 .iv-toggle-hotspot{
-    position:relative;
-    width:100%;
+    position:absolute;
+    width:auto;
 
     height:auto;
     &.iv-toggled-left{
@@ -198,7 +198,7 @@ export default {
         box-shadow: 2px 0px 5px #e2e2e2;
     }
     &.iv-right{
-        flex-direction: row-reverse;
+        flex-direction: column;
         justify-content: flex-start;
         box-shadow: -2px 0px 5px #e2e2e2;
     }
