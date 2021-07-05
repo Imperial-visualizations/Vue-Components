@@ -46,11 +46,14 @@ export default {
     methods: {
         toggleChange(e){
             console.log('event', e);
+            if(e == 0){
+                this.disableList = [false, false, false];
+            }
             if(e == 1){
                 this.disableList = [false, true, false];
             }
             if(e == 2){
-                this.disableList = [false, false, true];
+                this.disableList = [true, false, true];
             }
         }
     }

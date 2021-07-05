@@ -57,6 +57,19 @@ export default {
         console.log(data);
         this.toggleModeIndex = this.initialModeIndex;
       });
+    },
+    watch:{
+        togglesDisabled:function(){
+            let i=0;
+            let exit=false;
+            do {
+              if (this.togglesDisabled[i] == false){
+                this.toggleModeIndex=i;
+                exit=true;
+              }
+              i++;
+            } while (i <= this.modes.length && exit==false)
+        }
     }
 }
 </script>
