@@ -23,5 +23,6 @@ export {SectionHeading,SidebarSection,SidebarContent} from './SidebarText';
 export {PageIndicator,PaneNavigator} from './Navigation';
 export {default as Meter} from './Meter';
 export {default as ResetButton} from "./ResetButton";
+export {default as IncrementButton} from "./IncrementButton";
 // For folders containg multiple exported components write:
 // export {ComponentA,ComponentB} from './ComponentFolder';
