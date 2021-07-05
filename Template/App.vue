@@ -11,16 +11,20 @@
             <template #hotspots>
                 <iv-pane position='left' format='push' :glass=true></iv-pane>
 
-                <iv-toggle-hotspot position='top' title='Toggle Hotspot' :glass="false" :transparent="true">
+                <iv-toggle-hotspot position='top' title='Toggle Hotspot' :glass="true" >
                     I am in a toggle hotspot
                     <iv-slider time_step=10 step=0.01 playButton="true"></iv-slider>
 
                     <iv-reset-button> Reset </iv-reset-button>
 
+                    <iv-increment-button @change="incrementChange" :initialValue="2" :increment="2"> </iv-increment-button> 
+
                     <iv-toggle-basic> </iv-toggle-basic>
                     <iv-toggle-advance @toggleswitched="toggleChange"></iv-toggle-advance>
                     <iv-toggle-advance :togglesDisabled=disableList></iv-toggle-advance>
                     <iv-tickbox></iv-tickbox>
+
+                    
                 </iv-toggle-hotspot>
 
 
@@ -55,6 +59,11 @@ export default {
             if(e == 2){
                 this.disableList = [true, false, true];
             }
+        },
+
+        incrementChange(e){
+            console.log("received value")
+            console.log(e)
         }
     }
 }
