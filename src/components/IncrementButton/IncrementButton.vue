@@ -3,9 +3,9 @@
         <slot>Default text</slot></button> -->
 
     <div class="iv-increment-button iv-drop-shadow-medium" style="height:100%" >
-        <button class="iv-button" style="height:100%" @click="minusClick" >-</button>
+        <button id="subtract" class="iv-button" style="height:100%" @click="minusClick" :disabled="minusDisabled">-</button>
         <span class="text">{{current}}</span>
-        <button class="iv-button" style="height:100%" @click="plusClick"  >+</button>
+        <button id="add" class="iv-button" style="height:100%" @click="plusClick"  :disabled="plusDisabled">+</button>
     </div>
 
 </template>
@@ -15,7 +15,13 @@ import {eventBus} from "@/buses/eventBus";
 export default {
     name: "iv-increment-button",
     props:{
-      disabled: {
+      plusDisabled: {
+        type:Boolean,
+        required: false,
+        default: false
+      },
+
+      minusDisabled: {
         type:Boolean,
         required: false,
         default: false
@@ -31,7 +37,17 @@ export default {
           type:Number,
           required:false,
           default:1
-      }
+      },
+
+      minimum:{
+          type:Number,
+          required:false,
+      },
+      maximum:{
+          type:Number,
+          required:false,
+      },
+
 
     },
     data(){
@@ -47,18 +63,38 @@ export default {
             this.$emit("mouseleave",e)
         },
         minusClick(){
+            if (this.current==this.maximum){
+                this.plusDisabled=false;
+            }
+            
             this.current = this.current-this.increment;
-            this.$emit("change", this.current)
+            this.$emit("change", this.current);
+
+            if (this.current==this.minimum){
+                this.minusDisabled=true
+            }
         },
+        
         plusClick(){
+            if (this.current==this.minimum){
+                this.minusDisabled=false
+            }
+            
             this.current = this.current+this.increment;
-            this.$emit("change", this.current)
-        },
+            this.$emit("change", this.current);
+
+            if (this.current==this.maximum){
+                this.plusDisabled=true;
+            }
+        }
     },
+
     mounted(){
       eventBus.$on("reset-data", data => {
         console.log(data);
         this.current = this.initialValue;
+        this.minusDisabled=false;
+        this.plusDisabled=false;
       });
     }
   
