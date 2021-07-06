@@ -19,10 +19,6 @@ import {hotspotBus} from "@/buses/hotspotBus";
 export default {
   name: 'iv-DraggableDiv',
   props:{
-    name:{
-      type:String,
-      default:'Control Panel'
-    },
     idName:{
       type: String,
       required: true,
