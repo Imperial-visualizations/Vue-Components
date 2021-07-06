@@ -35,6 +35,7 @@ $greenHover:#1BDE90;
 $greenClick:#139C65;
 $disabledColor:#D3D3D3;
 .iv-button{
+    cursor: pointer;
     border: none;
     text-align: center;
     text-decoration: none;
