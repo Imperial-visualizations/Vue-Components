@@ -1,13 +1,14 @@
 <template>
-    <div class="iv-hotspotable iv-toggle-hotspot" :class=toggleClass :style="toggleSize">
+    <div class="iv-hotspotable iv-toggle-hotspot" :class=toggleClass :style="toggleSize" v-if="ifClosed">
         <div v-show="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace},{'iv-transparent':transparent},{'iv-glass-effect':glass}]">
             <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
         </div>
-        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot = !showHotspot"><span v-if="title !== ''" class = "title-text">{{title}}</span></div>
+        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="openControlPanel"><span v-if="title !== ''" class = "title-text">{{title}}</span></div>
     </div>
 </template>
 <script>
 import Hotspotable from "@/mixins/Hotspotable"
+import {hotspotBus} from "@/buses/hotspotBus"
 export default {
     name:"iv-toggle-hotspot",
     mixins:[Hotspotable],
@@ -32,12 +33,31 @@ export default {
         transparent:{
             type:Boolean,
             default:false
+        },
+        idName: {
+        type:String,
+        required:true,
+        default: 'Name_1',
         }
     },
     data(){
         return{
             showHotspot:this.show,
+            ifClosed: true
         }
+    },
+    methods:{
+        openControlPanel(){
+            this.ifClosed = false;
+            hotspotBus.$emit("openControlPanel", this.idName)
+        },
+    },
+    mounted(){
+        hotspotBus.$on("closeControlPanel", data => {
+        if (data===this.idName){
+            this.ifClosed=true;
+        }
+    });
     },
     computed:{
         toggleClass(){

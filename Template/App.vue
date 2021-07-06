@@ -2,35 +2,35 @@
     <div>
         <iv-visualisation :title="projectName">
             <div class="iv-welcome-message">
-                <!-- <img src='./assets/ImpVis-logo.png' alt="ImpVisLogo" height="50"/> -->
+                <!-- <img src='./assets/ImpVis-logo.png' alt="ImpVisLogo" height="50"/> 
+                <h1> Welcome to Imperial Visualisations!</h1>
+                <p> Your project, {{projectName}} has succesfully been set up using the NodeJS template!</p>-->
+                <iv-DraggableDiv name="Control Panel 1" idName="Control Panel 1">
+                    <iv-slider></iv-slider>
+                    <iv-toggle-basic> </iv-toggle-basic>
+                    <iv-toggle-advance></iv-toggle-advance>
+                    <iv-reset-button> Reset </iv-reset-button>
+                </iv-DraggableDiv>
+                <iv-DraggableDiv name="Control Panel 2" idName="Control Panel 2">
+                    <iv-slider></iv-slider>
+                    <iv-toggle-basic> </iv-toggle-basic>
+                    <iv-toggle-advance></iv-toggle-advance>
+                    <iv-reset-button> Reset </iv-reset-button>
+                </iv-DraggableDiv>
                 <h1> Welcome to Imperial Visualisations!</h1>
                 <p> Your project, {{projectName}} has succesfully been set up using the NodeJS template!</p>
+                
             </div>
             
 
-            <template #hotspots>
+              <template #hotspots>
                 <iv-pane position='left' format='push' :glass=true></iv-pane>
 
-                <iv-toggle-hotspot position='top' title='' :glass="false" :transparent="false">
-                    
-                    I am in a toggle hotspot
-                    <iv-slider time_step=10 step=0.01 playButton="true"></iv-slider>
-
-                    <iv-reset-button> Reset </iv-reset-button>
-
-                    <iv-increment-button @change="incrementChange" :initialValue="2" :increment="2" :minimum="-6" :maximum="8"></iv-increment-button> 
-
-                    <iv-toggle-basic> </iv-toggle-basic>
-                    <iv-toggle-advance @toggleswitched="toggleChange"></iv-toggle-advance>
-                    <iv-toggle-advance :togglesDisabled=disableList></iv-toggle-advance>
-                    <iv-tickbox></iv-tickbox>
-
-
-                    
+                <iv-toggle-hotspot position='top' title='Toggle Hotspot' idName="Control Panel 1">
                 </iv-toggle-hotspot>
-
-
-                <iv-fixed-hotspot position='topright' :glass="true" :transparent="true">
+                <iv-toggle-hotspot position='bottom' title='Toggle Hotspot' idName="Control Panel 2">                   
+                </iv-toggle-hotspot>                 
+                <iv-fixed-hotspot position='topright'>
                     I am in a fixed hotspot
                 </iv-fixed-hotspot>
             </template>
@@ -73,7 +73,7 @@ export default {
 <style>
 .iv-welcome-message{
     display:flex;
-    flex-direction: column;
+    flex-direction:column;
     align-items: center;
     margin-top: 50px;
 }
