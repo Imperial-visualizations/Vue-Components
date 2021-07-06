@@ -1,7 +1,4 @@
 <template>
-    <!-- <button class="iv-increment-button iv-drop-shadow-medium" style="height:100%" @mouseover="mouseOn" @mouseleave="mouseOff" @click="buttonClick" :disabled="disabled">
-        <slot>Default text</slot></button> -->
-
     <div class="iv-increment-button iv-drop-shadow-medium" style="height:100%" >
         <button id="subtract" class="iv-button" style="height:100%" @click="minusClick" :disabled="minusDisabled">-</button>
         <span class="text">{{current}}</span>

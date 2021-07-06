@@ -10,6 +10,9 @@
                     <iv-toggle-basic> </iv-toggle-basic>
                     <iv-toggle-advance></iv-toggle-advance>
                     <iv-reset-button> Reset </iv-reset-button>
+                    <iv-increment-button :initialValue="2" :increment="2" :minimum="-6" :maximum="8"></iv-increment-button>
+
+
                 </iv-DraggableDiv>
                 <iv-DraggableDiv name="Control Panel 2" idName="Control Panel 2">
                     <iv-slider></iv-slider>
