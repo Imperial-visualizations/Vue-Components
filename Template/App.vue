@@ -10,8 +10,6 @@
             <div class="iv-welcome-message">
                 <!-- <img src='./assets/ImpVis-logo.png' alt="ImpVisLogo" height="50"/> 
                 <h1> Welcome to Imperial Visualisations!</h1>
-                <p> Your project, {{projectName}} has succesfully been set up using the NodeJS template!</p>-->
-                <h1> Welcome to Imperial Visualisations!</h1>
                 <p> Your project, {{projectName}} has succesfully been set up using the NodeJS template!</p>
                 
             </div>           
@@ -55,6 +53,11 @@ export default {
             if(e == 2){
                 this.disableList = [true, false, true];
             }
+        },
+
+        sliderChanged(e){
+            console.log("recieved slider change")
+            console.log(e)
         },
 
         incrementChange(e){
