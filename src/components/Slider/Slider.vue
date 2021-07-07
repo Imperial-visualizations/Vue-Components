@@ -147,7 +147,7 @@ export default {
         },
         emitSlider(){
             if (this.dragging){
-                this.$emit("sliderChangedbyDragging",this.value);
+                this.$emit("sliderChanged",this.value);
             }
         },
         stopDrag(){
@@ -158,7 +158,7 @@ export default {
             this.$emit("click",this.value);
         },
         emitSliderAgain(){
-            this.$emit("sliderChangedbyClick",this.value);
+            this.$emit("sliderChanged",this.value);
 
         },
         togglePlay() {
@@ -169,7 +169,7 @@ export default {
                 if ((this.value + Number(this.step)) <= Number(this.max)){
                     this.value += Number(this.step);
                     this.value = Math.round(this.value * 100) / 100;
-                    this.$emit("sliderChangedbyPlay",this.value);
+                    this.$emit("sliderChanged",this.value);
                 }              
             }, this.time_step);
         },

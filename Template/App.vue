@@ -6,12 +6,11 @@
                 <h1> Welcome to Imperial Visualisations!</h1>
                 <p> Your project, {{projectName}} has succesfully been set up using the NodeJS template!</p>-->
                 <iv-DraggableDiv name="Control Panel 1" idName="Control Panel 1">
-                    <iv-slider></iv-slider>
+                    <iv-slider @sliderChanged="sliderChanged"></iv-slider>
                     <iv-toggle-basic> </iv-toggle-basic>
                     <iv-toggle-advance></iv-toggle-advance>
                     <iv-reset-button> Reset </iv-reset-button>
                     <iv-increment-button :initialValue="2" :increment="2" :minimum="-6" :maximum="8"></iv-increment-button>
-
 
                 </iv-DraggableDiv>
                 <iv-DraggableDiv name="Control Panel 2" idName="Control Panel 2">
@@ -64,6 +63,11 @@ export default {
             if(e == 2){
                 this.disableList = [true, false, true];
             }
+        },
+
+        sliderChanged(e){
+            console.log("recieved slider change")
+            console.log(e)
         },
 
         incrementChange(e){
