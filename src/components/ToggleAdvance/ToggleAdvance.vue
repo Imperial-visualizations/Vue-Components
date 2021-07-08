@@ -66,6 +66,7 @@ export default {
               if (this.togglesDisabled[i] == false){
                 this.toggleModeIndex=i;
                 exit=true;
+                this.$emit("toggleswitched", this.toggleModeIndex);
               }
               i++;
             } while (i <= this.modes.length && exit==false)
