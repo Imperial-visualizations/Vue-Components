@@ -3,15 +3,14 @@
         <iv-DraggableDiv idName="Control Panel 1">
             <iv-slider></iv-slider>
             <iv-toggle-basic> </iv-toggle-basic>
-            <iv-toggle-advance></iv-toggle-advance>
+            <iv-toggle-advance :width=ToggleWidth :modes=ModeNames></iv-toggle-advance>
             <iv-reset-button> Reset </iv-reset-button>
         </iv-DraggableDiv>
         <iv-visualisation :title="projectName">
             <div class="iv-welcome-message">
-                <!-- <img src='./assets/ImpVis-logo.png' alt="ImpVisLogo" height="50"/> 
+                <!-- <img src='./assets/ImpVis-logo.png' alt="ImpVisLogo" height="50"/>  -->
                 <h1> Welcome to Imperial Visualisations!</h1>
                 <p> Your project, {{projectName}} has succesfully been set up using the NodeJS template!</p>
-                
             </div>           
 
               <template #hotspots>
@@ -40,6 +39,10 @@ export default {
             projectName: name,
             disableList: [false, true, false]
         }
+    },
+    props:{
+        ModeNames:{default: ["0","1","2","Testing testing 1233323"]},
+        ToggleWidth:{default: "30px"},
     },
     methods: {
         toggleChange(e){

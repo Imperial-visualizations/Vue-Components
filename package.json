@@ -1,6 +1,8 @@
 {
   "name": "@impvis/components",
-  "version": "1.3.2",
+  
+  "version": "1.3.3",
+
 
   "license": "BSD-3-Clause",
   "main": "./dist/impvis-components.js",

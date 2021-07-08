@@ -1,6 +1,6 @@
 <template>
   <div class="toggleAdvanceClass">
-    <iv-toggle-advance-button v-for="(modeName, modeIndex) in modes" :key="modeIndex" :modeIndex="modeIndex" :modeName="modeName"></iv-toggle-advance-button>
+    <iv-toggle-advance-button v-for="(modeName, modeIndex) in modes" :key="modeIndex" :style="cssVars" :modeIndex="modeIndex" :modeName="modeName"></iv-toggle-advance-button>
   </div>
 </template>
 
@@ -21,6 +21,10 @@ export default {
         type: Number,
         default: 0
       },
+      width:{
+        type: String,
+        default: '95px'
+      },
       togglesDisabled: {
         type: Array,
         required: false,
@@ -36,7 +40,14 @@ export default {
     },
     data(){
       return {
-        toggleModeIndex: this.initialModeIndex
+        toggleModeIndex: this.initialModeIndex,
+      }
+    },
+    computed: {
+      cssVars() {
+        return {
+          '--width': this.width,
+        }
       }
     },
     methods:{
@@ -66,6 +77,7 @@ export default {
               if (this.togglesDisabled[i] == false){
                 this.toggleModeIndex=i;
                 exit=true;
+                this.$emit("toggleswitched", this.toggleModeIndex);
               }
               i++;
             } while (i <= this.modes.length && exit==false)
@@ -93,7 +105,7 @@ export default {
 }
 
 .toggleAdvanceClass label {
-  width: 95px;
+  width: var(--width);;
   font-size: 12px;
   display: inline-block;
   background-color: rgba(0, 62, 116, 0.5);
