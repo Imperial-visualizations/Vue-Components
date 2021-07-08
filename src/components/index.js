@@ -16,6 +16,7 @@ export {SymbolButton,Button} from "./Button";
 export {default as guidanceButton} from "./GuidanceButton";
 export {default as LoadingBar} from "./LoadingBar";
 export {default as LoadingSpinner} from "./LoadingSpinner";
+export {default as LoadingTool} from "./LoadingTool";
 export {Tab, Tabs} from "./Tabs";
 export {default as SliderBlock} from "./SliderBlock";
 export {default as LegacyWrapper} from './LegacyWrapper';
