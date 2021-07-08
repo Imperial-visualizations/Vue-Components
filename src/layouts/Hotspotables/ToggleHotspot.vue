@@ -3,7 +3,8 @@
         <div v-show="showHotspot" class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace},{'iv-transparent':transparent},{'iv-glass-effect':glass}]">
             <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
         </div>
-        <div :class="['iv-hotspot-button',positionalClass('iv')]" @click="openControlPanel"><span v-if="title !== ''" class = "title-text">{{title}}</span></div>
+        <div v-if="draggable" :class="['iv-hotspot-button',positionalClass('iv')]" @click="openControlPanel"><span v-if="title !== ''" class = "title-text">{{title}}</span></div>
+        <div v-else :class="['iv-hotspot-button',positionalClass('iv')]" @click="showHotspot=!showHotspot"><span v-if="title !== ''" class = "title-text">{{title}}</span></div>  
     </div>
 </template>
 <script>
@@ -38,6 +39,10 @@ export default {
         type:String,
         required:true,
         default: 'Name_1',
+        },
+        draggable:{
+            type: Boolean,
+            default: false
         }
     },
     data(){
