@@ -113,21 +113,21 @@ export default {
 
     watch:{
         minimum:function(){           
-            this.disable();
-            
+                        
             if (this.current<this.minimum){
                 this.current=this.minimum
                 this.$emit("change", this.current);
             }
-            
+
+            this.disable();
         },
         maximum:function(){
-            this.disable();
             if (this.current>this.maximum){
                 this.current=this.maximum
                 this.$emit("change", this.current);
             }
 
+            this.disable();
         }
     }
   
