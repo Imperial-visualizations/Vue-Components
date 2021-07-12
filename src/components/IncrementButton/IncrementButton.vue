@@ -12,18 +12,6 @@ import {eventBus} from "@/buses/eventBus";
 export default {
     name: "iv-increment-button",
     props:{
-      plusDisabled: {
-        type:Boolean,
-        required: false,
-        default: false
-      },
-
-      minusDisabled: {
-        type:Boolean,
-        required: false,
-        default: false
-      },
-
       initialValue:{
           type:Number,
           required:false,
@@ -39,17 +27,43 @@ export default {
       minimum:{
           type:Number,
           required:false,
+          default:0
       },
       maximum:{
           type:Number,
           required:false,
+          default:10
       },
 
+      plusDisabled: {
+        type:Boolean,
+        required: false,
+        default:  function () {
+          if (this.initialValue==this.maximum){
+              return true
+          }
+          else {return false}
+        } 
+
+      },
+
+      minusDisabled: {
+        type:Boolean,
+        required: false,
+        default:  function () {
+            if (this.initialValue==this.minimum){
+              return true
+          }
+          else {return false}
+        } 
+        
+      },
 
     },
     data(){
       return {
-        current: this.initialValue
+        current: this.initialValue,
+
       }
     },
     methods:{
@@ -60,29 +74,31 @@ export default {
             this.$emit("mouseleave",e)
         },
         minusClick(){
-            if (this.current==this.maximum){
-                this.plusDisabled=false;
-            }
-            
             this.current = this.current-this.increment;
             this.$emit("change", this.current);
+            this.disable();
+        },
+        
+        plusClick(){
+            this.current = this.current+this.increment;
+            this.$emit("change", this.current);     
+            this.disable();       
+        },
+        disable(){
+            if (this.current==this.maximum){
+                this.plusDisabled=true;
+            }
+            else {
+                this.plusDisabled=false
+            }
 
             if (this.current==this.minimum){
                 this.minusDisabled=true
             }
-        },
-        
-        plusClick(){
-            if (this.current==this.minimum){
+            else {
                 this.minusDisabled=false
             }
-            
-            this.current = this.current+this.increment;
-            this.$emit("change", this.current);
 
-            if (this.current==this.maximum){
-                this.plusDisabled=true;
-            }
         }
     },
 
@@ -93,6 +109,26 @@ export default {
         this.minusDisabled=false;
         this.plusDisabled=false;
       });
+    },
+
+    watch:{
+        minimum:function(){           
+            this.disable();
+            
+            if (this.current<this.minimum){
+                this.current=this.minimum
+                this.$emit("change", this.current);
+            }
+            
+        },
+        maximum:function(){
+            this.disable();
+            if (this.current>this.maximum){
+                this.current=this.maximum
+                this.$emit("change", this.current);
+            }
+
+        }
     }
   
 }
