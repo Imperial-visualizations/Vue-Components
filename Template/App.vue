@@ -8,7 +8,11 @@
         </iv-DraggableDiv>
         <iv-visualisation :title="projectName">
             <div class="iv-welcome-message">
+<<<<<<< Updated upstream
                 <!-- <img src='./assets/ImpVis-logo.png' alt="ImpVisLogo" height="50"/>  -->
+=======
+                <!-- <img src='./assets/ImpVis-logo.png' alt="ImpVisLogo" height="50"/> -->
+>>>>>>> Stashed changes
                 <h1> Welcome to Imperial Visualisations!</h1>
                 <p> Your project, {{projectName}} has succesfully been set up using the NodeJS template!</p>
             </div>           
@@ -18,7 +22,7 @@
 
                 <iv-toggle-hotspot :draggable=true position='top' title='Toggle Hotspot' idName="Control Panel 1">
                 </iv-toggle-hotspot>
-                <iv-toggle-hotspot position='bottom' title='Toggle Hotspot'>                   
+                <iv-toggle-hotspot position='right' title='Toggle Hotspot'>                   
                 </iv-toggle-hotspot>                 
                 <iv-fixed-hotspot position='topright'>
                     I am in a fixed hotspot

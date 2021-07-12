@@ -246,12 +246,12 @@ export default {
     z-index: 1; 
     
     &.iv-left,&.iv-right{
-        min-height: $minButtonWidth;
-        min-width: $minButtonHeight;
+        min-height: $minHButtonHeight;
+        min-width: $minHButtonWidth;
     }
     &.iv-topleft,&.iv-top,&.iv-top-right,&.iv-bottomright,&.iv-bottom,&.iv-bottomright{
-        min-width: $minButtonWidth;
-        min-height: $minButtonHeight;
+        min-width: $minVButtonWidth;
+        min-height: $minVButtonHeight;
     }
 
     &.iv-left{

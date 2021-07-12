@@ -35,9 +35,10 @@ $hotspotItemMargin:1rem;
 $curvatureRadius: 20px;
 $hotspotShadow: 5px;
 $hotpotTextHeight: 1.25rem;
-$minButtonHeight: 1.25rem;
-$minButtonWidth: 80px;
-
+$minVButtonHeight: 1.25rem;
+$minVButtonWidth: 100px;
+$minHButtonHeight: 100px;
+$minHButtonWidth: 2.5rem;
 
 //Mixins
 @mixin backdrop-filter($property){
