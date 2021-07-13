@@ -27,7 +27,13 @@ export default {
     value:{
       type: Boolean,
       default: false
+    },
+    resetCapability:{
+      type:Boolean,
+      required:false,
+      default:false
     }
+    
   },
   data(){
     return{
@@ -49,6 +55,11 @@ export default {
     toggle() {
       this.toggleValue =! this.toggleValue
       this.$emit('input', !this.toggleValue);
+      console.log(!this.toggleValue)
+
+      if (!this.toggleValue==true && this.resetCapability==true){
+        eventBus.$emit("reset-data", this.resetChoice)
+      }
     }
   },
 
