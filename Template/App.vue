@@ -5,8 +5,7 @@
             <iv-toggle-basic> </iv-toggle-basic>
             <iv-toggle-advance :width=ToggleWidth :modes=ModeNames></iv-toggle-advance>
             <iv-reset-button> Reset </iv-reset-button>
-            <iv-increment-button :initialValue="10" :increment="1" :minimum="10" :maximum="10"> </iv-increment-button>
-        
+            <iv-increment-button @change="changeInc1" :initialValue="10" :increment="1" :minimum="0" :maximum="10"> </iv-increment-button>
             <iv-increment-button :initialValue="2" :increment="1" :minimum="min" :maximum="max"> </iv-increment-button>
         </iv-DraggableDiv>
         <iv-visualisation :title="projectName">
@@ -69,6 +68,10 @@ export default {
         incrementChange(e){
             console.log("received value")
             console.log(e)
+        },
+        
+        changeInc1(e){
+            this.min=e;
         }
     }
 }

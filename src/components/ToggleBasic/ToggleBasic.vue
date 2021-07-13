@@ -56,6 +56,7 @@ export default {
     eventBus.$on("reset-data", data => {
       console.log(data);
       this.toggleValue=0;
+      this.$emit('input', !this.toggleValue);
     });
   }
 };

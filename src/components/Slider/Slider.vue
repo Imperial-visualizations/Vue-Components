@@ -196,8 +196,8 @@ export default {
 
         eventBus.$on("reset-data", data => {
             console.log(data);
-            
             this.value=this.init_val;
+            this.$emit("sliderChanged",this.value);
         })
     },
     watch:{

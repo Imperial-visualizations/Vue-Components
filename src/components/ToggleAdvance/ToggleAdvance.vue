@@ -67,6 +67,7 @@ export default {
       eventBus.$on("reset-data", data => {
         console.log(data);
         this.toggleModeIndex = this.initialModeIndex;
+        this.$emit("toggleswitched", this.toggleModeIndex);
       });
     },
     watch:{
