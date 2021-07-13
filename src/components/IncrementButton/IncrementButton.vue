@@ -108,12 +108,12 @@ export default {
         this.current = this.initialValue;
         this.minusDisabled=false;
         this.plusDisabled=false;
+        this.$emit("change", this.current);
       });
     },
 
     watch:{
         minimum:function(){           
-                        
             if (this.current<this.minimum){
                 this.current=this.minimum
                 this.$emit("change", this.current);
