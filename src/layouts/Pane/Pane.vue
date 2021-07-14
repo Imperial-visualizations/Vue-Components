@@ -16,7 +16,7 @@
 import guidanceBus from "@/buses/guidanceBus.js";
 import Hotspotable from '@/mixins/Hotspotable.js';
 import LTMode from "@/mixins/LTMode.js";
-const minWidth = 350;
+const minWidth = 15;
 const maxWidthRatio = 50;
 export default {
     name:"iv-pane",
@@ -25,7 +25,7 @@ export default {
         width:{
             type:Number,
             required:false,
-            default:400,
+            default:21,
         },
         format:{
             type:String,
@@ -89,16 +89,16 @@ export default {
             return (this.format === 'push')? this.windowWidth * maxWidthRatio/100: this.windowWidth;
         },
         widthObj(){
-            return {width:`${ this.showPane? this.widthPx:0}px`};
+            return {width:`${ this.showPane? this.widthPx:0}vw`};
         },
         pointLeft(){
             return !(this.showPane ^ this.position_ == "left");
         },
         buttonLeft(){
             if(this.position_ == "left"){
-                return {'left':  this.showPane ? `${this.widthPx}px` : 0}
+                return {'left':  this.showPane ? `${this.widthPx}vw` : 0}
             } else if(this.position_ == "right"){
-                return {'right':  this.showPane ? `${this.widthPx}px` : '0%'}
+                return {'right':  this.showPane ? `${this.widthPx}vw` : '0%'}
             }else{
                 throw Error("Pane may only have position left or position right");
             }
@@ -159,7 +159,7 @@ export default {
         resize(e){
             let pageX = (e.constructor.name === "TouchEvent")? e.touches[0].pageX : e.pageX;
             if(this.resizer.adjusting && this.allowResize){
-                let deltaX = (pageX - this.resizer.initPageX) * ((this.position_ == "left")? 1:-1);
+                let deltaX = (pageX - this.resizer.initPageX) * ((this.position_ == "left")? 1:-1)/25;
                 this.widthPx += (this.widthPx + deltaX > minWidth && this.widthPx + deltaX < this.maxWidth)? deltaX : 0;
                 this.resizer.initPageX = pageX;
             }   

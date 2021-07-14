@@ -117,8 +117,8 @@ export default {
   right: 0;
   background: none;
   color: $white;
-  font-size: $titleBarHeight - 0.5rem;
-  line-height: $titleBarHeight - 0.5rem;
+  font-size: $titleBarHeight - 1vh;
+  line-height: $titleBarHeight - 1vh;
 }
 
 .iv-logo-container {
@@ -126,14 +126,14 @@ export default {
   cursor: pointer;
   display:block;
   padding:0;
-  height:$titleBarHeight - 0.5rem;
+  height:$titleBarHeight - 1vh;
   :hover {
     color: #0FA0CE;
   }
 
 }
 .iv-vis-logo {
-  height: 1.25rem;
+  height: 2vh;
   width:auto;
   margin: 0.125rem 0.5rem;
 }
