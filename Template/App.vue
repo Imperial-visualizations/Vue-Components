@@ -16,7 +16,14 @@
             </div>           
 
               <template #hotspots>
-                <iv-pane position='left' format='push' :glass=true></iv-pane>
+                <iv-pane position='left'>
+                    <iv-sidebar-content>
+                        <iv-sidebar-section title="SDOF">
+                            This SDOF solver takes in your parameters and then produces a time history plot of your system. Try it out by changing the input parameters and pressing submit to view your solution at the bottom of the page. To submit feedback for this module please click <a href="https://forms.gle/puL3mKPbchXzsRrV7" target="_blank">here</a>.
+                            
+                        </iv-sidebar-section>
+                    </iv-sidebar-content>
+                </iv-pane>
                 <iv-toggle-hotspot :draggable=true position='top' title='Toggle Hotspot' idName="Control Panel 1">
                 </iv-toggle-hotspot>
                 <iv-toggle-hotspot position='right' title='Toggle Hotspot'>                   
