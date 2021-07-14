@@ -24,8 +24,8 @@ export default {
     text-decoration: none;
     padding: 0.1rem 0.3rem;
     margin: 0 0.3rem;
-    font-size:1.1rem;
-    line-height: $titleBarHeight - 0.5vh;
+    font-size: $titleBarHeight - 1vh;
+    line-height: $titleBarHeight - 2vh;
     font-weight:600;
     border-radius: 7px;
     box-sizing: border-box;
