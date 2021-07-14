@@ -25,7 +25,7 @@ export default {
     padding: 0.1rem 0.3rem;
     margin: 0 0.3rem;
     font-size:1.1rem;
-    line-height: 1.1rem;
+    line-height: $titleBarHeight - 0.5vh;
     font-weight:600;
     border-radius: 7px;
     box-sizing: border-box;
