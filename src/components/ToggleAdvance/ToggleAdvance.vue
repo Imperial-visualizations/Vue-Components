@@ -72,16 +72,19 @@ export default {
     },
     watch:{
         togglesDisabled:function(){
-            let i=0;
-            let exit=false;
-            do {
-              if (this.togglesDisabled[i] == false){
-                this.toggleModeIndex=i;
-                exit=true;
-                this.$emit("toggleswitched", this.toggleModeIndex);
-              }
-              i++;
-            } while (i <= this.modes.length && exit==false)
+            if (this.togglesDisabled[this.toggleModeIndex] ==true){
+              let i=0;
+              let exit=false;
+              do {
+                if (this.togglesDisabled[i] == false){
+                  this.toggleModeIndex=i;
+                  exit=true;
+                  this.$emit("toggleswitched", this.toggleModeIndex);
+                }
+                i++;
+              } while (i <= this.modes.length && exit==false)
+            }
+            
         }
     }
 }
