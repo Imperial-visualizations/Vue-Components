@@ -7,6 +7,10 @@
             <iv-reset-button> Reset </iv-reset-button>
             <iv-increment-button @change="changeInc1" :initialValue="10" :increment="1" :minimum="0" :maximum="10"> </iv-increment-button>
             <iv-increment-button :initialValue="2" :increment="1" :minimum="min" :maximum="max"> </iv-increment-button>
+            <iv-toggle-advance id="toggle2"  :initialModeIndex=0 @toggleswitched="sChange" position="centre"></iv-toggle-advance>
+            <iv-toggle-advance id="toggle3" :togglesDisabled=disableList :initialModeIndex=1 position="centre"></iv-toggle-advance>
+                        
+        
         </iv-DraggableDiv>
         <iv-visualisation :title="projectName">
             <div class="iv-welcome-message">
@@ -47,8 +51,13 @@ export default {
         min:{default: -8},
     },
     methods: {
-        toggleChange(e){
-            console.log('event', e);
+    
+        sliderChanged(e){
+            this.max=e;
+            this.min=-e;
+        },
+
+        sChange(e){
             if(e == 0){
                 this.disableList = [false, false, false];
             }
@@ -58,11 +67,6 @@ export default {
             if(e == 2){
                 this.disableList = [true, false, true];
             }
-        },
-
-        sliderChanged(e){
-            this.max=e;
-            this.min=-e;
         },
 
         incrementChange(e){
