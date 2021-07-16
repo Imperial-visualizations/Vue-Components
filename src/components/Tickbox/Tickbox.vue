@@ -1,120 +1,61 @@
 <template>
-  <div>
-    <label class="checkbox-container">
-      <input type="checkbox" @click="changeStatus" :disabled="disable">
-      <span class="checkmark"></span>
-    </label>
-  </div>
+    <div class="checkboxContainer" @click="changeStatus">
+    <div v-if="checkboxValue" class="checkboxBlueContent">
+      <div class="checkmark">
+      </div>
+    </div>
+    </div>
 </template>
+
 <script>
+import {eventBus} from "@/buses/eventBus"
 export default {
-    name:"iv-tickbox",
-    props:{
-      initialState: {
-        type: Boolean,
-        default: true
-      },
-      disable: {
-        type: Boolean,
-        default: false
-      }
-    },
-    data() {
-        return {
-            checkboxStatus: this.initialState,
-            isDisabled: this.disable
-            }
-        },
-    methods:{
-        changeStatus(){
-          this.checkboxStatus = !this.checkboxStatus;
-          if(!this.checkboxStatus == true){
-            this.$emit("checked", this.checkboxStatus)
-          }else{
-            this.$emit("unchecked", this.checkboxStatus)
-          }
-        }    
-    },
+  name: "iv-tickbox",
+  props: {
+  value: {
+      type: Boolean,
+      required: true,
+      default: false
+    }
+  },
+  data(){
+    return{
+      checkboxValue: this.value
+    }
+  },
+  methods: {
+    changeStatus() {
+      this.checkboxValue = !this.checkboxValue
+      this.$emit("check", this.checkboxValue);
+    }
+  },
+  mounted(){
+    eventBus.$on("reset-data", data => {
+      console.log(data);
+      this.checkboxValue = false;
+    });
+  }
 }
 </script>
-<style>
-.checkbox-container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+<style lang="scss">
+.checkboxContainer{
   cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  background-color: lightgrey;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
 }
-
-.checkbox-container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+.checkboxBlueContent{
+  background-color: blue;
+  width: 21px;
+  height: 21px;
 }
-
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  outline: 1px solid #000305;
-}
-
-
-.checkbox-container:hover input ~ .checkmark {
-  background-color: #ccc;
-  outline: 1px solid #000305;
-}
-
-.checkbox-container input:checked ~ .checkmark {
-  background-color: #2196F3;
-  outline: 1px solid #000305;
-}
-
-
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.checkbox-container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.checkbox-container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
+.checkmark{
+  height: 12px;
+  width: 8px;
   border: solid white;
   border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-.checkbox-container input:disabled ~ .checkmark{
-  background-color: rgb(211, 209, 209);
-  outline: 1px solid #b4b4b4;
-}
-.checkbox-container input:disabled ~ .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid #7e7e7e;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  transform: rotate(45deg) translate(3px,-4px);
 }
 </style>
+
