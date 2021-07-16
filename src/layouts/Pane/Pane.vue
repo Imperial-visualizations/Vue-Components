@@ -123,14 +123,24 @@ export default {
             const initState = this.showPane
             if(initState){
                 this.$el.classList.add('iv-slide-animation-reverse');
+                this.$emit("paneHide")
             }else{
                 this.$el.classList.add('iv-slide-animation')
                 this.showPane = true;
+                
             }
+            initState? this.$emit("paneToggle", 0) : null
             setTimeout(()=>{
                 this.$el.classList.remove((initState)? 'iv-slide-animation-reverse':'iv-slide-animation');
                 this.showPane = !initState;
+                if(!initState){
+                    this.$emit("paneToggle", this.widthPx);
+                    this.$emit("paneReveal", this.widthPx);
+                }
+                
             },500);
+            
+            
         },
         mouseDown(e){
             this.resizer.adjusting=true;
@@ -162,6 +172,7 @@ export default {
                 let deltaX = (pageX - this.resizer.initPageX) * ((this.position_ == "left")? 1:-1)/25;
                 this.widthPx += (this.widthPx + deltaX > minWidth && this.widthPx + deltaX < this.maxWidth)? deltaX : 0;
                 this.resizer.initPageX = pageX;
+                this.$emit("paneResize", this.widthPx)
             }   
         }
     }
