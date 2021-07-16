@@ -9,7 +9,7 @@
             <iv-increment-button :initialValue="2" :increment="1" :minimum="min" :maximum="max"> </iv-increment-button>
             <iv-toggle-advance id="toggle2"  :initialModeIndex=0 @toggleswitched="sChange" position="centre"></iv-toggle-advance>
             <iv-toggle-advance id="toggle3" :togglesDisabled=disableList :initialModeIndex=1 position="centre"></iv-toggle-advance>
-                        
+            <iv-tickbox></iv-tickbox>            
         
         </iv-DraggableDiv>
         <iv-visualisation :title="projectName">

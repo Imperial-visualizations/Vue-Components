@@ -106,8 +106,7 @@ export default {
       eventBus.$on("reset-data", data => {
         console.log(data);
         this.current = this.initialValue;
-        this.minusDisabled=false;
-        this.plusDisabled=false;
+        this.disable();
         this.$emit("change", this.current);
       });
     },

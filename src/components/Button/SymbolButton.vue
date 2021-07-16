@@ -1,5 +1,5 @@
 <template>
-    <div class="iv-circle-button iv-drop-shadow-medium" :class="['iv-' + size]">
+    <div class="iv-circle-button iv-drop-shadow-medium" @click="buttonClick" :class="['iv-' + size]">
         <img :src="symbolIcon" :alt="symbol"/>
     </div>
 </template>
@@ -18,6 +18,11 @@ export default {
             required:false,
             default:""
         }
+    },
+    methods:{
+        buttonClick(){
+           this.$emit("click", true);
+        },
     },
     computed:{
         symbolIcon(){
