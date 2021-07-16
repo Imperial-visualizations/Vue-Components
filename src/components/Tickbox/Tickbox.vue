@@ -32,7 +32,8 @@ export default {
   mounted(){
     eventBus.$on("reset-data", data => {
       console.log(data);
-      this.checkboxValue = false;
+      this.checkboxValue = this.value;
+      this.$emit("check", this.checkboxValue);
     });
   }
 }
