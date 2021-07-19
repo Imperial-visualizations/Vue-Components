@@ -131,6 +131,9 @@ export default {
         font-weight: 600;
         position:relative;
         opacity:0.75;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
         &.iv-active-button{
             flex-grow:6;
         }
@@ -138,6 +141,9 @@ export default {
             border:none;
             outline:none;
             opacity:1;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
     .iv-meter{

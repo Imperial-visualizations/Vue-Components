@@ -8,7 +8,8 @@
 </template>
 
 <script>
-import DropdownListElement from "./DropdownListElement.vue"
+import DropdownListElement from "./DropdownListElement.vue";
+import {eventBus} from "@/buses/eventBus";
 export default {
     name:"iv-dropdown-list",
     components: {"iv-dropdown-list-element": DropdownListElement},
@@ -52,7 +53,14 @@ export default {
         }
         this.$emit("dropdownbuttonclicked", e);
       }
-    }
+    },
+    mounted(){
+      eventBus.$on("reset-data", data => {
+        console.log(data);
+        this.dropdownIndex = this.initialDropdownIndex;
+        this.$emit("dropdownelementclicked", this.dropdownIndex);
+      });
+    },
 }
 </script>
 
