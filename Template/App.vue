@@ -32,7 +32,7 @@
                 </iv-toggle-hotspot>
                 <iv-toggle-hotspot position='right' title='Toggle Hotspot'>                   
                 </iv-toggle-hotspot>                 
-                <iv-fixed-hotspot position='topright'>
+                <iv-fixed-hotspot position='topright' title="Title">
                     I am in a fixed hotspot
                 </iv-fixed-hotspot>
             </template>

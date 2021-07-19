@@ -1,6 +1,7 @@
 <template>
     <div class="iv-hotspotable iv-fixed-hotspot">
         <div class="hotspot-content" :class="[positionalClass('iv'),{'no-wasted-space':noWastedSpace},{'iv-transparent':transparent},{'iv-glass-effect':glass}]">
+            <span v-if="title !== ''" class = "title-text">{{title}}</span>
             <slot :setPosition="setPosition"> DEFAULT SLOT CONTENT. Position:{{position_}}</slot>
         </div>
     </div>
@@ -22,6 +23,11 @@ export default {
         glass:{
             type:Boolean,
             default:false
+        },
+        title:{
+            type:String,
+            required:false,
+            default:""
         }
     },
 }
@@ -48,6 +54,12 @@ export default {
     &.no-wasted-space{
         width:auto;
         height:auto;
+    }
+    .title-text{
+        text-align: center;
+        margin-bottom: 7px;
+        font-weight: bold;
+        border-bottom-style:solid;
     }
     
 }
