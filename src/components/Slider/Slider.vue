@@ -6,14 +6,16 @@
             <input type="range" :style="cssColor" :class="[(playSlider)? 'iv-range-play' : 'iv-range']"  v-model.number="value" :min="min" :max="max" :step="step" @mousedown="startDrag"  @mousemove="emitSlider" @mouseup="stopDrag" @change="emitSliderAgain">
             <iv-line-ticks v-if="lineTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_line_key" />
             <iv-num-ticks v-if="numTick" :sliderTicksList="tick_list" :thumb_width="thumb_width" :min="min" :max="max" :key="tick_num_key"/>
-            <iv-button v-if="resetButton" style="height:100%" @click="reset">Reset</iv-button>
-            <iv-button v-if="playButton" style="height:100%" @click="togglePlay">
+            <iv-button id="resetButton" v-if="resetButton" style="height:100%;" @click="reset">Reset</iv-button>
+            <div  style="text-align:center;">
+            <iv-button id="playButton" v-if="playButton" @click="togglePlay">
                 <span v-if="isPlaying">Pause</span>
                 <span v-if="!isPlaying">
                     <span v-if="value>=max">Reset</span>
                     <span v-else>Play</span>
                     </span>
                 </iv-button>
+                </div>
         </div>
         <iv-input-button v-if="sliderButtons" :sliderValue="value" :playSlider="playSlider" :buttonInput="buttonInput" :min="min" :max="max" :button_step_init="button_step_init" @inputButtonClicked="update_val_button"/>
     </div>
@@ -108,6 +110,12 @@ export default {
         time_step: {
             type: Number,
             default: 100,
+        },
+        playButtonPosition:{
+            type: String,
+            required: false,
+            default: "left",
+
         }
     },
     data(){
@@ -127,11 +135,11 @@ export default {
             playButtonState: "Play",
             isPlaying: false,
             timer: null,
+            // playButtonPosition: this.playButtonPosition
         }
     },
     methods:{  
         update_val_button(e){
-            //console.log(e);
             this.value = e;
         },
         calc_ticks(){
@@ -139,7 +147,6 @@ export default {
             for(let i=this.min; i <= this.max; i+=this.tick_step){
                 tick_list.push({id: this.id.toString() + "_" + i.toString(), value: i.toFixed(this.tick_decimals)});
             }
-            console.log(tick_list)
             return tick_list
         },
         startDrag(){
@@ -187,6 +194,11 @@ export default {
     },
 
     mounted () {
+        let play = document.getElementById("playButton");
+        if(["left", "right"].includes(this.playButtonPosition)){
+        play.style["float"] = this.playButtonPosition;
+        }
+        
         this.id = this._uid;
         //this.min_step_size();
         this.tick_list = this.calc_ticks(); 

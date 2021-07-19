@@ -1,7 +1,7 @@
 <template>
     <div>
         <iv-DraggableDiv idName="Control Panel 1">
-            <iv-slider :min="0" :max="6" :step="1" @sliderChanged="sliderChanged"></iv-slider>
+            <iv-slider :min="0" :max="6" :step="1" @sliderChanged="sliderChanged" playButton></iv-slider>
             <iv-toggle-basic :resetCapability="true"> </iv-toggle-basic>
             <iv-toggle-advance :width=ToggleWidth :modes=ModeNames></iv-toggle-advance>
             <iv-reset-button> Reset </iv-reset-button>
