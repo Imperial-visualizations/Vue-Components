@@ -15,8 +15,8 @@ export default {
             this.$emit("mouseleave",e)
         },
         buttonClick(e){
-            this.$emit("click", e)
             eventBus.$emit("reset-data", this.resetChoice)
+            this.$emit("click", e)
         },
     },
     props:{
