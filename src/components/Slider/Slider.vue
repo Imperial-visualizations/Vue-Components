@@ -11,7 +11,7 @@
             <iv-button id="playButton" v-if="playButton" @click="togglePlay">
                 <span v-if="isPlaying">Pause</span>
                 <span v-if="!isPlaying">
-                    <span v-if="value>=max">Reset</span>
+                    <span v-if="value>=max" @click="emitSliderOnReset">Reset</span>
                     <span v-else>Play</span>
                     </span>
                 </iv-button>
@@ -183,7 +183,10 @@ export default {
         stopSlider() {
             clearInterval(this.timer);
             this.isPlaying = false;
-        }       
+        },       
+        emitSliderOnReset(){
+            this.$emit("sliderChanged",this.init_val);
+        }
     },
     computed:{
         cssColor(){
