@@ -22,7 +22,7 @@
 
               <template #hotspots>
                 <iv-pane position='left' @paneReveal="paneReveal" @paneHide="paneHide" @paneToggle="paneToggle" @paneResize="paneResize">
-                    <iv-sidebar-content>
+                    <iv-sidebar-content nextText='test N' previousText='test P'>
                         <iv-sidebar-section title="SDOF">
                             This SDOF solver takes in your parameters and then produces a time history plot of your system. Try it out by changing the input parameters and pressing submit to view your solution at the bottom of the page. To submit feedback for this module please click <a href="https://forms.gle/puL3mKPbchXzsRrV7" target="_blank">here</a>.
                             

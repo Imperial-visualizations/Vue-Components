@@ -1,12 +1,22 @@
 <template>
     <div class="iv-pane-navigator">
-        <a href="#" id="iv-pagination-prev" class="iv-button">Previous</a>
-        <a href="#" id="iv-pagination-next" class="iv-button">Next</a>
+        <a href="#" id="iv-pagination-prev" class="iv-button">{{prevText}}</a>
+        <a href="#" id="iv-pagination-next" class="iv-button">{{nextText}}</a>
     </div>    
 </template>
 <script>
 export default{
-    name:'iv-pane-navigator'
+    name:'iv-pane-navigator',
+    props:{
+        nextText:{
+            type:String,
+            default:'Next'
+        },
+        prevText:{
+            type:String,
+            default:'Previous'
+        }
+    }
 }
 </script>
 <style lang="scss">

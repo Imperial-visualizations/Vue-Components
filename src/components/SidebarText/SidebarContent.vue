@@ -16,7 +16,7 @@
         <div class="iv-sidebar-content-body" ref="body">
             <slot/>
         </div>
-        <iv-pane-navigator v-if="showPagination"/>
+        <iv-pane-navigator :nextText="nextText" :prevText="previousText" v-if="showPagination"/>
     </div>
 </template>
 <script>
@@ -36,6 +36,14 @@ export default {
         showPagination:{
             type:Boolean,
             default:true
+        },
+        previousText:{
+            type:String,
+            default:'Previous'
+        },
+        nextText:{
+            type:String,
+            default:'Next'
         }
     },
     provide(){
