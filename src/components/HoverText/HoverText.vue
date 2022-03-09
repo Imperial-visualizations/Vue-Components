@@ -1,6 +1,9 @@
 <template>
     <div class="dropdown">
-        <div @mouseover="showContent=true" @mouseleave="showContent=false" @mousemove="updatePosition" class="dropdownhover">
+        <div @mouseover="showContent=true" @mouseleave="showContent=false" @mousemove="updatePosition" class="dropdownhover" v-if="!clickInsteadOfHover">
+            <slot>{{hoverElement}}</slot>
+        </div>
+        <div @click="showContent=!showContent" @mousemove="updatePosition" class="dropdownhover" v-if="clickInsteadOfHover">
             <slot>{{hoverElement}}</slot>
         </div>
         <div class="dropdown-content" v-show="showContent" v-bind:style="moveDiv">        
@@ -20,6 +23,10 @@ export default {
         defaultText:{
             type: String,
             default: "This is a secret message."
+        },
+        clickInsteadOfHover:{
+            type: Boolean,
+            default: false,
         }
     },
     data: function () {
