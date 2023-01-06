@@ -37,7 +37,7 @@
     "@rollup/plugin-node-resolve": "^8.1.0",
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
+    "@vue/cli-service": "~5.0.8",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
@@ -48,7 +48,7 @@
     "rollup-plugin-scss": "^2.5.0",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^6.1.0",
-    "rollup-plugin-vue": "^5.1.9",
+    "rollup-plugin-vue": "^6.0.0",
     "sass-loader": "^10",
     "vue-template-compiler": "^2.6.14"
   },
